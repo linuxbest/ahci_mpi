@@ -1,0 +1,107 @@
+##############################################################
+#
+# Copyright (c) 2010 Beijing Soul, Inc. All rights reserved.
+#
+# Hu Gang
+# 
+##############################################################
+lib proc_common_v3_00_a       all
+lib mdm_v2_00_b               all
+lib microblaze_v8_20_b        all
+lib lmb_v10_v2_00_b           all
+lib lmb_bram_if_cntlr_v3_00_b all
+
+lib iomodule_v1_00_a divide_part.vhd vhdl
+lib iomodule_v1_00_a fit_module.vhd vhdl
+lib iomodule_v1_00_a gpi_module.vhd vhdl
+lib iomodule_v1_00_a gpo_module.vhd vhdl
+lib iomodule_v1_00_a intr_ctrl.vhd vhdl
+lib iomodule_v1_00_a iomodule_core.vhd vhdl
+lib iomodule_v1_00_a pit_module.vhd vhdl
+lib iomodule_v1_00_a pselect_mask.vhd vhdl
+lib iomodule_v1_00_a uart_control_status.vhd vhdl
+lib iomodule_v1_00_a uart_receive.vhd vhdl
+lib iomodule_v1_00_a uart_transmit.vhd vhdl
+lib iomodule_v1_00_a iomodule.vhd vhdl
+
+lib microblaze_mcs_v1_0 ram_module_top vhdl
+lib microblaze_mcs_v1_0 lmb_bram vhdl
+#lib microblaze_mcs_v1_0 microblaze_mcs vhdl
+
+lib sata_v1_00_a microblaze_mcs vhdl
+#lib sata_v1_00_a lmb_bram_32k_loop vhdl
+#lib sata_v1_00_a lmb_bram_32k vhdl
+#lib sata_v1_00_a lmb_bram vhdl
+
+lib sata_v1_00_a crossdomain/reg_sync verilog
+lib sata_v1_00_a crossdomain/signal verilog
+
+lib sata_v1_00_a crc verilog
+lib sata_v1_00_a ctrl verilog
+lib sata_v1_00_a dcr_if verilog
+lib sata_v1_00_a host_if verilog
+lib sata_v1_00_a err_reg verilog
+lib sata_v1_00_a dma verilog
+lib sata_v1_00_a fifo_36w_36r verilog
+lib sata_v1_00_a link_fsm verilog
+lib sata_v1_00_a mb_io verilog
+lib sata_v1_00_a mb_top verilog
+lib sata_v1_00_a rx_cs verilog
+lib sata_v1_00_a rxll_ctrl verilog
+lib sata_v1_00_a rxll_fifo verilog
+lib sata_v1_00_a rxll_ll verilog
+lib sata_v1_00_a rxll verilog
+lib sata_v1_00_a sata_link verilog
+lib sata_v1_00_a sata_dma verilog
+lib sata_v1_00_a scrambler verilog
+lib sata_v1_00_a srl16e_fifo_protect verilog
+lib sata_v1_00_a tx_cs verilog
+lib sata_v1_00_a txll_ctrl verilog
+lib sata_v1_00_a txll_fifo verilog
+lib sata_v1_00_a txll_ll verilog
+lib sata_v1_00_a txll verilog
+lib sata_v1_00_a sata verilog
+
+lib sata_v1_00_a encoder vhdl
+lib sata_v1_00_a fifo    vhdl
+
+lib sata_v1_00_a npi_xcl.v
+lib sata_v1_00_a npi_pi_enable.v
+
+lib mpmc_v6_03_a dpram.v
+lib mpmc_v6_03_a dualxcl_access_data_path.v
+lib mpmc_v6_03_a dualxcl_access.v
+lib mpmc_v6_03_a dualxcl_fsm.v
+lib mpmc_v6_03_a dualxcl_read.v
+lib mpmc_v6_03_a dualxcl.v
+lib mpmc_v6_03_a fifo_pipeline.v
+lib mpmc_v6_03_a mpmc_ramb16_sx_sx.v
+lib mpmc_v6_03_a mpmc_rdcntr.v
+lib mpmc_v6_03_a mpmc_sample_cycle.v
+lib mpmc_v6_03_a mpmc_srl_delay.v
+lib mpmc_v6_03_a mpmc_srl_fifo_gen_fifoaddr.v
+lib mpmc_v6_03_a mpmc_srl_fifo_gen_input_pipeline.v
+lib mpmc_v6_03_a mpmc_srl_fifo_gen_output_pipeline.v
+lib mpmc_v6_03_a mpmc_srl_fifo_gen_push_tmp.v
+lib mpmc_v6_03_a mpmc_srl_fifo_nto1_mux.v
+lib mpmc_v6_03_a mpmc_srl_fifo_nto1_ormux.v
+lib mpmc_v6_03_a mpmc_srl_fifo.v
+lib mpmc_v6_03_a mpmc_write_fifo.v
+lib mpmc_v6_03_a mpmc_xcl_if.v
+lib mpmc_v6_03_a pop_generator.v
+lib mpmc_v6_03_a round_robin_arb.v
+#lib mpmc_v6_03_a srl16e_fifo_protect.v
+lib mpmc_v6_03_a srl16e_fifo.v
+lib mpmc_v6_03_a xcl_addr.v
+lib mpmc_v6_03_a xcl_read_data.v
+lib mpmc_v6_03_a xcl_write_data.v
+
+lib npi_ict_v1_00_a npi_addr_path.v
+lib npi_ict_v1_00_a mpmc_bram_fifo.v
+lib npi_ict_v1_00_a mpmc_read_fifo.v
+
+lib npi_ict_v1_00_a pim_dbg64.v
+lib npi_ict_v1_00_a pim_dbg.v
+lib npi_ict_v1_00_a npi_ict_fsm.v
+lib npi_ict_v1_00_a npi_ict_rd.v
+lib npi_ict_v1_00_a npi_ict.v
