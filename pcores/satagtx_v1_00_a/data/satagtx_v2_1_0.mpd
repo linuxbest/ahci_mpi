@@ -1,0 +1,85 @@
+##############################################################
+#
+# Copyright (c) 2010 Beijing Soul, Inc. All rights reserved.
+#
+# Hu Gang
+# 
+##############################################################
+
+
+BEGIN satagtx
+
+OPTION STYLE = HDL
+OPTION IPTYPE = BRIDGE
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VERILOG
+OPTION RUN_NGCBUILD = TRUE
+OPTION PLATGEN_SYSLEVEL_UPDATE_PROC = generate_corelevel_ucf
+OPTION LAST_UPDATED = 10.1.2
+OPTION DESC = TACHYON
+OPTION IP_GROUP = MICROBLAZE:PPC:USER
+OPTION ARCH_SUPPORT_MAP = (virtex2p=PREFERRED, virtex4lx=PREFERRED, virtex4sx=PREFERRED, virtex4fx=PREFERRED, virtex5lx=PREFERRED, virtex5sx=PREFERRED, virtex5tx=PREFERRED, virtex5fx=PREFERRED)
+
+PARAMETER C_FAMILY = virtex5, DT = STRING
+PARAMETER C_ENABLE = 1, DT = INTETER
+PARAMETER C_CHIPSCOPE = 0, DT = INTETER
+
+BUS_INTERFACE BUS = GTXBUS0, BUS_TYPE = TARGET, BUS_STD = GTXIF
+PORT phyreset0       = phyreset,       DIR = I, BUS = GTXBUS0
+PORT phyclk0         = phyclk,         DIR = O, BUS = GTXBUS0
+PORT txdata0         = txdata,         DIR = I, BUS = GTXBUS0, VEC = [31:0]
+PORT txdatak0        = txdatak,        DIR = I, BUS = GTXBUS0
+PORT txdatak_pop0    = txdatak_pop,    DIR = O, BUS = GTXBUS0
+PORT rxdata0         = rxdata,         DIR = O, BUS = GTXBUS0, VEC = [31:0]
+PORT rxdatak0        = rxdatak,        DIR = O, BUS = GTXBUS0
+PORT linkup0         = linkup,         DIR = O, BUS = GTXBUS0
+PORT plllock0        = plllock,        DIR = O, BUS = GTXBUS0
+PORT oob2dbg0        = oob2dbg,        DIR = O, BUS = GTXBUS0, VEC = [127:0]
+PORT StartComm0      = StartComm,      DIR = I, BUS = GTXBUS0
+PORT CommInit0       = CommInit,       DIR = O, BUS = GTXBUS0
+PORT gtx_tune0       = gtx_tune,       DIR = I, BUS = GTXBUS0, VEC = [31:0]
+PORT gtx_txdata0     = gtx_txdata,     DIR = O, BUS = GTXBUS0, VEC = [31:0]
+PORT gtx_txdatak0    = gtx_txdatak,    DIR = O, BUS = GTXBUS0, VEC = [3:0]
+PORT gtx_rxdata0     = gtx_rxdata,     DIR = O, BUS = GTXBUS0, VEC = [31:0]
+PORT gtx_rxdatak0    = gtx_rxdatak,    DIR = O, BUS = GTXBUS0, VEC = [3:0]
+
+BUS_INTERFACE BUS = GTXBUS1, BUS_TYPE = TARGET, BUS_STD = GTXIF
+PORT phyreset1       = phyreset,       DIR = I, BUS = GTXBUS1
+PORT phyclk1         = phyclk,         DIR = O, BUS = GTXBUS1
+PORT txdata1         = txdata,         DIR = I, BUS = GTXBUS1, VEC = [31:0]
+PORT txdatak1        = txdatak,        DIR = I, BUS = GTXBUS1
+PORT txdatak_pop1    = txdatak_pop,    DIR = O, BUS = GTXBUS1
+PORT rxdata1         = rxdata,         DIR = O, BUS = GTXBUS1, VEC = [31:0]
+PORT rxdatak1        = rxdatak,        DIR = O, BUS = GTXBUS1
+PORT linkup1         = linkup,         DIR = O, BUS = GTXBUS1
+PORT plllock1        = plllock,        DIR = O, BUS = GTXBUS1
+PORT oob2dbg1        = oob2dbg,        DIR = O, BUS = GTXBUS1, VEC = [127:0]
+PORT StartComm1      = StartComm,      DIR = I, BUS = GTXBUS1
+PORT CommInit1       = CommInit,       DIR = O, BUS = GTXBUS1
+PORT gtx_tune1       = gtx_tune,       DIR = I, BUS = GTXBUS1, VEC = [31:0]
+PORT gtx_txdata1     = gtx_txdata,     DIR = O, BUS = GTXBUS1, VEC = [31:0]
+PORT gtx_txdatak1    = gtx_txdatak,    DIR = O, BUS = GTXBUS1, VEC = [3:0]
+PORT gtx_rxdata1     = gtx_rxdata,     DIR = O, BUS = GTXBUS1, VEC = [31:0]
+PORT gtx_rxdatak1    = gtx_rxdatak,    DIR = O, BUS = GTXBUS1, VEC = [3:0]
+
+PORT RXN0_IN          = "",        	DIR = I
+PORT RXP0_IN          = "",        	DIR = I
+PORT TXN0_OUT         = "",        	DIR = O
+PORT TXP0_OUT         = "",        	DIR = O
+
+PORT RXN1_IN          = "",        	DIR = I
+PORT RXP1_IN          = "",        	DIR = I
+PORT TXN1_OUT         = "",        	DIR = O
+PORT TXP1_OUT         = "",        	DIR = O
+
+PORT refclk     = "", DIR = I
+PORT refclkout  = "", DIR = O
+PORT plllkdet   = "", DIR = O
+
+PORT dcm_locked = "", DIR = I
+PORT txusrclk0  = "", DIR = I
+PORT txusrclk20 = "", DIR = I
+
+PORT GTXRESET_IN = "", DIR = I, SIGIS = RST
+
+END

@@ -1,0 +1,16 @@
+##############################################################
+#
+# Copyright (c) 2010 Beijing Soul, Inc. All rights reserved.
+#
+# Hu Gang
+# 
+##############################################################
+
+lib satagtx_v1_00_a satagtx verilog
+lib satagtx_v1_00_a phy_if_gtx verilog
+lib satagtx_v1_00_a gtx_oob verilog
+lib satagtx_v1_00_a satagtx_top verilog
+lib satagtx_v1_00_a rocketio_wrapper verilog
+lib satagtx_v1_00_a rocketio_wrapper_tile verilog
+lib satagtx_v1_00_a tx_sync verilog
+lib satagtx_v1_00_a cross_signal verilog

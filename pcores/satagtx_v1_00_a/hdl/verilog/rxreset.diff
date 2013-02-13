@@ -1,0 +1,67 @@
+diff --git a/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/gtx_oob.v b/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/gtx_oob.v
+index 70b49b7..647c6e3 100644
+--- a/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/gtx_oob.v
++++ b/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/gtx_oob.v
+@@ -243,6 +243,7 @@ module gtx_oob (/*AUTOARG*/
+ 	       txcomstart <= #1 1'b0;
+ 	       link_up    <= #1 1'b0;	       
+ 	       txdatak    <= #1 1'b0;
++	       rxreset    <= #1 1'b0;
+ 	    end
+ 	  S_HR_Reset:		// Transmit COMRESET
+ 	    begin
+@@ -252,12 +253,17 @@ module gtx_oob (/*AUTOARG*/
+ 	    end
+ 	  S_HR_AwaitCOMINIT,
+ 	    S_HR_AwaitNoCOMINIT,
+-	    S_HR_AwaitCOMWAKE,
+-	    S_HR_AwaitNoCOMWAKE:	// interface quiescent
++	    S_HR_AwaitCOMWAKE:  // interface quiescent
+ 	      begin
+ 		 txelecidle <= #1 1'b1;
+ 		 txcomstart <= #1 1'b0;
+ 	      end
++	  S_HR_AwaitNoCOMWAKE:// interface quiescent
++	    begin
++	       txelecidle <= #1 1'b1;
++	       txcomstart <= #1 1'b0;
++	       rxreset    <= #1 rxstatus[1] == 1'b0;
++	    end
+ 	  S_HR_COMWAKE:		// Transmit COMWAKE
+ 	    begin
+ 	       txelecidle <= #1 1'b1;
+@@ -291,7 +297,7 @@ module gtx_oob (/*AUTOARG*/
+ 		  .signalIn(StartComm),
+ 		  .clkB(sys_clk),
+ 		  .signalOut(StartComm_sync));
+-   assign phy_ready = plllkdet && StartComm_sync && tx_sync_done;
++   assign phy_ready = plllkdet && StartComm_sync;
+    assign CommInit = rxstatus[2];
+    /**********************************************************************/
+    /*AUTOASCIIENUM("state", "state_ascii", "S_")*/
+diff --git a/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/satagtx_top.v b/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/satagtx_top.v
+index efb0661..a4feebd 100755
+--- a/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/satagtx_top.v
++++ b/dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/satagtx_top.v
+@@ -326,8 +326,8 @@ module satagtx_top #
+         //----------------- Receive Ports - RX Data Path interface -----------------
+         .TILE0_RXDATA0_OUT              (tile0_rxdata0_i),
+         .TILE0_RXDATA1_OUT              (tile0_rxdata1_i),
+-        .TILE0_RXRESET0_IN              (phyreset0),
+-        .TILE0_RXRESET1_IN              (phyreset1),
++        .TILE0_RXRESET0_IN              (tile0_rxreset0_i),
++        .TILE0_RXRESET1_IN              (tile0_rxreset1_i),
+         .TILE0_RXUSRCLK0_IN             (tile0_txusrclk0_i),
+         .TILE0_RXUSRCLK1_IN             (tile0_txusrclk0_i),
+         .TILE0_RXUSRCLK20_IN            (tile0_txusrclk20_i),
+@@ -359,8 +359,8 @@ module satagtx_top #
+         //---------------- Transmit Ports - TX Data Path interface -----------------
+         .TILE0_TXDATA0_IN               (tile0_txdata0_i),
+         .TILE0_TXDATA1_IN               (tile0_txdata1_i),
+-        .TILE0_TXRESET0_IN              (phyreset0),
+-        .TILE0_TXRESET1_IN              (phyreset1),
++        .TILE0_TXRESET0_IN              (tile0_rxreset0_i),
++        .TILE0_TXRESET1_IN              (tile0_rxreset1_i),
+         .TILE0_TXUSRCLK0_IN             (tile0_txusrclk0_i),
+         .TILE0_TXUSRCLK1_IN             (tile0_txusrclk0_i),
+         .TILE0_TXUSRCLK20_IN            (tile0_txusrclk20_i),
