@@ -1,0 +1,21 @@
+ADDRESS_MAP microblaze_0 MICROBLAZE-LE 100
+  ADDRESS_SPACE lmb_ibram COMBINED [0x00000000:0x00007fff]
+    ADDRESS_RANGE RAMB32
+      BUS_BLOCK
+        lmb_bram/lmb_ibram/ramb36_0 [31:24] INPUT = instr_microblaze_0.lmb_bram_0.mem;
+        lmb_bram/lmb_ibram/ramb36_1 [23:16] INPUT = instr_microblaze_0.lmb_bram_1.mem;
+        lmb_bram/lmb_ibram/ramb36_2 [15:08] INPUT = instr_microblaze_0.lmb_bram_2.mem;
+        lmb_bram/lmb_ibram/ramb36_3 [07:00] INPUT = instr_microblaze_0.lmb_bram_3.mem;
+      END_BUS_BLOCK;
+    END_ADDRESS_RANGE;
+
+    ADDRESS_RANGE RAMB32
+      BUS_BLOCK
+        lmb_bram/lmb_dbram/ramb36_0 [31:24] INPUT = data_microblaze_0.lmb_bram_0.mem;
+        lmb_bram/lmb_dbram/ramb36_1 [23:16] INPUT = data_microblaze_0.lmb_bram_1.mem;
+        lmb_bram/lmb_dbram/ramb36_2 [15:08] INPUT = data_microblaze_0.lmb_bram_2.mem;
+        lmb_bram/lmb_dbram/ramb36_3 [07:00] INPUT = data_microblaze_0.lmb_bram_3.mem;
+      END_BUS_BLOCK;
+    END_ADDRESS_RANGE;
+  END_ADDRESS_SPACE;
+END_ADDRESS_MAP;
