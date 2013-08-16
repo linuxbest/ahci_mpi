@@ -73,6 +73,9 @@
  PORT RXP3_IN = RXP3_IN, DIR = I
  PORT TXN3_OUT = TXN3_OUT, DIR = O
  PORT TXP3_OUT = TXP3_OUT, DIR = O
+ PORT sata_0_GREFCLK_P_pin = sata_0_GREFCLK_P, DIR = I
+ PORT sata_0_GREFCLK_N_pin = sata_0_GREFCLK_N, DIR = I
+
 
 BEGIN microblaze
  PARAMETER INSTANCE = microblaze_0
@@ -411,4 +414,17 @@ BEGIN xps_bram_if_cntlr
  PARAMETER C_HIGHADDR = 0x85f0bfff
  BUS_INTERFACE SPLB = mb_plb
  BUS_INTERFACE PORTA = sata_0_data_portb
+END
+
+BEGIN satagtx_clk
+ PARAMETER INSTANCE = gtx_clk_0
+ PARAMETER HW_VER = 1.00.a
+ PORT TILE0_REFCLK_PAD_P_IN = sata_0_GREFCLK_P
+ PORT TILE0_REFCLK_PAD_N_IN = sata_0_GREFCLK_N
+ PORT tile0_refclk  = tile0_refclk
+ PORT tile0_refclkout =  tile0_refclkout
+ PORT tile0_plllkdet = tile0_plllkdet
+ PORT refclkout_dcm0_locked = refclkout_dcm0_locked
+ PORT tile0_txusrclk0  = tile0_txusrclk0
+ PORT tile0_txusrclk20 = tile0_txusrclk20
 END

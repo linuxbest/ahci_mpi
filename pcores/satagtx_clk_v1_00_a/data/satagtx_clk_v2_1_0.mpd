@@ -1,0 +1,34 @@
+##############################################################
+#
+# Copyright (c) 2010 Beijing Soul, Inc. All rights reserved.
+#
+# Hu Gang
+# 
+##############################################################
+
+
+BEGIN satagtx_clk
+
+OPTION STYLE = HDL
+OPTION IPTYPE = BRIDGE
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VERILOG
+OPTION LAST_UPDATED = 10.1.2
+OPTION DESC = TACHYON
+OPTION IP_GROUP = MICROBLAZE:PPC:USER
+OPTION ARCH_SUPPORT_MAP = (virtex2p=PREFERRED, virtex4lx=PREFERRED, virtex4sx=PREFERRED, virtex4fx=PREFERRED, virtex5lx=PREFERRED, virtex5sx=PREFERRED, virtex5tx=PREFERRED, virtex5fx=PREFERRED, spartan6t=PREFERRED)
+
+PARAMETER C_FAMILY = virtex5, DT = STRING
+
+PORT TILE0_REFCLK_PAD_P_IN = "", DIR = I
+PORT TILE0_REFCLK_PAD_N_IN = "", DIR = I
+PORT tile0_refclk    = "",       DIR = O
+
+PORT tile0_refclkout = "",     DIR = I
+PORT tile0_plllkdet  = "",     DIR = I
+
+PORT refclkout_dcm0_locked = "", DIR = O
+PORT tile0_txusrclk0       = "", DIR = O
+PORT tile0_txusrclk20      = "", DIR = O
+
+END
