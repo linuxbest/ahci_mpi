@@ -1,0 +1,2675 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Change log for MPMC, v6.03.a</title>
+
+
+
+
+	
+	<link href="../../../../../../doc/usenglish/css/xilhtml.css" rel="stylesheet" type="text/css">
+ 	<style>
+		P.Level1Heading {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1.05em;
+			margin-bottom: 0em;
+			margin-top: 0em;
+		}
+		P.Level2Heading  {
+			font-weight: bold;
+			margin-top: 2em;
+			margin-bottom: 0em;
+		}
+		P.Level3Heading {
+			font-weight: bold;
+			margin-top: 2em;
+		}
+		.GreyBackground {
+			background-color:#CCCCCC;
+		}
+		.PreformatFont  {
+			font-family: Fixed, Mono, Courier New, Courier;
+			font-size: .95em;
+		}
+	</style><!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Location msdt:dt="string">Sweden</mso:Location>
+<mso:Description0 msdt:dt="string"></mso:Description0>
+</mso:CustomDocumentProperties>
+</xml><![endif]--></head><body>
+<h3 class="PageHeader">Xilinx Processor IP Library</h3>
+<h1>Change log for MPMC<br></h1>
+<hr class="whs1">
+<table style="vertical-align: top; text-align: left;" border="0" cellpadding="1" cellspacing="0">
+  <tbody>
+<!-- BEGIN CHANGELOG FOR New core version --><!--spacer--><tr>
+</tr>
+
+
+	<tr>
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v6.03.a, introduced in 13.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">13.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated S3/V4/V5 MIG PHYs to MIG release
+				version 3.61.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated S6/V6 MIG PHYs to MIG release
+				version 3.7.</p></li>
+				<li><p style="margin-bottom: 0in;">See MIG version 3.61 and 3.7 release notes
+				for more information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information.</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR573670&gt;][&lt;CR587578&gt;] Fixed error causing MPMC_Clk0
+				to be used instead of MPMC_MCB_DRP_Clk (when connected) to drive the soft calibration
+				logic inside the Spartan-6 MIG PHY.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR576824&gt;] Logic in Spartan-6 PHY fixed so that
+				C_MEM_ODT_TYPE = 1 corresponds to 75 Ohms and C_MEM_ODT_TYPE = 2 corresponds to
+				150 Ohms as documented in the datasheet. Previously these settings were reversed in the
+				logic.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR579963&gt;] Fixed parameter C_MEM_ODT_WIDTH so
+				it could be explicitly set in the MHS with DDR3 memory. Previously this parameter could
+				only be set in the MHS file with DDR2 memory.</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+
+			</ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">13.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">13.1 - Changes in tool interface files
+			(.pao)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p class="Level2Heading">13.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+			<li><p style="margin-bottom: 0in;">[&lt;CR563597&gt;] Added DRCs to check against invalid RZQ/ZIO pinout
+			locations with Spartan-6.</p></li>
+			<li><p style="margin-bottom: 0in;">[&lt;CR558132&gt;] Updated DRC so that 
+			SDMA can be used with narrower memory data widths in Virtex-6.</p></li>
+			<li><p style="margin-bottom: 0in;">[&lt;CR581584&gt;] For Spartan-6 PHY, added a DRC
+			error when C_MPMC_CLK_MEM_2X_PERIOD_PS is not set and the clock frequency cannot be 
+			inferred by XPS from port MPMC_Clk_Mem_2x. If the clock frequency is not known,
+			parameters such as the CAS Latency cannot be calculated causing a DRC error.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">13.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">13.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated documentation links, revision history,
+				and fixed typographical errors.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR558132&gt;] Documented that 
+				SDMA can be used with narrower memory data widths in Virtex-6.</p></li>
+			</ul>
+		</td>
+	</tr>
+	
+
+
+
+	<tr>
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v6.02.a, introduced in 12.3</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">12.3 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated MIG PHYs to MIG release
+				version 3.6. See MIG version 3.6 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information.</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR556637&gt;] VFBC signal
+                        C_VFBC<Port_Num>_RD_AEMPTY_WD_AFULL_COUNT now connected properly where previously
+                        it was disconnected and did not report the proper FIFO status.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR556723&gt;] VFBC parameter
+                        C_VFBC<Port_Num>_RDWD_FIFO_DEPTH setting only resulted in half the requested FIFO
+                        depth being implemented. This has been corrected so the correct FIFO depth
+				is generated in hardware as set by this parameter.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559324&gt;] Fixed VFBC problem
+				where writing to the Command FIFO while a command/transfer is active could
+                        cause data corruption in VFBC read or write FIFO (due to FIFO under/over flow).</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR564013&gt;] MPMC software driver
+                        now allows Static PHY software calls to work with the SDRAM PHY.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR565229&gt;] Fixed VFBC problem
+				where too many unnecessary registers where preserved in synthesis leading to 
+				inaccurate synthesis resource reports.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR568083&gt;] Fixed issue leading to 
+				ngdbuild warnings about "logical net MCB_DDR2/DDR2_DQS<*>' has no driver" when using
+				non-DDR2 PHY in Spartan-6.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR568269&gt;] Fixed PLB PIM to hold
+				MBUSY signal asserted on writes until it can be sure all outstanding writes
+				on that port have completed to memory to properly signal write completion for memory
+				coherency across MPMC ports.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR568701&gt;] Corrected data errors in
+                        Virtex-5 VFBC when PIM native data width is 64 and FIFO Depth ois set to 8192.</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+
+			</ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.3 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR557468&gt;] Change to production status
+				support for XQ Spartan-6 and QPRO Spartan-6 Hi-Rel Lower Power devices.
+				The Virtex-6 main family changed to production status, while Virtex-6 derivative architectures
+                        remain pre-production. However architecture support is subject to change, therefore please review
+                        MIG documentation and answer records for the latest architecture support status.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.3 - Changes in tool interface files
+			(.pao)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p class="Level2Heading">12.3 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.3 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.3 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated derivative architecture support information
+				to point to a common EDK derivative architecture information web page.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR568167&gt;] Added a section to the datasheet
+				summarizing how to upgrade/migrate from older versions of MPMC.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR569939&gt;] Updated VFBC information
+				in the following areas: VFBC Resource Usage Table, documented bidirectional feature
+                        (simultaneous read/write capability), and updated the allowable values for some VFBC
+                        parameters.</p></li>
+
+			</ul>
+		</td>
+	</tr>
+	
+
+
+
+
+	<tr>
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v6.01.a, introduced in 12.2</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">12.2 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated MIG PHYs to MIG release
+				version 3.5. See MIG version 3.5 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR558745&gt;] Corrected errors related 
+				to using MPMC in quad MCB devices. Large Spartan-6 devices have 4 MCB sites. Added
+				BUFPLL_MCB chaining support for dual MPMC designs where both MCBs are on the same side
+				of the device. Also corrected TCL errors in the I/O pin location lookup for quad MCB devices.
+				</p></li>
+
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559944&gt;]When migrating Spartan-6 designs from
+				MPMC v6.00.a to v6.01.a, the user must now choose the location of the RZQ and ZIO pins using
+				the C_RZQ_LOC and C_ZIO_LOC parameters. Previously, this pin selection was automatically
+				chosen among several possible locations, but now it is a user selectable option
+				supported in the MPMC IP configuration GUI.
+				Designs being migrated will initially generate an error that the RZQ/ZIO pin selection was not
+				made. However, the error message will display the original pin selection choice from MPMC v6.00.a
+				as a reference. This information can be used to set the pinout in the MPMC IP Configuration GUI.
+				Note that with the ability to choose RZQ/ZIO pinout from the GUI or at the MHS level, any RZQ/ZIO
+				pinout constraints in the system.ucf file should be removed.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR561280&gt;] For Spartan-6, the maximum
+				memory clock frequency of the MCB is affected by the characteristics of the
+				voltage regulators on the boards. A new UCF level constraint called
+				"CONFIG MCB_PERFORMANCE" allows the user to specify these board level
+				characteristics. Consult the Spartan-6 datasheet for more information. Note that MPMC does
+				not implement specific DRCs to check the MPMC clock frequency against the 
+				setting of CONFIG MCB_PERFORMANCE.</p></li>
+
+			</ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.2 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR557468&gt;] Added pre-production
+				support for XQ Spartan-6, QPRO Spartan-6 Hi-Rel Lower Power, and XQ Virtex-6 FPGA devices.
+				Virtex-6 remains pre-production, but review MIG documentation
+				and answer records for the latest architecture support status.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559944&gt;] Added C_RZQ_LOC and C_ZIO_LOC
+				parameters to allow the user to select the RZQ/ZIO pin locations for
+				Spartan-6 designs.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.2 - Changes in tool interface files
+			(.pao)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p class="Level2Heading">12.2 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR554361&gt;] Changed clock frequency 
+				DRC on signal MPMC_Clk_200MHz to be 200 MHz +/- 10 MHz instead of +/- 20 Hz to 
+				match datasheet requirements.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR555564&gt;] Added DRC to check that the values of 
+				the row/bank/direction conflict bits in the MI_CONTROL/C_PPC440MC_CONTROL parameters (set
+				on the PPC440 block) are compatible with the MPMC PPC440MC PIM.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.2 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559945&gt;] Added pull down
+				menus to allow user to choose RZQ/ZIO pin locations in the "MCB" sub-tab
+				under the Memory Interface tab of the MPMC GUI.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.2 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR553885&gt;] Corrected bit labels in table titled
+				"Little-Endian Memory Data Types" to reflect 64 bit data bus widths.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR558668&gt;] Added text describing a necessary
+				MAXDELAY timing constraint needed when the SDRAM PHY is being used.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR558745&gt;] Documented MPMC usage for
+				dual and quad MCB devices including clocking requirements and connections for
+				BUFPLL_MCB chaining/sharing. </p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559100&gt;] Documented MPMC Reset Polarity.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR559100&gt;] Added a Getting Started section to the
+				MPMC datasheet to summarize some important information for new users.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR561280&gt;] For Spartan-6, document
+				the potential need for the user to set "CONFIG MCB_PERFORMANCE" in the system.ucf
+				file depending on the desired operating frequency range of the MCB.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR562322&gt;] For Spartan-6, document
+				the need for driving MPMC_Clk_Mem_2x and MPMC_Clk_Mem_2x_180 from 
+				CLKOUT0 and CLKOUT1 ports of the source PLL.</p></li>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+
+
+
+
+	<tr>
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v6.00.a, introduced in 12.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">12.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR545983&gt;] Updated MIG PHYs to MIG release
+				version 3.4. See MIG version 3.4 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR546303&gt;] Added a new signal
+				for Spartan-6 designs called MPMC_MCB_DRP_Clk. This optional clock input
+				(if connected) drives the soft calibration circuitry for the MCB which
+				must be a synchronous integer divided clock to MPMC_Clk_Mem_2x. In previous
+				versions of MPMC, the clock for soft calibration logic was taken from
+				the MPMC_Clk0 clock input only.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538095&gt;] Added V6 memory
+				controller support for periodic reads and ZQ(S) calibration.
+				</li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR539072&gt;] Add IOB=FORCE constraints
+				to Virtex-4 MIG PHY memory control signals to force IOB packing of flip flops
+				driving control I/O signals to memory.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538104&gt;] Fixed Map error when using
+				the LPDDR memory type in Spartan-6 and setting the Partial Array Self Refresh
+				parameter C_MEM_PA_SR to "1" (HALF).</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR544965&gt;] For Spartan-6 LPDDR designs,
+				added missing IOSTANDARD = MOBILE_DDR setting on ZIO port in core level NCF file.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR542978&gt;] For Spartan-6 LPDDR designs,
+				removed option to use calibrated input termination which is not supported with the
+                        MOBILE_DDR IOSTANDARD (cannot set C_MEM_SKIP_IN_TERM_CAL or C_MEM_SKIP_DYN_IN_TERM to 0).</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR506637&gt;] VFBC PIM fixed to support systems
+				with an MPMC base address set to 0x80000000 or higher.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR544500&gt;] Some configurations of Spartan-6
+				VFBC PIM with asynchronous mode FIFOs may cause read data to be duplicated or transferred
+				out of sequence.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR526093&gt;][&lt;CR530838&gt;] MPMC design and GUI
+				allows read FIFOs to be disabled on Spartan-6 to support write-only VFBC PIMs.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR547458&gt;] Fixed DRC error that can occur with
+				unidirectional MCB PIMs (U32 ports) if C_PIMx_DATA_WIDTH not explicitly set to 32 in MHS file.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR531699&gt;] For DXCL2 pim subtype, added support
+				for gaps (stall cycles) between write data beats of a cacheline transfer.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR547958&gt;] For PLB pim, when the C_HIGHADDR - C_BASEADDR range
+				is smaller than the physical memory size, MPMC did not always align C_BASEADDR to physical
+				memory address 0. This alignment has been corrected in the PLB PIM.
+				for gaps (stall cycles) between write data beats of a cacheline transfer.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538942&gt;] Corrected error in Spartan-6 Performance 
+				Monitors affecting write counts.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR548324&gt;] VFBC reset command fixed so that the
+				reset command does not cause an invalid command to be issued to memory.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR547864&gt;] For base Spartan-3 device, C_FAMILY = "spartan3",
+				changed MPMC to use differential output buffer for memory clock of DDR memory. Note that DDR2 continues
+				to use a pair of single ended I/O for DDR2 since differential drivers are not supported
+				for the SSTL18 IO standard.</p></li>
+			</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">The major version revision from MPMC v5.04.a to v6.00.a 
+				reflects changes to Virtex-6 MPMC designs that are not backward compatible (MHS, clocking, and UCF
+				changes are needed). However, Spartan-3, Virtex-4, Virtex-5, and Spartan-6 users can generally
+				just update the MPMC version from 5.04.a to 6.00.a since MPMC changes are generally backward compatible
+				for these architectures. For Virtex-6 designs, refer to the MPMC datasheet for migration information
+				from mpmc v5.04.a to mpmc v6.00.a</p></li>
+			</ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR535644&gt;] Added pre-production
+				support for Lower-Power Spartan-6, XA Spartan-6, and Lower-Power
+				Virtex-6 FPGA devices. The base Spartan-6 family has been changed to be
+				production status. The base Virtex-6 family support remains pre-production.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.1 - Changes in tool interface files
+			(.pao)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+
+			</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p class="Level2Heading">12.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR544068&gt;] Removed DRC warning
+				message that MPMC memory part number "EDE1116AXXX-8E" had been deprecated.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR543607&gt;] Removed false DRC error
+				that can occur when setting C_PIM<port_num>_BASETYPE parameter of an inactive PIM
+				as set by C_NUM_PORTS. For example, C_NUM_PORTS=2 implies only C_PIM0_BASETYPE 
+				and C_PIM1_BASETYPE are valid. Setting C_PIM2_BASETYPE should not create 
+				DRC errors since this PIM's parameters are invalidated by C_NUM_PORTS.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538287&gt;] Corrected MIG UCF conversion
+				script error that can occur on clock enable and chip select signals of Virtex-4 DDR
+				designs.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR542842&gt;] Corrected MIG UCF conversion
+				script error that can occur on vectored signals such as clock enable, chip select, or
+				ODT on Spartan-3 DDR2 designs.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR540335&gt;] Updated MIG UCF conversion
+				script for Virtex-5 to pass multi-cycle timing constraint values based on the design's
+				clock period. Previously some multi-cycle timing constraints were not passed leading
+				to timing paths more tightly constrained than necessary. </p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR540142&gt;] Added DRC messages to check that
+				the PPC440_CONTROL settings on the PPC440 block are compatible with the settings for
+				the MPMC PPC440MC	PIM.</p></li>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR540717&gt;][&lt;CR542591&gt;] Grey out MMCM_ADV
+				options for specifying MMCM_ADV location settings, in the GUI when architecture
+				is not Virtex-6. In Virtex-6, grey out the unsupported option for Static PHY,
+				ECC, and Debug Registers.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR547458&gt;] Fixed false TCL error
+				message that 64 bit PIM width is not allowed when changing Spartan-6 MCB port
+				configurations from B64 to B32 ports.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538057&gt;] Added a new "MCB" sub-tab
+				under the Memory Interface tab of the MPMC GUI to allow the user to set parameters
+				related to soft calibration.</p></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">12.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors.</p></li>
+				<li><p style="margin-bottom: 0in;">Updated BRAM and PIM resource utilization
+				tables to cover Virtex-6 and Spartan-6.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538104&gt;][&lt;CR540336&gt;][&lt;CR543343&gt;]  Added clarifications
+				and reorganized the text describing the MPMC/MIG GUI flow and the handling
+				of UCF/constraints information from MIG into the EDK project. Removed "Hybrid" flow section
+				and added clarifying text around integrated MIG flow section.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR543048&gt;] Added clarification to
+				the MIG GUI flow information to describe how to handle multi-bit ODT
+				signals when performing manual pin selection in the MIG GUI.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538735&gt;] In ECC section, removed duplicated
+				text and renamed "Implementation" sub section to "ECC Implementation".
+				the MIG GUI flow information to describe how to handle multi-bit ODT
+				signals when performing manual pin selection in the MIG GUI.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR542950&gt;] Clarify that MPMC
+				feature list on page 1 of datasheet continues to page 2. Also state that SDMA
+				does not support some narrow memory widths in architectures other than Spartan-6.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR539505&gt;] Corrected VFBC Transfer Examples 
+				section to make ensure X Size field is aligned to a 128 byte boundary.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR545841&gt;] Clarified the usage and expected
+				behavior of PIM<Port_Num>_RdFIFO_Flush signal.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR538907&gt;] Added more text description
+				around multi-port arbitration behavior.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR543153&gt;] Corrected address offset value
+				for V5_CALIB_DQS_TAP_CNT8 control register.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR542895&gt;] Documented that core level
+				constraints are now stored as an NCF file instead of a UCF file.</p></li>
+				<li><p style="margin-bottom: 0in;">[&lt;CR526902&gt;] For Virtex-6 and Spartan-6,
+				added latency and throughput data for XCL and PLB PIM, added target Fmax range 
+				information, and added MIG PHY max memory clock frequency information.</p></li>
+				<li><p style="margin-bottom: 0in;"> Added a table in the datasheet to list the
+				supported FPGA families including information about derivative family support.</p></li>
+
+			</ul>
+		</td>
+	</tr>
+	<tr>
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v5.04.a, introduced in 11.4</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">11.4 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated MIG PHYs to MIG release
+				version 3.3. See MIG version 3.3 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR525260&gt;] Status Registers and
+				performance monitors supported on Virtex-6 and Spartan-6 (except MCB PIM).</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 MIG GUI Integration
+				is supported. It is possible to invoke the MIG GUI from the MPMC GUI to generate a pinout
+				for Virtex-6 designs.</p>
+				</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR531338&gt;] Virtex-5 MIG Integration
+				flow corrected so that clock period is provided to the internal UCF conversion script so
+				UCF errors are not reported by platgen DRCs.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;CR527243&gt;] Virtex-6 uses RAMB18E1 instead
+				of RAMB36E1 when the port's NPI width is 4 times the physical memory width.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;IR533680&gt;&lt;CR535907&gt;] In Virtex-6 designs
+				the minimum gap between writes following reads was increased to 7 cycles to ensure there is
+				no data corruption on last read data beat due to PHY read/write turnaround time.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;CR537060&gt;&lt;CR531732&gt;] Fixed synthesis errors
+				that can result in Spartan-6 designs when MCB PIM types are used.
+				</p></li><li>
+			 	<p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33385.htm">AR33385</a>&gt;&lt;CR531159&gt;] Corrected potential PLB write data corruption
+				on Spartan-6 when PLB clock is much slower than memory clock. For example, 400 MHz memory clock
+				and 50 MHz PLB clock.
+				</p>
+</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33664.htm">AR33664</a>&gt;&lt;CR528573&gt;] Corrected MPMC deadlock condition
+				on Spartan-6 with using dual XCL PIM with MicroBlaze writeback caches enabled.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33714.htm">AR33714</a>&gt;&lt;CR535101&gt;&lt;CR529736&gt;] Improved timing of critical path
+				in Spartan-6 MCB interface logic for PLB, XCL, SDMA, and VFBC PIMs related to internal
+				WrFIFO_AlmostFull signals.</p></li>
+        <li>[&lt;<a href="http://www.xilinx.com/support/answers/33543.htm">AR33543</a>&gt;&lt;CR531487&gt;] Corrected VFBC read FIFO missing data beat during VFBC_Rd_Empty = '1'<br>
+        </li>
+</ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Virtex-6 DDR2/DDR3 memory
+				interfaces do not support 64 bit physical memory.</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 and Spartan-6 support
+				is Early Access. Designs may simulate and synthesize correctly,
+				but may not function in hardware.</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 UCF settings from MIGv3.3 have changed since MIG v3.2. Virtex-6 UCF files
+				should be regenerated or updated to get the latest constraints.
+				</p></li><li><p style="margin-bottom: 0in;">Spartan-6 designs should enable the Soft Calibration Module as described in the datasheet.
+			</p></li></ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.4 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33536.htm">AR33536</a>&gt;&lt;CR530089&gt;] MPD
+				file updated so that XPS System Assembly view correctly displays PIM3.</p>
+				</li><li><p style="margin-bottom: 0in;">Default value of Spartan-6 reserved parameter C_MEM_CALIBRATION_MODE changed from 0 to 1.
+				This value should be left in its default setting.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.4 - Changes in tool interface files
+			(.pao)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR527174&gt;] Merged PIM helper cores into main mpmc_v5_04_a pcore.</p>
+			</li></ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p class="Level2Heading">11.4 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Setting the memory clock frequency below the minimum frequency 
+                        of the memory device generates a warning instead of an error.</p>
+				</li><li><p style="margin-bottom: 0in;">ML605 memory part number "MT4JSF6464XX-1G1" is obsolete and should
+				be replaced with "MT4JSF6464HY-1G1". The old part number will continue to be supported but a warning
+				message will be generated and it will not show up in the GUI.</p>
+				</li><li><p style="margin-bottom: 0in;">SP601 memory part number "EDE1116ACBG-8E" is obsolete and should
+				be replaced with &#8220;EDE1116AXXX-8E&#8221;. The old part number will continue to be supported but a warning
+				message will be generated and it will not show up in the GUI.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.4 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR534477&gt;] Restored CUSTOM memory support for Spartan-6.
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR535231&gt;] Fixed GUI so that C_MEM_PART_CAS_D and
+				C_MEM_PART_CAS_D_FMAX parameters do not get omitted from the MHS when set in the GUI. Also removed
+				EXPR error messages related to setting C_MEM_PART_CAS_D* parameters in the GUI.
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33544.htm">AR33544</a>&gt;&lt;CR532926&gt;] Fixed GUI so Spartan-3xx custom arbitration
+				settings allow C_ARB0_NUM_SLOTS to be set to values other than 10 or 12.
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.4 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p>
+				</li><li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/33300.htm">AR33300</a>&gt;&lt;CR531262&gt;&lt;CR531263&gt;] Clarify in documentation that SDMA is not supported
+				with 8 bit memory or 16 bit SDRAM memory in S3/V4/V5/V6. All memory widths of Spartan-6 are supported
+				with SDMA. DRCs have been added to check SDMA against supported memory configurations.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;CR530720&gt;] Document the offset address of MIG PHY debug
+				registers more explicitly in the register description tables.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/32860.htm">AR32860</a>&gt;&lt;CR527987&gt;] Clarify that when using ECC, memory must be cleared
+				before initial use to set the ECC check bits across the memory space.
+				</p></li><li><p style="margin-bottom: 0in;">[&lt;CR534366&gt;] Added signals VFBC<port_num>_Wd_Almost_Full and
+				VFBC<port_num>_Wd_Full to the VFBC PIM signal list including signal descriptions.
+				</port_num></port_num></p></li><li><p style="margin-bottom: 0in;">Added text description of the Soft Calibration Module which is part of the Spartan-6 MCB functionality, including
+				bring-up information. Updated some parameter descriptions related to the Soft Calibration Module.</p>
+				</li><li><p style="margin-bottom: 0in;">Added Virtex-6 and Spartan-6 latency and throughput information.</p>
+				<p></p>
+			</li></ul>
+		</td>
+	</tr><tr>
+
+
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v5.03.a, introduced in 11.3</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">11.3 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated MIG PHYs to MIG release
+				version 3.2. See MIG version 3.2 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information</p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>	
+      		<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32750.htm">AR32750</a>&gt;&lt;CR519743&gt;] Fixed MPMC PLB and
+				DPLB PIMs to hold PLB MBUSY until Write FIFO Empty flag is
+				asserted. The PLB PIM now holds MBUSY asserted until the Write
+				FIFO is Empty to ensure that it correctly reports when writes
+				have completed to memory. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32665.htm">AR32665</a>&gt;&lt;CR520937&gt;] Fixed write
+                        failure problem affecting SDRAM ECC designs if the calculated value of
+				tRCD relative to the clock period evaluates to 2 clock cycles.</p>
+				</li> <li><p style="margin-bottom: 0in;">[&lt;CR523564&gt;]
+Adding missing IOB = FORCE attribute on DQS tri-state control bits in
+static PHY to force IOB flip flops to be used or else generate an error
+in MAP.</p>
+				</li> <li><p style="margin-bottom: 0in;">[&lt;CR526064&gt;]
+Corrected XCL PIM to normalize addresses when
+C_ALL_PIMS_SHARE_ADDRESSES set to 0. This causes C_PIM0_BASEADDR to map
+to a physical memory address of 0. Previously all address bits were
+passed directly to the physical memory.</p>
+				</li> <li><p style="margin-bottom: 0in;">[&lt;CR526825&gt;]
+For Spartan-6, when differential DQS is used, the IOB type was set to
+use a pair of single ended drivers instead of differential drivers.
+This will cause the use of differential IOSTANDARD settings in the UCF
+to fail. The IOBs for DQS now correctly use differential drivers when
+necessary.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR520951&gt;] With Virtex-6 designs,
+				MAP should no longer be run with "-ignore_keep_hierarchy" set and the environment
+				variable XIL_MAP_NO_PARTIAL_FLATTENING should not be set. This workaround for bitgen errors in the previous version of MPMC
+				no longer apply.</p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Virtex-6 DDR2/DDR3 memory
+				interfaces do not support 64 bit physical memory.</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 and Spartan-6 support
+				is Early Access. Designs may simulate and synthesize correctly,
+				but may not function in hardware.</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 UCF settings from MIGv3.2 have changed since MIG v3.1. Virtex-6 UCF files
+				should be regenerated or updated to get the latest constraints.
+			</p></li></ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.3 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR522732&gt;] Parameter
+				C_MPMC_CLK_MEM_2X_PERIOD_PS has DRC to check range of 1250 to 12500 ps.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR524372&gt;] Disallow selection of address offsets for VFBC and SDMA PIMs
+				on all ports because these PIMs do not support this feature.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR525814&gt;] Add IO_IS tags to C_PORT_CONFIG, C_MCB_LOC, C_SPLBx_NATIVE_DWIDTH,
+				C_MEM_ODT_TYPE parameters so that BSB can set these parameters.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR525759&gt;] For Spartan-6 PLB PIMs, parameter C_SPLBx_NATIVE_DWIDTH is now
+				automatically computed to match the width of the corresponding MCB port so it does not need to be manually set.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR523427&gt;] Added reserved parameters for Spartan-6 and Virtex-6 to control low level
+				parameters in the underlying MIG PHY or MCB. These parameters should not normally be changed by the user.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR518994&gt;]
+Added parameters C_MPMC_SW_BASEADDR and C_MPMC_SW_HIGHADDR (valid only
+when C_ALL_PIMS_SHARE_ADDRESSES=0) to have a set of parameters that can
+be set in the MHS to tell the MPMC software drivers where to set the
+base and high address. This information is needed for applications such
+as the example memory test.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.3 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR501555&gt;] Add DRCs to flag an incomplete set of
+				CUSTOM memory settings.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR523783&gt;] Improve DRC message to explain if memory part number is 
+				is not valid for the chosen FPGA architecture.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR527155&gt;] Correct the memory part database so that part number
+				MT16HTF25664H-667 supports frequencies under 200 MHz with a CAS latency of 3.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR525414&gt;] For Spartan-6, the user does not need to set the IOSTANDARD
+				for memory interface pins in the system UCF. These are automatically inferred from the chosen memory type and set in a 
+				core level UCF file.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.3 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR523249&gt;] Removed CUSTOM memory support for Spartan-6.
+				The list of memory parts available for Spartan-6 is now taken only
+				from the list of parts available under the MIG tool.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR523919&gt;] Fix error when trying to Left Justify SDMA PIMs causing some parameters
+				to be incorrectly updated in the MHS file.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR524190&gt;] Fix GUI to not allow selection of SDRAM or DDR memory types for
+				Virtex-6. Virtex-6 only supports DDR2 and DDR3.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR524773&gt;] Make the memory part filter more dynamic so that the list of
+				available filters is narrowed based on selections made to any other filters.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.3 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new/updated Virtex-6 and
+				Spartan-6 features, usage, and parameters.</p>
+				</li><li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors.</p>
+			</li></ul>
+		</td>
+	</tr><tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading"><!-- BEGIN CHANGELOG FOR New core version --><!--spacer-->Changes
+			in v5.02.a, introduced in 11.2</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading"><span style=""><font size="2"><font face="Arial">Note:
+			Unless specified, limitations and resolved issues affect all
+			previous versions.</font></font></span></p>
+			<p class="Level2Heading">11.2 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Updated MIG PHYs to MIG release
+				version 3.1. See MIG version 3.1 release notes for more
+				information about changes to MIG, supported FPGA devices,
+				supported memory components, and board design information</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 architecture support
+				added: 
+				</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Support for DDR2 and DDR3
+					memories of 8, 16, or 32 bit physical width based on Virtex-6
+					MIG PHY.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Spartan-6 architecture support
+				added:</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Utilizes embedded hard Memory
+					Controller Block (MCB).</p>
+					</li><li><p style="margin-bottom: 0in;">Support for single DDR, LPDDR,
+					DDR2, or DDR3 memory component of 4, 8, or 16 bit physical
+					width.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Internal NPI interface data
+				width of SDMA PIM was reduced from 64-bit to 32-bit to match
+				LocalLink data width. This reduces the size of the system without
+				significant change in performance.</p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			
+      <ul>
+
+				<li><p style="margin-bottom: 0in;">[&lt;CR503858&gt;] Changed IOB
+				= TRUE attributes to IOB = FORCE in static PHY I/O signals to
+				force IOB flip flops to be used or else generate an error in MAP.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/32751.htm">AR32751</a>&gt;&lt;CR518994&gt;] Setting
+				parameter C_ALL_PIMS_SHARE_ADDRESS = 0 no longer causes a libgen
+				failure in the compilation of the MPMC driver; the driver uses
+				the base and high address of the first PIM.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/32775.htm">AR32775</a>&gt;&lt;CR511984&gt;] Update
+				Design feature of integrated MIG GUI flow corrected so that an
+				older MIG project file could be read and saved into the MPMC
+				design.</p>
+				</li><li>
+          <p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32735.htm">AR32735</a>&gt;&lt;CR501928&gt;] Corrected
+				timing constraints generated for VFBC designs related to
+				asynchronous FIFOs used inside the design.</p>
+
+				</li>
+        <li>
+          <p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/32734.htm">AR32734</a>&gt;&lt;CR518380&gt;] VFBC signal
+				RD0_EMPTY may not be correctly asserted between gaps in available
+				data.</p>
+        </li>
+<li><p style="margin-bottom: 0in;">[&lt;CR507838&gt;] Reduced
+				fanout of reset signal inside sample_cycle.vhd module of the PLB
+				PIM to improve timing.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR519249&gt;] Removed an
+				inferred latch from SDMA PIM affecting Virtex-4 designs.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed Delta step delay issue which
+				limited PLB clock to LLink clock ratio to 1:1 in simulation.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed incorrect Byte Enables
+				being issued on a burst write following a cache line write between bursts.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Disabled data phase timeout on PLB
+				control interface.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed data corruption when throttling
+				on eop data phase and number of bytes transferred was less than full
+				32-bit word.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed data corruption when throttling
+				occured on eof data phase of Rx LLink.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed coalescing count corruption when
+				TxBD update is followed immediately by Rx Write before the MPMC has had
+				a chance to clear the buffer.</p>
+			</li>
+      </ul>
+
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Virtex-6 DDR2/DDR3 memory
+				interfaces do not support 64 bit physical memory.</p>
+				</li><li><p style="margin-bottom: 0in;">Virtex-6 and Spartan-6 support
+				is Early Access. Designs may simulate and synthesize correctly,
+				but may not function in hardware.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR497455&gt;] VFBC does
+				not support byte enables on signal VFBC&lt;Port_Num&gt;_Wd_DataByteEn.
+				This feature will be available in a future version of MPMC.</p>
+				</li><li><p style="margin-bottom: 0in;">VFBC has not been tested on
+				Spartan-6 or Virtex-6.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32750.htm">AR32750</a>&gt;&lt;CR519743&gt;] MPMC PLB and
+				DPLB PIMs do not hold PLB MBUSY until Write FIFO Empty flag is
+				asserted. The PLB PIM should hold MBUSY asserted until the Write
+				FIFO is Empty to ensure that it correctly reports when writes
+				have completed to memory. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32665.htm">AR32665</a>&gt;&lt;CR520937&gt;] SDRAM ECC
+				designs may experience write failures if the calculated value of
+				tRCD relative to the clock period evaluates to 2 clock cycles.
+				The workaround is to increase the value of tRCD so the calculated
+				value evaluates to 3 or more clock cycles.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a href="http://www.xilinx.com/support/answers/32773.htm">AR32773</a>&gt;&lt;CR506637&gt;] VFBC does
+				not work when MPMC base address is set to 0x80000000 or higher.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR520125&gt;] XPS Archiver
+				does not archive MPMC integrated MIG project files. The XPS
+				Archiver does not archive the __xps/mig directory which contains
+				the settings of the integrated MIG/MPMC project.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Dummy Buffer Descriptor operation
+				as described in datasheet of MPMC v5.00.a and earlier is not functional
+                        and has been removed from the description.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR520951&gt;] With Virtex-6 designs,
+				MAP must be run with the option "-ignore_keep_hierarchy" set or the environment
+				variable XIL_MAP_NO_PARTIAL_FLATTENING must be set otherwise bitgen errors will
+				be reported on differential clock and dqs memory ports.</p>
+			</li></ul>
+			<pre></pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.2 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Update MPD for new
+				ports/parameters to support new features related to Virtex-6 and
+				Spartan-6. See MPMC datasheet for description of new parameters.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR505424&gt;] Parameter
+				C_MEM_PART_TMRD is no longer used.</p>
+				</li><li><p>[&lt;CR503071&gt;] Enforced that parameter
+				C_MEM_REDUCED_DRV is invalid for SDRAM.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.2 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">TCL changes to support new
+				features related to Virtex-6 and Spartan-6.</p>
+				</li><li><p>[&lt;CR511825&gt;] UCF conversion script transfers
+				DATAPATHONLY constraints from MIG generated constraints.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.2 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>GUI support for new features and new user parameters
+				related to Virtex-6 and Spartan-6.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.2 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new Virtex-6 and
+				Spartan-6 features and usage.</p>
+				</li><li><p style="margin-bottom: 0in;">Updated documentation links,
+				fixed typographical errors, reordered some sections to improve
+				clarity.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR505424&gt;] Documented
+				that parameter C_MEM_PART_TMRD is no longer used.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR503071&gt;] Documented
+				that parameter C_MEM_REDUCED_DRV is invalid for SDRAM.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR514089&gt;] Documented
+				definition of parameter C_XCL&lt;Port_Num&gt;_PIPE_STAGES.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR511663&gt;] Improved
+				description of NPI restrictions on address alignment.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32736.htm">AR32736</a>&gt;&lt;CR519158&gt;] Documented
+				that NPI interface with SRL FIFOs does not throttle address
+				acknowledge to protect against read FIFO overflow.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR517364&gt;] Added
+				description of VFBC signal VFBC_Cmd_Idle.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR474616&gt;] Added
+				information about the performance (latency and throughput) of the
+				SDMA PIM.</p>
+				</li><li><p>[&lt;<a class="reference" href="http://www.xilinx.com/support/answers/32749.htm">AR32749</a>&gt;&lt;CR522786&gt;] Removed text and figure in SDMA PIM section describing
+				Dummy Buffer Descriptors because this usage is not recommended.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v5.00.a, introduced in 11.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">MPMC is updated to use the MIG
+				PHY from the MIG v3.0 release</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Refer to the MIG v3.0
+					documentation and answer records for information about the
+					changes in MIG v3.0.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">MIG GUI integration</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">For new MPMC designs, the MIG
+					GUI can now be invoked directly from the MPMC IP Configuration
+					GUI in XPS. MIG UCF information can automatically be imported
+					back into the EDK project without the user manually running a
+					conversion script.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">XCL PIM supports an optional
+				dual XCL mode</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">A single MPMC port can now
+					connect to a pair of XCL channels such as the IXCL and DXCL port
+					of MicroBlaze. For example, this can save FPGA resources by
+					reducing the number of MPMC ports needed to service a MicroBlaze
+					processor.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">MPMC / MicroBlaze XCL
+				optimizations.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">MPMC supports new XCL subtypes
+					"IXCL2" and "DXCL2" that support MicroBlaze
+					write-back caches and MicroBlaze cache interface type 0 or 1
+					(refer to the MicroBlaze C_ICACHE_INTERFACE and
+					C_DCACHE_INTERFACE parameter documentation).</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR495469&gt;&lt;AR31899&gt;]
+				Extended static PHY features to the SDRAM PHY</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">The SDRAM PHY now supports
+					dynamic DCM phase adjustment for the SDRAM read data capture
+					timing. This will result in a more robust SDRAM PHY and higher
+					working SDRAM clock frequencies.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Debug Registers for MIG PHY</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">MPMC now includes an optional
+					control register interface into the MIG PHYs for status and
+					control of the MIG PHY calibration settings. These registers can
+					be used for software based debug, margin analysis, or custom
+					calibration of the MIG PHY. 
+					</p>
+				</li></ul>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR470258&gt;] Removed
+				asynchronous resets from MPMC PHYs where appropriate.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR476102&gt;] Improved
+				timing of Performance Monitors when used with VFBC.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR479812&gt;&lt;502839&gt;]
+				Change DDR2 ODT timing across all PHYs so it starts to get
+				asserted 2.5 to 3 cycles before the corresponding data.
+				Previously, ODT was asserted 2 cycles before data. The extra ODT
+				setup time may improve the signal quality.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR487897&gt;&lt;CR475253&gt;&lt;AR31268&gt;]
+				Fixed MPMC hang when corresponding MPMC port's data path is set
+				to be write-only or read-only (affects various MPMC
+				configurations)</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR491480&gt;&lt;AR30005&gt;]
+				When the device family is the original Spartan-3 family (not
+				Spartan-3E/3A/3AN/3ADSP), the IOs do not support differential I/O
+				drivers. The static PHY was modified to instantiate two
+				complementary single ended outputs for the Spartan-3 family
+				otherwise MAP would error out if a differential I/O buffer is
+				instantiated.  
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR495116&gt;&lt;CR493240&gt;&lt;CR494132&gt;&lt;AR31899&gt;]
+				SDRAM clock output is now being driven by IOB Flip Flops instead
+				of incorrectly through combinatorial logic. This ensures timing
+				consistency in the setup and hold time of the memory clock
+				relative to the address and data signals. The SDRAM clock is
+				driven with 180 degrees phase shift relative to the clock driving
+				the SDRAM address and control signals to maximize setup and hold
+				time.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR501022&gt;] The static
+				PHY register that reports the current DCM phase shift value has
+				been expanded from 8 to 10 bits to support DCMs that may have a
+				greater range of taps. The DCM phase shift value is sign extended
+				to 16 bits so it can be read as a short integer in software. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">Removed support for Virtex-II
+				Pro devices</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed lockup of MPMC, caused
+				by SDMA making an NPI request when an invalid Buffer Address was
+				fetched in either Tx or Rx Buffer Descriptor.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed Rx data corruption on
+				Rx block write, when Tx Buffer Descriptor needs to be updated.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed Rx data corruption on
+				Rx block write, when Tx memory read was performed.</p>
+				</li><li><p style="margin-bottom: 0in;">SDMA: Fixed DRE problems caused
+				by Buffer Descriptor update between block writes.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">It is recommended that upgrade
+				of MPMC version 4.xx.a MIG PHY designs to MPMC version 5.00.a
+				should include updating the MIG project to MIG v3.0 and rerunning
+				MIG and the MPMC UCF conversion scripts to obtain the most up to
+				date UCF file.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">The MIG v3.0 tool has a GUI
+					option called "Update Design" that can update an older
+					MIG project to MIG v3.0. See MIG User Guide for more
+					information.</p>
+					</li><li><p style="margin-bottom: 0in;">Alternatively, the user can
+					use the new MIG GUI integration feature of MPMC to run the
+					"Update Design" flow as described in the MPMC
+					documentation. 
+					</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Upgrade of MPMC version 4.xx.a
+				Virtex-5 DDR2 designs to MPMC version 5.00.a require the
+				following MHS and UCF changes.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">In the MHS file, the
+					parameters C_MEM_DQS_IO_COL and C_MEM_DQ_IO_MS are no longer
+					used and must be removed.</p>
+					</li><li><p style="margin-bottom: 0in;">In the UCF file, MPMC specific
+					constraints containing "AREA_GROUP" and "RLOC_ORIGIN"
+					must be removed.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Upgrade of MPMC version 4.xx.a
+				SDRAM designs to MPMC version 5.00.a require the following
+				minimum MHS changes to pass through the tools:</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Connect MPMC_Clk_Mem port to
+					the same clock driving the MPMC_CLK0 port.</p>
+					</li><li><p style="margin-bottom: 0in;">Set C_MPMC_CTRL_BASEADDR and
+					C_MPMC_CTRL_HIGHADDR. It is recommended but not required that
+					the MPMC_CTRL bus interface be connected to the PLB bus.</p>
+					</li><li><p style="margin-bottom: 0in;">Set PARAMETER
+					C_STATIC_PHY_RDEN_DELAY = 4 (for CAS Latency of 2). Increment by
+					1 for a registered memory. Increment by 1 more if the CAS
+					Latency is 3.</p>
+					</li><li><p style="margin-bottom: 0in;">Set PARAMETER
+					C_STATIC_PHY_RDDATA_CLK_SEL = 0 (selects negedge clk capture as
+					was used with MPMC v4.xx.a).</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Upgrade of MPMC version 4.xx.a
+				SDRAM designs to MPMC version 5.00.a should also include the
+				following additional MHS and UCF changes to take advantage of the
+				improved read data capture functionality of the SDRAM PHY:</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Connect MPMC_Clk_Mem to a
+					clock driven by a DCM that the same frequency as MPMC_CLK0 but
+					is independently phase adjustable. Note: this should not be the
+					exact same MHS clock signal as the system clock driving the
+					MPMC_CLK0 port.</p>
+					</li><li><p style="margin-bottom: 0in;">Connect MPMC ports to DCM to
+					allow software control of the clock phase to port  MPMC_Clk_Mem.
+					Connect MPMC ports MPMC_DCM_PSINCDEC , MPMC_DCM_PSEN, and
+					MPMC_DCM_PSDONE to the corresponding ports on the DCM driving
+					MPMC_Clk_Mem</p>
+					</li><li><p style="margin-bottom: 0in;">Connect the MPMC_CTRL bus
+					interface to the PLB to enable software control of the SDRAM
+					static PHY.</p>
+					</li><li><p style="margin-bottom: 0in;">In the UCF file, add the line,
+					"Net &lt;MPMC Inst&gt;*rd_data_rise_rdclk* MAXDELAY =
+					2000;"</p>
+					</li><li><p style="margin-bottom: 0in;">Rebuild the design and use a
+					software program to find the optimal DCM phase shift and PHY
+					settings for the SDRAM device and board. For a software example,
+					refer to the static PHY example application in
+					&lt;EDK_Install&gt;/sw/XilinxProcessorIPLib/drivers/mpmc_v3_00_a/examples/mpmc_calibration_example.c</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR469304&gt;] MPMC does
+				not support 4 GBytes of memory. The maximum memory size is 2
+				GBytes. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR496115&gt;] MPMC does
+				not support 4 bit wide memory devices since it cannot drive two
+				DM or DQS pins per data byte. MPMC can only be used with memories
+				organized in x8 multiples.</p>
+				</li><li><p>[&lt;CR498033&gt;] The datasheet figure describing the use
+				of an SDMA "Dummy Descriptor" does not match the text
+				description and should be ignored.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Update MPD for new
+				ports/parameters to support new features.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR494464&gt;] Modified
+				tags on port MPMC_CLK90 so it is not required with SDRAM.
+				MPMC_CLK90 is not used and can be left unconnected with SDRAM
+				designs.</p>
+				</li><li><p>Update proc_common library version from v2.00.a to
+				v3.00.a.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">TCL changes to support new
+				features.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR472400&gt;] Memory part
+				database lookup TCL displays an informational message in the GUI
+				console to remind users to set other memory parameters that
+				cannot be automatically determined. For example, CS, ODT, and CE
+				widths).</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR477445&gt;&lt;CR477549&gt;&lt;CR490432&gt;]
+				Added Hynix HY5DU121622DTP DDR SDRAM, MICRON MT48LC16M16A2P-75,
+				and Infineon HYB25L128160AC-8 SDRAM to the memory database.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR478262&gt;] Added TCL
+				script to automatically infer setting of parameter
+				C_MPMC_CLK0_PERIOD_PS by looking at clock frequency attribute
+				associated with the clock. If the clock frequency can be inferred
+				from the design (such as from a clock_generator IP driven
+				signal), the user does not need to set the parameter.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR479159&gt;] Updated DRCs
+				to report a better error message if C_MPMC_CTRL_BASEADDR and
+				C_SDMA_CTRL_BASEADDR are set properly.</p>
+				</li><li><p>[&lt;CR493130&gt;] Updated DRCs to report a better error
+				message if C_MEM_CAS_LATENCY or C_MEM_PART_CAS_* parameters are
+				not set for CUSTOM memories</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">GUI support for new features
+				and new user parameters.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR447347&gt;] GUI
+				explicitly writes out parameter C_MEM_REG_DIMM to MHS file even
+				though user did not overwrite the default value computer from the
+				memory part database.</p>
+				<ul>
+					<li><p>Versions affected: v3.00.a - v4.03.a</p>
+				</li></ul>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">11.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new features.</p>
+				</li><li><p style="margin-bottom: 0in;">Fixed broken documentation
+				links and typographical errors. Reorder some sections to improve
+				clarity.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR446900&gt;] Clarified
+				how user can optimize NPI write latency by optimizing the timing
+				relationship between NPI AddrReq and WrFIFO_Push. Added warnings
+				in the datasheet that the minimum timing relationship is memory
+				dependent.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR474438&gt;] Documented
+				VFBC performance (latency and throughput).</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR477798&gt;] Clarified
+				list of supported FPGA families</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR479204&gt;] Added more
+				description about arbitration algorithms</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR479814&gt;&lt;CR482869&gt;&lt;AR29221&gt;]
+				Added more documentation about the Spartan-3 MIG PHY including
+				how to check some of the PHY routes in FPGA editor</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR480500&gt;&lt;AR31613&gt;]
+				Added documentation for VFBC to describe the minimum time between
+				reset deassertion and first data transfer.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR481131&gt;] Documented
+				the need to run map with "-pr b" option to ensure flip
+				flops are packed into IOBs when possible.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR489953&gt;] Updated the
+				static PHY calibration algorithm description to better match the
+				example software application in
+				&lt;EDK_Install&gt;/sw/XilinxProcessorIPLib/drivers/mpmc_v3_00_a/examples/mpmc_calibration_example.c</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR493621&gt;] Added Slice
+				resource utilization estimates in addition to LUT and Flip Flop
+				utilization estimates.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR495689&gt;] Corrected
+				the documentation to correctly describe the MPMC configurations
+				where 64-word NPI transactions are supported.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR495781&gt;&lt;AR31963&gt;]
+				Corrected the table describing the allowable PPC440 memory
+				interface settings (burst width, burst length) that are supported
+				by the PPC440MC PIM. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR496672&gt;] Updated NPI
+				cacheline read burst diagrams to the show correct behavior of the
+				RdFIFO_RdWdAddr signal.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR500712&gt;] Documented
+				the maximum simulation calibration times.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR449044&gt;] Added more
+				information about the XCL PIM and XCL interface including
+				waveforms and more details describing the XCL protocol.</p>
+				</li><li><p>[&lt;CR490578&gt;&lt;AR31828&gt;] Document that MPMC does
+				not support row or bank management.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v4.03.a, introduced in 10.1.3</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.3 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">MPMC is updated to use the MIG
+				PHY from the MIG v2.3 release</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Refer to the MIG v2.3
+					documentation and answer records for information about the
+					changes in MIG v2.3.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Added tool flow support for
+				qvirtex4 and qrvirtex4 families. Note: the tools will allow
+				qvirtex4 and qrvirtex4 to proceed, but these architectures have
+				not been characterized or verified in hardware with MPMC or the
+				underlying MIG PHYs.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR476124&gt;&lt; AR2276&gt;]
+				Added 'timescale directives to all verilog source files to
+				resolve NCSim errors.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR476023&gt;] Removed
+				unnecessary wire delays from V4 PHY that may cause memory
+				simulation errors with testbenches using bidirectional wire delay
+				elements.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR475253&gt;] Resolved
+				system hang that occurs when MPMC FIFOs are set to be write only.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Versions affected: v4.00.a -
+					v4.02.a</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR475079&gt;&lt;CR473514&gt;]
+				convert_ucf.pl script corrected for conversion errors that may
+				occur with some MIGv2.3 and MIG v2.3 memory configurations.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452009&gt;] Added
+				feature to convert script so user can pass in their MHS file to
+				have the script convert the top level memory interface port names
+				too.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR473281&gt;] Multi-rank
+				Spartan-3 DDR2 MIG PHY designs may incorrectly assert the CS
+				signals relative to the Activate command.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Versions affected: v4.00.a -
+					v4.02.a</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR473075&gt;] SDRAM
+				designs where memory timing and clock frequency result in a
+				single cycle Activate command causes DM pin to be asserted too
+				long.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.3 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None 
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.3 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR472823&gt;] Recomputed
+				Density fields in the memory database to fix some incorrect
+				values.</p>
+				</li><li><p>[&lt;CR471811&gt;] Added KVR266X64C25/256 DIMM to the
+				memory database.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.3 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>[&lt;CR454087&gt;] GUI option to enable "Debug
+				Registers" is removed. Previously this option was unchecked
+				and greyed out.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.3 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Documented new features.</p>
+				</li><li><p style="margin-bottom: 0in;">Fixed broken documentation
+				links and typographical errors. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR469304&gt;] Documented
+				that 2GBytes is the maximum memory size that MPMC supports.
+				4Gbyte memory is not supported</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR476823&gt;] Documented
+				that user should verify MIG limitations for supported Spartan-3
+				devices, memory types, widths, and clock frequencies before
+				beginning the MPMC design.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR476759&gt;&lt;AR29732&gt;]
+				Add more clarification and information regarding the standalone
+				MPMC tool flow.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR474005&gt;] Document
+				method for handling back-to-back writes for high throughput over
+				NPI.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR473249&gt;] Corrected
+				the waveform for the signal RdFIFO_Pop in NPI 8-word cacheline
+				read timing diagrams.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR472998&gt;] PMCLR
+				Register description was clarified with more information on the
+				bit definitions.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR472822&gt;] Document
+				that parameter C_MEM_PART_DATA_DEPTH is not used and is reserved.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR474093&gt;] Document
+				that ECC is supported with Static PHY (all architectures) and the
+				Spartan-3 MIG PHY for 8, 16, and 32 bit memories.</p>
+				</li><li><p>Added section describing ways to optimize MPMC
+				configurations and options to improve performance and reduce
+				size.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v4.02.a, introduced in 10.1.2</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.2 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Improved the throughput of back
+				to back PLB transactions by making use of PLB secondary address
+				information to pipeline transactions at the NPI level.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR472319&gt;] Fixed
+				problem where 200 us DDR1/DDR2 initialization time was being
+				skipped regardless of C_SIM_SKIP_INIT parameter setting.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR472058&gt;] Corrected
+				incorrect instance name translations with convert_ucf.pl script
+				for MIG v2.1 or MIG v2.2 generated V5 DDR1 UCF files.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470649&gt;&lt;CR468873&gt;]
+				Corrected computation of SDMA control register address ranges
+				when multiple SDMA ports are used and C_ALL_PIMS_SHARE_ADDRESSES
+				= 1</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470586&gt;] Fixed error
+				affecting some Virtex-5 memory configurations where BRAM FIFOs
+				could only hold two 64-word transaction instead of the four
+				64-word transactions that the BRAM FIFO should be able to hold.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470231&gt;&lt;CR470230&gt;]
+				When C_NUM_IDELAYCTRL = 0, MPMC_Idelayctrl_Rdy_I can be used to
+				gate off Virtex-4, Virtex-5 MIG PHY initialization. This feature
+				is useful in case the IDELAYCTRLs are all instantiated in a
+				master upstream device. Previously, MPMC_Idelayctrl_Rdy_I was
+				ignored when C_NUM_IDELAYCTRL = 0.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470151&gt;] Fixed
+				problem where NPI RdModWr signal was being incorrectly associated
+				with transactions.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.2 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.2 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.2 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.2 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Fixed broken documentation
+				links and typographical errors. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR471164&gt;] Documented
+				that PPC440MC PIM does not support PPC440 memory interface 3:2
+				clocking mode.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470113&gt;] Corrected
+				figure and text describing how SDMA transmit channels place
+				application data fields into headers.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR470006&gt;] Corrected
+				figure showing dual rank memory connection diagram</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR469865&gt;] Clarified
+				wording regarding 32-bit NPI and 64-word burst transfer support.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR469662&gt;] Better
+				document logical to physical address mapping.</p>
+				</li><li><p>[&lt;CR448399&gt;] Updated information about throughput
+				and latency for PLB PIMs across a variety of architectures,
+				memory configurations, and clock ratios.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v4.01.a, introduced in 10.1.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">None</p>
+				<p></p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR469593&gt;&lt;CR468206&gt;&lt;468203&gt;]
+				Improved MPMCv3 to MPMCv4 UCF conversion script for Virtex-5 DDR2
+				UCF files to support running scripts located in any area and to
+				support running from a DOS prompt. Also corrected other errors in
+				the script that may cause incompatible UCF output or usage
+				errors.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR468896&gt;] Removed
+				asynchronous resets from PLB PIM.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR457662&gt;] Fixed error
+				where NPI RdFIFO_Empty was being deasserted with NPI
+				RdFIFO_Flush.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR447343&gt;] Improved the
+				timing of ECC data path logic related to memory used for read
+				modify write operations.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR468736&gt;] Removed
+				support for Dual DIMM MPMC designs. This features is not robust
+				since there is potential for separate DIMMs to be significantly
+				mismatched in timing while the MIG PHYs can only calibrate on a
+				single rank of memory.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR468714&gt;] Fixed global
+				cycle counter registers in the MPMC Performance Monitors to work
+				when the PLB control register port is at a 1:2 clock ratio to
+				MPMC_Clk0.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR458069&gt;] Changed code
+				so that NCSIM will not drive NPI_AddrAck to X after NPI InitDone
+				is asserted.</p>
+				<p></p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>[&lt;CR451563&gt;] Added DRC checks to MPMC clock ports
+				that have specific limits on supported clock ratios. These new
+				checks will generate an error if an illegal clock ratio is
+				detected.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>[&lt;CR466294&gt;] Corrected false DRC error that occurs
+				with IXCL PIM subtype and corresponding Write FIFO type set to
+				"disabled".</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Fixed typographical errors. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">Added language to the datasheet
+				to discourage the use of dual rank designs and to document that
+				dual DIMM designs are not supported.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR468450&gt;] Corrected
+				location path description of MIG Virtex-5 DDR2 output files.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR468204&gt;] Document
+				that port MPMC_clk0_DIV2 is new and also needs to be added to the
+				system for MPMCv3 to MPMCv4 design migration of Virtex-5 DDR2
+				designs.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR467482&gt;] Corrected
+				description of the usage of the NPI RdModWr signal with respect
+				to the NPI burst size.</p>
+				</li><li><p>[&lt;CR467000&gt;] Corrected SDMA timing diagrams showing
+				"Receive Data Write" and "Receive LocalLink"
+				signaling.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v4.00.a, introduced in 10.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Added support for Virtex-II Pro
+				devices.</p>
+				</li><li><p style="margin-bottom: 0in;">MPMC is updated to use the MIG
+				PHY from the MIG v2.1 release.</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Refer to the MIG v2.1
+					documentation and answer records for information about the
+					changes in MIG v2.1.</p>
+				</li></ul>
+				</li><li><p style="margin-bottom: 0in;">Added optional pipeline stages
+				to the XCL PIM so the user can tune Fmax vs latency tradeoffs in
+				the PIM to optimize the system.</p>
+				</li><li><p style="margin-bottom: 0in;">Added the Video Frame Buffer
+				Controller (VFBC) PIM.</p>
+				</li><li><p style="margin-bottom: 0in;">Added PPC440MC PIM to allow
+				MPMC to connect directly to the memory port of the PPC440 in
+				Vritex-5 FXT devices.</p>
+				</li><li><p style="margin-bottom: 0in;">Added ECC support to SDRAM</p>
+				</li><li><p style="margin-bottom: 0in;">Improved Timing.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR457291&gt;] Fixed logic
+				to correctly handle C_MEM_CE_WIDTH being set to a value greater
+				than 1 with SDRAM PHY.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR456745&gt;] Qualified
+				ODT signals with CS pins so only 1 ODT signal is asserted for the
+				active memory rank. Previously all ODT signals were asserted
+				which could lead to over termination of the bus in a multi-rank
+				or multi-dimm system.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR455350&gt;] Update
+				Spartan-3 MIG PHY to use 2 complementary singled ended drivers
+				for differential memory clock instead of a differential I/O on
+				the base Spartan-3 family which does not support differential
+				I/O.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR455181&gt;] In Virtex-4
+				designs, fixed ODT timing so there is a two cycle turn on time
+				relative to the data. Previously there was only a 1 cycle turn on
+				time which could affect signal integrity on the first data beat
+				in a burst.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR454939&gt;] Removed a
+				latch in the MPMC ECC control path logic due to a missing default
+				value in a pair of case statements.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR454651&gt;] The update
+				to MIG v2.0 fully fixes the low frequency Virtex-4 DDR1/DDR2
+				problem so that the tap delay window can be greater than +/- 20
+				taps. This allows for greater margin in the data capture window
+				to be available.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR453011&gt;] Fixed PLB
+				PIM read data corruption that can occur during PLB fixed length
+				quad word (128 bit) burst.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452794&gt;] Fixed
+				problem that occurs when MPMC port 0 is configured to be
+				read-only and the other ports have a different write FIFO
+				pipeline setting than port 0. In this case, the port 0 write FIFO
+				settings should be ignored.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452791&gt;] Made
+				improvements to the timing of the performance monitors.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR451806&gt;] Fixed a
+				problem where byte enables may be incorrectly set when ECC
+				functionality is present but ECC is disabled via software
+				control.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR450274&gt;] Changed the
+				MPMC ECC implementation so that ECC words were the size of the
+				physical memory width. Previously ECC words were twice the size
+				of the memory width. The smaller ECC word size means that the
+				MPMC can correct errors that occur when an entire physical memory
+				pin is not functioning. This makes the system more robust against
+				single data bit physical problems.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449917&gt;] Changed BRAM
+				instantiations to be in WRITE_FIRST mode instead of NO_CHANGE
+				mode to prevent incorrect timing analysis. This change should
+				have no functional impact on MPMC.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449482&gt;&lt;CR447616&gt;]
+				Fixed controller and XCL PIM errors that may occur with 8 bit
+				SDRAM configurations.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR447659&gt;] Removed
+				unnecessary code in the Spartan-3 MIG PHY that caused an NCSIM
+				compile error when the MPMC is configured for an 8-bit memory.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR447028&gt;] Corrected
+				problem that affects SDRAM configurations with 2 or more ports
+				and data path pipelines disabled.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR446730&gt;] Added logic
+				to hold off NPI Init_Done signal until MPMC comes out of reset
+				and completes memory initialization. This feature was added to
+				SDRAM and Static PHY designs that previously had Init_Done tied
+				off to 1.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR449983&gt;] Improve
+				timing of Spartan-3 MIG PHY around critical paths in the DQS
+				control signals.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR450531&gt;] Change
+				interface to automatically gate off XCL address LSB to align the
+				address properly when (WRITEXFER == 2) and (LINESIZE &gt;1).</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR452902&gt;] fixed
+				problem with SDRAM controller when MPMC is configured for a
+				registered SDRAM DIMM.</p>
+				</li><li><p style="margin-bottom: 0in;">Corrected code to remove
+				various NCSIM warnings.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>Virtex-5 DDR2 designs must be migrated from MPMC v3.xx.a
+				to MPMC v4.00.a. The migration involves MHS and UCF changes to
+				support the new MIG PHY. These migration steps are documented
+				including a special conversion script that must be run to
+				generate the new MHS and UCF settings.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR457495&gt;] Fixed
+				incorrect data width settings for NPI Port 7 when NPI Port 7 and
+				0 have different native widths.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR457230&gt;] Increased
+				the maximum number of PLB masters supported by PLB PIM from 8 to
+				16.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR456743&gt;] Clean up MPD
+				file so all default values are explicitly declared as binary or
+				hex format.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR455629&gt;&lt;CR455202&gt;&lt;CR452477&gt;]
+				Allow C_MEM_PART_DATA_DEPTH to be 32. This allows support for
+				some SDRAM parts that are natively 32 bits wide.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR455613&gt;] Disallow
+				differential DQS option to be set for the base Spartan-3 family
+				since this family does not have differential I/O support.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR455185&gt;] When not
+				using Virtex-4/Virtex-5 DDR/DDR2 MIG PHY, C_NUM_IDELAYCTRL
+				parameter should be ignored since MPMC would not use any IDELAY
+				elements. This would also imply that the MPMC_Clk_200MHz port
+				would also be ignored and MPMC IDELAYCTRL related logic would all
+				be disabled automatically.  
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR453149&gt;&lt;CR451562&gt;]
+				Change default value of C_DDR2_DQSN_ENABLE parameter to 1. The
+				setting of 1 is required and cannot be changed for Virtex-5 DDR2
+				MIG PHY designs due to the MIG PHY requirements.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR453030&gt;] Add
+				conditional tags to the following signals to error out if the
+				signal is required (based on MPMC configuration), but the user
+				has not connected them up: MPMC_Clk_200MHz, 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">MPMC_Clk_Mem, MPMC_DCM_PSEN,
+				MPMC_DCM_PSINCDEC, MPMC_DCM_PSDONE, DDR/DDR2_DQS_Div_I/O.</p>
+				</li><li><p>[&lt;CR451371&gt;] Corrected the range for parameter
+				C_ECC_DQS_WIDTH to be 0 to 1 instead of 0 to 2.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR457273&gt;] Added DRC to
+				check that C_ODT_WIDTH and C_CW_WIDTH parameters are a multiple
+				of C_MEM_NUM_RANKS*C_MEM_NUM_DIMMS.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452618&gt;&lt;CR449619&gt;]
+				Add Micron MT9HTF6472CH and MT16VDDF12864HG part number to the
+				database.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR448377&gt;] Removed
+				false error messages when not using a PLB PIM but the parameters
+				C_SPLBx_NATIVE_DWIDTH and C_SPLBx_DWIDTH are set to incorrect
+				values.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR447347&gt;] Reduce the
+				number of parameters that the GUI writes out when the parameter
+				value is set to the default value. For example, the
+				C_MEM_REG_DIMM parameter does not need to be written out to the
+				MHS file if the user does not override the default value in the
+				memory part database.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR446899&gt;] Removed
+				false error messages when using a PLB PIM and C_XCLx_WRITEXFER =
+				0 and C_PIx_WR_FIFO_TYPE = DISABLED. When using the PLb PIM, XCL
+				DRCs should be disabled.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR446436&gt;] Updated TCL
+				to automatically move the write training pattern port to port 1
+				if port 0 is a read-only XCL port that is not connected to
+				MicroBlaze. Previously the script would only change the write
+				training port if it was connected to an IXCL port of MicroBlaze.</p>
+				</li><li><p>[&lt;IR456515&gt;] Added DRC to check the IPLB and DPLB
+				PIMs are connected Point to Point directly to the PPC405 wrapper.
+				The IPLB and DPLB subtypes only work in a point to point
+				configuration.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR454087&gt;] GUI option
+				to enable &#8220;Debug Registers&#8221; is removed. Previously this option
+				was unchecked and greyed out.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR453149&gt;] Add GUI
+				option to set value of C_DDR2_DQSN_ENABLE parameter.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">10.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Fixed typographical errors. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR453800&gt;] Added
+				explicit text to state that low power or mobile DDR are not
+				supported.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452694&gt;&lt;CR446900&gt;]
+				Removed text from NPI AddrReq and WrFIFO_Push restrictions
+				section that was causing user confusion.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR448399&gt;] Added
+				information about throughput and latency for PLB and NPI PIMs
+				across a variety of architectures, memory configurations, and
+				clock ratios.</p>
+				</li><li><p style="margin-bottom: 0in;">Described the migration process
+				for Virtex-5 DDR2 designs that are migrated from MPMC v3.xx.a to
+				MPMC v4.00.a.</p>
+				</li><li><p style="margin-bottom: 0in;">Added LUT and Flip Flop
+				resource estimation information for MPMC core and MPMC PIMs for
+				different architectures.</p>
+				</li><li><p>Added instructions for using MPMC standalone outside of
+				EDK using an flow where MPMC is exported to Project Navigator.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v3.00.b, introduced in 9.2.2</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.2 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p>Improved timing of PLB PIM especially when running in the
+				1:2 PLB to memory clock ratio.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR454651&gt;] Implemented
+				a partial fix for a MIG PHY problem affecting low frequency
+				Virtex-4 DDR1/DDR2 design (under about 166 MHz). Previously, low
+				frequency designs could experience a condition where the
+				calibration logic can not find a data edge and sets the IDELAY
+				tap delays incorrectly. A partial fix was implemented to prevent
+				invalid tap delays from being set, but this solution limits the
+				tap delay safety margin to +/-20 taps or approx a +/-1.5 ns data
+				window even if a bigger window exists. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR454258&gt;] Resolved XST
+				errors for designs where the SDRAM C_MEM_ADDR_WIDTH parameter is
+				less than 12. Previously MPMC would not work for small SDRAM
+				devices that have fewer than 12 address bits.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR454220&gt;] Fixed
+				problem with DDR2 ODT signals where they could be unconnected
+				regardless of ODT settings.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR451553&gt;&lt;CR451409&gt;&lt;CR451403&gt;]
+				Fixed data read errors that occur with the XCL PIM for 16 word
+				cacheline writes followed by a back-to-back read or write. Occurs
+				when C_XCL&lt;Port_Num&gt;_WRITEXFER = 2 and
+				C_XCL&lt;Port_Num&gt;_LINESIZE = 16. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR450532&gt;] Corrected
+				error in XCL PIM where it would return read data without checking
+				the READ signal to be sure the master was ready to accept new
+				read data.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.2 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None 
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.2 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR452030&gt;] Added a TCL
+				DRC to check that C_NUM_PORTS and C_PIMx_PORT_TYPE parameters are
+				consistent.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449200&gt;] Added a TCL
+				DRC to check that case sensitive parameter values have the proper
+				capitalization (all capitals).</p>
+				</li><li><p>[&lt;CR449097&gt;] TCL is rounding off non-integer
+				calculated clock frequencies which may lead to slight memory
+				timing violations due to accumulated rounding errors.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.2 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.2 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Fixed typographical errors. 
+				</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR452030&gt;] Document
+				that C_NUM_PORTS and C_PIMx_PORT_TYPE parameters must be
+				consistent.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449992&gt;] Improve
+				documentation and figures describing the NPI WrFIFO_Flush signal.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449065&gt;] Document the
+				endianess and bit ordering used by the memory interface and each
+				of the PIM types.</p>
+				</li><li><p>Added documentation to prepare users for migration to MIG
+				v2.0 by describing configurations that would not be supported in
+				the next version of MPMC.</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v3.00.a, introduced in 9.2.1</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.1 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Improved timing of PLB PIM
+				especially when running in the 1:2 PLB to memory clock ratio.C</p>
+				<p></p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">[&lt;CR451305&gt;] Fixed
+				incorrect internal connections for NPI WrFIFO_Empty signals on
+				ports 1 to 7.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449387&gt;&lt;CR449385&gt;]
+				Fixed incorrect return data ordering for target word first data
+				from XCL PIM.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR449310&gt;] Fixed read
+				data error from PLB PIM that occurs during a 3 transaction
+				sequence involving secondary PLB address requests and unaligned
+				fixed length burst transfers.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;CR448135&gt;&lt;CR447824&gt;]
+				Updated convert_ucf.pl script to handle MIG Virtex-5 DDR1 UCF
+				constraint conversions and other script improvements to improve
+				useability.</p>
+				</li><li><p style="margin-bottom: 0in;">[&lt;IR450996&gt;] Fixed XST
+				errors that occur when enabling performance monitors for 0 to 7
+				port MPMC configurations.</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.1 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None 
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.1 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None 
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.1 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>[&lt;CR447721&gt;] Control Register Base Address
+				 parameter value gets reset when ECC or Performance Monitor
+				 option is disabled and enabled. Fixed the GUI behavior so
+				the base address does not change unnecessarily.
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2.1 - Changes in documentation
+			associated with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>[&lt;CR448135&gt;] Added documentation to describe the
+				need and steps for importing MIG Virtex-5 DDR1 UCF constraints
+				into the MPMC design. 
+				</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="GreyBackground">
+			<p class="Level1Heading">Changes in v3.00.a, introduced in 9.2</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2 - Changes in VHDL/Verilog/Netlist
+			sources (.vhd, .v, .ngc, .edn)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">New Features:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">Initial Release</p>
+				</li><li><p style="margin-bottom: 0in;">MPMC v3.00.a is the first
+				release of MPMC that is directly integrated into EDK and shipped
+				with EDK. The previous generations, MPMC2, and MPMC1 (part of the
+				Gigabit System Reference Design, GSRD), were standalone reference
+				designs.</p>
+				</li><li><p style="margin-bottom: 0in;">MPMC is designed to use the MIG
+				PHY from the MIG v1.73 release</p>
+				<ul>
+					<li><p style="margin-bottom: 0in;">Refer to the MIG v1.73
+					documentation and answer records for information about MIG
+					v1.73.</p>
+				</li></ul>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Resolved issues:</font></pre>
+			<ul>
+				<li><p style="margin-bottom: 0in;">None</p>
+				<p style="margin-bottom: 0in;"></p>
+			</li></ul>
+			<pre style="margin-bottom: 0.2in;"><font face="Arial">Known Issues / Limitations:</font></pre>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2 - Changes in tool interface files
+			(.mpd)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2 - Changes in Tcl script files
+			associated with core (.tcl)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2 - Changes in IP Configuration GUI
+			(.ui)</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="Level2Heading">9.2 - Changes in documentation associated
+			with core</p>
+			<hr class="whs1">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li><p>None</p>
+			</li></ul>
+		</td>
+	</tr>
+</tbody></table>
+<p>Copyright © 1995-2011 Xilinx, Inc. All rights reserved. 
+</p>
+</body></html>

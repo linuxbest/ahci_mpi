@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+###############################################################################
+## DISCLAIMER OF LIABILITY
+##
+## This file contains proprietary and confidential information of
+## Xilinx, Inc. ("Xilinx"), that is distributed under a license
+## from Xilinx, and may be used, copied and/or disclosed only
+## pursuant to the terms of a valid license agreement with Xilinx.
+##
+## XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION
+## ("MATERIALS") "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+## EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING WITHOUT
+## LIMITATION, ANY WARRANTY WITH RESPECT TO NONINFRINGEMENT,
+## MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE. Xilinx
+## does not warrant that functions included in the Materials will
+## meet the requirements of Licensee, or that the operation of the
+## Materials will be uninterrupted or error-free, or that defects
+## in the Materials will be corrected. Furthermore, Xilinx does
+## not warrant or make any representations regarding use, or the
+## results of the use, of the Materials in terms of correctness,
+## accuracy, reliability or otherwise.
+##
+## Xilinx products are not designed or intended to be fail-safe,
+## or for use in any application requiring fail-safe performance,
+## such as life-support or safety devices or systems, Class III
+## medical devices, nuclear facilities, applications related to
+## the deployment of airbags, or any other applications that could
+## lead to death, personal injury or severe property or
+## environmental damage (individually and collectively, "critical
+## applications"). Customer assumes the sole risk and liability
+## of any use of Xilinx products in critical applications,
+## subject only to applicable laws and regulations governing
+## limitations on product liability.
+## ## Copyright 2007, 2009 Xilinx, Inc.
+## All rights reserved.
+##
+## This disclaimer and copyright notice must be retained as part
+## of this file at all times.
+##
+###############################################################################
+-->
+
+<!DOCTYPE doc SYSTEM "../../ipdialog.dtd" [
+]>
+
+<doc>
+        <view id="Wizard">
+                <display>Wizard</display>
+                <group id="Hidden">
+                        <display>Hidden</display>
+                        <item>
+                           <widget id="Size_Combo">
+                             <key>G_MEM_SIZE</key>
+                             <label>Memory Size</label>
+                             <tip>Memory Size</tip>
+                             <value type="enum" default="16MB">
+                                <range>
+                                   <discrete data="1KB">1 KB</discrete>
+                                   <discrete data="2KB">2 KB</discrete>
+                                   <discrete data="4KB">4 KB</discrete>
+                                   <discrete data="8KB">8 KB</discrete>
+                                   <discrete data="16KB">16 KB</discrete>
+                                   <discrete data="32KB">32 KB</discrete>
+                                   <discrete data="64KB">64 KB</discrete>
+                                   <discrete data="128KB">128 KB</discrete>
+                                   <discrete data="256KB">256 KB</discrete>
+                                   <discrete data="512KB">512 KB</discrete>
+                                   <discrete data="1MB">1 MB</discrete>
+                                   <discrete data="2MB">2 MB</discrete>
+                                   <discrete data="4MB">4 MB</discrete>
+                                   <discrete data="8MB">8 MB</discrete>
+                                   <discrete data="16MB">16 MB</discrete>
+                                   <discrete data="32MB">32 MB</discrete>
+                                   <discrete data="64MB">64 MB</discrete>
+                                   <discrete data="128MB">128 MB</discrete>
+                                   <discrete data="256MB">256 MB</discrete>
+                                   <discrete data="512MB">512 MB</discrete>
+                                   <discrete data="1GB">1 GB</discrete>
+                                   <discrete data="2GB">2 GB</discrete>
+                                </range>
+                             </value>
+                           </widget>
+                        </item>
+                        <item>
+                           <widget id="DataWidth_Combo">
+                             <key>C_MEM_DATA_WIDTH</key>
+                             <label>Data Width</label>
+                             <tip>Data Width</tip>
+                           </widget>
+                        </item>
+                        <item>
+                           <widget id="AddrWidth_Combo">
+                             <key>C_MEM_ADDR_WIDTH</key>
+                             <label>Address Width</label>
+                             <tip>Address Width</tip>
+                           </widget>
+                        </item>
+                        <item>
+                           <widget id="BankWidth_Combo">
+                             <key>C_MEM_BANKADDR_WIDTH</key>
+                             <label>Bank Address Width</label>
+                             <tip>Bank Address Width</tip>
+                           </widget>
+                        </item>
+                        <item>
+                           <widget id="DataMask_Combo">
+                             <key>C_MEM_DM_WIDTH</key>
+                             <label>Data Mask Width</label>
+                             <tip>Data Mask Width</tip>
+                           </widget>
+                        </item>
+                        <item>
+                           <widget id="DQSWidth_Combo">
+                             <key>C_MEM_DQS_WIDTH</key>
+                             <label>DQS Width</label>
+                             <tip>DQS Width</tip>
+                           </widget>
+                        </item>
+                </group>
+        </view>
+</doc>
+

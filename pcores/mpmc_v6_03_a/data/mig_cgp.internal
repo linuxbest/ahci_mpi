@@ -1,0 +1,14 @@
+SET_FLAG MODE interactive
+SET_FLAG STANDALONE_MODE TRUE
+SET_PREFERENCE flowvendor foundation_ise
+SET_PREFERENCE speedgrade -1
+SET_PREFERENCE workingdirectory ./tmp/
+SET_PREFERENCE subworkingdirectory ./tmp/_cg
+SET_PREFERENCE outputdirectory output/vlg_xst
+SET_PREFERENCE device xc5vlx50t
+SET_PREFERENCE package ff1136
+SET_PREFERENCE designentry verilog
+SET_PREFERENCE devicefamily virtex5
+SET_PARAMETER component_name mig_23
+SET_PARAMETER xml_input_file
+

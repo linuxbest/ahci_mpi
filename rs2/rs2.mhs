@@ -312,7 +312,7 @@ BEGIN sata
  PARAMETER C_XCL_CHIPSCOPE = 0
  PARAMETER C_NPI_CHIPSCOPE = 0
  BUS_INTERFACE SDCR = DCR_bus_sata0
- PORT MPMC_Clk = clk_200_0000MHzPLL0_ADJUST
+ PORT MPMC_Clk = clk_66_6667MHzPLL0
  BUS_INTERFACE MPMC_PIM = PIM1
  BUS_INTERFACE GTXBUS0 = gtxbus_0
  BUS_INTERFACE GTXBUS1 = gtxbus_1
@@ -341,11 +341,13 @@ BEGIN satagtx
  PARAMETER C_CHIPSCOPE = 0
  BUS_INTERFACE GTXBUS0 = gtxbus_0
  BUS_INTERFACE GTXBUS1 = gtxbus_1
+ PORT refclkout  = tile0_refclkout
+ PORT plllkdet   = tile0_plllkdet
  PORT refclk     = tile0_refclk
  PORT dcm_locked = refclkout_dcm0_locked
  PORT txusrclk0  = tile0_txusrclk0
  PORT txusrclk20 = tile0_txusrclk20
- PORT GTXRESET_IN = hw_rst
+ PORT GTXRESET_IN = sys_periph_reset
  PORT RXN0_IN = RXN0_IN
  PORT RXP0_IN = RXP0_IN
  PORT TXN0_OUT= TXN0_OUT
@@ -365,7 +367,7 @@ BEGIN satagtx
  PORT dcm_locked = refclkout_dcm0_locked
  PORT txusrclk0  = tile0_txusrclk0
  PORT txusrclk20 = tile0_txusrclk20
- PORT GTXRESET_IN = hw_rst
+ PORT GTXRESET_IN = sys_periph_reset
  PORT RXN0_IN = RXN2_IN
  PORT RXP0_IN = RXP2_IN
  PORT TXN0_OUT= TXN2_OUT

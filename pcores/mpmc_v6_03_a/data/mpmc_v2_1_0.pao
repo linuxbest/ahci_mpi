@@ -1,0 +1,311 @@
+##-----------------------------------------------------------------------------
+##-- (c) Copyright 2006 - 2009 Xilinx, Inc. All rights reserved.
+##--
+##-- This file contains confidential and proprietary information
+##-- of Xilinx, Inc. and is protected under U.S. and
+##-- international copyright and other intellectual property
+##-- laws.
+##--
+##-- DISCLAIMER
+##-- This disclaimer is not a license and does not grant any
+##-- rights to the materials distributed herewith. Except as
+##-- otherwise provided in a valid license issued to you by
+##-- Xilinx, and to the maximum extent permitted by applicable
+##-- law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+##-- WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+##-- AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+##-- BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+##-- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+##-- (2) Xilinx shall not be liable (whether in contract or tort,
+##-- including negligence, or under any other theory of
+##-- liability) for any loss or damage of any kind or nature
+##-- related to, arising under or in connection with these
+##-- materials, including for any direct, or any indirect,
+##-- special, incidental, or consequential loss or damage
+##-- (including loss of data, profits, goodwill, or any type of
+##-- loss or damage suffered as a result of any action brought
+##-- by a third party) even if such damage or loss was
+##-- reasonably foreseeable or Xilinx had been advised of the
+##-- possibility of the same.
+##--
+##-- CRITICAL APPLICATIONS
+##-- Xilinx products are not designed or intended to be fail-
+##-- safe, or for use in any application requiring fail-safe
+##-- performance, such as life-support or safety devices or
+##-- systems, Class III medical devices, nuclear facilities,
+##-- applications related to the deployment of airbags, or any
+##-- other applications that could lead to death, personal
+##-- injury, or severe property or environmental damage
+##-- (individually and collectively, "Critical
+##-- Applications"). Customer assumes the sole risk and
+##-- liability of any use of Xilinx products in Critical
+##-- Applications, subject only to applicable laws and
+##-- regulations governing limitations on product liability.
+##--
+##-- THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+##-- PART OF THIS FILE AT ALL TIMES.
+##-----------------------------------------------------------------------------
+
+#
+# ----- Helper pcore Library Files ---------------------------------------------
+#
+lib proc_common_v3_00_a            all                            
+lib plbv46_slave_single_v1_01_a    all                            
+lib mpmc_v6_03_a                   MemXLib_utils                    vhdl
+lib mpmc_v6_03_a                   MemXLib_arch                     vhdl
+lib mpmc_v6_03_a                   PrimXLib_arch                    vhdl
+lib mpmc_v6_03_a                   ObjFifoAsyncDiffW                vhdl
+
+#
+# ----- Helper pcore Library Files ---------------------------------------------
+#
+
+#
+# ----- PLB PIM ----------------------------------------------------
+#
+lib mpmc_v6_03_a                   plbv46_sample_cycle.vhd                 vhdl
+lib mpmc_v6_03_a                   plbv46_data_steer_mirror.vhd            vhdl
+lib mpmc_v6_03_a                   plbv46_rd_support.vhd                   vhdl
+lib mpmc_v6_03_a                   plbv46_rd_support_dsplb.vhd             vhdl
+lib mpmc_v6_03_a                   plbv46_rd_support_isplb.vhd             vhdl
+lib mpmc_v6_03_a                   plbv46_rd_support_single.vhd            vhdl
+lib mpmc_v6_03_a                   plbv46_write_module.vhd                 vhdl
+lib mpmc_v6_03_a                   plbv46_address_decoder.vhd              vhdl
+lib mpmc_v6_03_a                   plbv46_address_decoder_dsplb.vhd        vhdl
+lib mpmc_v6_03_a                   plbv46_address_decoder_isplb.vhd        vhdl
+lib mpmc_v6_03_a                   plbv46_address_decoder_single.vhd       vhdl
+lib mpmc_v6_03_a                   plbv46_pim.vhd                          vhdl
+
+#
+# ----- PLB PIM ----------------------------------------------------
+#
+lib mpmc_v6_03_a                   sdma_pkg.vhd                     vhdl
+lib mpmc_v6_03_a                   sdma_addr_arbiter.vhd            vhdl
+lib mpmc_v6_03_a                   sdma_address_counter.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_channel_status_reg.vhd      vhdl
+lib mpmc_v6_03_a                   sdma_sample_cycle.vhd            vhdl
+lib mpmc_v6_03_a                   sdma_ipic_if.vhd                 vhdl
+lib mpmc_v6_03_a                   sdma_dmac_regfile_arb.vhd        vhdl
+lib mpmc_v6_03_a                   sdma_interrupt_register.vhd      vhdl
+lib mpmc_v6_03_a                   sdma_length_counter.vhd          vhdl
+lib mpmc_v6_03_a                   sdma_port_arbiter.vhd            vhdl
+lib mpmc_v6_03_a                   sdma_read_data_delay.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_rx_byte_shifter.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_rx_port_controller.vhd      vhdl
+lib mpmc_v6_03_a                   sdma_rx_read_handler.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_rx_write_handler.vhd        vhdl
+lib mpmc_v6_03_a                   sdma_tx_byte_shifter.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_tx_port_controller.vhd      vhdl
+lib mpmc_v6_03_a                   sdma_tx_read_handler.vhd         vhdl
+lib mpmc_v6_03_a                   sdma_tx_rx_state.vhd             vhdl
+lib mpmc_v6_03_a                   sdma_tx_write_handler.vhd        vhdl
+lib mpmc_v6_03_a                   sdma_reset_module.vhd            vhdl
+lib mpmc_v6_03_a                   sdma_cntl.vhd                    vhdl
+lib mpmc_v6_03_a                   sdma_datapath.vhd                vhdl
+lib mpmc_v6_03_a                   sdma.vhd                         vhdl
+
+#
+# ----- MPMC Library Files ----------------------------------------------------
+#
+lib mpmc_v6_03_a                   plbv46_pim_wrapper.vhd           vhdl
+lib mpmc_v6_03_a                   sdma_wrapper.vhd                 vhdl
+# ----- SDRAM PHY Files -------------------------------------------------------
+lib mpmc_v6_03_a                   phy_init_sdram.v                 verilog
+lib mpmc_v6_03_a                   phy_dm_iob_sdram.v               verilog
+lib mpmc_v6_03_a                   phy_dq_iob_sdram.v               verilog
+lib mpmc_v6_03_a                   phy_io_sdram.v                   verilog
+lib mpmc_v6_03_a                   phy_ctl_io_sdram.v               verilog
+lib mpmc_v6_03_a                   phy_write_sdram.v                verilog
+lib mpmc_v6_03_a                   phy_top_sdram.v                  verilog
+# ----- MIB PIM Files ---------------------------------------------------------
+lib mpmc_v6_03_a                   mib_pim.v                        verilog
+# ----- VFBC    Files ---------------------------------------------------------
+lib mpmc_v6_03_a                   p_vfbc                           vhdl
+lib mpmc_v6_03_a                   vfbc_arbitrator                  vhdl
+lib mpmc_v6_03_a                   vfbc_onehot                      vhdl
+lib mpmc_v6_03_a                   vfbc_burst_control               vhdl
+lib mpmc_v6_03_a                   vfbc_cmd_buffer                  vhdl
+lib mpmc_v6_03_a                   vfbc_cmd_control                 vhdl
+lib mpmc_v6_03_a                   vfbc_cmd_fetch                   vhdl
+lib mpmc_v6_03_a                   vfbc_newcmd                      vhdl
+lib mpmc_v6_03_a                   vfbc                             vhdl
+lib mpmc_v6_03_a                   vfbc_backend_control             vhdl
+lib mpmc_v6_03_a                   vfbc1_pim                        vhdl
+lib mpmc_v6_03_a                   vfbc_pim_wrapper                 vhdl
+############################ V6 DDR3 PHY ##################################
+#                                  /- Top Level
+#                                  | /- First Level
+#                                  | | /- Second Level
+#                                  | | | /- Third Level
+#                                  V V V V
+lib mpmc_v6_03_a                       v6_ddrx_pd.v                 verilog
+lib mpmc_v6_03_a                     v6_ddrx_pd_top.v               verilog
+lib mpmc_v6_03_a                     v6_ddrx_dly_ctrl.v             verilog
+lib mpmc_v6_03_a                       v6_ddrx_rdclk_gen.v          verilog
+lib mpmc_v6_03_a                         v6_ddrx_circ_buffer.v      verilog
+lib mpmc_v6_03_a                      v6_ddrx_rddata_sync.v         verilog
+lib mpmc_v6_03_a                      v6_ddrx_rdctrl_sync.v         verilog
+lib mpmc_v6_03_a                     v6_ddrx_read.v                 verilog
+lib mpmc_v6_03_a                     v6_ddrx_rdlvl.v                verilog
+lib mpmc_v6_03_a                     v6_ddrx_write.v                verilog
+lib mpmc_v6_03_a                     v6_ddrx_wrlvl.v                verilog
+lib mpmc_v6_03_a                     v6_ddrx_init.v                 verilog
+lib mpmc_v6_03_a                         v6_ddrx_rd_bitslip.v       verilog
+lib mpmc_v6_03_a                       v6_ddrx_dq_iob.v             verilog
+lib mpmc_v6_03_a                       v6_ddrx_dm_iob.v             verilog
+lib mpmc_v6_03_a                       v6_ddrx_dqs_iob.v            verilog
+lib mpmc_v6_03_a                     v6_ddrx_data_io.v              verilog
+lib mpmc_v6_03_a                       v6_ddrx_ck_iob.v             verilog
+lib mpmc_v6_03_a                     v6_ddrx_clock_io.v             verilog
+lib mpmc_v6_03_a                     v6_ddrx_control_io.v           verilog
+lib mpmc_v6_03_a                     v6_ddrx_ocb_mon_top.v          verilog
+lib mpmc_v6_03_a                     v6_ddrx_ocb_mon.v              verilog
+lib mpmc_v6_03_a                   v6_ddrx_top.v                    verilog
+lib mpmc_v6_03_a                       round_robin_arb.v            verilog
+lib mpmc_v6_03_a                     rank_common.v                  verilog
+lib mpmc_v6_03_a                     rank_cntrl.v                   verilog
+lib mpmc_v6_03_a                   rank_mach.v                      verilog
+
+# ----- MPMC    Files ---------------------------------------------------------
+lib mpmc_v6_03_a                   port_encoder.v                   verilog
+lib mpmc_v6_03_a                   mpmc_ctrl_logic.v                verilog
+lib mpmc_v6_03_a                   mpmc_ctrl_if.vhd                 vhdl
+lib mpmc_v6_03_a                   static_phy_srl_delay.v           verilog
+lib mpmc_v6_03_a                   static_phy_read.v                verilog
+lib mpmc_v6_03_a                   static_phy_write.v               verilog
+lib mpmc_v6_03_a                   static_phy_control.v             verilog
+lib mpmc_v6_03_a                   static_phy_iobs.v                verilog
+lib mpmc_v6_03_a                   static_phy_top.v                 verilog
+lib mpmc_v6_03_a                   dpram.v                          verilog
+lib mpmc_v6_03_a                   srl16e_fifo.v                    verilog
+lib mpmc_v6_03_a                   srl16e_fifo_protect.v            verilog
+lib mpmc_v6_03_a                   fifo_pipeline.v                  verilog
+lib mpmc_v6_03_a                   mpmc_sample_cycle.v              verilog
+lib mpmc_v6_03_a                   mpmc_pm_arbiter.v                verilog
+lib mpmc_v6_03_a                   mpmc_pm_timer.v                  verilog
+lib mpmc_v6_03_a                   mpmc_pm.v                        verilog
+lib mpmc_v6_03_a                   mpmc_npi2pm_rd.v                 verilog
+lib mpmc_v6_03_a                   mpmc_npi2pm_wr.v                 verilog
+lib mpmc_v6_03_a                   mpmc_pm_npi_if.v                 verilog
+lib mpmc_v6_03_a                   mpmc_rdcntr.v                    verilog
+lib mpmc_v6_03_a                   pop_generator.v                  verilog
+lib mpmc_v6_03_a                   xcl_addr.v                       verilog
+lib mpmc_v6_03_a                   xcl_read_data.v                  verilog
+lib mpmc_v6_03_a                   xcl_write_data.v                 verilog
+lib mpmc_v6_03_a                   mpmc_xcl_if.v                    verilog
+lib mpmc_v6_03_a                   dualxcl_access_data_path.v        verilog
+lib mpmc_v6_03_a                   dualxcl_access.v                  verilog
+lib mpmc_v6_03_a                   dualxcl_fsm.v                     verilog
+lib mpmc_v6_03_a                   dualxcl_read.v                    verilog
+lib mpmc_v6_03_a                   dualxcl.v                         verilog
+
+lib mpmc_v6_03_a                   DDR_MEMC_FIFO_32_RdCntr.v        verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_gen_fifoaddr.v        verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_gen_input_pipeline.v  verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_gen_output_pipeline.v verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_gen_push_tmp.v        verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_nto1_mux.v            verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo_nto1_ormux.v          verilog
+lib mpmc_v6_03_a                   mpmc_srl_fifo.v                     verilog
+lib mpmc_v6_03_a                   mpmc_ramb16_sx_sx.v                 verilog
+lib mpmc_v6_03_a                   mpmc_bram_fifo.v                    verilog
+lib mpmc_v6_03_a                   mpmc_read_fifo.v                    verilog
+lib mpmc_v6_03_a                   mpmc_write_fifo.v                   verilog
+lib mpmc_v6_03_a                   mpmc_data_path.v                 verilog
+lib mpmc_v6_03_a                   mpmc_addr_path.v                 verilog
+lib mpmc_v6_03_a                   fifo_32_rdcntr.v                 verilog
+lib mpmc_v6_03_a                   fifo_4.v                         verilog
+lib mpmc_v6_03_a                   fifo_1.v                         verilog
+lib mpmc_v6_03_a                   mpmc_ctrl_path_fifo.v            verilog
+lib mpmc_v6_03_a                   arb_req_pending_muxes.v          verilog
+lib mpmc_v6_03_a                   high_priority_select.v           verilog
+lib mpmc_v6_03_a                   arb_pattern_type_fifo.v          verilog
+lib mpmc_v6_03_a                   arb_pattern_type_muxes.v         verilog
+lib mpmc_v6_03_a                   arb_acknowledge.v                verilog
+lib mpmc_v6_03_a                   arb_bram_addr.v                  verilog
+lib mpmc_v6_03_a                   arb_pattern_start.v              verilog
+lib mpmc_v6_03_a                   arb_which_port.v                 verilog
+lib mpmc_v6_03_a                   arb_pattern_type.v               verilog
+lib mpmc_v6_03_a                   arbiter.v                        verilog
+lib mpmc_v6_03_a                   mpmc_srl_delay.v                 verilog
+lib mpmc_v6_03_a                   ctrl_path.v                      verilog
+lib mpmc_v6_03_a                   mpmc_ctrl_path.v                 verilog
+lib mpmc_v6_03_a                   v4_phy_controller_iobs.v         verilog
+lib mpmc_v6_03_a                   v4_phy_data_path_iobs.v          verilog
+lib mpmc_v6_03_a                   v4_phy_data_tap_inc.v            verilog
+lib mpmc_v6_03_a                   v4_phy_dm_iob.v                  verilog
+lib mpmc_v6_03_a                   v4_phy_dq_iob.v                  verilog
+lib mpmc_v6_03_a                   v4_phy_dqs_iob.v                 verilog
+lib mpmc_v6_03_a                   v4_phy_infrastructure_iobs.v     verilog
+lib mpmc_v6_03_a                   v4_phy_init_ddr1.v               verilog
+lib mpmc_v6_03_a                   v4_phy_init_ddr2.v               verilog
+lib mpmc_v6_03_a                   v4_phy_iobs.v                    verilog
+lib mpmc_v6_03_a                   v4_phy_pattern_compare8.v        verilog
+lib mpmc_v6_03_a                   v4_phy_tap_ctrl.v                verilog
+lib mpmc_v6_03_a                   v4_phy_tap_logic.v               verilog
+lib mpmc_v6_03_a                   v4_phy_top.v                     verilog
+lib mpmc_v6_03_a                   v4_phy_write.v                   verilog
+lib mpmc_v6_03_a                   v5_phy_calib_ddr1.v              verilog
+lib mpmc_v6_03_a                   v5_phy_dm_iob_ddr1.v             verilog
+lib mpmc_v6_03_a                   v5_phy_dq_iob_ddr1.v             verilog
+lib mpmc_v6_03_a                   v5_phy_dqs_iob_ddr1.v            verilog
+lib mpmc_v6_03_a                   v5_phy_io_ddr1.v                 verilog
+lib mpmc_v6_03_a                   v5_phy_ctl_io_ddr1.v             verilog
+lib mpmc_v6_03_a                   v5_phy_write_ddr1.v              verilog
+lib mpmc_v6_03_a                   v5_phy_init_ddr1.v               verilog
+lib mpmc_v6_03_a                   v5_phy_top_ddr1.v                verilog
+lib mpmc_v6_03_a                   v5_phy_calib_ddr2.v              verilog
+lib mpmc_v6_03_a                   v5_phy_dm_iob_ddr2.v             verilog
+lib mpmc_v6_03_a                   v5_phy_dq_iob_ddr2.v             verilog
+lib mpmc_v6_03_a                   v5_phy_dqs_iob_ddr2.v            verilog
+lib mpmc_v6_03_a                   v5_phy_io_ddr2.v                 verilog
+lib mpmc_v6_03_a                   v5_phy_ctl_io_ddr2.v             verilog
+lib mpmc_v6_03_a                   v5_phy_write_ddr2.v              verilog
+lib mpmc_v6_03_a                   v5_phy_init_ddr2.v               verilog
+lib mpmc_v6_03_a                   v5_phy_top_ddr2.v                verilog
+lib mpmc_v6_03_a                   s3_rd_data_ram.v                 verilog
+lib mpmc_v6_03_a                   s3_cal_ctl.v                     verilog
+lib mpmc_v6_03_a                   s3_cal_top.v                     verilog
+lib mpmc_v6_03_a                   s3_controller_iobs.v             verilog
+lib mpmc_v6_03_a                   s3_data_path.v                   verilog
+lib mpmc_v6_03_a                   s3_data_path_iobs.v              verilog
+lib mpmc_v6_03_a                   s3_data_read_controller.v        verilog
+lib mpmc_v6_03_a                   s3_data_read.v                   verilog
+lib mpmc_v6_03_a                   s3_dm_iobs.v                     verilog
+lib mpmc_v6_03_a                   s3_dq_iob.v                      verilog
+lib mpmc_v6_03_a                   s3_dqs_delay.v                   verilog
+lib mpmc_v6_03_a                   s3_dqs_div.v                     verilog
+lib mpmc_v6_03_a                   s3_dqs_iob.v                     verilog
+lib mpmc_v6_03_a                   s3_fifo_0_wr_en.v                verilog
+lib mpmc_v6_03_a                   s3_fifo_1_wr_en.v                verilog
+lib mpmc_v6_03_a                   s3_gray_cntr.v                   verilog
+lib mpmc_v6_03_a                   s3_infrastructure.v              verilog
+lib mpmc_v6_03_a                   s3_infrastructure_iobs.v         verilog
+lib mpmc_v6_03_a                   s3_iobs.v                        verilog
+lib mpmc_v6_03_a                   s3_phy_init.v                    verilog
+lib mpmc_v6_03_a                   s3_phy_top.v                     verilog
+lib mpmc_v6_03_a                   s3_phy_write.v                   verilog
+lib mpmc_v6_03_a                   s3_rd_data_ram0.v                verilog
+lib mpmc_v6_03_a                   s3_rd_data_ram1.v                verilog
+lib mpmc_v6_03_a                   s3_tap_dly.v                     verilog
+###########################################################################
+#Spartan6 PHY
+lib mpmc_v6_03_a                   mcb_raw_wrapper.v                verilog
+lib mpmc_v6_03_a                   iodrp_controller.v               verilog
+lib mpmc_v6_03_a                   iodrp_mcb_controller.v           verilog
+lib mpmc_v6_03_a                   mcb_soft_calibration_top.v       verilog
+lib mpmc_v6_03_a                   mcb_soft_calibration.v           verilog
+lib mpmc_v6_03_a                   s6_phy_top.v                     verilog
+lib mpmc_v6_03_a                   mpmc_npi2mcb.v                   verilog
+###########################################################################
+
+lib mpmc_v6_03_a                   bram_fifo_32bit.v                verilog
+lib mpmc_v6_03_a                   mpmc_rmw_fifo.v                  verilog
+lib mpmc_v6_03_a                   mpmc_ecc_control.v               verilog
+lib mpmc_v6_03_a                   mpmc_ecc_encode.v                verilog
+lib mpmc_v6_03_a                   mpmc_ecc_decode.v                verilog
+lib mpmc_v6_03_a                   ecc_top.v                        verilog
+lib mpmc_v6_03_a                   mpmc_realign_bytes.v             verilog
+lib mpmc_v6_03_a                   mpmc_debug_ctrl_reg.v            verilog
+lib mpmc_v6_03_a                   mpmc_core.v                      verilog
+lib mpmc_v6_03_a                   mpmc.v                           verilog
