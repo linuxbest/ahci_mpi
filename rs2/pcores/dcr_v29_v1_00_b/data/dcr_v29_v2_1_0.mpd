@@ -66,7 +66,7 @@ OPTION AWIDTH = 10
 OPTION DESC = Device Control Register (DCR) Bus 2.9
 OPTION LONG_DESC = 32-Bit Xilinx implementation of IBM 32-Bit Device Control Register Bus (DCR) Architecture Specification
 OPTION IP_GROUP = Bus and Bridge:PPC
-OPTION ARCH_SUPPORT_MAP = (virtex4lx=PRODUCTION, virtex4sx=PRODUCTION, virtex4fx=PRODUCTION, virtex5fx=PRODUCTION, qvirtex5lx=PRE_PRODUCTION, qvirtex5sx=PRE_PRODUCTION, qvirtex5fx=PRE_PRODUCTION, qvirtex5tx=PRE_PRODUCTION)
+OPTION ARCH_SUPPORT_MAP = (virtex4lx=PRODUCTION, virtex4sx=PRODUCTION, virtex4fx=PRODUCTION, virtex5fx=PRODUCTION, qvirtex5lx=PRE_PRODUCTION, qvirtex5sx=PRE_PRODUCTION, qvirtex5fx=PRE_PRODUCTION, qvirtex5tx=PRE_PRODUCTION, spartan6t=PRODUCTION)
 OPTION RUN_NGCBUILD = FALSE
 OPTION STYLE = HDL
 
