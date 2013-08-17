@@ -8,12 +8,14 @@ Prerequest
 
 Build
 -----
+<code>
  $ xps -nw rs2.xmp
  XPS% run bits
-
+</code>
 
 Debug
 -----
+<code>
  $ xps -nw rs.xmp
  XPS% run sim
-
+</code>
