@@ -17,22 +17,22 @@
 
  PORT fpga_0_RS232_Uart_1_RX_pin = fpga_0_RS232_Uart_1_RX_pin, DIR = I
  PORT fpga_0_RS232_Uart_1_TX_pin = fpga_0_RS232_Uart_1_TX_pin, DIR = O
- PORT fpga_0_PCIe_Bridge_RXN_pin = fpga_0_PCIe_Bridge_RXN_pin, DIR = I
- PORT fpga_0_PCIe_Bridge_RXP_pin = fpga_0_PCIe_Bridge_RXP_pin, DIR = I
- PORT fpga_0_PCIe_Bridge_TXN_pin = fpga_0_PCIe_Bridge_TXN_pin, DIR = O
- PORT fpga_0_PCIe_Bridge_TXP_pin = fpga_0_PCIe_Bridge_TXP_pin, DIR = O
- PORT fpga_0_Ethernet_MAC_PHY_tx_clk_pin = fpga_0_Ethernet_MAC_PHY_tx_clk_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_rx_clk_pin = fpga_0_Ethernet_MAC_PHY_rx_clk_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_crs_pin = fpga_0_Ethernet_MAC_PHY_crs_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_dv_pin = fpga_0_Ethernet_MAC_PHY_dv_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_rx_data_pin = fpga_0_Ethernet_MAC_PHY_rx_data_pin, DIR = I, VEC = [3:0]
- PORT fpga_0_Ethernet_MAC_PHY_col_pin = fpga_0_Ethernet_MAC_PHY_col_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_rx_er_pin = fpga_0_Ethernet_MAC_PHY_rx_er_pin, DIR = I
- PORT fpga_0_Ethernet_MAC_PHY_rst_n_pin = fpga_0_Ethernet_MAC_PHY_rst_n_pin, DIR = O
- PORT fpga_0_Ethernet_MAC_PHY_tx_en_pin = fpga_0_Ethernet_MAC_PHY_tx_en_pin, DIR = O
- PORT fpga_0_Ethernet_MAC_PHY_tx_data_pin = fpga_0_Ethernet_MAC_PHY_tx_data_pin, DIR = O, VEC = [3:0]
- PORT fpga_0_Ethernet_MAC_PHY_MDC_pin = fpga_0_Ethernet_MAC_PHY_MDC_pin, DIR = O
- PORT fpga_0_Ethernet_MAC_PHY_MDIO_pin = fpga_0_Ethernet_MAC_PHY_MDIO_pin, DIR = IO
+# PORT fpga_0_PCIe_Bridge_RXN_pin = fpga_0_PCIe_Bridge_RXN_pin, DIR = I
+# PORT fpga_0_PCIe_Bridge_RXP_pin = fpga_0_PCIe_Bridge_RXP_pin, DIR = I
+# PORT fpga_0_PCIe_Bridge_TXN_pin = fpga_0_PCIe_Bridge_TXN_pin, DIR = O
+# PORT fpga_0_PCIe_Bridge_TXP_pin = fpga_0_PCIe_Bridge_TXP_pin, DIR = O
+# PORT fpga_0_Ethernet_MAC_PHY_tx_clk_pin = fpga_0_Ethernet_MAC_PHY_tx_clk_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_rx_clk_pin = fpga_0_Ethernet_MAC_PHY_rx_clk_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_crs_pin = fpga_0_Ethernet_MAC_PHY_crs_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_dv_pin = fpga_0_Ethernet_MAC_PHY_dv_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_rx_data_pin = fpga_0_Ethernet_MAC_PHY_rx_data_pin, DIR = I, VEC = [3:0]
+# PORT fpga_0_Ethernet_MAC_PHY_col_pin = fpga_0_Ethernet_MAC_PHY_col_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_rx_er_pin = fpga_0_Ethernet_MAC_PHY_rx_er_pin, DIR = I
+# PORT fpga_0_Ethernet_MAC_PHY_rst_n_pin = fpga_0_Ethernet_MAC_PHY_rst_n_pin, DIR = O
+# PORT fpga_0_Ethernet_MAC_PHY_tx_en_pin = fpga_0_Ethernet_MAC_PHY_tx_en_pin, DIR = O
+# PORT fpga_0_Ethernet_MAC_PHY_tx_data_pin = fpga_0_Ethernet_MAC_PHY_tx_data_pin, DIR = O, VEC = [3:0]
+# PORT fpga_0_Ethernet_MAC_PHY_MDC_pin = fpga_0_Ethernet_MAC_PHY_MDC_pin, DIR = O
+# PORT fpga_0_Ethernet_MAC_PHY_MDIO_pin = fpga_0_Ethernet_MAC_PHY_MDIO_pin, DIR = IO
  PORT fpga_0_MCB_DDR3_mcbx_dram_addr_pin = fpga_0_MCB_DDR3_mcbx_dram_addr_pin, DIR = O, VEC = [12:0]
  PORT fpga_0_MCB_DDR3_mcbx_dram_ba_pin = fpga_0_MCB_DDR3_mcbx_dram_ba_pin, DIR = O, VEC = [2:0]
  PORT fpga_0_MCB_DDR3_mcbx_dram_ras_n_pin = fpga_0_MCB_DDR3_mcbx_dram_ras_n_pin, DIR = O
@@ -55,8 +55,8 @@
  PORT fpga_0_clk_1_sys_clk_p_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = P, CLK_FREQ = 200000000
  PORT fpga_0_clk_1_sys_clk_n_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = N, CLK_FREQ = 200000000
  PORT fpga_0_rst_1_sys_rst_pin = sys_rst_s, DIR = I, SIGIS = RST, RST_POLARITY = 1
- PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_P_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = P
- PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_N_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = N
+# PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_P_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = P
+# PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_N_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = N
  PORT RXN0_IN = RXN0_IN, DIR = I
  PORT RXP0_IN = RXP0_IN, DIR = I
  PORT TXN0_OUT = TXN0_OUT, DIR = O
@@ -150,61 +150,61 @@ BEGIN xps_uartlite
  PORT TX = fpga_0_RS232_Uart_1_TX_pin
 END
 
-BEGIN plbv46_pcie
- PARAMETER INSTANCE = PCIe_Bridge
- PARAMETER C_IPIFBAR_NUM = 3
- PARAMETER C_INCLUDE_BAROFFSET_REG = 1
- PARAMETER C_PCIBAR_NUM = 1
- PARAMETER C_NO_OF_LANES = 1
- PARAMETER C_DEVICE_ID = 0x0505
- PARAMETER C_VENDOR_ID = 0x10EE
- PARAMETER C_CLASS_CODE = 0x058000
- PARAMETER C_REF_CLK_FREQ = 1
- PARAMETER C_REV_ID = 0x00
- PARAMETER C_COMP_TIMEOUT = 1
- PARAMETER C_IPIFBAR2PCIBAR_0 = 0x00000000
- PARAMETER C_IPIFBAR2PCIBAR_1 = 0x00000000
- PARAMETER C_IPIFBAR2PCIBAR_2 = 0xe0000000
- PARAMETER C_PCIBAR2IPIFBAR_0 = 0x88000000
- PARAMETER C_PCIBAR_LEN_0 = 27
- PARAMETER HW_VER = 4.07.a
- PARAMETER C_BASEADDR = 0x85c00000
- PARAMETER C_HIGHADDR = 0x85c0ffff
- PARAMETER C_IPIFBAR_0 = 0xc0000000
- PARAMETER C_IPIFBAR_HIGHADDR_0 = 0xffffffff
- PARAMETER C_IPIFBAR_1 = 0xa0000000
- PARAMETER C_IPIFBAR_HIGHADDR_1 = 0xbfffffff
- PARAMETER C_IPIFBAR_2 = 0x90000000
- PARAMETER C_IPIFBAR_HIGHADDR_2 = 0x9fffffff
- BUS_INTERFACE SPLB = mb_plb
- BUS_INTERFACE MPLB = mb_plb
- PORT REFCLK = PCIe_Diff_Clk
- PORT RXN = fpga_0_PCIe_Bridge_RXN_pin
- PORT RXP = fpga_0_PCIe_Bridge_RXP_pin
- PORT TXN = fpga_0_PCIe_Bridge_TXN_pin
- PORT TXP = fpga_0_PCIe_Bridge_TXP_pin
- PORT MSI_request = net_gnd
-END
+#BEGIN plbv46_pcie
+# PARAMETER INSTANCE = PCIe_Bridge
+# PARAMETER C_IPIFBAR_NUM = 3
+# PARAMETER C_INCLUDE_BAROFFSET_REG = 1
+# PARAMETER C_PCIBAR_NUM = 1
+# PARAMETER C_NO_OF_LANES = 1
+# PARAMETER C_DEVICE_ID = 0x0505
+# PARAMETER C_VENDOR_ID = 0x10EE
+# PARAMETER C_CLASS_CODE = 0x058000
+# PARAMETER C_REF_CLK_FREQ = 1
+# PARAMETER C_REV_ID = 0x00
+# PARAMETER C_COMP_TIMEOUT = 1
+# PARAMETER C_IPIFBAR2PCIBAR_0 = 0x00000000
+# PARAMETER C_IPIFBAR2PCIBAR_1 = 0x00000000
+# PARAMETER C_IPIFBAR2PCIBAR_2 = 0xe0000000
+# PARAMETER C_PCIBAR2IPIFBAR_0 = 0x88000000
+# PARAMETER C_PCIBAR_LEN_0 = 27
+# PARAMETER HW_VER = 4.07.a
+# PARAMETER C_BASEADDR = 0x85c00000
+# PARAMETER C_HIGHADDR = 0x85c0ffff
+# PARAMETER C_IPIFBAR_0 = 0xc0000000
+# PARAMETER C_IPIFBAR_HIGHADDR_0 = 0xffffffff
+# PARAMETER C_IPIFBAR_1 = 0xa0000000
+# PARAMETER C_IPIFBAR_HIGHADDR_1 = 0xbfffffff
+# PARAMETER C_IPIFBAR_2 = 0x90000000
+# PARAMETER C_IPIFBAR_HIGHADDR_2 = 0x9fffffff
+# BUS_INTERFACE SPLB = mb_plb
+# BUS_INTERFACE MPLB = mb_plb
+# PORT REFCLK = PCIe_Diff_Clk
+# PORT RXN = fpga_0_PCIe_Bridge_RXN_pin
+# PORT RXP = fpga_0_PCIe_Bridge_RXP_pin
+# PORT TXN = fpga_0_PCIe_Bridge_TXN_pin
+# PORT TXP = fpga_0_PCIe_Bridge_TXP_pin
+# PORT MSI_request = net_gnd
+#END
 
-BEGIN xps_ethernetlite
- PARAMETER INSTANCE = Ethernet_MAC
- PARAMETER HW_VER = 4.00.a
- PARAMETER C_BASEADDR = 0x81000000
- PARAMETER C_HIGHADDR = 0x8100ffff
- BUS_INTERFACE SPLB = mb_plb
- PORT PHY_tx_clk = fpga_0_Ethernet_MAC_PHY_tx_clk_pin
- PORT PHY_rx_clk = fpga_0_Ethernet_MAC_PHY_rx_clk_pin
- PORT PHY_crs = fpga_0_Ethernet_MAC_PHY_crs_pin
- PORT PHY_dv = fpga_0_Ethernet_MAC_PHY_dv_pin
- PORT PHY_rx_data = fpga_0_Ethernet_MAC_PHY_rx_data_pin
- PORT PHY_col = fpga_0_Ethernet_MAC_PHY_col_pin
- PORT PHY_rx_er = fpga_0_Ethernet_MAC_PHY_rx_er_pin
- PORT PHY_rst_n = fpga_0_Ethernet_MAC_PHY_rst_n_pin
- PORT PHY_tx_en = fpga_0_Ethernet_MAC_PHY_tx_en_pin
- PORT PHY_tx_data = fpga_0_Ethernet_MAC_PHY_tx_data_pin
- PORT PHY_MDC = fpga_0_Ethernet_MAC_PHY_MDC_pin
- PORT PHY_MDIO = fpga_0_Ethernet_MAC_PHY_MDIO_pin
-END
+#BEGIN xps_ethernetlite
+# PARAMETER INSTANCE = Ethernet_MAC
+# PARAMETER HW_VER = 4.00.a
+# PARAMETER C_BASEADDR = 0x81000000
+# PARAMETER C_HIGHADDR = 0x8100ffff
+# BUS_INTERFACE SPLB = mb_plb
+# PORT PHY_tx_clk = fpga_0_Ethernet_MAC_PHY_tx_clk_pin
+# PORT PHY_rx_clk = fpga_0_Ethernet_MAC_PHY_rx_clk_pin
+# PORT PHY_crs = fpga_0_Ethernet_MAC_PHY_crs_pin
+# PORT PHY_dv = fpga_0_Ethernet_MAC_PHY_dv_pin
+# PORT PHY_rx_data = fpga_0_Ethernet_MAC_PHY_rx_data_pin
+# PORT PHY_col = fpga_0_Ethernet_MAC_PHY_col_pin
+# PORT PHY_rx_er = fpga_0_Ethernet_MAC_PHY_rx_er_pin
+# PORT PHY_rst_n = fpga_0_Ethernet_MAC_PHY_rst_n_pin
+# PORT PHY_tx_en = fpga_0_Ethernet_MAC_PHY_tx_en_pin
+# PORT PHY_tx_data = fpga_0_Ethernet_MAC_PHY_tx_data_pin
+# PORT PHY_MDC = fpga_0_Ethernet_MAC_PHY_MDC_pin
+# PORT PHY_MDIO = fpga_0_Ethernet_MAC_PHY_MDIO_pin
+#END
 
 BEGIN mpmc
  PARAMETER INSTANCE = MCB_DDR3
