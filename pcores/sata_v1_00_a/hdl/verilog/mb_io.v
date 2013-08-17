@@ -436,56 +436,6 @@ module mb_io (/*AUTOARG*/
    assign MB_stopped = 0;
    assign trigger_in = 0;
    assign include_data = 0;
-   
-   wire [0:17] 	encoder_data;
-   wire 	collect_out;
-   wire 	trigger_out;
-   wire [0:31] 	dfifo_data;
-   wire [0:16] 	dfifo_status;
-   wire 	dfifo_reset;
-   wire 	dfifo_valid;
-   encoder encoder (.Clk(sys_clk),
-		    .Rst(sys_rst),
-		    /*AUTOINST*/
-		    // Outputs
-		    .encoder_data	(encoder_data[0:17]),
-		    .collect_out	(collect_out),
-		    .trigger_out	(trigger_out),
-		    .dfifo_data		(dfifo_data[0:31]),
-		    .dfifo_status	(dfifo_status[0:16]),
-		    .dfifo_valid	(dfifo_valid),
-		    .dfifo_reset	(dfifo_reset),
-		    // Inputs
-		    .Trace_Instruction	(Trace_Instruction[0:31]),
-		    .Trace_Valid_Instr	(Trace_Valid_Instr),
-		    .Trace_PC		(Trace_PC[0:31]),
-		    .Trace_Reg_Write	(Trace_Reg_Write),
-		    .Trace_Reg_Addr	(Trace_Reg_Addr[0:4]),
-		    .Trace_MSR_Reg	(Trace_MSR_Reg[0:14]),
-		    .Trace_PID_Reg	(Trace_PID_Reg[0:7]),
-		    .Trace_New_Reg_Value(Trace_New_Reg_Value[0:31]),
-		    .Trace_Exception_Taken(Trace_Exception_Taken),
-		    .Trace_Exception_Kind(Trace_Exception_Kind[0:4]),
-		    .Trace_Jump_Taken	(Trace_Jump_Taken),
-		    .Trace_Delay_Slot	(Trace_Delay_Slot),
-		    .Trace_Data_Address	(Trace_Data_Address[0:31]),
-		    .Trace_Data_Write_Value(Trace_Data_Write_Value[0:31]),
-		    .Trace_Data_Byte_Enable(Trace_Data_Byte_Enable[0:3]),
-		    .Trace_Data_Access	(Trace_Data_Access),
-		    .Trace_Data_Read	(Trace_Data_Read),
-		    .Trace_Data_Write	(Trace_Data_Write),
-		    .Trace_DCache_Req	(Trace_DCache_Req),
-		    .Trace_DCache_Hit	(Trace_DCache_Hit),
-		    .Trace_ICache_Req	(Trace_ICache_Req),
-		    .Trace_ICache_Hit	(Trace_ICache_Hit),
-		    .Trace_OF_PipeRun	(Trace_OF_PipeRun),
-		    .Trace_EX_PipeRun	(Trace_EX_PipeRun),
-		    .Trace_MEM_PipeRun	(Trace_MEM_PipeRun),
-		    .MB_started		(MB_started),
-		    .MB_stopped		(MB_stopped),
-		    .collect_in		(collect_in),
-		    .trigger_in		(trigger_in),
-		    .include_data	(include_data));
 endmodule
 // 
 // mb_io.v ends here
