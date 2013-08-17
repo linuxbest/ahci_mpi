@@ -1,0 +1,101 @@
+#  Spartan-6 SP605 Evaluation Platform
+Net fpga_0_RS232_Uart_1_RX_pin LOC = H17  |  IOSTANDARD=LVCMOS25;
+Net fpga_0_RS232_Uart_1_TX_pin LOC = B21  |  IOSTANDARD=LVCMOS25;
+#Net fpga_0_PCIe_Bridge_RXN_pin LOC=C7;
+#Net fpga_0_PCIe_Bridge_RXP_pin LOC=D7;
+#Net fpga_0_PCIe_Bridge_TXN_pin LOC=A6;
+#Net fpga_0_PCIe_Bridge_TXP_pin LOC=B6;
+#Net fpga_0_Ethernet_MAC_PHY_tx_clk_pin LOC=L20  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_clk_pin LOC=P20  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_crs_pin LOC=N15  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_dv_pin LOC=T22  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_data_pin<0> LOC=P19  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_data_pin<1> LOC=Y22  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_data_pin<2> LOC=Y21  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_data_pin<3> LOC=W22  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_col_pin LOC=M16  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rx_er_pin LOC=U20  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_rst_n_pin LOC=J22  |  IOSTANDARD = LVCMOS25  |  TIG;
+#Net fpga_0_Ethernet_MAC_PHY_tx_en_pin LOC=T8  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_tx_data_pin<0> LOC=U10  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_tx_data_pin<1> LOC=T10  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_tx_data_pin<2> LOC=AB8  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_tx_data_pin<3> LOC=AA8  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_MDC_pin LOC=R19  |  IOSTANDARD = LVCMOS25;
+#Net fpga_0_Ethernet_MAC_PHY_MDIO_pin LOC=V20  |  IOSTANDARD = LVCMOS25;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<0> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<1> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<2> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<3> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<4> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<5> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<6> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<7> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<8> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<9> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<10> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<11> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_addr_pin<12> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ba_pin<0> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ba_pin<1> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ba_pin<2> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ras_n_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_cas_n_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_we_n_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_cke_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_clk_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_clk_n_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<0> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<1> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<2> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<3> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<4> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<5> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<6> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<7> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<8> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<9> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<10> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<11> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<12> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<13> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<14> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dq_pin<15> IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dqs_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_dqs_n_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_udqs_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_udqs_n_pin IOSTANDARD = DIFF_SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_udm_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ldm_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_odt_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_mcbx_dram_ddr3_rst_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_rzq_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_MCB_DDR3_zio_pin IOSTANDARD = SSTL15_II;
+Net fpga_0_clk_1_sys_clk_p_pin TNM_NET = sys_clk_pin;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 200000 kHz;
+Net fpga_0_clk_1_sys_clk_p_pin LOC = K21  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = TRUE;
+Net fpga_0_clk_1_sys_clk_n_pin LOC = K22  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = TRUE;
+Net fpga_0_rst_1_sys_rst_pin TIG;
+Net fpga_0_rst_1_sys_rst_pin LOC = H8  |  IOSTANDARD=LVCMOS15  |  PULLUP  |  TIG;
+#Net fpga_0_PCIe_Diff_Clk_IBUF_DS_P_pin LOC=A10;
+#Net fpga_0_PCIe_Diff_Clk_IBUF_DS_N_pin LOC=B10;
+
+###### PCIe_Bridge
+#
+# Transceiver instance placement.  This constraint selects the
+# transceiver to be used, which also dictates the pinout for the
+# transmit and receive differential pairs.  Please refer to the
+# Spartan-6 GTP Transceiver User Guide for more
+# information.
+#
+# PCIe Lane 0
+INST */gtpa1_dual_i LOC = GTPA1_DUAL_X0Y0;
+
+###############################################################################
+# Timing Constraints
+###############################################################################
+NET PCIe_Bridge/REFCLK PERIOD = 8ns;
+
+NET */gt_refclk_out(0) TNM_NET = PCIe_GT_REFCLK_OUT;
+TIMESPEC TS_PCIe_GT_REFCLK_OUT = PERIOD PCIe_GT_REFCLK_OUT 8ns HIGH 50 % ;
+
