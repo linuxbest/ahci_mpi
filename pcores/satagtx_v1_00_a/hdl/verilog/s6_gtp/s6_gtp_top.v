@@ -3,7 +3,7 @@
 
 
 //***********************************Entity Declaration************************
-module satagtx_top (/*AUTOARG*/
+module s6_gtp_top (/*AUTOARG*/
    // Outputs
    TXN0_OUT, TXP0_OUT, TXN1_OUT, TXP1_OUT, refclkout, plllkdet,
    txdatak_pop0, rxdata_fis0, rxcharisk0, link_up0, CommInit0,
@@ -289,7 +289,7 @@ module satagtx_top (/*AUTOARG*/
 
     s6_gtpwizard_v1_11 #
     (
-        .WRAPPER_SIM_GTPRESET_SPEEDUP           (EXAMPLE_SIM_GTPRESET_SPEEDUP),
+        .WRAPPER_SIM_GTPRESET_SPEEDUP           (EXAMPLE_SIM_GTXRESET_SPEEDUP),
         .WRAPPER_CLK25_DIVIDER_0                (3),
         .WRAPPER_CLK25_DIVIDER_1                (3),
         .WRAPPER_PLL_DIVSEL_FB_0                (4),

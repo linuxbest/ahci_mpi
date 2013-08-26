@@ -4,7 +4,7 @@
 
 //***********************************Entity Declaration************************
 
-module satagtx_top #
+module v5_gtx_top #
 (
     parameter EXAMPLE_SIM_MODE                          =   "FAST", // Set to Fast Functional Simulation Model
     parameter EXAMPLE_SIM_GTXRESET_SPEEDUP              =   0,      // simulation setting for MGT smartmodel

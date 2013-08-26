@@ -190,7 +190,9 @@ module satagtx (/*AUTOARG*/
 		 .rxdata_fis		(rxdata_fis1[31:0]),
 		 .rxcharisk		(rxcharisk1[3:0]));
 
-   satagtx_top
+generate if (C_FAMILY == "virtex5")
+begin	
+   v5_gtx_top
      sata_gtx_phy(/*AUTOINST*/
 		  // Outputs
 		  .TXN0_OUT		(TXN0_OUT),
@@ -245,6 +247,73 @@ module satagtx (/*AUTOARG*/
 		  .phy2cs_k0		(phy2cs_k0),
 		  .phy2cs_data1		(phy2cs_data1[31:0]),
 		  .phy2cs_k1		(phy2cs_k1));
+end
+else if (C_FAMILY == "spartan6")
+begin
+   s6_gtp_top
+     sata_gtx_phy(/*AUTOINST*/
+		  // Outputs
+		  .TXN0_OUT		(TXN0_OUT),
+		  .TXP0_OUT		(TXP0_OUT),
+		  .TXN1_OUT		(TXN1_OUT),
+		  .TXP1_OUT		(TXP1_OUT),
+		  .refclkout		(refclkout),
+		  .plllkdet		(plllkdet),
+		  .txdatak_pop0		(txdatak_pop0),
+		  .rxdata_fis0		(rxdata_fis0[31:0]),
+		  .rxcharisk0		(rxcharisk0[3:0]),
+		  .link_up0		(link_up0),
+		  .CommInit0		(CommInit0),
+		  .gtx_txdata0		(gtx_txdata0[31:0]),
+		  .gtx_txdatak0		(gtx_txdatak0[3:0]),
+		  .gtx_rxdata0		(gtx_rxdata0[31:0]),
+		  .gtx_rxdatak0		(gtx_rxdatak0[3:0]),
+		  .txdatak_pop1		(txdatak_pop1),
+		  .rxdata_fis1		(rxdata_fis1[31:0]),
+		  .rxcharisk1		(rxcharisk1[3:0]),
+		  .link_up1		(link_up1),
+		  .CommInit1		(CommInit1),
+		  .gtx_txdata1		(gtx_txdata1[31:0]),
+		  .gtx_txdatak1		(gtx_txdatak1[3:0]),
+		  .gtx_rxdata1		(gtx_rxdata1[31:0]),
+		  .gtx_rxdatak1		(gtx_rxdatak1[3:0]),
+		  .oob2dbg0		(oob2dbg0[127:0]),
+		  .oob2dbg1		(oob2dbg1[127:0]),
+		  // Inputs
+		  .GTXRESET_IN		(GTXRESET_IN),
+		  .RXN0_IN		(RXN0_IN),
+		  .RXP0_IN		(RXP0_IN),
+		  .RXN1_IN		(RXN1_IN),
+		  .RXP1_IN		(RXP1_IN),
+		  .refclk		(refclk),
+		  .dcm_locked		(dcm_locked),
+		  .txusrclk0		(txusrclk0),
+		  .txusrclk20		(txusrclk20),
+		  .txdata_fis0		(txdata_fis0[31:0]),
+		  .tx_charisk_fis0	(tx_charisk_fis0),
+		  .phyreset0		(phyreset0),
+		  .phyclk0		(phyclk0),
+		  .StartComm0		(StartComm0),
+		  .gtx_tune0		(gtx_tune0[31:0]),
+		  .txdata_fis1		(txdata_fis1[31:0]),
+		  .tx_charisk_fis1	(tx_charisk_fis1),
+		  .phyreset1		(phyreset1),
+		  .phyclk1		(phyclk1),
+		  .StartComm1		(StartComm1),
+		  .gtx_tune1		(gtx_tune1[31:0]),
+		  .phy2cs_data0		(phy2cs_data0[31:0]),
+		  .phy2cs_k0		(phy2cs_k0),
+		  .phy2cs_data1		(phy2cs_data1[31:0]),
+		  .phy2cs_k1		(phy2cs_k1));
+end
+else if (C_FAMILY == "virtex6")
+begin
+end
+else if (C_FAMILY == "kirtex6")
+begin
+end
+endgenerate
+
 // synopsys translate_off
    defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
 // synopsys translate_on
