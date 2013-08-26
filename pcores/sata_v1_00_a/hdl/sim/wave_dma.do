@@ -63,10 +63,10 @@ eval add wave -noupdate $hexopt $dmapath${ps}dma${ps}wr_len
 eval add wave -noupdate $binopt $dmapath${ps}sys_clk
 eval add wave -noupdate $binopt $dmapath${ps}MPMC_Clk
 
-eval add wave -noupdate $binopt $dmapath${ps}dma${ps}AddrReq
-eval add wave -noupdate $binopt $dmapath${ps}dma${ps}AddrAck
-eval add wave -noupdate $binopt $dmapath${ps}dma${ps}RdFIFO_Pop
-eval add wave -noupdate $binopt $dmapath${ps}dma${ps}WrFIFO_Push
+#eval add wave -noupdate $binopt $dmapath${ps}dma${ps}AddrReq
+#eval add wave -noupdate $binopt $dmapath${ps}dma${ps}AddrAck
+#eval add wave -noupdate $binopt $dmapath${ps}dma${ps}RdFIFO_Pop
+#eval add wave -noupdate $binopt $dmapath${ps}dma${ps}WrFIFO_Push
 
 eval add wave -noupdate $binopt $dmapath${ps}dma${ps}PIM_AddrReq
 eval add wave -noupdate $binopt $dmapath${ps}dma${ps}PIM_AddrAck
