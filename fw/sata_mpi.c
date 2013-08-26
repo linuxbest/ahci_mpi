@@ -316,7 +316,9 @@ QState do_port_idle(QHsmSata *me)
 		uint8_t slot = me->pSlotLoc;
 		struct ahci_cmd_hdr *src_hdr = &me->host_hdr[slot];
 		struct ahci_cmd_hdr *hdr = &me->hdr[slot];
+#ifndef _SIM_
 		__invalidate_dcache_wb(src_hdr, 0);
+#endif
 		hdr->opts      = src_hdr->opts;
 		hdr->tbl_addr  = src_hdr->tbl_addr;
 #ifdef MPI_TRACE
@@ -332,8 +334,10 @@ QState do_port_idle(QHsmSata *me)
 		uint32_t tbl_addr = hdr->tbl_addr + 0x80 + 0xC0000000;
 		uint32_t sg_cnt = hdr->opts >> 16;
 		uint32_t i;
+#ifndef _SIM_
 		for (i = 0; i < sg_cnt; i++, tbl_addr += 32)
 			__invalidate_dcache_wb(tbl_addr, 0);
+#endif
 		hdr->sg_cnt    = 0;
 		hdr->sg_offset = 0;
 		/* Port FetchCmd */

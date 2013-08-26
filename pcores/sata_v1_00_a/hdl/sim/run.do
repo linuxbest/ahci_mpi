@@ -23,25 +23,27 @@ vlog  -incr ../verilog/crossdomain/signal.v
 vlog  -incr ../verilog/crossdomain/reg_sync.v
 vlog  -incr ../verilog/srl16e_fifo_protect.v
 vlog  -incr ../verilog/npi_pi_enable.v
-vlog  -incr ../verilog/npi/mpmc_sample_cycle.v
+vlog  -incr ../../../mpmc_v6_03_a/hdl/verilog/mpmc_sample_cycle.v
 
 sccom -work plbv46_wrapper_v1_00_a -ggdb dgio.cpp -I.
 sccom -work work -ggdb dgio.cpp -I.
 
-sccom -ggdb ../../../../dg_sata/systemc/dev_fsm_base.cpp -I../../../../dg_sata/ahci/include/ -DTEST_base
+sccom -ggdb ../../../../sata_ip_sim/systemc/dev_fsm_base.cpp -I../../../../dg_sata/ahci/include/ -DTEST_base
 
-sccom -D_SIM_  -Impi/include -Impi/ -I. init.c
-sccom -Impi/include -Impi/ -I. mpi/qhsm_dis.c
-sccom -Impi/include -Impi/ -I. mpi/qhsm_ini.c
-sccom -Impi/include -Impi/ -I. mpi/qhsm_top.c
-sccom -D_SIM_ -Impi/include -Impi/ -I. mpi/sata_mpi.c -DGITVERSION=0x0
+set mpi "../../../../fw"
+sccom -D_SIM_  -I$mpi/include -I$mpi/ -I. init.c
+sccom -I$mpi/include -I$mpi/ -I. $mpi/qhsm_dis.c
+sccom -I$mpi/include -I$mpi/ -I. $mpi/qhsm_ini.c
+sccom -I$mpi/include -I$mpi/ -I. $mpi/qhsm_top.c
+sccom -I$mpi/include -I$mpi/ -I. $mpi/qep.c
+sccom -D_SIM_ -I$mpi/include -I$mpi/ -I. $mpi/sata_mpi.c -DGITVERSION=0x0
 
 sccom -link
 
 vlog tb.v
-vlog -novopt -incr -work work "/opt/ise12.3/ISE_DS/ISE/verilog/src/glbl.v"
+vlog -novopt -incr -work work $::env(XILINX)/verilog/src/glbl.v
 
-vsim -novopt -t ps -L xilinxcorelib_ver -L secureip -L unisims_ver +notimingchecks tb glbl
+vsim +nowarnTSCALE -novopt -t ps -L xilinxcorelib_ver -L secureip -L unisims_ver +notimingchecks tb glbl
 
 do wave_top.do
 do wave_phy.do

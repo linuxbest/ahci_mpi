@@ -82,9 +82,9 @@ module txll_fifo (/*AUTOARG*/
 	     .DOP			(rd_do[35:32]),
 	     .EMPTY			(rd_empty),
 	     .FULL			(wr_full),
-	     .RDCOUNT			(rd_count),
+	     .RDCOUNT			(rd_count[8:0]),
 	     .RDERR			(rd_err),
-	     .WRCOUNT			(wr_count),
+	     .WRCOUNT			(wr_count[8:0]),
 	     .WRERR			(wr_err),
 	     // Inputs
 	     .DI			(wr_di[31:0]),

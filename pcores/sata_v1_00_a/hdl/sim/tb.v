@@ -138,6 +138,8 @@ module tb;
    wire			TXN1_OUT;		// From gtx_0 of satagtx.v
    wire			TXP0_OUT;		// From gtx_0 of satagtx.v
    wire			TXP1_OUT;		// From gtx_0 of satagtx.v
+   wire [31:0]		dma_state0;		// From dma0 of sata_dma.v
+   wire [31:0]		dma_state1;		// From dma1 of sata_dma.v
    wire [31:0]		gtx_rxdata0;		// From gtx_0 of satagtx.v
    wire [31:0]		gtx_rxdata1;		// From gtx_0 of satagtx.v
    wire [3:0]		gtx_rxdatak0;		// From gtx_0 of satagtx.v
@@ -249,6 +251,7 @@ module tb;
 	   .PIM_WrFIFO_Flush		(PIM_WrFIFO_Flush0),	 // Templated
 	   .PIM_WrFIFO_Push		(PIM_WrFIFO_Push0),	 // Templated
 	   .StartComm			(StartComm0),		 // Templated
+	   .dma_state			(dma_state0[31:0]),	 // Templated
 	   .err_ack			(err_ack0[7:0]),	 // Templated
 	   .irq				(irq0),			 // Templated
 	   .readdata			(readdata0[31:0]),	 // Templated
@@ -259,7 +262,6 @@ module tb;
 	   .sys_rst			(sys_rst0),		 // Templated
 	   .CommInit			(CommInit0),		 // Templated
 	   .MPMC_Clk			(MPMC_Clk0),		 // Templated
-	   .MPMC_Rst			(MPMC_Rst0),		 // Templated
 	   .PIM_AddrAck			(PIM_AddrAck0),		 // Templated
 	   .PIM_InitDone		(PIM_InitDone0),	 // Templated
 	   .PIM_RdFIFO_Data		(PIM_RdFIFO_Data0[31:0]), // Templated
@@ -308,6 +310,7 @@ module tb;
 	   .PIM_WrFIFO_Flush		(PIM_WrFIFO_Flush1),	 // Templated
 	   .PIM_WrFIFO_Push		(PIM_WrFIFO_Push1),	 // Templated
 	   .StartComm			(StartComm1),		 // Templated
+	   .dma_state			(dma_state1[31:0]),	 // Templated
 	   .err_ack			(err_ack1[7:0]),	 // Templated
 	   .irq				(irq1),			 // Templated
 	   .readdata			(readdata1[31:0]),	 // Templated
@@ -318,7 +321,6 @@ module tb;
 	   .sys_rst			(sys_rst1),		 // Templated
 	   .CommInit			(CommInit1),		 // Templated
 	   .MPMC_Clk			(MPMC_Clk1),		 // Templated
-	   .MPMC_Rst			(MPMC_Rst1),		 // Templated
 	   .PIM_AddrAck			(PIM_AddrAck1),		 // Templated
 	   .PIM_InitDone		(PIM_InitDone1),	 // Templated
 	   .PIM_RdFIFO_Data		(PIM_RdFIFO_Data1[31:0]), // Templated
@@ -433,7 +435,7 @@ module tb;
    assign err_req1 = 8'h0;
 endmodule // tb
 // Local Variables:
-// verilog-library-directories:(".""../verilog/" "../../../../dg_sata/pcores/satagtx_v1_00_a/hdl/verilog/")
+// verilog-library-directories:(".""../verilog/" "../../../../pcores/satagtx_v1_00_a/hdl/verilog/")
 // verilog-library-files:(".""sata_phy")
 // verilog-library-extensions:(".v" ".h")
 // End:
