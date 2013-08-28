@@ -148,7 +148,7 @@ module oob_device(/*AUTOARG*/
 		    txcomstart <= 1'b0;
 		    send_align <= 1'b1;
 		    count_en   <= 1'b1;
-		    if (align_det && count == 18'h200)
+		    if (align_det && (count == 18'h200 || count == 18'h201))
 		      begin
 			 state <= S_DR_Ready;
 		         count_en   <= 1'b0;
