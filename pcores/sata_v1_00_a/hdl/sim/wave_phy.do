@@ -5,8 +5,20 @@ set binopt {-logic}
 set hexopt {-literal -hex}
 set ascopt {-literal -ascii}
 
+#set lltype "v5_gtx_top"
+set lltype "s6_gtp_top"
+
+#eval add wave -noupdate -divider {"gtp internal"}
+#set gtp $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}rocketio_wrapper_i${ps}tile0_s6_gtpwizard_v1_11_i
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}CLK00
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}CLK01
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}GTPRESET0
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}GTPRESET1
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}PLLLKDET0
+#eval add wave -noupdate $binopt $gtp${ps}gtpa1_dual_i${ps}PLLLKDET1
+
+
 eval add wave -noupdate -divider {"satagtx_internal"}
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phyreset0
 
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phy_if_gtx0${ps}phy2cs_k
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phy_if_gtx0${ps}rx_k_tmp
@@ -20,36 +32,38 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}dcm_locked
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk0
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk20
 
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txusrclk20_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}phyreset0
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txcomstart0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txcomtype0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_rxelecidle0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txelecidle0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}StartComm0
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}CommInit0
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_resetdone0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txenpmaphasealign0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txpmasetphase0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_tx_resetdone0_r2
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_tx_sync_done0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_refclk_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}GTXRESET_IN
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txusrclk20_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}phyreset0
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txcomstart0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txcomtype0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_rxelecidle0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txelecidle0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}StartComm0
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}CommInit0
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_resetdone0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txenpmaphasealign0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txpmasetphase0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_tx_resetdone0_r2
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_tx_sync_done0_i
 
-eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txdata0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_txcharisk0_i
+eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txdata0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_txcharisk0_i
 
-eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_rxdata0_i
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}tile0_rxcharisk0_i
+eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_rxdata0_i
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_rxcharisk0_i
 
 eval add wave -noupdate -divider {"host oob"}
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_clk
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_rst
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}StartComm_sync
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}StartComm
-eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}state
-eval add wave -noupdate $ascopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}state_ascii
-eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}count
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_clk
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_rst
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}StartComm_sync
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}StartComm
+eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}state
+eval add wave -noupdate $ascopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}state_ascii
+eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}count
 
-eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}sata_gtx_phy${ps}gtx_oob_0${ps}rxstatus
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}rxstatus
 
 eval add wave -noupdate -divider {"device oob 0"}
 eval add wave -noupdate $hexopt ${tbpath}${ps}dev0${ps}shdd_model_phy${ps}oob_device${ps}state

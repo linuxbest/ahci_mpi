@@ -80,7 +80,8 @@ module s6_gtpwizard_v1_11_tile #
     
     //
     parameter   TILE_PLL_SOURCE_0           = "PLL0",
-    parameter   TILE_PLL_SOURCE_1           = "PLL1"
+    parameter   TILE_PLL_SOURCE_1           = "PLL1",
+    parameter   C_BYPASS_TXBUF              =  0
 )
 (
     //---------------------- Loopback and Powerdown Ports ----------------------
@@ -293,19 +294,19 @@ module s6_gtpwizard_v1_11_tile #
        //PLL Attributes
         .CLKINDC_B_0                            ("TRUE"),
         .CLKRCV_TRST_0                          ("TRUE"),
-        .OOB_CLK_DIVIDER_0                      (2),
+        .OOB_CLK_DIVIDER_0                      (6),
         .PLL_COM_CFG_0                          (24'h21680a),
         .PLL_CP_CFG_0                           (8'h00),
-        .PLL_RXDIVSEL_OUT_0                     (2),
+        .PLL_RXDIVSEL_OUT_0                     (1),
         .PLL_SATA_0                             ("FALSE"),
         .PLL_SOURCE_0                           (TILE_PLL_SOURCE_0),
-        .PLL_TXDIVSEL_OUT_0                     (2),
+        .PLL_TXDIVSEL_OUT_0                     (1),
         .PLLLKDET_CFG_0                         (3'b111),
 
        //
         .CLKINDC_B_1                            ("TRUE"),
         .CLKRCV_TRST_1                          ("TRUE"),
-        .OOB_CLK_DIVIDER_1                      (2),
+        .OOB_CLK_DIVIDER_1                      (6),
         .PLL_COM_CFG_1                          (24'h21680a),
         .PLL_CP_CFG_1                           (8'h00),
         .PLL_RXDIVSEL_OUT_1                     (2),
@@ -326,13 +327,13 @@ module s6_gtpwizard_v1_11_tile #
 
        //TX Buffer and Phase Alignment Attributes
         .PMA_TX_CFG_0                           (20'h80082),
-        .TX_BUFFER_USE_0                        ("FALSE"),
-        .TX_XCLK_SEL_0                          ("TXUSR"),
-        .TXRX_INVERT_0                          (3'b111),
+        .TX_BUFFER_USE_0                        (C_BYPASS_TXBUF ? "FALSE" : "TRUE"),
+        .TX_XCLK_SEL_0                          (C_BYPASS_TXBUF ? "TXUSR" : "TXOUT"),
+        .TXRX_INVERT_0                          (C_BYPASS_TXBUF ? 3'b111  : 3'b011),
         .PMA_TX_CFG_1                           (20'h80082),
-        .TX_BUFFER_USE_1                        ("FALSE"),
-        .TX_XCLK_SEL_1                          ("TXUSR"),
-        .TXRX_INVERT_1                          (3'b111),
+        .TX_BUFFER_USE_1                        (C_BYPASS_TXBUF ? "FALSE" : "TRUE"),
+        .TX_XCLK_SEL_1                          (C_BYPASS_TXBUF ? "TXUSR" : "TXOUT"),
+        .TXRX_INVERT_1                          (C_BYPASS_TXBUF ? 3'b111  : 3'b011),
 
        //TX Driver and OOB signalling Attributes
         .CM_TRIM_0                              (2'b00),

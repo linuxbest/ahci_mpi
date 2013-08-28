@@ -1,4 +1,4 @@
-#do compile.do
+do compile.do
 
 vlog  -incr ../verilog/crc.v
 vlog  -incr ../verilog/ctrl.v

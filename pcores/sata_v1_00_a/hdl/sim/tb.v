@@ -174,8 +174,11 @@ module tb;
    wire			txdatak_pop1;		// From gtx_0 of satagtx.v
    // End of automatics
    
-   satagtx
-     gtx_0   (/*AUTOINST*/
+   satagtx  #(
+	      //.C_FAMILY("virtex5")
+	      .C_FAMILY("spartan6")
+           )
+   gtx_0   (/*AUTOINST*/
 	      // Outputs
 	      .TXN0_OUT			(TXN0_OUT),
 	      .TXP0_OUT			(TXP0_OUT),

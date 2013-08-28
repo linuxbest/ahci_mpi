@@ -191,7 +191,7 @@ module satagtx (/*AUTOARG*/
 		 .rxcharisk		(rxcharisk1[3:0]));
 
 generate if (C_FAMILY == "virtex5")
-begin	
+begin: v5_gtx_top
    v5_gtx_top
      sata_gtx_phy(/*AUTOINST*/
 		  // Outputs
@@ -247,9 +247,15 @@ begin
 		  .phy2cs_k0		(phy2cs_k0),
 		  .phy2cs_data1		(phy2cs_data1[31:0]),
 		  .phy2cs_k1		(phy2cs_k1));
+		  
+// synopsys translate_off
+   defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
+// synopsys translate_on
+   defparam sata_gtx_phy.C_CHIPSCOPE = C_CHIPSCOPE;
+
 end
 else if (C_FAMILY == "spartan6")
-begin
+begin: s6_gtp_top
    s6_gtp_top
      sata_gtx_phy(/*AUTOINST*/
 		  // Outputs
@@ -305,6 +311,12 @@ begin
 		  .phy2cs_k0		(phy2cs_k0),
 		  .phy2cs_data1		(phy2cs_data1[31:0]),
 		  .phy2cs_k1		(phy2cs_k1));
+
+// synopsys translate_off
+   defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
+// synopsys translate_on
+   defparam sata_gtx_phy.C_CHIPSCOPE = C_CHIPSCOPE;
+
 end
 else if (C_FAMILY == "virtex6")
 begin
@@ -314,12 +326,8 @@ begin
 end
 endgenerate
 
-// synopsys translate_off
-   defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
-// synopsys translate_on
    assign phyclk0 = txusrclk20;
    assign phyclk1 = txusrclk20;
-   defparam sata_gtx_phy.C_CHIPSCOPE = C_CHIPSCOPE;
 endmodule
 // Local Variables:
 // verilog-library-directories:(".")

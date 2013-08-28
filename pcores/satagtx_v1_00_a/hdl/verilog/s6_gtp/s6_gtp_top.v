@@ -287,13 +287,19 @@ module s6_gtp_top (/*AUTOARG*/
     assign TILE0_PLLLKDET_OUT = tile0_plllkdet_i;
 
 
+    // PLL_OUT_FREQ = Fin * (((INTDATAWIDTH ? 4 : 5) * PLL_DIVSEL_FB) / PLL_DIVSEL_REF)
+    //     Fin            = 150Mhz
+    //     INTDATAWIDTH   = 5
+    //     PLL_DIVSEL_FB  = 2
+    //     PLL_DIVSEL_REF = 1
+    //     150 * ((5*2)/1) = 1500Mhz
     s6_gtpwizard_v1_11 #
     (
         .WRAPPER_SIM_GTPRESET_SPEEDUP           (EXAMPLE_SIM_GTXRESET_SPEEDUP),
-        .WRAPPER_CLK25_DIVIDER_0                (3),
-        .WRAPPER_CLK25_DIVIDER_1                (3),
-        .WRAPPER_PLL_DIVSEL_FB_0                (4),
-        .WRAPPER_PLL_DIVSEL_FB_1                (4),
+        .WRAPPER_CLK25_DIVIDER_0                (6),
+        .WRAPPER_CLK25_DIVIDER_1                (6),
+        .WRAPPER_PLL_DIVSEL_FB_0                (2),
+        .WRAPPER_PLL_DIVSEL_FB_1                (2),
         .WRAPPER_PLL_DIVSEL_REF_0               (1),
         .WRAPPER_PLL_DIVSEL_REF_1               (1),
         .WRAPPER_SIMULATION                     (EXAMPLE_SIM_GTXRESET_SPEEDUP),
@@ -308,11 +314,11 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_LOOPBACK0_IN             (tile0_loopback0_i),
         .TILE0_LOOPBACK1_IN             (tile0_loopback1_i),
         //------------------------------- PLL Ports --------------------------------
-        .TILE0_CLK00_IN                 (tile0_refclk),
-        .TILE0_CLK01_IN                 (tied_to_ground_i),
+        .TILE0_CLK00_IN                 (tile0_refclk_i),
+        .TILE0_CLK01_IN                 (tile0_refclk_i),
         .TILE0_GTPRESET0_IN             (tile0_gtxreset_i),
-        .TILE0_GTPRESET1_IN             (tile0_gtpreset_i),
-        .TILE0_PLLLKDET0_OUT            (tile0_plllkdet0_i),
+        .TILE0_GTPRESET1_IN             (tile0_gtxreset_i),
+        .TILE0_PLLLKDET0_OUT            (tile0_plllkdet_i),
         .TILE0_RESETDONE0_OUT           (tile0_resetdone0_i),
         .TILE0_RESETDONE1_OUT           (tile0_resetdone1_i),
         //--------------------- Receive Ports - 8b10b Decoder ----------------------
@@ -324,8 +330,8 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_RXDISPERR1_OUT           (tile0_rxdisperr1_i),
         .TILE0_RXNOTINTABLE0_OUT        (tile0_rxnotintable0_i),
         .TILE0_RXNOTINTABLE1_OUT        (tile0_rxnotintable1_i),
-        .TILE0_RXRUNDISP0_OUT           (tile0_rxrundisp0_i),  /* - */
-        .TILE0_RXRUNDISP1_OUT           (tile0_rxrundisp1_i),  /* - */
+        .TILE0_RXRUNDISP0_OUT           (),
+        .TILE0_RXRUNDISP1_OUT           (),
         //------------- Receive Ports - Comma Detection and Alignment --------------
         .TILE0_RXBYTEISALIGNED0_OUT     (tile0_rxbyteisaligned0_i),
         .TILE0_RXBYTEISALIGNED1_OUT     (tile0_rxbyteisaligned1_i),
@@ -340,10 +346,10 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_RXRECCLK1_OUT            (tile0_rxrecclk1_i),
         .TILE0_RXRESET0_IN              (phyreset0),
         .TILE0_RXRESET1_IN              (phyreset1),
-        .TILE0_RXUSRCLK0_IN             (tile0_rxusrclk0_i),
-        .TILE0_RXUSRCLK1_IN             (tile0_rxusrclk1_i),
-        .TILE0_RXUSRCLK20_IN            (tile0_rxusrclk20_i),
-        .TILE0_RXUSRCLK21_IN            (tile0_rxusrclk21_i),
+        .TILE0_RXUSRCLK0_IN             (tile0_txusrclk0_i),
+        .TILE0_RXUSRCLK1_IN             (tile0_txusrclk1_i),
+        .TILE0_RXUSRCLK20_IN            (tile0_txusrclk20_i),
+        .TILE0_RXUSRCLK21_IN            (tile0_txusrclk21_i),
         //----- Receive Ports - RX Driver,OOB signalling,Coupling and Eq.,CDR ------
         .TILE0_GATERXELECIDLE0_IN       (tied_to_ground_i),
         .TILE0_GATERXELECIDLE1_IN       (tied_to_ground_i),
@@ -362,30 +368,30 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_RXSTATUS1_OUT            (tile0_rxstatus1_i),
         //----------- Shared Ports - Dynamic Reconfiguration Port (DRP) ------------
         .TILE0_DADDR_IN                 (tied_to_ground_vec_i[7:0]),
-        .TILE0_DCLK_IN                  (drp_clk_in_i),
+        .TILE0_DCLK_IN                  (tied_to_ground_i),
         .TILE0_DEN_IN                   (tied_to_ground_i),
         .TILE0_DI_IN                    (tied_to_ground_vec_i[15:0]),
         .TILE0_DRDY_OUT                 (),
         .TILE0_DRPDO_OUT                (),
         .TILE0_DWE_IN                   (tied_to_ground_i),
         //-------------------------- TX/RX Datapath Ports --------------------------
-        .TILE0_GTPCLKFBEAST_OUT         (tile0_gtpclkfbeast_i), /* - */
-        .TILE0_GTPCLKFBWEST_OUT         (tile0_gtpclkfbwest_i), /* - */
-        .TILE0_GTPCLKOUT0_OUT           (tile0_gtpclkout0_i),   /* - */
-        .TILE0_GTPCLKOUT1_OUT           (tile0_gtpclkout1_i),   /* - */
+        .TILE0_GTPCLKFBEAST_OUT         (),
+        .TILE0_GTPCLKFBWEST_OUT         (),
+        .TILE0_GTPCLKOUT0_OUT           (refclkout),
+        .TILE0_GTPCLKOUT1_OUT           (),   /* TODO */
         //----------------- Transmit Ports - 8b10b Encoder Control -----------------
-        .TILE0_TXBYPASS8B10B0_IN        (tile0_txbypass8b10b0_i), /* - */
-        .TILE0_TXBYPASS8B10B1_IN        (tile0_txbypass8b10b1_i), /* - */
-        .TILE0_TXCHARDISPMODE0_IN       (tile0_txchardispmode0_i),/* - */
-        .TILE0_TXCHARDISPMODE1_IN       (tile0_txchardispmode1_i),/* - */
-        .TILE0_TXCHARDISPVAL0_IN        (tile0_txchardispval0_i), /* - */
-        .TILE0_TXCHARDISPVAL1_IN        (tile0_txchardispval1_i), /* - */
+        .TILE0_TXBYPASS8B10B0_IN        (tied_to_ground_vec_i[3:0]),
+        .TILE0_TXBYPASS8B10B1_IN        (tied_to_ground_vec_i[3:0]),
+        .TILE0_TXCHARDISPMODE0_IN       (tied_to_ground_vec_i[3:0]),
+        .TILE0_TXCHARDISPMODE1_IN       (tied_to_ground_vec_i[3:0]),
+        .TILE0_TXCHARDISPVAL0_IN        (tied_to_ground_vec_i[3:0]),
+        .TILE0_TXCHARDISPVAL1_IN        (tied_to_ground_vec_i[3:0]),
         .TILE0_TXCHARISK0_IN            (tile0_txcharisk0_i),
         .TILE0_TXCHARISK1_IN            (tile0_txcharisk1_i),
-        .TILE0_TXKERR0_OUT              (tile0_txkerr0_i), /* - */
-        .TILE0_TXKERR1_OUT              (tile0_txkerr1_i), /* - */
-        .TILE0_TXRUNDISP0_OUT           (tile0_txrundisp0_i), /* - */
-        .TILE0_TXRUNDISP1_OUT           (tile0_txrundisp1_i), /* - */
+        .TILE0_TXKERR0_OUT              (),
+        .TILE0_TXKERR1_OUT              (),
+        .TILE0_TXRUNDISP0_OUT           (),
+        .TILE0_TXRUNDISP1_OUT           (),
         //------------- Transmit Ports - TX Buffer and Phase Alignment -------------
         .TILE0_TXENPMAPHASEALIGN0_IN    (tile0_txenpmaphasealign0_i),
         .TILE0_TXENPMAPHASEALIGN1_IN    (tile0_txenpmaphasealign1_i),
@@ -394,8 +400,8 @@ module s6_gtp_top (/*AUTOARG*/
         //---------------- Transmit Ports - TX Data Path interface -----------------
         .TILE0_TXDATA0_IN               (tile0_txdata0_i),
         .TILE0_TXDATA1_IN               (tile0_txdata1_i),
-        .TILE0_TXOUTCLK0_OUT            (tile0_txoutclk0_i), /* - */
-        .TILE0_TXOUTCLK1_OUT            (tile0_txoutclk1_i), /* - */
+        .TILE0_TXOUTCLK0_OUT            (),
+        .TILE0_TXOUTCLK1_OUT            (),
         .TILE0_TXRESET0_IN              (phyreset0),
         .TILE0_TXRESET1_IN              (phyreset1),
         .TILE0_TXUSRCLK0_IN             (tile0_txusrclk0_i),
@@ -432,7 +438,7 @@ begin
     // your protocol bypasses the TX Buffers
     s6_gtpwizard_v1_11_tx_sync #
     (
-        .PLL_DIVSEL_OUT   (2)
+        .PLL_DIVSEL_OUT   (1)
     )
     tile0_txsync0_i 
     (
@@ -446,7 +452,7 @@ begin
     
     s6_gtpwizard_v1_11_tx_sync #
     (
-        .PLL_DIVSEL_OUT   (2)
+        .PLL_DIVSEL_OUT   (1)
     )
     tile0_txsync1_i 
     (

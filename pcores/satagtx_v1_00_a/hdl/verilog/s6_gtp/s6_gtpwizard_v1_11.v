@@ -79,7 +79,8 @@ module s6_gtpwizard_v1_11 #
     parameter   WRAPPER_PLL_DIVSEL_REF_1        = 1,
     
  
-    parameter   WRAPPER_SIMULATION              = 0     // Set to 1 for simulation
+    parameter   WRAPPER_SIMULATION              = 0,    // Set to 1 for simulation
+    parameter   C_BYPASS_TXBUF                  = 0
 )
 (
     
@@ -297,7 +298,8 @@ endgenerate //End generate for WRAPPER_SIMULATION
         
         //
         .TILE_PLL_SOURCE_0               ("PLL0"),
-        .TILE_PLL_SOURCE_1               ("PLL0")
+        .TILE_PLL_SOURCE_1               ("PLL0"),
+	.C_BYPASS_TXBUF                  (C_BYPASS_TXBUF)
     )
     tile0_s6_gtpwizard_v1_11_i
     (
