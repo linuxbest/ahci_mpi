@@ -377,7 +377,7 @@ module s6_gtp_top (/*AUTOARG*/
         //-------------------------- TX/RX Datapath Ports --------------------------
         .TILE0_GTPCLKFBEAST_OUT         (),
         .TILE0_GTPCLKFBWEST_OUT         (),
-        .TILE0_GTPCLKOUT0_OUT           (refclkout),
+        .TILE0_GTPCLKOUT0_OUT           (tile0_refclkout_i),
         .TILE0_GTPCLKOUT1_OUT           (),   /* TODO */
         //----------------- Transmit Ports - 8b10b Encoder Control -----------------
         .TILE0_TXBYPASS8B10B0_IN        (tied_to_ground_vec_i[3:0]),
