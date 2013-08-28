@@ -50,9 +50,9 @@ module satagtx_clk (/*AUTOARG*/
    tile0_txusrclk20,
    // Inputs
    TILE0_REFCLK_PAD_P_IN, TILE0_REFCLK_PAD_N_IN, tile0_refclkout,
-   tile0_plllkdet
+   tile0_plllkdet, tile0_gtpclkfb
    );
-   parameter C_FAMILY = "none";
+   parameter C_FAMILY = "virtex5";
    
    input TILE0_REFCLK_PAD_P_IN;
    input TILE0_REFCLK_PAD_N_IN;
@@ -60,6 +60,7 @@ module satagtx_clk (/*AUTOARG*/
 
    input tile0_refclkout;
    input tile0_plllkdet;
+   input tile0_gtpclkfb;
    
    output refclkout_dcm0_locked;
    output tile0_txusrclk0;
@@ -97,13 +98,17 @@ module satagtx_clk (/*AUTOARG*/
     //   the channels using the clock are receiving data from TX channels that share a reference clock 
     //   source with each other.
 
+    assign  refclkout_dcm0_reset          =  !tile0_plllkdet;
+
+    wire tile0_refclkout_to_dcm;
+generate
+if (C_FAMILY == "virtex5")
+begin
     BUFG refclkout_dcm0_bufg
     (
         .I                              (tile0_refclkout),
         .O                              (tile0_refclkout_to_dcm)
     );
-
-    assign  refclkout_dcm0_reset          =  !tile0_plllkdet;
     MGT_USRCLK_SOURCE_GTX #
     (
         .FREQUENCY_MODE                 ("HIGH"),
@@ -117,6 +122,58 @@ module satagtx_clk (/*AUTOARG*/
         .CLK_IN                         (tile0_refclkout_to_dcm),
         .DCM_RESET_IN                   (refclkout_dcm0_reset)
     );
+end
+if (C_FAMILY == "spartan6")
+begin
+    wire pll0_fb_in;
+    wire pll0_fb_out;
+    BUFIO2   #
+    (
+	    .DIVIDE_BYPASS("TRUE"), 
+	    .DIVIDE(1)
+    )
+    pll0_bufg0 
+    (
+	    .I           (tile0_refclkout),
+	    .DIVCLK      (tile0_refclkout_to_dcm),
+	    .IOCLK       (),
+	    .SERDESSTROBE()
+    );
+    BUFIO2FB #
+    (
+	    .DIVIDE_BYPASS("TRUE")
+    )
+    pll0_bufg1 
+    (
+	    .I(tile0_gtpclkfb), 
+	    .O(pll0_fb_in)
+    );
+    MGT_USRCLK_SOURCE_PLL #
+    (
+	 .MULT                          (2),
+	 .DIVIDE                        (2),
+	 .FEEDBACK                      ("CLKOUT0"),
+	 .CLK_PERIOD                    (3.333),
+	 .OUT0_DIVIDE                   (2),
+	 .OUT1_DIVIDE                   (8),
+	 .OUT2_DIVIDE                   (1),
+	 .OUT3_DIVIDE                   (1)
+    )
+    gtpclkout0_0_pll0
+    (
+	 .CLK0_OUT                      (tile0_txusrclk0),
+	 .CLK1_OUT                      (tile0_txusrclk20),
+	 .CLK2_OUT                      (),
+	 .CLK3_OUT                      (),
+	 .CLK_IN                        (tile0_refclkout_to_dcm),
+	 .CLKFB_IN                      (pll0_fb_in),
+	 .CLKFB_OUT                     (pll0_fb_out),
+	 .PLL_LOCKED_OUT                (refclkout_dcm0_locked),
+	 .PLL_RESET_IN                  (refclkout_dcm0_reset)
+    );
+end
+endgenerate
+
     /* synthesis attribute keep of tile0_txusrclk0  is "true" */
     /* synthesis attribute keep of tile0_txusrclk20 is "true" */
     /* synthesis attribute keep of tile0_refclk     is "true" */

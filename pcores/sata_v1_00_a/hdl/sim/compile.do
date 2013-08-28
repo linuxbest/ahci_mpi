@@ -8,6 +8,7 @@ vlib work
 
 vlog ${TOPDIR}/pcores/satagtx_clk_v1_00_a/hdl/verilog/satagtx_clk.v
 vlog ${TOPDIR}/pcores/satagtx_clk_v1_00_a/hdl/verilog/mgt_usrclk_source.v
+vlog ${TOPDIR}/pcores/satagtx_clk_v1_00_a/hdl/verilog/mgt_usrclk_source_pll.v
 
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/cross_signal.v
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/gtx_oob.v

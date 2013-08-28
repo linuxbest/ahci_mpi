@@ -8,3 +8,4 @@
 
 lib satagtx_clk_v1_00_a satagtx_clk verilog
 lib satagtx_clk_v1_00_a mgt_usrclk_source verilog
+lib satagtx_clk_v1_00_a mgt_usrclk_source_pll verilog

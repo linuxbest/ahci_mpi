@@ -48,11 +48,11 @@
 module satagtx (/*AUTOARG*/
    // Outputs
    TXN0_OUT, TXP0_OUT, TXN1_OUT, TXP1_OUT, refclkout, plllkdet,
-   txdatak_pop0, rxdata0, rxdatak0, linkup0, plllock0, oob2dbg0,
-   CommInit0, phyclk0, gtx_txdata0, gtx_txdatak0, gtx_rxdata0,
-   gtx_rxdatak0, txdatak_pop1, rxdata1, rxdatak1, linkup1, plllock1,
-   oob2dbg1, CommInit1, phyclk1, gtx_txdata1, gtx_txdatak1,
-   gtx_rxdata1, gtx_rxdatak1,
+   gtpclkfb, txdatak_pop0, rxdata0, rxdatak0, linkup0, plllock0,
+   oob2dbg0, CommInit0, phyclk0, gtx_txdata0, gtx_txdatak0,
+   gtx_rxdata0, gtx_rxdatak0, txdatak_pop1, rxdata1, rxdatak1,
+   linkup1, plllock1, oob2dbg1, CommInit1, phyclk1, gtx_txdata1,
+   gtx_txdatak1, gtx_rxdata1, gtx_rxdatak1,
    // Inputs
    GTXRESET_IN, RXN0_IN, RXP0_IN, RXN1_IN, RXP1_IN, refclk,
    dcm_locked, txusrclk0, txusrclk20, phyreset0, txdata0, txdatak0,
@@ -77,6 +77,7 @@ module satagtx (/*AUTOARG*/
    input                refclk;
    output		refclkout;
    output		plllkdet;
+   output               gtpclkfb;
 
    input                dcm_locked;
    input                txusrclk0;
@@ -120,12 +121,12 @@ module satagtx (/*AUTOARG*/
  
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
-   wire			link_up0;		// From sata_gtx_phy of satagtx_top.v
-   wire			link_up1;		// From sata_gtx_phy of satagtx_top.v
-   wire [3:0]		rxcharisk0;		// From sata_gtx_phy of satagtx_top.v
-   wire [3:0]		rxcharisk1;		// From sata_gtx_phy of satagtx_top.v
-   wire [31:0]		rxdata_fis0;		// From sata_gtx_phy of satagtx_top.v
-   wire [31:0]		rxdata_fis1;		// From sata_gtx_phy of satagtx_top.v
+   wire			link_up0;		// From sata_gtx_phy of v5_gtx_top.v, ...
+   wire			link_up1;		// From sata_gtx_phy of v5_gtx_top.v, ...
+   wire [3:0]		rxcharisk0;		// From sata_gtx_phy of v5_gtx_top.v, ...
+   wire [3:0]		rxcharisk1;		// From sata_gtx_phy of v5_gtx_top.v, ...
+   wire [31:0]		rxdata_fis0;		// From sata_gtx_phy of v5_gtx_top.v, ...
+   wire [31:0]		rxdata_fis1;		// From sata_gtx_phy of v5_gtx_top.v, ...
    // End of automatics
 
    wire [31:0]          txdata_fis0;
@@ -265,6 +266,7 @@ begin: s6_gtp_top
 		  .TXP1_OUT		(TXP1_OUT),
 		  .refclkout		(refclkout),
 		  .plllkdet		(plllkdet),
+		  .gtpclkfb		(gtpclkfb),
 		  .txdatak_pop0		(txdatak_pop0),
 		  .rxdata_fis0		(rxdata_fis0[31:0]),
 		  .rxcharisk0		(rxcharisk0[3:0]),
@@ -330,7 +332,7 @@ endgenerate
    assign phyclk1 = txusrclk20;
 endmodule
 // Local Variables:
-// verilog-library-directories:(".")
+// verilog-library-directories:("." "s6_gtp" "v5_gtx")
 // verilog-library-files:(".")
 // verilog-library-extensions:(".v" ".h")
 // End:

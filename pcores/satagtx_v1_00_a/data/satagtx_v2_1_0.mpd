@@ -75,6 +75,7 @@ PORT TXP1_OUT         = "",        	DIR = O
 PORT refclk     = "", DIR = I
 PORT refclkout  = "", DIR = O
 PORT plllkdet   = "", DIR = O
+PORT gtpclkfb   = "", DIR = O
 
 PORT dcm_locked = "", DIR = I
 PORT txusrclk0  = "", DIR = I

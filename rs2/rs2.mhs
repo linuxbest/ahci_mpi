@@ -343,6 +343,7 @@ BEGIN satagtx
  BUS_INTERFACE GTXBUS1 = gtxbus_1
  PORT refclkout  = tile0_refclkout
  PORT plllkdet   = tile0_plllkdet
+ PORT gtpclkfb   = tile0_gtpclkfb
  PORT refclk     = tile0_refclk
  PORT dcm_locked = refclkout_dcm0_locked
  PORT txusrclk0  = tile0_txusrclk0
@@ -425,6 +426,7 @@ BEGIN satagtx_clk
  PORT TILE0_REFCLK_PAD_N_IN = sata_0_GREFCLK_N
  PORT tile0_refclk  = tile0_refclk
  PORT tile0_refclkout =  tile0_refclkout
+ PORT tile0_gtpclkfb = tile0_gtpclkfb
  PORT tile0_plllkdet = tile0_plllkdet
  PORT refclkout_dcm0_locked = refclkout_dcm0_locked
  PORT tile0_txusrclk0  = tile0_txusrclk0

@@ -64,6 +64,7 @@ module tb;
    wire refclk;
    wire refclkout;
    wire plllkdet;
+   wire gtpclkfb;
    
    wire [31:0] readdata0;
    wire [31:0] readdata1;
@@ -173,63 +174,66 @@ module tb;
    wire			txdatak_pop0;		// From gtx_0 of satagtx.v
    wire			txdatak_pop1;		// From gtx_0 of satagtx.v
    // End of automatics
+
+   //parameter C_FAMILY = "virtex5";
+   parameter C_FAMILY = "spartan6";
    
    satagtx  #(
-	      //.C_FAMILY("virtex5")
-	      .C_FAMILY("spartan6")
+	      .C_FAMILY(C_FAMILY)
            )
    gtx_0   (/*AUTOINST*/
-	      // Outputs
-	      .TXN0_OUT			(TXN0_OUT),
-	      .TXP0_OUT			(TXP0_OUT),
-	      .TXN1_OUT			(TXN1_OUT),
-	      .TXP1_OUT			(TXP1_OUT),
-	      .refclkout		(refclkout),
-	      .plllkdet			(plllkdet),
-	      .txdatak_pop0		(txdatak_pop0),
-	      .rxdata0			(rxdata0[31:0]),
-	      .rxdatak0			(rxdatak0),
-	      .linkup0			(linkup0),
-	      .plllock0			(plllock0),
-	      .oob2dbg0			(oob2dbg0[127:0]),
-	      .CommInit0		(CommInit0),
-	      .phyclk0			(phyclk0),
-	      .gtx_txdata0		(gtx_txdata0[31:0]),
-	      .gtx_txdatak0		(gtx_txdatak0[3:0]),
-	      .gtx_rxdata0		(gtx_rxdata0[31:0]),
-	      .gtx_rxdatak0		(gtx_rxdatak0[3:0]),
-	      .txdatak_pop1		(txdatak_pop1),
-	      .rxdata1			(rxdata1[31:0]),
-	      .rxdatak1			(rxdatak1),
-	      .linkup1			(linkup1),
-	      .plllock1			(plllock1),
-	      .oob2dbg1			(oob2dbg1[127:0]),
-	      .CommInit1		(CommInit1),
-	      .phyclk1			(phyclk1),
-	      .gtx_txdata1		(gtx_txdata1[31:0]),
-	      .gtx_txdatak1		(gtx_txdatak1[3:0]),
-	      .gtx_rxdata1		(gtx_rxdata1[31:0]),
-	      .gtx_rxdatak1		(gtx_rxdatak1[3:0]),
-	      // Inputs
-	      .GTXRESET_IN		(GTXRESET_IN),
-	      .RXN0_IN			(RXN0_IN),
-	      .RXP0_IN			(RXP0_IN),
-	      .RXN1_IN			(RXN1_IN),
-	      .RXP1_IN			(RXP1_IN),
-	      .refclk			(refclk),
-	      .dcm_locked		(dcm_locked),
-	      .txusrclk0		(txusrclk0),
-	      .txusrclk20		(txusrclk20),
-	      .phyreset0		(phyreset0),
-	      .txdata0			(txdata0[31:0]),
-	      .txdatak0			(txdatak0),
-	      .StartComm0		(StartComm0),
-	      .gtx_tune0		(gtx_tune0[31:0]),
-	      .phyreset1		(phyreset1),
-	      .txdata1			(txdata1[31:0]),
-	      .txdatak1			(txdatak1),
-	      .StartComm1		(StartComm1),
-	      .gtx_tune1		(gtx_tune1[31:0]));
+	    // Outputs
+	    .TXN0_OUT			(TXN0_OUT),
+	    .TXP0_OUT			(TXP0_OUT),
+	    .TXN1_OUT			(TXN1_OUT),
+	    .TXP1_OUT			(TXP1_OUT),
+	    .refclkout			(refclkout),
+	    .plllkdet			(plllkdet),
+	    .gtpclkfb			(gtpclkfb),
+	    .txdatak_pop0		(txdatak_pop0),
+	    .rxdata0			(rxdata0[31:0]),
+	    .rxdatak0			(rxdatak0),
+	    .linkup0			(linkup0),
+	    .plllock0			(plllock0),
+	    .oob2dbg0			(oob2dbg0[127:0]),
+	    .CommInit0			(CommInit0),
+	    .phyclk0			(phyclk0),
+	    .gtx_txdata0		(gtx_txdata0[31:0]),
+	    .gtx_txdatak0		(gtx_txdatak0[3:0]),
+	    .gtx_rxdata0		(gtx_rxdata0[31:0]),
+	    .gtx_rxdatak0		(gtx_rxdatak0[3:0]),
+	    .txdatak_pop1		(txdatak_pop1),
+	    .rxdata1			(rxdata1[31:0]),
+	    .rxdatak1			(rxdatak1),
+	    .linkup1			(linkup1),
+	    .plllock1			(plllock1),
+	    .oob2dbg1			(oob2dbg1[127:0]),
+	    .CommInit1			(CommInit1),
+	    .phyclk1			(phyclk1),
+	    .gtx_txdata1		(gtx_txdata1[31:0]),
+	    .gtx_txdatak1		(gtx_txdatak1[3:0]),
+	    .gtx_rxdata1		(gtx_rxdata1[31:0]),
+	    .gtx_rxdatak1		(gtx_rxdatak1[3:0]),
+	    // Inputs
+	    .GTXRESET_IN		(GTXRESET_IN),
+	    .RXN0_IN			(RXN0_IN),
+	    .RXP0_IN			(RXP0_IN),
+	    .RXN1_IN			(RXN1_IN),
+	    .RXP1_IN			(RXP1_IN),
+	    .refclk			(refclk),
+	    .dcm_locked			(dcm_locked),
+	    .txusrclk0			(txusrclk0),
+	    .txusrclk20			(txusrclk20),
+	    .phyreset0			(phyreset0),
+	    .txdata0			(txdata0[31:0]),
+	    .txdatak0			(txdatak0),
+	    .StartComm0			(StartComm0),
+	    .gtx_tune0			(gtx_tune0[31:0]),
+	    .phyreset1			(phyreset1),
+	    .txdata1			(txdata1[31:0]),
+	    .txdatak1			(txdatak1),
+	    .StartComm1			(StartComm1),
+	    .gtx_tune1			(gtx_tune1[31:0]));
 
    /*sata_dma AUTO_TEMPLATE 
     (
@@ -400,8 +404,11 @@ module tb;
 	   .RXP_IN0 (TXP0_OUT),
 	   .RXN_IN0 (TXN0_OUT));
 
-   satagtx_clk
+   satagtx_clk #(
+	      .C_FAMILY(C_FAMILY)
+	)
      clk0 (.tile0_refclk(refclk),
+           .tile0_gtpclkfb(gtpclkfb),
 	   .refclkout_dcm0_locked(dcm_locked),
 	   .tile0_txusrclk0(txusrclk0),
 	   .tile0_txusrclk20(txusrclk20),

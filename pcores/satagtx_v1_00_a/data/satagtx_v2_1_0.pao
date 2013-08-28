@@ -18,5 +18,5 @@ lib satagtx_v1_00_a v5_gtx/tx_sync verilog
 
 lib satagtx_v1_00_a s6_gtp/s6_gtp_top verilog
 lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11 verilog
-lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_title verilog
+lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tile verilog
 lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tx_sync verilog

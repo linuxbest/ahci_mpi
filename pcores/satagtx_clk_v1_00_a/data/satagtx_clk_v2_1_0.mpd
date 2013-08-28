@@ -26,6 +26,7 @@ PORT tile0_refclk    = "",       DIR = O
 
 PORT tile0_refclkout = "",     DIR = I
 PORT tile0_plllkdet  = "",     DIR = I
+PORT tile0_gtpclkfb  = "",     DIR = I
 
 PORT refclkout_dcm0_locked = "", DIR = O
 PORT tile0_txusrclk0       = "", DIR = O

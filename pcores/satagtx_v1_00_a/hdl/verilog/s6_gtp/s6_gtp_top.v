@@ -6,10 +6,11 @@
 module s6_gtp_top (/*AUTOARG*/
    // Outputs
    TXN0_OUT, TXP0_OUT, TXN1_OUT, TXP1_OUT, refclkout, plllkdet,
-   txdatak_pop0, rxdata_fis0, rxcharisk0, link_up0, CommInit0,
-   gtx_txdata0, gtx_txdatak0, gtx_rxdata0, gtx_rxdatak0, txdatak_pop1,
-   rxdata_fis1, rxcharisk1, link_up1, CommInit1, gtx_txdata1,
-   gtx_txdatak1, gtx_rxdata1, gtx_rxdatak1, oob2dbg0, oob2dbg1,
+   gtpclkfb, txdatak_pop0, rxdata_fis0, rxcharisk0, link_up0,
+   CommInit0, gtx_txdata0, gtx_txdatak0, gtx_rxdata0, gtx_rxdatak0,
+   txdatak_pop1, rxdata_fis1, rxcharisk1, link_up1, CommInit1,
+   gtx_txdata1, gtx_txdatak1, gtx_rxdata1, gtx_rxdatak1, oob2dbg0,
+   oob2dbg1,
    // Inputs
    GTXRESET_IN, RXN0_IN, RXP0_IN, RXN1_IN, RXP1_IN, refclk,
    dcm_locked, txusrclk0, txusrclk20, txdata_fis0, tx_charisk_fis0,
@@ -35,6 +36,7 @@ module s6_gtp_top (/*AUTOARG*/
    input           refclk;
    output 	   refclkout;
    output 	   plllkdet;
+   output          gtpclkfb;
    
    input 	   dcm_locked;
    input 	   txusrclk0;
@@ -375,7 +377,7 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_DRPDO_OUT                (),
         .TILE0_DWE_IN                   (tied_to_ground_i),
         //-------------------------- TX/RX Datapath Ports --------------------------
-        .TILE0_GTPCLKFBEAST_OUT         (),
+        .TILE0_GTPCLKFBEAST_OUT         (gtpclkfb),
         .TILE0_GTPCLKFBWEST_OUT         (),
         .TILE0_GTPCLKOUT0_OUT           (tile0_refclkout_i),
         .TILE0_GTPCLKOUT1_OUT           (),   /* TODO */
@@ -718,23 +720,4 @@ begin
 end
 endgenerate
 
-endmodule
-
-module chipscope_icon3 (
-CONTROL0, CONTROL1, CONTROL2
-)/* synthesis syn_black_box syn_noprune=1 */;
-  inout [35 : 0] CONTROL0;
-  inout [35 : 0] CONTROL1;
-  inout [35 : 0] CONTROL2;
- 
-endmodule
-
-module chipscope_ila_128x1 (
-  CLK, TRIG_OUT, CONTROL, TRIG0
-)/* synthesis syn_black_box syn_noprune=1 */;
-  input CLK;
-  output TRIG_OUT;
-  inout [35 : 0] CONTROL;
-  input [127 : 0] TRIG0;
- 
 endmodule
