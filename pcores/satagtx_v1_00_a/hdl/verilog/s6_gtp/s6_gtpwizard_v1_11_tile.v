@@ -70,10 +70,10 @@ module s6_gtpwizard_v1_11_tile #
 (
     // Simulation attributes
     parameter   TILE_SIM_GTPRESET_SPEEDUP  =   0,      // Set to 1 to speed up sim reset
-    parameter   TILE_CLK25_DIVIDER_0       =   3,
-    parameter   TILE_CLK25_DIVIDER_1       =   3,
-    parameter   TILE_PLL_DIVSEL_FB_0       =   4,
-    parameter   TILE_PLL_DIVSEL_FB_1       =   4,
+    parameter   TILE_CLK25_DIVIDER_0       =   6,
+    parameter   TILE_CLK25_DIVIDER_1       =   6,
+    parameter   TILE_PLL_DIVSEL_FB_0       =   2,
+    parameter   TILE_PLL_DIVSEL_FB_1       =   2,
     parameter   TILE_PLL_DIVSEL_REF_0      =   1,
     parameter   TILE_PLL_DIVSEL_REF_1      =   1,
     

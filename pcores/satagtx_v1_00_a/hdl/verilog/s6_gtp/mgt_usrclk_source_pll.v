@@ -69,7 +69,7 @@ module MGT_USRCLK_SOURCE_PLL #
     parameter   MULT            =   2,
     parameter   DIVIDE          =   2,
     parameter   FEEDBACK        =   "CLKFBOUT",
-    parameter   CLK_PERIOD      =   13.32,
+    parameter   CLK_PERIOD      =   6.66,
     parameter   OUT0_DIVIDE     =   2,
     parameter   OUT1_DIVIDE     =   2,
     parameter   OUT2_DIVIDE     =   2,
