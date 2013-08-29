@@ -294,12 +294,23 @@ module rx_cs (/*AUTOARG*/
    wire [31:0] crc_out_lut;
    reg [31:0]  crc_out_inv;
    reg [31:0]  wr_di_swap;
+
+generate if (C_HW_CRC == 0)
+begin
    crc
      rx_crc (.crc_out(crc_out_lut),
 	     .clk_75m(clk_75m),
 	     .crc_rst(cs_sof),
 	     .data_in(wr_di),
 	     .data_valid(crc_valid));
+   assign crc_out = crc_out_lut;
+   assign crc_rdy = cs_eof;
+end
+endgenerate
+
+generate if (C_HW_CRC == 1)
+begin
+
    CRC32
      hw_crc (.CRCOUT(crc_out_hw),
 	     .CRCCLK(clk_75m),
@@ -319,15 +330,6 @@ module rx_cs (/*AUTOARG*/
 	wr_di_swap[15:08] = Swap(wr_di[15:08]);
 	wr_di_swap[07:00] = Swap(wr_di[07:00]);	
      end // always @ (*)
-
-generate if (C_HW_CRC == 0)
-begin
-   assign crc_out = crc_out_lut;
-   assign crc_rdy = cs_eof;
-end
-endgenerate
-generate if (C_HW_CRC == 1)
-begin
    assign crc_out = crc_out_inv;
    assign crc_rdy = wr_en && wr_eof;
 end // if (C_HW_CRC == 1)

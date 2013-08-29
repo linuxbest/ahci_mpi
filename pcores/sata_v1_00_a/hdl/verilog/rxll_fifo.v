@@ -51,6 +51,7 @@ module rxll_fifo (/*AUTOARG*/
    // Inputs
    rst, wr_di, wr_en, wr_clk, rd_clk, rd_en
    );
+   parameter C_FAMILY = "virtex5";
    input rst;
    
    output [9:0] wr_count;
@@ -71,6 +72,9 @@ module rxll_fifo (/*AUTOARG*/
   
    wire          rd_err;
    wire          wr_err;
+
+generate if (C_FAMILY == "virtex5")
+begin
    FIFO18_36
      fifo16 (
 	     // Outputs
@@ -94,6 +98,39 @@ module rxll_fifo (/*AUTOARG*/
 	     .WREN			(wr_en));
    defparam fifo16.FIRST_WORD_FALL_THROUGH = "TRUE";
    defparam fifo16.ALMOST_EMPTY_OFFSET = 9'h100;   
+end
+endgenerate
+
+generate if (C_FAMILY == "spartan6")
+begin
+   axi_async_fifo #(.C_FAMILY              (C_FAMILY),
+		    .C_FIFO_DEPTH          (512),
+		    .C_PROG_FULL_THRESH    (256),
+		    .C_PROG_EMPTY_THRESH   (128),
+		    .C_DATA_WIDTH          (36),
+		    .C_PTR_WIDTH           (9),
+		    .C_MEMORY_TYPE         (1),
+		    .C_COMMON_CLOCK        (0),
+		    .C_IMPLEMENTATION_TYPE (0),
+		    .C_SYNCHRONIZER_STAGE  (2),
+	            .C_RD_DATA_COUNT_WIDTH (9),
+	            .C_WR_DATA_COUNT_WIDTH (9))
+   fifo16   (.rst       (rst),
+	     .wr_clk    (wr_clk),
+	     .rd_clk    (rd_clk),
+	     .sync_clk  (wr_clk),
+	     .din       (wr_di),
+	     .wr_en     (wr_en),
+	     .rd_en     (rd_en),
+	     .dout      (rd_do),
+	     .full      (wr_full),
+	     .empty     (rd_empty),
+	     .prog_empty(rd_alsmot_empty),
+	     .prog_full (wr_almost_full),
+             .rd_count  (rd_count),
+             .wr_count  (wr_count));
+end
+endgenerate
 
    wire 	 wr_eof;
    reg_sync

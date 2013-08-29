@@ -485,7 +485,7 @@ module sata(/*AUTOARG*/
     )*/
    generate if (C_PORT > 0)
      begin: aport0
-	sata_dma #(.C_PORT(1), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE))
+	sata_dma #(.C_PORT(1), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE), .C_FAMILY(C_FAMILY))
 	         dma0 (/*AUTOINST*/
 		       // Outputs
 		       .gtx_tune	(gtx_tune0[31:0]),	 // Templated
@@ -544,7 +544,7 @@ module sata(/*AUTOARG*/
 
    generate if (C_PORT > 1)
      begin: aport1
-	sata_dma #(.C_PORT(2), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE))
+	sata_dma #(.C_PORT(2), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE), .C_FAMILY(C_FAMILY))
 	         dma1 (/*AUTOINST*/
 		       // Outputs
 		       .gtx_tune	(gtx_tune1[31:0]),	 // Templated
@@ -610,7 +610,7 @@ module sata(/*AUTOARG*/
 
    generate if (C_PORT > 2)
      begin: aport2
-	sata_dma #(.C_PORT(3), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE))
+	sata_dma #(.C_PORT(3), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE), .C_FAMILY(C_FAMILY))
 	         dma2 (/*AUTOINST*/
 		       // Outputs
 		       .gtx_tune	(gtx_tune2[31:0]),	 // Templated
@@ -676,7 +676,7 @@ module sata(/*AUTOARG*/
 
    generate if (C_PORT > 3)
      begin: aport3
-	sata_dma #(.C_PORT(4), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE))
+	sata_dma #(.C_PORT(4), .C_SATA_CHIPSCOPE(C_SATA_CHIPSCOPE), .C_FAMILY(C_FAMILY))
 	         dma3 (/*AUTOINST*/
 		       // Outputs
 		       .gtx_tune	(gtx_tune3[31:0]),	 // Templated
@@ -1085,7 +1085,7 @@ module sata(/*AUTOARG*/
 	    .PI_RdFIFO_Latency		(PIM4_RdFIFO_Latency[1:0])); // Templated
 endmodule // sata
 // Local Variables:
-// verilog-library-directories:("." "/opt/ise12.3/ISE_DS/ISE/verilog/src/unisims/" "npi")
+// verilog-library-directories:("." "/opt/ise12.3/ISE_DS/ISE/verilog/src/unisims/"  "../../../npi_ict_v1_00_a/hdl/verilog/")
 // verilog-library-files:(".""sata_phy")
 // verilog-library-extensions:(".v" ".h")
 // End:

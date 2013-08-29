@@ -58,6 +58,7 @@ module sata_dma (/*AUTOARG*/
    PIM_RdFIFO_Empty, PIM_RdFIFO_Data, PIM_InitDone, PIM_AddrAck,
    MPMC_Clk, CommInit, sys_clk, sys_rst
    );
+   parameter C_FAMILY = "virtex5";
    parameter C_PORT = 0;
    parameter C_SATA_CHIPSCOPE = 0;
    input sys_clk;
@@ -189,8 +190,10 @@ module sata_dma (/*AUTOARG*/
    wire			txfifo_sof;		// From dma of dma.v
    wire			txfifo_wr_en;		// From dma of dma.v
    // End of automatics
-   
-   txll txll(/*AUTOINST*/
+
+   localparam C_HW_CRC = C_FAMILY == "virtex5" ? 1 : 0;
+   txll #(.C_FAMILY(C_FAMILY))
+   txll(/*AUTOINST*/
 	     // Outputs
 	     .trn_td			(trn_td[31:0]),
 	     .trn_teof_n		(trn_teof_n),
@@ -212,7 +215,8 @@ module sata_dma (/*AUTOARG*/
 	     .txfifo_eof		(txfifo_eof),
 	     .txfifo_sof		(txfifo_sof),
 	     .txfifo_wr_en		(txfifo_wr_en));
-   rxll rxll(/*AUTOINST*/
+   rxll #(.C_FAMILY(C_FAMILY))
+   rxll(/*AUTOINST*/
 	     // Outputs
 	     .rxfifo_almost_empty	(rxfifo_almost_empty),
 	     .rxfifo_data		(rxfifo_data[31:0]),
@@ -372,7 +376,7 @@ module sata_dma (/*AUTOARG*/
 	  .PIM_WrFIFO_AlmostFull	(PIM_WrFIFO_AlmostFull),
 	  .PIM_InitDone			(PIM_InitDone));
    
-   sata_link
+   sata_link #(.C_HW_CRC(C_HW_CRC))
      sata_link(/*AUTOINST*/
 	       // Outputs
 	       .trn_rsof_n		(trn_rsof_n),

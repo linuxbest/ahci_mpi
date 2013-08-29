@@ -94,8 +94,8 @@ INST */gtpa1_dual_i LOC = GTPA1_DUAL_X0Y0;
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-NET PCIe_Bridge/REFCLK PERIOD = 8ns;
+#NET PCIe_Bridge/REFCLK PERIOD = 8ns;
 
-NET */gt_refclk_out(0) TNM_NET = PCIe_GT_REFCLK_OUT;
-TIMESPEC TS_PCIe_GT_REFCLK_OUT = PERIOD PCIe_GT_REFCLK_OUT 8ns HIGH 50 % ;
+#NET */gt_refclk_out(0) TNM_NET = PCIe_GT_REFCLK_OUT;
+#TIMESPEC TS_PCIe_GT_REFCLK_OUT = PERIOD PCIe_GT_REFCLK_OUT 8ns HIGH 50 % ;
 

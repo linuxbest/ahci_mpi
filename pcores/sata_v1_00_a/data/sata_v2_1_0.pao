@@ -61,6 +61,7 @@ lib sata_v1_00_a txll_fifo verilog
 lib sata_v1_00_a txll_ll verilog
 lib sata_v1_00_a txll verilog
 lib sata_v1_00_a sata verilog
+lib sata_v1_00_a axi_async_fifo vhdl
 
 #lib sata_v1_00_a encoder vhdl
 #lib sata_v1_00_a fifo    vhdl

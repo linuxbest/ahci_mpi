@@ -148,12 +148,21 @@ module tx_cs (/*AUTOARG*/
    reg [31:0]  trn_td_swap;
    wire [31:0] trn_crc_hw;
    reg [31:0]  trn_crc_inv;
+
+generate if (C_HW_CRC == 0)
+begin
    crc
      cs_crc       (.crc_out   (trn_crc_lut),
 		   .clk_75m   (clk_75m),
 		   .crc_rst   (txcs_rst || tx_sync),
 		   .data_valid(trn_xfer),
 		   .data_in   (trn_td));
+   assign trn_crc_int = trn_crc_lut;
+end
+endgenerate
+
+generate if (C_HW_CRC == 1)
+begin
    CRC32
      hw_crc (.CRCOUT      (trn_crc_hw),
 	     .CRCCLK      (clk_75m),
@@ -173,16 +182,10 @@ module tx_cs (/*AUTOARG*/
 	trn_td_swap[15:08] = Swap(trn_td[15:08]);
 	trn_td_swap[07:00] = Swap(trn_td[07:00]);
      end // always @ (*)
-generate if (C_HW_CRC == 0)
-begin
-   assign trn_crc_int = trn_crc_lut;
-end
-endgenerate   
-generate if (C_HW_CRC == 1)
-begin
    assign trn_crc_int = trn_crc_inv;
 end
 endgenerate   
+
    reg 	       eof_reg, eof_reg_d;
    always @(posedge clk_75m)
      begin

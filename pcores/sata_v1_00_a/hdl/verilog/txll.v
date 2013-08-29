@@ -52,6 +52,7 @@ module txll (/*AUTOARG*/
    txfifo_wr_en, txfifo_sof, txfifo_eof, txfifo_data, txfifo_clk,
    trn_tdst_rdy_n, trn_tdst_dsc_n, phyreset, phyclk, sys_clk, sys_rst
    );
+   parameter C_FAMILY = "virtex5";
    input sys_clk;
    input sys_rst;
 
@@ -119,7 +120,7 @@ module txll (/*AUTOARG*/
 	      .rd_do			(rd_do[35:0]),
 	      .rd_eof_rdy		(rd_eof_rdy));
 
-   txll_fifo
+   txll_fifo #(.C_FAMILY(C_FAMILY))
      txll_fifo (/*AUTOINST*/
 		// Outputs
 		.wr_count		(wr_count[9:0]),

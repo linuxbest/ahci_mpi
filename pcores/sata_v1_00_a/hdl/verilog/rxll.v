@@ -54,6 +54,7 @@ module rxll (/*AUTOARG*/
    sys_rst, sys_clk, rxfis_raddr, rxfifo_rd_en, rxfifo_clk, phyreset,
    phyclk
    );
+   parameter C_FAMILY = "virtex5";
    /*AUTOINPUT*/
    // Beginning of automatic inputs (from unused autoinst inputs)
    input		phyclk;			// To rxll_ll of rxll_ll.v
@@ -126,7 +127,7 @@ module rxll (/*AUTOARG*/
 	      .trn_rsrc_rdy_n		(trn_rsrc_rdy_n),
 	      .trn_rsrc_dsc_n		(trn_rsrc_dsc_n),
 	      .rxfis_raddr		(rxfis_raddr[2:0]));
-   rxll_fifo
+   rxll_fifo #(.C_FAMILY (C_FAMILY))
      rxll_fifo(/*AUTOINST*/
 	       // Outputs
 	       .wr_count		(wr_count[9:0]),
