@@ -18,7 +18,7 @@ module s6_gtp_top (/*AUTOARG*/
    tx_charisk_fis1, phyreset1, phyclk1, StartComm1, gtx_tune1,
    phy2cs_data0, phy2cs_k0, phy2cs_data1, phy2cs_k1
    );
-   parameter EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
+   parameter EXAMPLE_SIM_GTXRESET_SPEEDUP = 0;
    parameter C_CHIPSCOPE = 0;
    parameter C_BYPASS_TXBUF = 1;
 `include "sata.v"

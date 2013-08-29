@@ -89,7 +89,7 @@ Net fpga_0_rst_1_sys_rst_pin LOC = H8  |  IOSTANDARD=LVCMOS15  |  PULLUP  |  TIG
 # information.
 #
 # PCIe Lane 0
-INST */gtpa1_dual_i LOC = GTPA1_DUAL_X0Y0;
+#INST */gtpa1_dual_i LOC = GTPA1_DUAL_X0Y0;
 
 ###############################################################################
 # Timing Constraints
