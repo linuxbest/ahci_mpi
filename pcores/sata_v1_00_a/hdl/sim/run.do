@@ -1,3 +1,6 @@
+#set C_FAMILY "virtex5"
+set C_FAMILY "spartan6"
+
 do compile.do
 
 vlog  -incr ../verilog/crc.v
@@ -24,6 +27,7 @@ vlog  -incr ../verilog/crossdomain/reg_sync.v
 vlog  -incr ../verilog/srl16e_fifo_protect.v
 vlog  -incr ../verilog/npi_pi_enable.v
 vlog  -incr ../../../mpmc_v6_03_a/hdl/verilog/mpmc_sample_cycle.v
+vcom        ../vhdl/axi_async_fifo.vhd
 
 sccom -work plbv46_wrapper_v1_00_a -ggdb dgio.cpp -I.
 sccom -work work -ggdb dgio.cpp -I.
@@ -40,7 +44,7 @@ sccom -D_SIM_ -I$mpi/include -I$mpi/ -I. $mpi/sata_mpi.c -DGITVERSION=0x0
 
 sccom -link
 
-vlog tb.v
+vlog tb.v +define+C_FAMILY=\"${C_FAMILY}\"
 vlog -novopt -incr -work work $::env(XILINX)/verilog/src/glbl.v
 
 vsim +nowarnTSCALE -novopt -t ps -L xilinxcorelib_ver -L secureip -L unisims_ver +notimingchecks tb glbl

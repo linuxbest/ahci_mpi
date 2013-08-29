@@ -5,8 +5,19 @@ set binopt {-logic}
 set hexopt {-literal -hex}
 set ascopt {-literal -ascii}
 
-#set lltype "v5_gtx_top"
-set lltype "s6_gtp_top"
+set v5_cmp [string compare $C_FAMILY "virtex5"]
+set v6_cmp [string compare $C_FAMILY "spartan6"]
+set v7_cmp [string compare $C_FAMILY "kirtex7"]
+
+if {$v5_cmp == 0} {
+	set lltype "v5_gtx_top"
+}
+if {$v6_cmp == 0} {
+	set lltype "s6_gtp_top"
+}
+if {$v7_cmp == 0} {
+	set lltype "s7_gtx_top"
+}
 
 #eval add wave -noupdate -divider {"gtp internal"}
 #set gtp $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}rocketio_wrapper_i${ps}tile0_s6_gtpwizard_v1_11_i
@@ -54,6 +65,8 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy
 eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_rxdata0_i
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}tile0_rxcharisk0_i
 
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}EXAMPLE_SIM_GTXRESET_SPEEDUP
+
 eval add wave -noupdate -divider {"host oob"}
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_clk
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_rst
@@ -64,6 +77,7 @@ eval add wave -noupdate $ascopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy
 eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}count
 
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}rxstatus
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}phy_ready
 
 eval add wave -noupdate -divider {"device oob 0"}
 eval add wave -noupdate $hexopt ${tbpath}${ps}dev0${ps}shdd_model_phy${ps}oob_device${ps}state
@@ -128,3 +142,15 @@ eval add wave -noupdate $binopt $rxcs${ps}fake_crc_err_ndfis
 eval add wave -noupdate $binopt $rxcs${ps}cs2link_crc_rdy
 eval add wave -noupdate $binopt $rxcs${ps}trn_rsof_n
 eval add wave -noupdate $hexopt $rxcs${ps}trn_rd
+
+eval add wave -noupdate $binopt $rxcs${ps}crc_valid
+eval add wave -noupdate $binopt $rxcs${ps}crc_rdy
+eval add wave -noupdate $hexopt $rxcs${ps}crc_out
+
+eval add wave -noupdate $binopt $rxcs${ps}wr_en
+eval add wave -noupdate $hexopt $rxcs${ps}wr_di
+
+eval add wave -noupdate $binopt $rxcs${ps}cs_sof
+eval add wave -noupdate $binopt $rxcs${ps}cs_eof
+
+eval add wave -noupdate $hexopt $rxcs${ps}C_HW_CRC

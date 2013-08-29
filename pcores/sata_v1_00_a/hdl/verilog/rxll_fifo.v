@@ -127,8 +127,10 @@ begin
 	     .empty     (rd_empty),
 	     .prog_empty(rd_alsmot_empty),
 	     .prog_full (wr_almost_full),
-             .rd_count  (rd_count),
-             .wr_count  (wr_count));
+             .rd_count  (rd_count[8:0]),
+             .wr_count  (wr_count[8:0]));
+   assign rd_count[9] = 0;
+   assign wr_count[9] = 0;
 end
 endgenerate
 

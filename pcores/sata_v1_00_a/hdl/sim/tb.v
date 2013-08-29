@@ -175,8 +175,9 @@ module tb;
    wire			txdatak_pop1;		// From gtx_0 of satagtx.v
    // End of automatics
 
+   parameter C_FAMILY = `C_FAMILY;
    //parameter C_FAMILY = "virtex5";
-   parameter C_FAMILY = "spartan6";
+   //parameter C_FAMILY = "spartan6";
    
    satagtx  #(
 	      .C_FAMILY(C_FAMILY)
@@ -239,7 +240,9 @@ module tb;
     (
     .\(.*\) (\10[]),
     )*/
-   sata_dma
+   sata_dma #(
+	      .C_FAMILY(C_FAMILY)
+      )
      dma0 (/*AUTOINST*/
 	   // Outputs
 	   .gtx_tune			(gtx_tune0[31:0]),	 // Templated
@@ -298,7 +301,9 @@ module tb;
     (
     .\(.*\) (\11[]),
     )*/
-   sata_dma
+   sata_dma #(
+	      .C_FAMILY(C_FAMILY)
+      )
      dma1 (/*AUTOINST*/
 	   // Outputs
 	   .gtx_tune			(gtx_tune1[31:0]),	 // Templated
