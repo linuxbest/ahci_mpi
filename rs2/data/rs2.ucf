@@ -77,25 +77,8 @@ Net fpga_0_clk_1_sys_clk_p_pin LOC = K21  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = 
 Net fpga_0_clk_1_sys_clk_n_pin LOC = K22  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = TRUE;
 Net fpga_0_rst_1_sys_rst_pin TIG;
 Net fpga_0_rst_1_sys_rst_pin LOC = H8  |  IOSTANDARD=LVCMOS15  |  PULLUP  |  TIG;
-#Net fpga_0_PCIe_Diff_Clk_IBUF_DS_P_pin LOC=A10;
-#Net fpga_0_PCIe_Diff_Clk_IBUF_DS_N_pin LOC=B10;
 
-###### PCIe_Bridge
-#
-# Transceiver instance placement.  This constraint selects the
-# transceiver to be used, which also dictates the pinout for the
-# transmit and receive differential pairs.  Please refer to the
-# Spartan-6 GTP Transceiver User Guide for more
-# information.
-#
-# PCIe Lane 0
-#INST */gtpa1_dual_i LOC = GTPA1_DUAL_X0Y0;
-
-###############################################################################
-# Timing Constraints
-###############################################################################
-#NET PCIe_Bridge/REFCLK PERIOD = 8ns;
-
-#NET */gt_refclk_out(0) TNM_NET = PCIe_GT_REFCLK_OUT;
-#TIMESPEC TS_PCIe_GT_REFCLK_OUT = PERIOD PCIe_GT_REFCLK_OUT 8ns HIGH 50 % ;
-
+# SATA 1
+PIN sata_0_GREFCLK_P_pin LOC = A12;
+PIN sata_0_GREFCLK_P_pin LOC = B12;
+INST *gtx_0*/*gtpa1_dual_i LOC = GTPA1_DUAL_X1Y0;
