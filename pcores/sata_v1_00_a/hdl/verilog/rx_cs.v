@@ -310,7 +310,6 @@ endgenerate
 
 generate if (C_HW_CRC == 1)
 begin
-
    CRC32
      hw_crc (.CRCOUT(crc_out_hw),
 	     .CRCCLK(clk_75m),
@@ -378,7 +377,7 @@ endgenerate
    
    always @(posedge clk_75m)
      begin
-	if (crc_valid)
+	if (crc_rdy)
 	  begin
 	     cs2link_crc_ok <= #1 crc_out == wr_di && ~(fake_crc_err_dfis | fake_crc_err_ndfis);
 	     cs2link_crc_rdy<= #1 1'b1;
