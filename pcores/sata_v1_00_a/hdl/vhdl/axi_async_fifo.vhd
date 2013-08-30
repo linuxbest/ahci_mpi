@@ -79,20 +79,22 @@ ENTITY axi_async_fifo IS
     C_WR_DATA_COUNT_WIDTH : INTEGER := 9
     )	; 
   PORT (
-    rst       : IN  STD_LOGIC;
-    wr_clk    : IN  STD_LOGIC;
-    rd_clk    : IN  STD_LOGIC;
-    sync_clk  : IN  STD_LOGIC;
-    din       : IN  STD_LOGIC_VECTOR(C_DATA_WIDTH-1 DOWNTO 0);
-    wr_en     : IN  STD_LOGIC;
-    rd_en     : IN  STD_LOGIC;
-    dout      : OUT STD_LOGIC_VECTOR(C_DATA_WIDTH-1 DOWNTO 0);
-    full      : OUT STD_LOGIC;
-    empty     : OUT STD_LOGIC;
-    prog_full : OUT STD_LOGIC;
-    prog_empty: OUT STD_LOGIC;
-    rd_count  : OUT STD_LOGIC_VECTOR(C_RD_DATA_COUNT_WIDTH-1 DOWNTO 0);
-    wr_count  : OUT STD_LOGIC_VECTOR(C_WR_DATA_COUNT_WIDTH-1 DOWNTO 0)
+    rst          : IN  STD_LOGIC;
+    wr_clk       : IN  STD_LOGIC;
+    rd_clk       : IN  STD_LOGIC;
+    sync_clk     : IN  STD_LOGIC;
+    din          : IN  STD_LOGIC_VECTOR(C_DATA_WIDTH-1 DOWNTO 0);
+    wr_en        : IN  STD_LOGIC;
+    rd_en        : IN  STD_LOGIC;
+    dout         : OUT STD_LOGIC_VECTOR(C_DATA_WIDTH-1 DOWNTO 0);
+    full         : OUT STD_LOGIC;
+    prog_full    : OUT STD_LOGIC;
+    almost_full  : OUT STD_LOGIC;
+    empty        : OUT STD_LOGIC;
+    prog_empty   : OUT STD_LOGIC;
+    almost_empty : OUT STD_LOGIC;
+    rd_count     : OUT STD_LOGIC_VECTOR(C_RD_DATA_COUNT_WIDTH-1 DOWNTO 0);
+    wr_count     : OUT STD_LOGIC_VECTOR(C_WR_DATA_COUNT_WIDTH-1 DOWNTO 0)
   );
 END axi_async_fifo;
 
@@ -666,8 +668,8 @@ U0 : FIFO_GENERATOR_V9_1
       C_ERROR_INJECTION_TYPE_WRCH         => 0,
       C_FAMILY                            => C_FAMILY,
       C_FULL_FLAGS_RST_VAL                => 1,
-      C_HAS_ALMOST_EMPTY                  => 0,
-      C_HAS_ALMOST_FULL                   => 0,
+      C_HAS_ALMOST_EMPTY                  => 1,
+      C_HAS_ALMOST_FULL                   => 1,
       C_HAS_AXI_ARUSER                    => 0,
       C_HAS_AXI_AWUSER                    => 0,
       C_HAS_AXI_BUSER                     => 0,
@@ -736,7 +738,7 @@ U0 : FIFO_GENERATOR_V9_1
       C_PROG_EMPTY_THRESH_ASSERT_VAL_WDCH => 1022,
       C_PROG_EMPTY_THRESH_ASSERT_VAL_WRCH => 1022,
       C_PROG_EMPTY_THRESH_NEGATE_VAL      => 5,
-      C_PROG_EMPTY_TYPE                   => 0,
+      C_PROG_EMPTY_TYPE                   => 1,
       C_PROG_EMPTY_TYPE_AXIS              => 0,
       C_PROG_EMPTY_TYPE_RACH              => 0,
       C_PROG_EMPTY_TYPE_RDCH              => 0,
@@ -750,7 +752,7 @@ U0 : FIFO_GENERATOR_V9_1
       C_PROG_FULL_THRESH_ASSERT_VAL_WACH  => 1023,
       C_PROG_FULL_THRESH_ASSERT_VAL_WDCH  => 1023,
       C_PROG_FULL_THRESH_ASSERT_VAL_WRCH  => 1023,
-      C_PROG_FULL_THRESH_NEGATE_VAL       => 254,
+      C_PROG_FULL_THRESH_NEGATE_VAL       => C_PROG_FULL_THRESH-1,
       C_PROG_FULL_TYPE                    => 1,
       C_PROG_FULL_TYPE_AXIS               => 0,
       C_PROG_FULL_TYPE_RACH               => 0,
@@ -836,10 +838,10 @@ U0 : FIFO_GENERATOR_V9_1
     INT_CLK                        => '0',
     INJECTDBITERR                  => '0',
     INJECTSBITERR                  => '0',
-    ALMOST_FULL                    => OPEN,
+    ALMOST_FULL                    => almost_full,
     WR_ACK                         => OPEN,
     OVERFLOW                       => OPEN,
-    ALMOST_EMPTY                   => OPEN,
+    ALMOST_EMPTY                   => almost_empty,
     VALID                          => OPEN,
     UNDERFLOW                      => OPEN,
     DATA_COUNT                     => OPEN,

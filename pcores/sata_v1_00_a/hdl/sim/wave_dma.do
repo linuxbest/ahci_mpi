@@ -133,6 +133,24 @@ eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_ll${ps}waddr
 eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_ll${ps}rxfis_raddr
 eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_ll${ps}rxfis_rdata
 
+eval add wave -noupdate -divider {"rxll wr side"}
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rst
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_clk
+eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_count
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_full
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_almost_full
+eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_di
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}wr_en
+
+eval add wave -noupdate -divider {"rxll rd side"}
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rst
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_clk
+eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_count
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_empty
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_almost_empty
+eval add wave -noupdate $hexopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_do
+eval add wave -noupdate $binopt $dmapath${ps}rxll${ps}rxll_fifo${ps}rd_en
+
 eval add wave -noupdate -divider {"txll"}
 eval add wave -noupdate $binopt $dmapath${ps}txll${ps}sys_clk
 eval add wave -noupdate $binopt $dmapath${ps}txll${ps}sys_rst

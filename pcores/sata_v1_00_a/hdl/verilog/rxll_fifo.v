@@ -97,7 +97,7 @@ begin
 	     .WRCLK			(wr_clk),
 	     .WREN			(wr_en));
    defparam fifo16.FIRST_WORD_FALL_THROUGH = "TRUE";
-   defparam fifo16.ALMOST_EMPTY_OFFSET = 9'h100;   
+   defparam fifo16.ALMOST_EMPTY_OFFSET = 9'h100;
 end
 endgenerate
 
@@ -111,24 +111,26 @@ begin
 		    .C_PTR_WIDTH           (9),
 		    .C_MEMORY_TYPE         (1),
 		    .C_COMMON_CLOCK        (0),
-		    .C_IMPLEMENTATION_TYPE (0),
+		    .C_IMPLEMENTATION_TYPE (2),
 		    .C_SYNCHRONIZER_STAGE  (2),
 	            .C_RD_DATA_COUNT_WIDTH (9),
 	            .C_WR_DATA_COUNT_WIDTH (9))
-   fifo16   (.rst       (rst),
-	     .wr_clk    (wr_clk),
-	     .rd_clk    (rd_clk),
-	     .sync_clk  (wr_clk),
-	     .din       (wr_di),
-	     .wr_en     (wr_en),
-	     .rd_en     (rd_en),
-	     .dout      (rd_do),
-	     .full      (wr_full),
-	     .empty     (rd_empty),
-	     .prog_empty(rd_alsmot_empty),
-	     .prog_full (wr_almost_full),
-             .rd_count  (rd_count[8:0]),
-             .wr_count  (wr_count[8:0]));
+   fifo16   (.rst         (rst),
+	     .wr_clk      (wr_clk),
+	     .rd_clk      (rd_clk),
+	     .sync_clk    (wr_clk),
+	     .din         (wr_di),
+	     .wr_en       (wr_en),
+	     .rd_en       (rd_en),
+	     .dout        (rd_do),
+	     .full        (wr_full),
+	     .prog_full   (wr_almost_full),
+	     .almost_full (),
+	     .empty       (rd_empty),
+	     .prog_empty  (),
+	     .almost_empty(rd_almost_empty),
+             .rd_count    (rd_count[8:0]),
+             .wr_count    (wr_count[8:0]));
    assign rd_count[9] = 0;
    assign wr_count[9] = 0;
 end
