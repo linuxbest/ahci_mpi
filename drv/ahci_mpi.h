@@ -293,20 +293,6 @@ enum {
 	C_PxSACT,
 	C_PxSNTF,
 };
-
-enum {
-	NODE0 = 0,
-	NODE1,
-	NODE2,
-	NODE3,
-};
-
-struct node_res_struct {
-	struct ahci_host_priv *node_host_priv;
-	struct resource r_irq_struct;
-	struct resource r_mem_struct;
-};
-
 struct sataMPI {
 	u32 header;
 	u32 d[7];

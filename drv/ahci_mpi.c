@@ -31,7 +31,7 @@
  * http://www.intel.com/technology/serialata/pdf/rev1_1.pdf
  *
  */
-#define DEBUG
+#undef DEBUG
 #include <linux/kernel.h>
 #include <linux/gfp.h>
 #include <linux/module.h>
@@ -44,12 +44,10 @@
 #include <scsi/scsi_host.h>
 #include <scsi/scsi_cmnd.h>
 #include <linux/libata.h>
-#include <linux/kthread.h>
 
 #include "ahci_mpi.h"
 #include "ahci_mpi_fw.h"
 
-static int node_detect (void *data);
 static int ahci_scr_read(struct ata_link *link, unsigned int sc_reg, u32 *val);
 static int ahci_scr_write(struct ata_link *link, unsigned int sc_reg, u32 val);
 static unsigned int ahci_qc_issue(struct ata_queued_cmd *qc);
@@ -1876,7 +1874,6 @@ static void ahci_inband_irq(struct ahci_host_priv *hpriv)
 	struct sataRing *ring = &hpriv->inband;
 	void __iomem *mmio = hpriv->mmio;
 
-	printk("program run to line %d\n", __LINE__);
 	ring->ProdIndex = *ring->prod_index;
 	if (ring->ConsIndex  == ring->ProdIndex + 3) {
 		WARN_ON(1);
@@ -1897,7 +1894,6 @@ static void ahci_inband_irq(struct ahci_host_priv *hpriv)
 		ROLL(ring->ConsIndex, ROLL_LENGTH);
 	}
 	out_be32(mmio + 0x28, ring->ConsIndex);
-	out_be32(mmio + (NODE0<<12) + 0x200, 0x8);
 }
 
 static irqreturn_t ahci_mpi_irq(int irq, void *dev_instance)
@@ -1908,7 +1904,6 @@ static irqreturn_t ahci_mpi_irq(int irq, void *dev_instance)
 	u32 irq_stat;
 	unsigned int handled = 0;
 	
-	printk("program run to line %d\n", __LINE__);
 	VPRINTK("ENTER\n");
 	hpriv = host->private_data;
 	mmio = hpriv->mmio;
@@ -1991,6 +1986,7 @@ static int ahci_mpi_start(struct ahci_host_priv *hpriv)
 	
 	/* Pull DBG_STOP */
 	out_be32(mmio + 0x8, 6);
+	memcpy_be32(mmio + 0x4000, (uint32_t *)fw_mpi, fw_mpi_size);
 	
 	res = ahci_mpi_ring_init(dev, &hpriv->inband);
 	if (res != 0)
@@ -2000,10 +1996,10 @@ static int ahci_mpi_start(struct ahci_host_priv *hpriv)
 	if (res != 0)
 		return -ENOMEM;
 
-	printk("outband base %08x, cons base %08x\n", 
+	pr_debug("outband base %08x, cons base %08x\n", 
 		 (u32)hpriv->outband.mem_base,
 		 (u32)hpriv->outband.cons_index_base);
-	printk("inband  base %08x, prod base %08x\n", 
+	pr_debug("inband  base %08x, prod base %08x\n", 
 		 (u32)hpriv->inband.mem_base,
 		 (u32)hpriv->inband.prod_index_base);
 
@@ -2020,7 +2016,7 @@ static int ahci_mpi_start(struct ahci_host_priv *hpriv)
 	out_be32(mmio + 0x8, 3);
 	
 	/* wait for port fsm init message */
-	msleep(10000);
+	msleep(1000);
 	
 	/* if not got any message disable the port */
 	if (*hpriv->inband.prod_index == 0) {
@@ -2070,16 +2066,17 @@ static int ahci_mpi_start(struct ahci_host_priv *hpriv)
 static int __init ahci_probe(struct of_device *ofdev, const struct
 		of_device_id *match)
 {
-	printk("%s()--%d\n", __func__, __LINE__);
 	struct device *dev = &ofdev->dev;
-	struct ahci_host_priv *hpriv;
-	struct node_res_struct *node_res;
 	struct ata_port_info pi = {
 		.flags		= AHCI_FLAG_COMMON,
 		.pio_mask	= ATA_PIO4,
 		.udma_mask	= ATA_UDMA6,
 		.port_ops	= &ahci_ops,
 	};
+	const struct ata_port_info *ppi[] = { &pi, NULL };
+	struct ahci_host_priv *hpriv;
+	struct ata_host *host;
+	int n_ports;
 	int rc;
 	struct resource r_irq_struct;
 	struct resource r_mem_struct;
@@ -2118,67 +2115,7 @@ static int __init ahci_probe(struct of_device *ofdev, const struct
 		dev_err(dev, "can't map %pR\n", r_mem);
 		return -ENOMEM;
 	}
-	node_res = kzalloc(sizeof(*node_res), GFP_KERNEL);
-	if (!node_res) {
-		dev_err(dev, "node error\n");
-		return -ENOMEM;
-	}
-	node_res->node_host_priv 	= hpriv;
-	memcpy(&node_res->r_irq_struct, r_irq, sizeof(*r_irq));
-	memcpy(&node_res->r_mem_struct, r_mem, sizeof(*r_mem));
-	
-	kthread_run(node_detect,node_res,"exp_downnode_det");
-}
 
-static int node_detect(void * node) {
-	printk("%s()--%d\n", __func__, __LINE__);
-	struct node_res_struct *node_res= (struct node_res_struct *)node; 
-	struct device *dev = node_res->node_host_priv->dev;
-	struct ahci_host_priv *hpriv = node_res->node_host_priv;
-	struct resource *r_irq = &node_res->irq_struct;
-	void __iomem *mmio = hpriv->mmio;
-	struct ata_host *host;
-	struct ata_port_info pi = {
-		.flags		= AHCI_FLAG_COMMON,
-		.pio_mask	= ATA_PIO4,
-		.udma_mask	= ATA_UDMA6,
-		.port_ops	= &ahci_ops,
-	};
-	const struct ata_port_info *ppi[] = { &pi, NULL };
-	int n_ports;
-	int rc;
-	u32 aurora_chan_stat;	
-	u32 node_stat;
-	/*host reset*/
-	out_be32(mmio + 0xc00,0x1);
-	msleep(1000);
-	
-	/*open host irq, node0 irq*/
-	out_be32(mmio + 0x800, 0xff);
-	out_be32(mmio + (NODE0<<12) + 0x300, 0xff);
-
-	/*prepare local bram*/
-	memcpy_be32(mmio + 0x4000, (uint32_t *)fw_mpi, fw_mpi_size);
- 
-	/*wait channel up int*/ 
-	do {
-		aurora_chan_stat = in_be32(mmio + 0x400);
-	} while (!(aurora_chan_stat & 0x10));
-
-	/*send node0 cfg pkg*/
-	out_be32(mmio + 0x400, 0x10);
-	out_be32(mmio + (NODE0<<12) + 0x100, 0x1);
-	
-	/*wait node0 cfg done*/
-	do {
-		node_stat = in_be32(mmio + (NODE0<<12) + 0x200);
-	} while (!(node_stat & 0x1));
-
-	out_be32(mmio + (NODE0<<12) + 0x200, 0x1);
-	//hpriv->mmio = hpriv->mmio + 0x80; //now only sata1 works
-
-	printk("program run to line %d\n", __LINE__);
-        /*now back to sata operation*/
 	n_ports = ahci_mpi_start(hpriv);
 	if (n_ports <= 0) {
 		dev_err(dev, "can't start\n");
@@ -2201,19 +2138,16 @@ static int node_detect(void * node) {
 
 	rc = ata_host_activate(host, r_irq->start, ahci_mpi_irq, IRQF_SHARED,
 			       &ahci_sht);
-	printk("program run to line %d\n", __LINE__);
 	if (rc)
 		goto err0;
 
 	return 0;
 err0:
 	return rc;
-
 }
 
 static int __devexit ahci_remove(struct of_device *ofdev)
 {
-	printk("%s()--%d\n", __func__, __LINE__);
 	struct device *dev = &ofdev->dev;
 	struct ata_host *host = dev_get_drvdata(dev);
 	
@@ -2236,14 +2170,12 @@ static struct of_platform_driver ahci_driver = {
 
 static int __init ahci_init(void)
 {
-	printk("%s()--%d\n", __func__, __LINE__);
 	return of_register_platform_driver(&ahci_driver);
 }
 module_init(ahci_init);
 
 static void __exit ahci_exit(void)
 {
-	printk("%s()--%d\n", __func__, __LINE__);
 	of_unregister_platform_driver(&ahci_driver);
 }
 module_exit(ahci_exit);
