@@ -45,15 +45,16 @@ static char *uart_base = (char *)0x84000000;
 static char *sata_base = (char *)0x85f00000;
 void outbyte(char c)
 {
-	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_TXFULL) ==
-			ULITE_STATUS_TXFULL);
+	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_TXFULL) == ULITE_STATUS_TXFULL)
+		;
 	writeb(uart_base+ULITE_TX, c);
 }
 
 char inbyte(void)
 {
-	/* TODO */
-	return 0;
+	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_RXVALID) != ULITE_STATUS_RXVALID)
+		;
+	return readb(uart_base+ULITE_RX);
 }
 
 #include "ahci_mpi_fw.h"
@@ -77,7 +78,7 @@ int main(int argc, char *argv[])
 	uint32_t *inband_mem   = (uint32_t *)0x40400000; /* 4M offset */
 	uint32_t *inband_prod  = (uint32_t *)0x40500000; /* 5M offset */
 
-	print ("1\r\n");
+	print (".\r\n");
 
 	/* Pull DBG_STOP */
 	writel(sata_base+0x8, 6);
@@ -97,6 +98,12 @@ int main(int argc, char *argv[])
 	writel(sata_base+0x24, (uint32_t)inband_prod);
 	writel(sata_base+0x28, 0);
 
+	print ("-\r\n");
+	/* wait for c */
+	//while (inbyte() != 0x63)
+	//	;
+	print ("c\r\n");
+
 	/* enable fw cpu */
 	writel(sata_base+0x8, 3);
 
@@ -108,6 +115,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	print ("2\r\n");
+	print ("h\r\n");
 	while (1);
 }
