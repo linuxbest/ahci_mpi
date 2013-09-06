@@ -53,7 +53,7 @@ RM = del
 #-----------------------------------------------------------------------------
 # tools
 #
-XIL   := /opt/ise13.4/ISE_DS/
+XIL   ?= ${XILINX}/../
 CROSS := ${XIL}/EDK/gnu/microblaze/lin/bin/
 CC    := ${CROSS}mb-gcc
 CPP   := ${CROSS}mb-g++
@@ -184,7 +184,7 @@ CPP_DEPS_EXT := $(patsubst %.o, %.d, $(CPP_OBJS_EXT))
 # rules
 #
 
-all: $(BIN_DIR) $(TARGET_BIN)
+all: $(BIN_DIR) $(TARGET_BIN) ahci_mpi_fw.h
 
 $(BIN_DIR):
 	@echo
@@ -246,3 +246,10 @@ sim: all
 	bin2c fw_mpi < $(BIN_DIR)/$(OUTPUT).bin > /p/sf/ppc-platform/linux26-fdcr/drivers/ata/ahci_mpi_fw.h
 	./build_sym ${TARGET_ELF} 
 	cp mb_trace.h ${TOPDIR}/systemc/
+
+ahci_mpi_fw.h: ${TARGET_ELF} tools/bin2c
+	${BIN} ${TARGET_ELF} $(BIN_DIR)/$(OUTPUT).bin -O binary
+	./tools/bin2c fw_mpi < $(BIN_DIR)/$(OUTPUT).bin > $@
+
+tools/bin2c: tools/bin2c.c
+	gcc -o $@ $^
