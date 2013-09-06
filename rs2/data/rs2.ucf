@@ -1,6 +1,6 @@
 #  Spartan-6 SP605 Evaluation Platform
-Net fpga_0_RS232_Uart_1_RX_pin LOC = H17  |  IOSTANDARD=LVCMOS25;
-Net fpga_0_RS232_Uart_1_TX_pin LOC = B21  |  IOSTANDARD=LVCMOS25;
+Net fpga_0_RS232_Uart_1_RX_pin LOC = H21  |  IOSTANDARD=LVCMOS25;
+Net fpga_0_RS232_Uart_1_TX_pin LOC = J20  |  IOSTANDARD=LVCMOS25;
 #Net fpga_0_PCIe_Bridge_RXN_pin LOC=C7;
 #Net fpga_0_PCIe_Bridge_RXP_pin LOC=D7;
 #Net fpga_0_PCIe_Bridge_TXN_pin LOC=A6;
@@ -72,11 +72,11 @@ Net fpga_0_MCB_DDR3_mcbx_dram_ddr3_rst_pin IOSTANDARD = SSTL15_II;
 Net fpga_0_MCB_DDR3_rzq_pin IOSTANDARD = SSTL15_II;
 Net fpga_0_MCB_DDR3_zio_pin IOSTANDARD = SSTL15_II;
 Net fpga_0_clk_1_sys_clk_p_pin TNM_NET = sys_clk_pin;
-TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 200000 kHz;
-Net fpga_0_clk_1_sys_clk_p_pin LOC = K21  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = TRUE;
-Net fpga_0_clk_1_sys_clk_n_pin LOC = K22  |  IOSTANDARD=LVDS_25  |  DIFF_TERM = TRUE;
+
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 32000 kHz;
+Net fpga_0_clk_1_sys_clk_p_pin LOC = M19 |  IOSTANDARD=LVCMOS25;
 Net fpga_0_rst_1_sys_rst_pin TIG;
-Net fpga_0_rst_1_sys_rst_pin LOC = H8  |  IOSTANDARD=LVCMOS15  |  PULLUP  |  TIG;
+Net fpga_0_rst_1_sys_rst_pin LOC = M16 |  IOSTANDARD=LVCMOS15  |  PULLDOWN  |  TIG;
 
 # SATA 1
 PIN sata_0_GREFCLK_P_pin LOC = A12;
