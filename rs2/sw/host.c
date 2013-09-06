@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 static inline unsigned char readb(const volatile void *addr)
 {
@@ -8,6 +9,16 @@ static inline unsigned char readb(const volatile void *addr)
 static inline void writeb(const volatile void *addr, unsigned char v)
 {
 	*(volatile unsigned char *)addr = v;
+}
+
+static inline uint32_t readl(const volatile void *addr)
+{
+	return *(volatile uint32_t *)addr;
+}
+
+static inline void writel(const volatile void *addr, uint32_t v)
+{
+	*(volatile uint32_t *)addr = v;
 }
 
 #define ULITE_RX                0x00
@@ -31,7 +42,7 @@ static inline void writeb(const volatile void *addr, unsigned char v)
 #define ULITE_CONTROL_IE        0x10
 
 static char *uart_base = (char *)0x84000000;
-
+static char *sata_base = (char *)0x85f00000;
 void outbyte(char c)
 {
 	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_TXFULL) ==
@@ -47,10 +58,56 @@ char inbyte(void)
 
 #include "ahci_mpi_fw.h"
 
+static void memcpy_be32(uint8_t *dst, uint8_t *src, int sz)
+{
+	int i;
+	for (i = 0; i < sz; i += 4) {
+		dst[i+0] = src[i+3];
+		dst[i+1] = src[i+2];
+		dst[i+2] = src[i+1];
+		dst[i+3] = src[i+0];
+	}
+}
+
 int main(int argc, char *argv[])
 {
+	int i;
+	uint32_t *outband_mem  = (uint32_t *)0x200000; /* 2M offset */
+	uint32_t *outband_cons = (uint32_t *)0x300000; /* 3M offset */
+	uint32_t *inband_mem   = (uint32_t *)0x400000; /* 4M offset */
+	uint32_t *inband_prod  = (uint32_t *)0x500000; /* 5M offset */
+
 	print ("1\r\n");
 
+	/* Pull DBG_STOP */
+	writel(sata_base+0x8, 6);
+
+	/* copy fw to ibram */
+	memcpy_be32(sata_base+0x4000, (uint8_t *)fw_mpi, fw_mpi_size);
+
+	*inband_prod = 0;
+
+	/* HOST => FW */
+	writel(sata_base+0x10, (uint32_t)outband_mem);
+	writel(sata_base+0x14, (uint32_t)outband_cons);
+	writel(sata_base+0x18, 0);
+
+	/* FW => HOST */
+	writel(sata_base+0x20, (uint32_t)inband_mem);
+	writel(sata_base+0x24, (uint32_t)inband_prod);
+	writel(sata_base+0x28, 0);
+
+	/* enable fw cpu */
+	writel(sata_base+0x8, 3);
+
 	/* halt here */
-	while (1) { };
+	for (i = 0; i < 0x1000000; i ++) {
+		if ((*inband_prod) != 0) {
+			print ("d\r\n");
+			break;
+		}
+	}
+
+	print ("2\r\n");
+	while (1);
 }

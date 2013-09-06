@@ -65,7 +65,7 @@ SECTIONS
    *(.rodata.*)
    *(.gnu.linkonce.r.*)
    __rodata_end = .;
-} > bram
+} > ddr
 
 .sdata2 : {
    . = ALIGN(8);
