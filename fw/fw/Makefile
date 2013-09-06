@@ -83,7 +83,7 @@ INCLUDES  = -I$(QPC)/include	\
 	-I$(QP_PORT_DIR) \
 	-I.. -I../include/
 
-NP := 4
+NP := 2
 # defines
 DEFINES = -DPORT_NR=${NP} -mcpu=v8.20.b -DGITVERSION="0x$(shell git describe --always)"
 
