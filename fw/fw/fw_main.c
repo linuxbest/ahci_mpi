@@ -64,7 +64,7 @@ enum {
 #define RX_TYPE_FIS(irq)   (irq & 0xfff)
 #define CX_ERROR_CODE(irq) ((irq>>12) & 0xf)
 
-#define DATA_CACHE_ENABLE
+//#define DATA_CACHE_ENABLE
 
 void fw_irq_handler(uint8_t port)
 {

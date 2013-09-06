@@ -106,3 +106,7 @@ lib npi_ict_v1_00_a pim_dbg.v
 lib npi_ict_v1_00_a npi_ict_fsm.v
 lib npi_ict_v1_00_a npi_ict_rd.v
 lib npi_ict_v1_00_a npi_ict.v
+
+lib npi_ict_v1_00_a chipscope_icon3.v
+lib npi_ict_v1_00_a chipscope_ila_128x1.v
+lib npi_ict_v1_00_a chipscope_ila_192x1.v

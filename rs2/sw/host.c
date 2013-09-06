@@ -72,10 +72,10 @@ static void memcpy_be32(uint8_t *dst, uint8_t *src, int sz)
 int main(int argc, char *argv[])
 {
 	int i;
-	uint32_t *outband_mem  = (uint32_t *)0x200000; /* 2M offset */
-	uint32_t *outband_cons = (uint32_t *)0x300000; /* 3M offset */
-	uint32_t *inband_mem   = (uint32_t *)0x400000; /* 4M offset */
-	uint32_t *inband_prod  = (uint32_t *)0x500000; /* 5M offset */
+	uint32_t *outband_mem  = (uint32_t *)0x40020000; /* 2M offset */
+	uint32_t *outband_cons = (uint32_t *)0x40300000; /* 3M offset */
+	uint32_t *inband_mem   = (uint32_t *)0x40400000; /* 4M offset */
+	uint32_t *inband_prod  = (uint32_t *)0x40500000; /* 5M offset */
 
 	print ("1\r\n");
 

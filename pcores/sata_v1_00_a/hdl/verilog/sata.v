@@ -1036,6 +1036,7 @@ module sata(/*AUTOARG*/
     )*/
    npi_xcl #(/*AUTOINSTPARAM*/
 	     // Parameters
+	     .C_FAMILY			(C_FAMILY),
 	     .C_XCL_CHIPSCOPE		(C_XCL_CHIPSCOPE))
    npi_xcl (/*AUTOINST*/
 	    // Outputs

@@ -60,6 +60,7 @@ module npi_xcl (/*AUTOARG*/
    PI_RdFIFO_Data, PI_RdFIFO_RdWdAddr, PI_WrFIFO_AlmostFull,
    PI_WrFIFO_Empty, PI_RdFIFO_Empty, PI_RdFIFO_Latency
    );
+   parameter C_FAMILY = "virtex5";
    parameter C_XCL_CHIPSCOPE = 0;
    
    input MPMC_Clk;
@@ -115,7 +116,6 @@ module npi_xcl (/*AUTOARG*/
    output 		PI_RdFIFO_Flush;
    input [1:0] 		PI_RdFIFO_Latency;
    
-  localparam C_FAMILY                    = "virtex5";
   localparam C_PI_A_SUBTYPE              = "DXCL2";
   localparam C_PI_B_SUBTYPE              = "INACTIVE";
   localparam C_PI_BASEADDR               = 32'hc0000000;
