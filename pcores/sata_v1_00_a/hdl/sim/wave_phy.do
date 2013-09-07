@@ -67,6 +67,16 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy
 
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}EXAMPLE_SIM_GTXRESET_SPEEDUP
 
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}USER_CLK
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}RESET
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}TXENPMAPHASEALIGN
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}TXPMASETPHASE
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}SYNC_DONE
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}phase_align_r
+#eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}count_setphase_complete_r
+#eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}BYPASS_TXBUF_1${ps}tile0_txsync0_i${ps}sync_counter_r
+
+
 eval add wave -noupdate -divider {"host oob"}
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_clk
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}sys_rst

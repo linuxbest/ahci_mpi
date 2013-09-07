@@ -268,7 +268,8 @@ module s6_gtp_top (/*AUTOARG*/
    wire 	    tile0_rxreset1_i;
    wire 	    tile0_txelecidle0_i;
    wire 	    tile0_txelecidle1_i;   
-   
+   wire [1:0]       tile0_gtpclkout0_i;
+   wire [1:0]       tile0_gtpclkfbwest_i;
 //**************************** Main Body of Code *******************************
 
     //  Static signal Assigments    
@@ -380,8 +381,8 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_DWE_IN                   (tied_to_ground_i),
         //-------------------------- TX/RX Datapath Ports --------------------------
         .TILE0_GTPCLKFBEAST_OUT         (),
-        .TILE0_GTPCLKFBWEST_OUT         (gtpclkfb),
-        .TILE0_GTPCLKOUT0_OUT           (tile0_refclkout_i),
+        .TILE0_GTPCLKFBWEST_OUT         (tile0_gtpclkfbwest_i),
+        .TILE0_GTPCLKOUT0_OUT           (tile0_gtpclkout0_i),
         .TILE0_GTPCLKOUT1_OUT           (),   /* TODO */
         //----------------- Transmit Ports - 8b10b Encoder Control -----------------
         .TILE0_TXBYPASS8B10B0_IN        (tied_to_ground_vec_i[3:0]),
@@ -432,7 +433,7 @@ module s6_gtp_top (/*AUTOARG*/
     );
 
 generate if (C_BYPASS_TXBUF == 1) 
-begin
+begin: BYPASS_TXBUF_1
     //---------------------------- TXSYNC module ------------------------------
     // The TXSYNC module performs phase synchronization for all the active TX datapaths. It
     // waits for the user clocks to be stable, then drives the phase align signals on each
@@ -469,7 +470,7 @@ begin
 end
 endgenerate
 generate if (C_BYPASS_TXBUF == 0)
-begin
+begin: BYPASS_TXBUF_0
     assign tile0_txenpmaphasealign0_i = 1'b0;
     assign tile0_txpmasetphase0_i     = 1'b0;
     assign tile0_tx_sync_done0_i      = 1'b1;
@@ -654,7 +655,8 @@ endgenerate
     assign  tile0_rxenpcommaalign0_i = 1'b1;
     assign  tile0_rxenpcommaalign1_i = 1'b1;
 
-   assign refclkout               = tile0_refclkout_i;
+   assign refclkout               = tile0_gtpclkout0_i[0];
+   assign gtpclkfb                = tile0_gtpclkfbwest_i[0];
    assign plllkdet                = tile0_plllkdet_i;
    assign refclkout_dcm0_locked_i = dcm_locked;
    assign tile0_txusrclk0_i       = txusrclk0;

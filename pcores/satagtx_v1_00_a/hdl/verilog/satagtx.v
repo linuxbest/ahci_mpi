@@ -62,7 +62,7 @@ module satagtx (/*AUTOARG*/
    parameter C_FAMILY = "virtex5";
    parameter C_ENABLE = 1;
    parameter C_CHIPSCOPE = 0;
-   parameter C_SATA_SPEED = 1;
+   parameter C_SATA_SPEED = 2;
 
    input                GTXRESET_IN;
 

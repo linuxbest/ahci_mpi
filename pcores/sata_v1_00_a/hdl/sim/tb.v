@@ -176,11 +176,11 @@ module tb;
    // End of automatics
 
    parameter C_FAMILY = `C_FAMILY;
-   //parameter C_FAMILY = "virtex5";
-   //parameter C_FAMILY = "spartan6";
+   parameter C_SATA_SPEED = 1;
    
    satagtx  #(
-	      .C_FAMILY(C_FAMILY)
+	      .C_FAMILY(C_FAMILY),
+	      .C_SATA_SPEED(C_SATA_SPEED)
            )
    gtx_0   (/*AUTOINST*/
 	    // Outputs
@@ -410,7 +410,8 @@ module tb;
 	   .RXN_IN0 (TXN0_OUT));
 
    satagtx_clk #(
-	      .C_FAMILY(C_FAMILY)
+	      .C_FAMILY(C_FAMILY),
+	      .C_SATA_SPEED(C_SATA_SPEED)
 	)
      clk0 (.tile0_refclk(refclk),
            .tile0_gtpclkfb(gtpclkfb),

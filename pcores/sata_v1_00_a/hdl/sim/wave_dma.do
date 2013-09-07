@@ -42,6 +42,10 @@ eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}cxfifo_irq
 eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}cxfifo_ack
 eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}cxfifo_ok
 
+eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}phyclk
+eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}com_sync
+eval add wave -noupdate $binopt $dmapath${ps}dcr_if${ps}com_tag
+
 eval add wave -noupdate -divider {"dma"}
 eval add wave -noupdate $binopt $dmapath${ps}sys_clk
 

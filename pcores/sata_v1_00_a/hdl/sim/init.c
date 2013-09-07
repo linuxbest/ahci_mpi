@@ -281,7 +281,6 @@ void hw_oob(uint8_t port)
 {
 	osChipRegWrite(rbase + IRQSTAT, REQ_OOB);
 	fprintf(sfile, "oob;");
-	osChipRegWrite(rbase + IRQSTAT, REQ_OOB);
 }
 
 void hw_init(uint8_t port)
