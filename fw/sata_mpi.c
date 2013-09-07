@@ -575,6 +575,8 @@ QState regfis_done(QHsmSata *me)
 	me->PxTFD = tfd;
 	pBsy_set(me, pPmpCur, bsy);
 	pBsy_set(me, pPmpCur, drq);
+	me->pDmaXferCnt = 0;
+	
 	if (tfd & 1) {	/* ERR */
 		hw_reg_begin (me->port,  INTC_REGFIS);
 		hw_reg_update(me->port, C_DATA, 1);
