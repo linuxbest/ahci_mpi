@@ -270,6 +270,9 @@ module s6_gtp_top (/*AUTOARG*/
    wire 	    tile0_txelecidle1_i;   
    wire [1:0]       tile0_gtpclkout0_i;
    wire [1:0]       tile0_gtpclkfbwest_i;
+   
+   wire 	    tile0_txreset0_i;
+   wire 	    tile0_txreset1_i;
 //**************************** Main Body of Code *******************************
 
     //  Static signal Assigments    
@@ -349,8 +352,8 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_RXDATA1_OUT              (tile0_rxdata1_i),
         .TILE0_RXRECCLK0_OUT            (tile0_rxrecclk0_i),
         .TILE0_RXRECCLK1_OUT            (tile0_rxrecclk1_i),
-        .TILE0_RXRESET0_IN              (phyreset0),
-        .TILE0_RXRESET1_IN              (phyreset1),
+        .TILE0_RXRESET0_IN              (tile0_rxreset0_i),
+        .TILE0_RXRESET1_IN              (tile0_rxreset1_i),
         .TILE0_RXUSRCLK0_IN             (tile0_txusrclk0_i),
         .TILE0_RXUSRCLK1_IN             (tile0_txusrclk0_i),
         .TILE0_RXUSRCLK20_IN            (tile0_txusrclk20_i),
@@ -407,8 +410,8 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_TXDATA1_IN               (tile0_txdata1_i),
         .TILE0_TXOUTCLK0_OUT            (),
         .TILE0_TXOUTCLK1_OUT            (),
-        .TILE0_TXRESET0_IN              (phyreset0),
-        .TILE0_TXRESET1_IN              (phyreset1),
+        .TILE0_TXRESET0_IN              (tile0_txreset0_i),
+        .TILE0_TXRESET1_IN              (tile0_txreset1_i),
         .TILE0_TXUSRCLK0_IN             (tile0_txusrclk0_i),
         .TILE0_TXUSRCLK1_IN             (tile0_txusrclk0_i),
         .TILE0_TXUSRCLK20_IN            (tile0_txusrclk20_i),
@@ -431,6 +434,11 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_TXCOMTYPE0_IN            (tile0_txcomtype0_i),
         .TILE0_TXCOMTYPE1_IN            (tile0_txcomtype1_i)
     );
+
+    assign tile0_rxreset0_i = !(tile0_plllkdet_i && refclkout_dcm0_locked_i);
+    assign tile0_txreset0_i = !(tile0_plllkdet_i && refclkout_dcm0_locked_i);
+    assign tile0_rxreset1_i = !(tile0_plllkdet_i && refclkout_dcm0_locked_i);
+    assign tile0_txreset1_i = !(tile0_plllkdet_i && refclkout_dcm0_locked_i);
 
 generate if (C_BYPASS_TXBUF == 1) 
 begin: BYPASS_TXBUF_1
@@ -571,7 +579,7 @@ endgenerate
       .txcomstart			(tile0_txcomstart0_i),
       .txcomtype			(tile0_txcomtype0_i),
       .txelecidle			(tile0_txelecidle0_i),
-      .rxreset				(tile0_rxreset0_i),
+      .rxreset				(/*tile0_rxreset0_i*/),
       .txdata				(tile0_txdata0_i),
       .txdatak				(tile0_txcharisk0_i),
       .txdatak_pop                      (txdatak_pop0),
@@ -605,7 +613,7 @@ endgenerate
       .txcomstart			(tile0_txcomstart1_i),
       .txcomtype			(tile0_txcomtype1_i),
       .txelecidle			(tile0_txelecidle1_i),
-      .rxreset				(tile0_rxreset1_i),
+      .rxreset				(/*tile0_rxreset1_i*/),
       .txdata				(tile0_txdata1_i),
       .txdatak				(tile0_txcharisk1_i),
       .txdatak_pop                      (txdatak_pop1),
