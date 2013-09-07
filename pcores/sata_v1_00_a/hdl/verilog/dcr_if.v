@@ -277,9 +277,13 @@ module dcr_if (/*AUTOARG*/
      begin
 	if (sys_rst)
 	  begin
-	     com_tag <= #1 1'b0;
+	     com_tag <= #1 0;
 	  end
 	else if (com)
+	  begin
+	     com_tag <= #1 1;
+	  end
+	else if (com_tag != 0)
 	  begin
 	     com_tag <= #1 com_tag + 1'b1;
 	  end
