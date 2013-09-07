@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
+typedef uint32_t __le32;
+#include "ahci.h"
+
 static inline unsigned char readb(const volatile void *addr)
 {
 	return *(volatile unsigned char *)addr;
@@ -63,6 +66,25 @@ int serial_tstc(void)
 	return readl(uart_base+ULITE_STATUS) & ULITE_STATUS_RXVALID;
 }
 
+void hexdump(void *data, unsigned size)
+{
+	while (size) {
+		unsigned char *p;
+		int w = 16, n = size < w? size: w, pad = w - n;
+		printf("%p:  ", data);
+		for (p = data; p < (unsigned char *)data + n;)
+			printf("%02hx ", *p++);
+		printf("%*.s  \"", pad*3, "");
+		for (p = data; p < (unsigned char *)data + n;) {
+			int c = *p++;
+			printf("%c", c < ' ' || c > 127 ? '.' : c);
+		}
+		printf("\"\n");
+		data += w;
+		size -= n;
+	}
+}
+
 #include "ahci_mpi_fw.h"
 
 static void memcpy_be32(uint8_t *dst, uint8_t *src, int sz)
@@ -79,10 +101,15 @@ static void memcpy_be32(uint8_t *dst, uint8_t *src, int sz)
 #define ROLL_LENGTH      (1<<12)
 #define ROLL(index, end) ((index)=(((index)+1) & ((end)-1)))
 	
-volatile uint32_t *outband_mem  = (uint32_t *)0x20410000; /* 2M offset */
-volatile uint32_t *outband_cons = (uint32_t *)0x20420000; /* 3M offset */
-volatile uint32_t *inband_mem   = (uint32_t *)0x20430000; /* 4M offset */
-volatile uint32_t *inband_prod  = (uint32_t *)0x20440000; /* 5M offset */
+volatile uint32_t *outband_mem  = (uint32_t *)0x20410000;
+volatile uint32_t *outband_cons = (uint32_t *)0x20420000;
+volatile uint32_t *inband_mem   = (uint32_t *)0x20430000;
+volatile uint32_t *inband_prod  = (uint32_t *)0x20440000;
+volatile void     *rx_fis_mem   = (void     *)0x20460000;
+
+volatile void *cmd_slot_mem = (void *)0x20450000;
+volatile void *tbl_mem      = (void *)0x20470000;
+volatile void *tmem         = (void *)0x20480000;
 
 uint32_t inband_cons = 0;
 uint32_t outband_prod = 0;
@@ -96,6 +123,44 @@ static void mpi_trace(volatile uint32_t *mem)
 		printf(" p#%02x fw_main.c line %d\r\n", port, line);
 	} else {
 		printf(" p#%02x sata_mpi.c line %d\r\n", port, line);
+	}
+}
+
+static void (*done_cb)(int err);
+
+static void mpi_regfis(volatile uint32_t *mem)
+{
+	uint8_t port = mem[0] >> 16;
+	volatile uint32_t *fis = rx_fis_mem + 0x00;
+	uint8_t reason = mem[1];
+
+	printf(" p#%02x: rfis(%s) %08x %08x %08x %08x - %08x %08x %08x %08x\r\n",
+			port,
+			reason == 0x1 ? "error" : reason == 0x2 ?  "update sig" : "ok",
+			fis[0], fis[1], fis[2], fis[3],
+			fis[4], fis[5], fis[6], fis[7]);
+
+	if (done_cb) {
+		done_cb(reason != 0x1);
+		done_cb = 0;
+	}
+}
+
+static void mpi_piofis(volatile uint32_t *mem)
+{
+	uint8_t port = mem[0] >> 16;
+	volatile uint32_t *fis = rx_fis_mem + 0x80;
+	uint8_t reason = mem[1];
+
+	printf(" p#%02x: pfis(%s) %08x %08x %08x %08x - %08x %08x %08x %08x\r\n",
+			port,
+			reason == 0x0 ? "ok" : "err",
+			fis[0], fis[1], fis[2], fis[3],
+			fis[4], fis[5], fis[6], fis[7]);
+
+	if (done_cb) {
+		done_cb(reason != 0x0);
+		done_cb = 0;
 	}
 }
 
@@ -115,31 +180,31 @@ static void process_inband(void)
 		case 0x0: /* IDLE */
 			break;
 		case 0x1: /* LINK */
-			printf("p#%02x link %s(%d)\r\n", port, mem[1] ? "down" : "up", mem[1]);
+			printf(" p#%02x link %s(%d)\r\n", port, mem[1] ? "down" : "up", mem[1]);
 			break;
 		case 0x2: /* REJECT */
-			printf("REJECT(%d), PxCI(%08x), SLOT(%d)\r\n", mem[1], mem[2], mem[6]);
+			printf(" REJECT(%d), PxCI(%08x), SLOT(%d)\r\n", mem[1], mem[2], mem[6]);
 			break;
 		case 0x3: /* RERR */
-			printf("RERR Detected\r\n");
+			printf(" RERR Detected\r\n");
 			break;
 		case 0x4: /* CRC ERROR */
-			printf("CRC ERROR Deteced\r\n");
+			printf(" CRC ERROR Deteced\r\n");
 			break;
 		case 0x5: /* REG FIS */
-			printf("REG FIS recv\r\n");
+			mpi_regfis(mem);
 			break;
 		case 0x6: /* SDB FIS */
-			printf("SDB FIS recv\r\n");
+			printf(" SDB FIS recv\r\n");
 			break;
 		case 0x7: /* PIO FIS */
-			printf("PIO FIS recv\r\n");
+			mpi_piofis(mem);
 			break;
 		case 0x8: /* UNKNOWN FIS */
-			printf("UNKNOWN FIS recv\r\n");
+			printf(" UNKNOWN FIS recv\r\n");
 			break;
 		case 0x9: /* PANIC */
-			printf("FW PANIC\r\n");
+			printf(" FW PANIC\r\n");
 			break;
 		case 0xa: /* TRACE */
 			mpi_trace(mem);
@@ -150,9 +215,6 @@ static void process_inband(void)
 	}
 	writel(sata_base+0x28, inband_cons);
 }
-
-volatile uint32_t *cmd_slot_mem = (uint32_t *)0x20450000; /* 6M offset */
-volatile uint32_t *rx_fis_mem   = (uint32_t *)0x20460000; /* 7M offset */
 
 static void ahci_start(void)
 {
@@ -174,6 +236,48 @@ static void ahci_start(void)
 	/* power up the link */
 	mem = outband_mem + outband_prod*8;
 	mem[0] = 0x10<<8;
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+}
+
+static void ata_inquiry_done(int err)
+{
+	printf(" ata inquiry done(%d)\n", err);
+	hexdump(tmem, 512);
+}
+
+static void ata_inquiry(void)
+{
+	volatile uint32_t *req   = outband_mem + outband_prod*8;
+	uint8_t *fis             = tbl_mem;
+	struct ahci_cmd_hdr *cmd = cmd_slot_mem + 0;
+	struct ahci_sg *sg       = tbl_mem + 0x80;
+
+	memset(fis, 0, 20);
+	fis[0] = 0x27;
+	fis[1] = 1<<7;
+	fis[2] = 0xEC;
+
+	sg->addr         = tmem;
+	sg->addr_hi      = 0;
+	sg->reserved     = 0;
+	sg->flags_size   = 511;
+
+	cmd->opts        = (1<<16)|5;
+	cmd->status      = 0;
+	cmd->tbl_addr    = tbl_mem;
+	cmd->tbl_addr_hi = 0;
+	cmd->sg_cnt      = 0;
+	cmd->sg_offset   = 0;
+	cmd->reserved[0] = 0;
+	cmd->reserved[1] = 0;
+
+	done_cb = ata_inquiry_done;
+
+	/* send to fw */
+	req[0] = 0x0101; /* command */
+	req[1] = 0x1;    /* slot 0 */
+	req[2] = 0x0;    /* sact 0 */
 	ROLL(outband_prod, ROLL_LENGTH);
 	writel(sata_base+0x18, outband_prod);
 }
@@ -203,9 +307,9 @@ int main(int argc, char *argv[])
 	writel(sata_base+0x28, 0);
 
 	print("enable fw cpu\r\n");
-
+#if 0
 	while (inbyte() != 0x63) ;
-
+#endif
 	/* enable fw cpu */
 	writel(sata_base+0x8, 3);
 
@@ -226,8 +330,11 @@ int main(int argc, char *argv[])
 		if (serial_tstc()) {
 			char c = inbyte();
 			switch (c) {
-			case 'I': printf("Init\n");
+			case 'I': printf("Command Init\n");
 				  ahci_start();
+				  break;
+			case 'i': printf("Command Inquiry\n");
+				  ata_inquiry();
 				  break;
 			case 'd': printf(" out prod: %04x, %04x\n", outband_prod, *outband_cons);
 				  printf(" in  prod: %04x, %04x\n", *inband_prod, inband_cons);

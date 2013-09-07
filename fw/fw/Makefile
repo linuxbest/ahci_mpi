@@ -83,7 +83,7 @@ INCLUDES  = -I$(QPC)/include	\
 	-I$(QP_PORT_DIR) \
 	-I.. -I../include/
 
-NP := 1
+NP := 2
 # defines
 DEFINES = -DPORT_NR=${NP} -mcpu=v8.20.b -DGITVERSION="0x$(shell git describe --always)"
 
@@ -153,7 +153,7 @@ BIN_DIR := dbg
 ASFLAGS = -mlittle-endian
 
 CFLAGS = -mxl-pattern-compare -mno-xl-soft-mul -mxl-barrel-shift -Wall \
-	-mlittle-endian -Os $(INCLUDES) $(DEFINES) -DMPI_TRACE
+	-mlittle-endian -Os $(INCLUDES) $(DEFINES) #-DMPI_TRACE
 
 CPPFLAGS = -mxl-pattern-compare -mno-xl-soft-mul -mxl-barrel-shift \
 	-mlittle-endian -Wall -fno-rtti -fno-exceptions \
