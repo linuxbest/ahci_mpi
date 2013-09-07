@@ -43,18 +43,24 @@ static inline void writel(const volatile void *addr, uint32_t v)
 
 static char *uart_base = (char *)0x84000000;
 static char *sata_base = (char *)0x85f00000;
+
 void outbyte(char c)
 {
-	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_TXFULL) == ULITE_STATUS_TXFULL)
+	while (readl(uart_base+ULITE_STATUS) & ULITE_STATUS_TXFULL)
 		;
-	writeb(uart_base+ULITE_TX, c);
+	writel(uart_base+ULITE_TX, c);
 }
 
 char inbyte(void)
 {
-	while ((readb(uart_base+ULITE_STATUS) & ULITE_STATUS_RXVALID) != ULITE_STATUS_RXVALID)
+	while (!(readl(uart_base+ULITE_STATUS) & ULITE_STATUS_RXVALID))
 		;
-	return readb(uart_base+ULITE_RX);
+	return readl(uart_base+ULITE_RX) & 0xff;
+}
+
+int serial_tstc(void)
+{
+	return readl(uart_base+ULITE_STATUS) & ULITE_STATUS_RXVALID;
 }
 
 #include "ahci_mpi_fw.h"
@@ -70,15 +76,61 @@ static void memcpy_be32(uint8_t *dst, uint8_t *src, int sz)
 	}
 }
 
+#define ROLL_LENGTH      (1<<12)
+#define ROLL(index, end) ((index)=(((index)+1) & ((end)-1)))
+	
+volatile uint32_t *outband_mem  = (uint32_t *)0x20410000; /* 2M offset */
+volatile uint32_t *outband_cons = (uint32_t *)0x20420000; /* 3M offset */
+volatile uint32_t *inband_mem   = (uint32_t *)0x20430000; /* 4M offset */
+volatile uint32_t *inband_prod  = (uint32_t *)0x20440000; /* 5M offset */
+
+uint32_t inband_cons = 0;
+uint32_t outband_prod = 0;
+
+static void process_inband(void)
+{
+	while (inband_cons != *inband_prod) {
+		volatile uint32_t *mem = inband_mem + inband_cons*8;
+		printf("%02x: %08x %08x %08x %08x - %08x %08x %08x %08x\r\n", 
+				inband_cons,
+				mem[0], mem[1], mem[2], mem[3],
+				mem[4], mem[5], mem[6], mem[7]);
+		ROLL(inband_cons, ROLL_LENGTH);
+	}
+	writel(sata_base+0x28, inband_cons);
+}
+
+volatile uint32_t *cmd_slot_mem = (uint32_t *)0x20450000; /* 6M offset */
+volatile uint32_t *rx_fis_mem   = (uint32_t *)0x20460000; /* 7M offset */
+
+static void ahci_start(void)
+{
+	volatile uint32_t *mem;
+
+	mem = outband_mem + outband_prod*8;
+	mem[0] = 0x200;
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+
+	/* fis & cmd slot */
+	mem = outband_mem + outband_prod*8;
+	mem[0] = 0x3;
+	mem[1] = (uint32_t)cmd_slot_mem;
+	mem[2] = (uint32_t)rx_fis_mem;
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+
+	/* power up the link */
+	mem = outband_mem + outband_prod*8;
+	mem[0] = 0x10<<8;
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+}
+
 int main(int argc, char *argv[])
 {
-	int i;
-	uint32_t *outband_mem  = (uint32_t *)0x40020000; /* 2M offset */
-	uint32_t *outband_cons = (uint32_t *)0x40300000; /* 3M offset */
-	uint32_t *inband_mem   = (uint32_t *)0x40400000; /* 4M offset */
-	uint32_t *inband_prod  = (uint32_t *)0x40500000; /* 5M offset */
-
-	print (".\r\n");
+	int i, rdy = 0, run = 1;
+	print("fw init\r\n");
 
 	/* Pull DBG_STOP */
 	writel(sata_base+0x8, 6);
@@ -87,6 +139,7 @@ int main(int argc, char *argv[])
 	memcpy_be32(sata_base+0x4000, (uint8_t *)fw_mpi, fw_mpi_size);
 
 	*inband_prod = 0;
+	*outband_cons = 0;
 
 	/* HOST => FW */
 	writel(sata_base+0x10, (uint32_t)outband_mem);
@@ -98,23 +151,42 @@ int main(int argc, char *argv[])
 	writel(sata_base+0x24, (uint32_t)inband_prod);
 	writel(sata_base+0x28, 0);
 
-	print ("-\r\n");
-	/* wait for c */
-	//while (inbyte() != 0x63)
-	//	;
-	print ("c\r\n");
+	print("enable fw cpu\r\n");
+
+	while (inbyte() != 0x63) ;
 
 	/* enable fw cpu */
 	writel(sata_base+0x8, 3);
 
 	/* halt here */
-	for (i = 0; i < 0x1000000; i ++) {
+	for (i = 0; i < 0x10000; i++) {
 		if ((*inband_prod) != 0) {
-			print ("d\r\n");
+			printf("cons: %08x\n", *inband_prod);
+			rdy = 1;
 			break;
 		}
 	}
 
-	print ("h\r\n");
-	while (1);
+	writel(sata_base+0x8, 0);
+
+	while (run) {
+		process_inband();
+
+		if (serial_tstc()) {
+			char c = inbyte();
+			switch (c) {
+			case 'I': printf("Init\n");
+				  ahci_start();
+				  break;
+			case 'd': printf(" out prod: %04x, %04x\n", outband_prod, *outband_cons);
+				  printf(" in  prod: %04x, %04x\n", *inband_prod, inband_cons);
+				  break;
+			case 'q':
+				  run = 0;
+				  break;
+			default:
+				  printf("ignore command %c\n", c);
+			}
+		}
+	}
 }
