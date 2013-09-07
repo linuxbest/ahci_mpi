@@ -12,6 +12,7 @@ vlog -novopt -incr -work work "bfm.v"
 
 vlog -novopt -incr -work work "npi_ict_top.v"
 vlog -novopt -incr -work work "../*.v"
+vlog -novopt -incr -work work "../../../../mpmc_v6_03_a/hdl/verilog/*.v"
 
 s
 eval add wave -noupdate -asc /bfm_tb/cmd_ascii

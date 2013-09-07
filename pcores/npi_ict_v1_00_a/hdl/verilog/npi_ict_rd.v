@@ -163,9 +163,10 @@ module npi_ict_rd (/*AUTOARG*/
 	id_d2 <= #1 id_d1;
 	pop_d1<= #1 PIM_RdFIFO_Pop;
 	pop_d2<= #1 pop_d1;
-	
-	PIM_RdFIFO_Push_sel <= #1 id_d2;
-	PIM_RdFIFO_Push     <= #1 pop_d2;
+
+	/* TODO: current only support latency is 2 or 1 */
+	PIM_RdFIFO_Push_sel <= #1 PIM_RdFIFO_Latency == 2'h2 ? id_d2  : id_d1;
+	PIM_RdFIFO_Push     <= #1 PIM_RdFIFO_Latency == 2'h2 ? pop_d2 : pop_d1;
 	PIM_RdFIFO_Push_Data<= #1 PIM_RdFIFO_Data;
      end // always @ (posedge Clk)
    assign PIM_RdFIFO_Flush = 1'b0;
