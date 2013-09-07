@@ -87,14 +87,65 @@ volatile uint32_t *inband_prod  = (uint32_t *)0x20440000; /* 5M offset */
 uint32_t inband_cons = 0;
 uint32_t outband_prod = 0;
 
+static void mpi_trace(volatile uint32_t *mem)
+{
+	uint8_t port = mem[0] >> 16;
+	uint16_t line= mem[1];
+
+	if (mem[1] & 0x80000000) { /* fw_main.c */
+		printf(" p#%02x fw_main.c line %d\r\n", port, line);
+	} else {
+		printf(" p#%02x sata_mpi.c line %d\r\n", port, line);
+	}
+}
+
 static void process_inband(void)
 {
 	while (inband_cons != *inband_prod) {
 		volatile uint32_t *mem = inband_mem + inband_cons*8;
+		uint8_t port, type, valid;
 		printf("%02x: %08x %08x %08x %08x - %08x %08x %08x %08x\r\n", 
 				inband_cons,
 				mem[0], mem[1], mem[2], mem[3],
 				mem[4], mem[5], mem[6], mem[7]);
+		port = mem[0] >> 16;
+		type = mem[0] >> 0x8;
+		valid= mem[0];
+		switch (type) {
+		case 0x0: /* IDLE */
+			break;
+		case 0x1: /* LINK */
+			printf("p#%02x link %s(%d)\r\n", port, mem[1] ? "down" : "up", mem[1]);
+			break;
+		case 0x2: /* REJECT */
+			printf("REJECT(%d), PxCI(%08x), SLOT(%d)\r\n", mem[1], mem[2], mem[6]);
+			break;
+		case 0x3: /* RERR */
+			printf("RERR Detected\r\n");
+			break;
+		case 0x4: /* CRC ERROR */
+			printf("CRC ERROR Deteced\r\n");
+			break;
+		case 0x5: /* REG FIS */
+			printf("REG FIS recv\r\n");
+			break;
+		case 0x6: /* SDB FIS */
+			printf("SDB FIS recv\r\n");
+			break;
+		case 0x7: /* PIO FIS */
+			printf("PIO FIS recv\r\n");
+			break;
+		case 0x8: /* UNKNOWN FIS */
+			printf("UNKNOWN FIS recv\r\n");
+			break;
+		case 0x9: /* PANIC */
+			printf("FW PANIC\r\n");
+			break;
+		case 0xa: /* TRACE */
+			mpi_trace(mem);
+		default:
+			break;
+		}
 		ROLL(inband_cons, ROLL_LENGTH);
 	}
 	writel(sata_base+0x28, inband_cons);
