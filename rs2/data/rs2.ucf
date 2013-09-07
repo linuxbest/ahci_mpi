@@ -79,6 +79,6 @@ Net fpga_0_rst_1_sys_rst_pin TIG;
 Net fpga_0_rst_1_sys_rst_pin LOC = M16 |  IOSTANDARD=LVCMOS15  |  PULLDOWN  |  TIG;
 
 # SATA 1
-PIN sata_0_GREFCLK_P_pin LOC = A12;
-PIN sata_0_GREFCLK_P_pin LOC = B12;
+NET sata_0_GREFCLK_P_pin LOC = A12;
+NET sata_0_GREFCLK_N_pin LOC = B12;
 INST *gtx_0*/*gtpa1_dual_i LOC = GTPA1_DUAL_X1Y0;
