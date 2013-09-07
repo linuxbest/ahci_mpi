@@ -261,7 +261,7 @@ module dcr_if (/*AUTOARG*/
 
    reg [1:0] phyreset_r;
    reg [2:0] com_sync;
-   reg 	     com_tag;
+   reg [1:0] com_tag;
    
    assign host_rst = phyreset_r[1];
    assign phyreset = phyreset_r[1];
@@ -271,7 +271,7 @@ module dcr_if (/*AUTOARG*/
      begin
 	phyreset_r[0] <= #1 phyreset_i;
 	phyreset_r[1] <= #1 phyreset_r[0];
-	com_sync      <= #1 {com_sync[1:0], com_tag};
+	com_sync      <= #1 {com_sync[1:0], com_tag[1]};
      end
    always @(posedge sys_clk)
      begin
@@ -281,7 +281,7 @@ module dcr_if (/*AUTOARG*/
 	  end
 	else if (com)
 	  begin
-	     com_tag <= #1 ~com_tag;
+	     com_tag <= #1 com_tag + 1'b1;
 	  end
      end // always @ (posedge sys_clk) 
 endmodule
