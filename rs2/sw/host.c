@@ -141,7 +141,7 @@ static void mpi_regfis(volatile uint32_t *mem)
 			fis[4], fis[5], fis[6], fis[7]);
 
 	if (done_cb) {
-		done_cb(reason != 0x1);
+		done_cb(reason == 0x1);
 		done_cb = 0;
 	}
 }
@@ -243,7 +243,8 @@ static void ahci_start(void)
 static void ata_inquiry_done(int err)
 {
 	printf(" ata inquiry done(%d)\n", err);
-	hexdump(tmem, 512);
+	if (err == 0)
+		hexdump(tmem, 512);
 }
 
 static void ata_inquiry(void)
@@ -278,6 +279,109 @@ static void ata_inquiry(void)
 	req[0] = 0x0101; /* command */
 	req[1] = 0x1;    /* slot 0 */
 	req[2] = 0x0;    /* sact 0 */
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+}
+
+static void ata_read_done(int err)
+{
+	printf(" ata read done(%d)\n", err);
+	if (err == 0)
+		hexdump(tmem, 512);
+}
+
+static void ata_read_ext(void)
+{
+	volatile uint32_t *req   = outband_mem + outband_prod*8;
+	uint8_t *fis             = tbl_mem;
+	struct ahci_cmd_hdr *cmd = cmd_slot_mem + 0;
+	struct ahci_sg *sg       = tbl_mem + 0x80;
+
+	uint32_t len = 512;
+	uint32_t lba = 0x0;
+
+	memset(fis, 0, 20);
+	fis[0] = 0x27;
+	fis[1] = 1<<7;
+	fis[2] = 0x25;
+
+	fis[4] = lba;
+	fis[5] = lba>> 8;
+	fis[6] = lba>>16;
+	fis[7] = (lba>>24) | 0xE0;
+
+	fis[12] = len>>(9+0);
+	fis[13] = len>>(9+8);
+	hexdump(fis, 20);
+
+	sg->addr         = tmem;
+	sg->addr_hi      = 0;
+	sg->reserved     = 0;
+	sg->flags_size   = len - 1;
+
+	cmd->opts        = (1<<16)|5;
+	cmd->status      = 0;
+	cmd->tbl_addr    = tbl_mem;
+	cmd->tbl_addr_hi = 0;
+	cmd->sg_cnt      = 0;
+	cmd->sg_offset   = 0;
+	cmd->reserved[0] = 0;
+	cmd->reserved[1] = 0;
+
+	done_cb = ata_read_done;
+
+	/* send to fw */
+	req[0] = 0x0101; /* command */
+	req[1] = 0x1;    /* slot 0 */
+	req[2] = 0x0;    /* sact 0 */
+	ROLL(outband_prod, ROLL_LENGTH);
+	writel(sata_base+0x18, outband_prod);
+}
+
+static void ata_read_ncq(void)
+{
+	volatile uint32_t *req   = outband_mem + outband_prod*8;
+	uint8_t *fis             = tbl_mem;
+	struct ahci_cmd_hdr *cmd = cmd_slot_mem + 0;
+	struct ahci_sg *sg       = tbl_mem + 0x80;
+
+	uint32_t len = 512;
+	uint32_t lba = 0x0;
+
+	memset(fis, 0, 20);
+	fis[0] = 0x27;
+	fis[1] = 1<<7;
+	fis[2] = 0x60;
+
+	fis[4] = lba;
+	fis[5] = lba>> 8;
+	fis[6] = lba>>16;
+	fis[7] = (lba>>24) | 0xE0;
+
+	fis[12] = len>>(9+0);
+	fis[13] = len>>(9+8);
+	hexdump(fis, 20);
+
+	sg->addr         = tmem;
+	sg->addr_hi      = 0;
+	sg->reserved     = 0;
+	sg->flags_size   = len - 1;
+
+	cmd->opts        = (1<<16)|5;
+	cmd->status      = 0;
+	cmd->tbl_addr    = tbl_mem;
+	cmd->tbl_addr_hi = 0;
+	cmd->sg_cnt      = 0;
+	cmd->sg_offset   = 0;
+	cmd->reserved[0] = 0;
+	cmd->reserved[1] = 0;
+
+	done_cb = ata_read_done;
+
+	/* send to fw */
+	req[0] = 0x0101; /* command */
+	req[1] = 0x1;    /* slot 0 */
+	req[2] = 0x1;    /* sact 0 */
 	ROLL(outband_prod, ROLL_LENGTH);
 	writel(sata_base+0x18, outband_prod);
 }
@@ -335,6 +439,12 @@ int main(int argc, char *argv[])
 				  break;
 			case 'i': printf("Command Inquiry\n");
 				  ata_inquiry();
+				  break;
+			case 'r': printf("Command Read EXT\n");
+				  ata_read_ext();
+				  break;
+			case 'R': printf("Command Read NCQ\n");
+				  ata_read_ncq();
 				  break;
 			case 'd': printf(" out prod: %04x, %04x\n", outband_prod, *outband_cons);
 				  printf(" in  prod: %04x, %04x\n", *inband_prod, inband_cons);

@@ -10,14 +10,14 @@
 /*                                                                 */
 /*******************************************************************/
 
-_STACK_SIZE = DEFINED(_STACK_SIZE) ? _STACK_SIZE : 0x800;
-_HEAP_SIZE = DEFINED(_HEAP_SIZE) ? _HEAP_SIZE : 0x800;
+_STACK_SIZE = DEFINED(_STACK_SIZE) ? _STACK_SIZE : 0x2000;
+_HEAP_SIZE = DEFINED(_HEAP_SIZE) ? _HEAP_SIZE : 0x2000;
 
 /* Define Memories in the system */
 
 MEMORY
 {
-   bram : ORIGIN = 0x00000050, LENGTH = 0x00001FB0
+   bram : ORIGIN = 0x00000050, LENGTH = 0x00003FB0
    ddr  : ORIGIN = 0x20000000, LENGTH = 0x00100000
 }
 
