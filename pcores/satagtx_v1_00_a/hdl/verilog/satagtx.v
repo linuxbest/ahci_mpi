@@ -62,6 +62,7 @@ module satagtx (/*AUTOARG*/
    parameter C_FAMILY = "virtex5";
    parameter C_ENABLE = 1;
    parameter C_CHIPSCOPE = 0;
+   parameter C_SATA_SPEED = 2;
 
    input                GTXRESET_IN;
 
@@ -193,7 +194,10 @@ module satagtx (/*AUTOARG*/
 
 generate if (C_FAMILY == "virtex5")
 begin: v5_gtx_top
-   v5_gtx_top
+   v5_gtp_top #(
+	   .C_CHIPSCOPE  (C_CHIPSCOPE),
+	   .C_SATA_SPEED (C_SATA_SPEED)
+               )
      sata_gtx_phy(/*AUTOINST*/
 		  // Outputs
 		  .TXN0_OUT		(TXN0_OUT),
@@ -252,12 +256,14 @@ begin: v5_gtx_top
 // synopsys translate_off
    defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
 // synopsys translate_on
-   defparam sata_gtx_phy.C_CHIPSCOPE = C_CHIPSCOPE;
 
 end
 else if (C_FAMILY == "spartan6")
 begin: s6_gtp_top
-   s6_gtp_top
+   s6_gtp_top #(
+	   .C_CHIPSCOPE  (C_CHIPSCOPE),
+	   .C_SATA_SPEED (C_SATA_SPEED)
+               )
      sata_gtx_phy(/*AUTOINST*/
 		  // Outputs
 		  .TXN0_OUT		(TXN0_OUT),
@@ -317,7 +323,6 @@ begin: s6_gtp_top
 // synopsys translate_off
    defparam sata_gtx_phy.EXAMPLE_SIM_GTXRESET_SPEEDUP = 1;
 // synopsys translate_on
-   defparam sata_gtx_phy.C_CHIPSCOPE = C_CHIPSCOPE;
 
 end
 else if (C_FAMILY == "virtex6")

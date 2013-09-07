@@ -53,6 +53,7 @@ module satagtx_clk (/*AUTOARG*/
    tile0_plllkdet, tile0_gtpclkfb
    );
    parameter C_FAMILY = "virtex5";
+   parameter C_SATA_SPEED = 1;
    
    input TILE0_REFCLK_PAD_P_IN;
    input TILE0_REFCLK_PAD_N_IN;
@@ -150,12 +151,12 @@ begin
     );
     MGT_USRCLK_SOURCE_PLL #
     (
-	 .MULT                          (2),
-	 .DIVIDE                        (2),
+	 .MULT                          (C_SATA_SPEED == 2 ? 2 : 4),
+	 .DIVIDE                        (C_SATA_SPEED == 2 ? 2 : 4),
 	 .FEEDBACK                      ("CLKOUT0"),
-	 .CLK_PERIOD                    (3.333),
-	 .OUT0_DIVIDE                   (2),
-	 .OUT1_DIVIDE                   (8),
+	 .CLK_PERIOD                    (C_SATA_SPEED == 2 ? 3.333 : 6.667),
+	 .OUT0_DIVIDE                   (C_SATA_SPEED == 2 ? 2 : 4),
+	 .OUT1_DIVIDE                   (C_SATA_SPEED == 2 ? 8 : 16),
 	 .OUT2_DIVIDE                   (1),
 	 .OUT3_DIVIDE                   (1)
     )

@@ -81,7 +81,8 @@ module s6_gtpwizard_v1_11_tile #
     //
     parameter   TILE_PLL_SOURCE_0           = "PLL0",
     parameter   TILE_PLL_SOURCE_1           = "PLL1",
-    parameter   C_BYPASS_TXBUF              =  0
+    parameter   C_BYPASS_TXBUF              =  0,
+    parameter   C_SATA_SPEED                =  2
 )
 (
     //---------------------- Loopback and Powerdown Ports ----------------------
@@ -297,10 +298,10 @@ module s6_gtpwizard_v1_11_tile #
         .OOB_CLK_DIVIDER_0                      (6),
         .PLL_COM_CFG_0                          (24'h21680a),
         .PLL_CP_CFG_0                           (8'h00),
-        .PLL_RXDIVSEL_OUT_0                     (1),
+        .PLL_RXDIVSEL_OUT_0                     (C_SATA_SPEED == 2 ? 1 : 2),
         .PLL_SATA_0                             ("FALSE"),
         .PLL_SOURCE_0                           (TILE_PLL_SOURCE_0),
-        .PLL_TXDIVSEL_OUT_0                     (1),
+        .PLL_TXDIVSEL_OUT_0                     (C_SATA_SPEED == 2 ? 1 : 2),
         .PLLLKDET_CFG_0                         (3'b111),
 
        //
@@ -309,10 +310,10 @@ module s6_gtpwizard_v1_11_tile #
         .OOB_CLK_DIVIDER_1                      (6),
         .PLL_COM_CFG_1                          (24'h21680a),
         .PLL_CP_CFG_1                           (8'h00),
-        .PLL_RXDIVSEL_OUT_1                     (1),
+        .PLL_RXDIVSEL_OUT_1                     (C_SATA_SPEED == 2 ? 1 : 2),
         .PLL_SATA_1                             ("FALSE"),
         .PLL_SOURCE_1                           (TILE_PLL_SOURCE_1),
-        .PLL_TXDIVSEL_OUT_1                     (1),
+        .PLL_TXDIVSEL_OUT_1                     (C_SATA_SPEED == 2 ? 1 : 2),
         .PLLLKDET_CFG_1                         (3'b111),
         .PMA_COM_CFG_EAST                       (36'h000008000),
         .PMA_COM_CFG_WEST                       (36'h00000a000),
@@ -321,9 +322,9 @@ module s6_gtpwizard_v1_11_tile #
 
        //TX Interface Attributes
         .CLK_OUT_GTP_SEL_0                      ("TXOUTCLK0"),
-        .TX_TDCC_CFG_0                          (2'b11),
+        .TX_TDCC_CFG_0                          (C_SATA_SPEED == 2 ? 2'b11 : 2'b00),
         .CLK_OUT_GTP_SEL_1                      ("TXOUTCLK1"),
-        .TX_TDCC_CFG_1                          (2'b11),
+        .TX_TDCC_CFG_1                          (C_SATA_SPEED == 2 ? 2'b11 : 2'b00),
 
        //TX Buffer and Phase Alignment Attributes
         .PMA_TX_CFG_0                           (20'h80082),
@@ -346,10 +347,10 @@ module s6_gtpwizard_v1_11_tile #
         .COM_BURST_VAL_1                        (4'b1111),
 
        //RX Driver,OOB signalling,Coupling and Eq,CDR Attributes
-        .AC_CAP_DIS_0                           ("FALSE"),
+        .AC_CAP_DIS_0                           ("TRUE"),
         .OOBDETECT_THRESHOLD_0                  (3'b110),
         .PMA_CDR_SCAN_0                         (27'h6404040),
-        .PMA_RX_CFG_0                           (25'h05ce089),
+        .PMA_RX_CFG_0                           (C_SATA_SPEED == 2 ? 25'h05ce089 : 25'h05ce049),
         .PMA_RXSYNC_CFG_0                       (7'h00),
         .RCV_TERM_GND_0                         ("FALSE"),
         .RCV_TERM_VTTRX_0                       ("FALSE"),
@@ -357,10 +358,10 @@ module s6_gtpwizard_v1_11_tile #
         .TERMINATION_CTRL_0                     (5'b10100),
         .TERMINATION_OVRD_0                     ("FALSE"),
         .TX_DETECT_RX_CFG_0                     (14'h1832),
-        .AC_CAP_DIS_1                           ("FALSE"),
+        .AC_CAP_DIS_1                           ("TRUE"),
         .OOBDETECT_THRESHOLD_1                  (3'b110),
         .PMA_CDR_SCAN_1                         (27'h6404040),
-        .PMA_RX_CFG_1                           (25'h05ce089),
+        .PMA_RX_CFG_1                           (C_SATA_SPEED == 2 ? 25'h05ce089 : 25'h05ce049),
         .PMA_RXSYNC_CFG_1                       (7'h00),
         .RCV_TERM_GND_1                         ("FALSE"),
         .RCV_TERM_VTTRX_1                       ("FALSE"),

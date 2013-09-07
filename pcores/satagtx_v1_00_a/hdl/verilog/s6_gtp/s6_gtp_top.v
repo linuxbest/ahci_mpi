@@ -21,6 +21,7 @@ module s6_gtp_top (/*AUTOARG*/
    parameter EXAMPLE_SIM_GTXRESET_SPEEDUP = 0;
    parameter C_CHIPSCOPE = 0;
    parameter C_BYPASS_TXBUF = 1;
+   parameter C_SATA_SPEED = 1;
 `include "sata.v"
 //***********************************Ports Declaration*******************************
    input           GTXRESET_IN;
@@ -305,7 +306,8 @@ module s6_gtp_top (/*AUTOARG*/
         .WRAPPER_PLL_DIVSEL_REF_0               (1),
         .WRAPPER_PLL_DIVSEL_REF_1               (1),
         .WRAPPER_SIMULATION                     (EXAMPLE_SIM_GTXRESET_SPEEDUP),
-	.C_BYPASS_TXBUF                         (C_BYPASS_TXBUF)
+	.C_BYPASS_TXBUF                         (C_BYPASS_TXBUF),
+	.C_SATA_SPEED                           (C_SATA_SPEED)
     )
     rocketio_wrapper_i
     (
@@ -349,9 +351,9 @@ module s6_gtp_top (/*AUTOARG*/
         .TILE0_RXRESET0_IN              (phyreset0),
         .TILE0_RXRESET1_IN              (phyreset1),
         .TILE0_RXUSRCLK0_IN             (tile0_txusrclk0_i),
-        .TILE0_RXUSRCLK1_IN             (tile0_txusrclk1_i),
+        .TILE0_RXUSRCLK1_IN             (tile0_txusrclk0_i),
         .TILE0_RXUSRCLK20_IN            (tile0_txusrclk20_i),
-        .TILE0_RXUSRCLK21_IN            (tile0_txusrclk21_i),
+        .TILE0_RXUSRCLK21_IN            (tile0_txusrclk20_i),
         //----- Receive Ports - RX Driver,OOB signalling,Coupling and Eq.,CDR ------
         .TILE0_GATERXELECIDLE0_IN       (tied_to_ground_i),
         .TILE0_GATERXELECIDLE1_IN       (tied_to_ground_i),
@@ -440,7 +442,7 @@ begin
     // your protocol bypasses the TX Buffers
     s6_gtpwizard_v1_11_tx_sync #
     (
-        .PLL_DIVSEL_OUT   (1)
+        .PLL_DIVSEL_OUT   (C_SATA_SPEED == 2 ? 1 : 2)
     )
     tile0_txsync0_i 
     (
@@ -454,7 +456,7 @@ begin
     
     s6_gtpwizard_v1_11_tx_sync #
     (
-        .PLL_DIVSEL_OUT   (1)
+        .PLL_DIVSEL_OUT   (C_SATA_SPEED == 2 ? 1 : 2)
     )
     tile0_txsync1_i 
     (
