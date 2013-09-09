@@ -149,7 +149,7 @@ BEGIN xps_uartlite
  PORT TX = fpga_0_RS232_Uart_1_TX_pin
 END
 
-#BEGIN plbv46_pcie
+# BEGIN plbv46_pcie
 # PARAMETER INSTANCE = PCIe_Bridge
 # PARAMETER C_IPIFBAR_NUM = 3
 # PARAMETER C_INCLUDE_BAROFFSET_REG = 1
@@ -183,9 +183,8 @@ END
 # PORT TXN = fpga_0_PCIe_Bridge_TXN_pin
 # PORT TXP = fpga_0_PCIe_Bridge_TXP_pin
 # PORT MSI_request = net_gnd
-#END
-
-#BEGIN xps_ethernetlite
+# END
+# BEGIN xps_ethernetlite
 # PARAMETER INSTANCE = Ethernet_MAC
 # PARAMETER HW_VER = 4.00.a
 # PARAMETER C_BASEADDR = 0x81000000
@@ -203,8 +202,7 @@ END
 # PORT PHY_tx_data = fpga_0_Ethernet_MAC_PHY_tx_data_pin
 # PORT PHY_MDC = fpga_0_Ethernet_MAC_PHY_MDC_pin
 # PORT PHY_MDIO = fpga_0_Ethernet_MAC_PHY_MDIO_pin
-#END
-
+# END
 BEGIN mpmc
  PARAMETER INSTANCE = MCB_DDR3
  PARAMETER C_NUM_PORTS = 2
@@ -310,30 +308,30 @@ BEGIN sata
  PARAMETER C_SATA_CHIPSCOPE = 0
  PARAMETER C_XCL_CHIPSCOPE = 0
  PARAMETER C_NPI_CHIPSCOPE = 0
+ PARAMETER C_DEBUG_ENABLED = 1
  BUS_INTERFACE SDCR = DCR_bus_sata0
- PORT MPMC_Clk = clk_66_6667MHzPLL0
  BUS_INTERFACE MPMC_PIM = PIM1
  BUS_INTERFACE GTXBUS0 = gtxbus_0
  BUS_INTERFACE GTXBUS1 = gtxbus_1
-#BUS_INTERFACE GTXBUS2 = gtxbus_2
-#BUS_INTERFACE GTXBUS3 = gtxbus_3
+# BUS_INTERFACE GTXBUS2 = gtxbus_2
+# BUS_INTERFACE GTXBUS3 = gtxbus_3
  BUS_INTERFACE PORTA = sata_0_data_porta
  BUS_INTERFACE PORTB = sata_0_data_portb
- PARAMETER C_DEBUG_ENABLED = 1
  BUS_INTERFACE DEBUG = microblaze_1_mdm_bus
+ PORT MPMC_Clk = clk_66_6667MHzPLL0
  PORT DCR_Clk = DCR_Clk0
  PORT DCR_Rst = DCR_Rst0
-#PORT interrupt = ahci_0_interrupt
-#PORT sata_ledA0 = sata_led0
-#PORT sata_ledB0 = sata_led1
-#PORT sata_ledA1 = sata_led2
-#PORT sata_ledB1 = sata_led3
-#PORT sata_ledA2 = sata_led4
-#PORT sata_ledB2 = sata_led5
-#PORT sata_ledA3 = sata_led6
-#PORT sata_ledB3 = sata_led7
 END
 
+# PORT interrupt = ahci_0_interrupt
+# PORT sata_ledA0 = sata_led0
+# PORT sata_ledB0 = sata_led1
+# PORT sata_ledA1 = sata_led2
+# PORT sata_ledB1 = sata_led3
+# PORT sata_ledA2 = sata_led4
+# PORT sata_ledB2 = sata_led5
+# PORT sata_ledA3 = sata_led6
+# PORT sata_ledB3 = sata_led7
 BEGIN satagtx
  PARAMETER INSTANCE = gtx_0
  PARAMETER HW_VER = 1.00.a
@@ -341,25 +339,25 @@ BEGIN satagtx
  PARAMETER C_SATA_SPEED = 1
  BUS_INTERFACE GTXBUS0 = gtxbus_0
  BUS_INTERFACE GTXBUS1 = gtxbus_1
- PORT refclkout  = tile0_refclkout
- PORT plllkdet   = tile0_plllkdet
- PORT gtpclkfb   = tile0_gtpclkfb
- PORT refclk     = tile0_refclk
+ PORT refclkout = tile0_refclkout
+ PORT plllkdet = tile0_plllkdet
+ PORT gtpclkfb = tile0_gtpclkfb
+ PORT refclk = tile0_refclk
  PORT dcm_locked = refclkout_dcm0_locked
- PORT txusrclk0  = tile0_txusrclk0
+ PORT txusrclk0 = tile0_txusrclk0
  PORT txusrclk20 = tile0_txusrclk20
  PORT GTXRESET_IN = sys_periph_reset
  PORT RXN0_IN = RXN0_IN
  PORT RXP0_IN = RXP0_IN
- PORT TXN0_OUT= TXN0_OUT
- PORT TXP0_OUT= TXP0_OUT
+ PORT TXN0_OUT = TXN0_OUT
+ PORT TXP0_OUT = TXP0_OUT
  PORT RXN1_IN = RXN1_IN
  PORT RXP1_IN = RXP1_IN
- PORT TXN1_OUT= TXN1_OUT
- PORT TXP1_OUT= TXP1_OUT
+ PORT TXN1_OUT = TXN1_OUT
+ PORT TXP1_OUT = TXP1_OUT
 END
 
-#BEGIN satagtx
+# BEGIN satagtx
 # PARAMETER INSTANCE = gtx_1
 # PARAMETER HW_VER = 1.00.a
 # BUS_INTERFACE GTXBUS0 = gtxbus_2
@@ -377,8 +375,7 @@ END
 # PORT RXP1_IN = RXP3_IN
 # PORT TXN1_OUT= TXN3_OUT
 # PORT TXP1_OUT= TXP3_OUT
-#END
-
+# END
 BEGIN plbv46_dcr_bridge
  PARAMETER INSTANCE = plbv46_dcr_bridge_0
  PARAMETER HW_VER = 1.01.a
@@ -425,11 +422,12 @@ BEGIN satagtx_clk
  PARAMETER C_SATA_SPEED = 1
  PORT TILE0_REFCLK_PAD_P_IN = sata_0_GREFCLK_P
  PORT TILE0_REFCLK_PAD_N_IN = sata_0_GREFCLK_N
- PORT tile0_refclk  = tile0_refclk
- PORT tile0_refclkout =  tile0_refclkout
+ PORT tile0_refclk = tile0_refclk
+ PORT tile0_refclkout = tile0_refclkout
  PORT tile0_gtpclkfb = tile0_gtpclkfb
  PORT tile0_plllkdet = tile0_plllkdet
  PORT refclkout_dcm0_locked = refclkout_dcm0_locked
- PORT tile0_txusrclk0  = tile0_txusrclk0
+ PORT tile0_txusrclk0 = tile0_txusrclk0
  PORT tile0_txusrclk20 = tile0_txusrclk20
 END
+
