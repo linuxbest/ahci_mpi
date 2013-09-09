@@ -224,7 +224,7 @@ endgenerate
         else
           begin
              wr_en <= #1 1'b0;
-             txcs_rst <= #1'b0;
+             txcs_rst <= #1 1'b0;
           end
      end // always @ (posedge clk_75m)
 
