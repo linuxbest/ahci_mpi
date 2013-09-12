@@ -33,7 +33,7 @@
 \use_hyperref true
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
-\pdf_bookmarksopen false
+\pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 5
 \pdf_breaklinks false
 \pdf_pdfborder false
@@ -382,7 +382,7 @@ Overview
 
 \begin_layout Standard
 The SATAGTX is FPGA base SATA core physical layer, this module including
- host side oob state machine, (un)scramble logic, crc logic.
+ host side oob state machine.
 \end_layout
 
 \begin_layout Subsection
@@ -433,6 +433,37 @@ Spartan-6 FPGA GTP Transceivers (ug386.pdf)
 High-Level Block Diagram
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SATAGTX block diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Hardware
 \end_layout
@@ -450,7 +481,7 @@ Must simulation and verification with sata core.
 \end_layout
 
 \begin_layout Subsection
-Using the SATA in a System
+Using the SATAGTX in a System
 \end_layout
 
 \begin_layout Standard
@@ -459,6 +490,10 @@ Must using with sata core and satagtx clk module.
 
 \begin_layout Subsection
 Module Port Interface
+\end_layout
+
+\begin_layout Standard
+all signals sync into phyclk clock domain.
 \end_layout
 
 \begin_layout Standard
@@ -1702,12 +1737,28 @@ SATAGTX_CLK modules is clock module for SATAGTX.
 Features
 \end_layout
 
+\begin_layout Itemize
+support virtex5 FXT GTX
+\end_layout
+
+\begin_layout Itemize
+support spartan6 LXT GTP
+\end_layout
+
 \begin_layout Subsection
 Related Documentation
 \end_layout
 
+\begin_layout Standard
+None.
+\end_layout
+
 \begin_layout Subsection
 High-Level Block Diagram
+\end_layout
+
+\begin_layout Standard
+None.
 \end_layout
 
 \begin_layout Subsection
@@ -1723,7 +1774,7 @@ Simulation and Verification
 \end_layout
 
 \begin_layout Subsection
-Using the SATA in a System
+Using the SATAGTX_CLK in a System
 \end_layout
 
 \begin_layout Subsection
@@ -2202,7 +2253,7 @@ support MPMC NPI interface
 \end_layout
 
 \begin_layout Itemize
-support 4-port per module
+support up to 4-port
 \end_layout
 
 \begin_layout Itemize
@@ -2229,6 +2280,37 @@ Device Control Register Bus (DCR) v2.9 (v1.00a)
 High-Level Block Diagram
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SATA diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Hardware
 \end_layout
@@ -2239,6 +2321,39 @@ Timing Diagrams
 
 \begin_layout Subsection
 Simulation and Verification
+\end_layout
+
+\begin_layout Standard
+There are two testbenches associcated with SATA core, one is the sata_dma
+ as top level, one is whole system as top level.
+ The whole system simulation can generate from the EDK tools.
+ This section will only description the sata_dma testbench.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+compile edk library.
+\end_layout
+
+\begin_layout Standard
+For detail compile edk library please read xilinx documents.
+\end_layout
+
+\begin_layout LyX-Code
+compxlib -s mti_se -64bit -l all -arch all -lib all -w -exclude_superseded
+ -dir simlib
+\end_layout
+
+\begin_layout Subsubsection
+simulation.
+\end_layout
+
+\begin_layout LyX-Code
+cd pcore/sata_v1_00_a/hdl/sim/
+\end_layout
+
+\begin_layout LyX-Code
+vsim -do run.do
 \end_layout
 
 \begin_layout Subsection
