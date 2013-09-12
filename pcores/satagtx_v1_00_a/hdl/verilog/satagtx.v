@@ -328,7 +328,13 @@ end
 else if (C_FAMILY == "virtex6")
 begin
 end
-else if (C_FAMILY == "kirtex6")
+else if (C_FAMILY == "artix7")  // GTP
+begin
+end
+else if (C_FAMILY == "kirtex7") // GTX
+begin
+end
+else if (C_FAMILY == "virtex7") // GTH
 begin
 end
 endgenerate
