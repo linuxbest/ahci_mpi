@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.6
-# Date: Sat Sep 14 19:44:54 2013
+# Date: Sat Sep 14 21:15:24 2013
 #
 ##############################################################
 #
@@ -165,7 +165,7 @@ CSET gt0_val_port_pll1pd=false
 CSET gt0_val_port_qpllpd=false
 CSET gt0_val_port_rxbufreset=false
 CSET gt0_val_port_rxbufstatus=false
-CSET gt0_val_port_rxbyteisaligned=false
+CSET gt0_val_port_rxbyteisaligned=true
 CSET gt0_val_port_rxbyterealign=false
 CSET gt0_val_port_rxcdrhold=false
 CSET gt0_val_port_rxchariscomma=false
@@ -584,4 +584,4 @@ CSET use_gtz7=true
 MISC pkg_timestamp=2013-02-08T11:27:36Z
 # END Extra information
 GENERATE
-# CRC: 3bb148b3
+# CRC: 9ebdbc57
