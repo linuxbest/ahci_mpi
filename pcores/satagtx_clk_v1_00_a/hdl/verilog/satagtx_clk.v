@@ -80,13 +80,6 @@ module satagtx_clk (/*AUTOARG*/
     // This network is the highest performace (lowest jitter) option for providing clocks
     // to the GTX transceivers.
     
-    IBUFDS tile0_refclkbufds
-    (
-        .O                              (tile0_refclk), 
-        .I                              (TILE0_REFCLK_PAD_P_IN),
-        .IB                             (TILE0_REFCLK_PAD_N_IN)
-    );
-
     //--------------------------------- User Clocks ---------------------------
     
     // The clock resources in this section were added based on userclk source selections on
@@ -105,6 +98,12 @@ module satagtx_clk (/*AUTOARG*/
 generate
 if (C_FAMILY == "virtex5")
 begin
+    IBUFDS tile0_refclkbufds
+    (
+        .O                              (tile0_refclk), 
+        .I                              (TILE0_REFCLK_PAD_P_IN),
+        .IB                             (TILE0_REFCLK_PAD_N_IN)
+    );
     BUFG refclkout_dcm0_bufg
     (
         .I                              (tile0_refclkout),
@@ -126,6 +125,12 @@ begin
 end
 if (C_FAMILY == "spartan6")
 begin
+    IBUFDS tile0_refclkbufds
+    (
+        .O                              (tile0_refclk), 
+        .I                              (TILE0_REFCLK_PAD_P_IN),
+        .IB                             (TILE0_REFCLK_PAD_N_IN)
+    );     
     wire pll0_fb_in;
     wire pll0_fb_out;
     BUFIO2   #
@@ -173,8 +178,25 @@ begin
 	 .PLL_RESET_IN                  (refclkout_dcm0_reset)
     );
 end
+if (C_FAMILY == "kirtex7")
+begin
+    IBUFDS_GTE2 tile0_refclkbufds
+    (
+        .O                              (tile0_refclk), 
+        .I                              (TILE0_REFCLK_PAD_P_IN),
+        .IB                             (TILE0_REFCLK_PAD_N_IN)
+    );     
+    BUFG refclkout_dcm0_bufg
+    (
+        .I                              (tile0_refclkout),
+        .O                              (tile0_refclkout_to_dcm)
+    );
+   assign tile0_txusrclk20 = tile0_refclkout_to_dcm;
+   assign tile0_txusrclk0  = tile0_refclkout_to_dcm;
+   assign refclkout_dcm0_locked = 1'b1;
+end   
 endgenerate
-
+   
     /* synthesis attribute keep of tile0_txusrclk0  is "true" */
     /* synthesis attribute keep of tile0_txusrclk20 is "true" */
     /* synthesis attribute keep of tile0_refclk     is "true" */
