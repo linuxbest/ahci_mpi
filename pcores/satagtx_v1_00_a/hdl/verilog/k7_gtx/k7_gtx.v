@@ -348,30 +348,6 @@
     assign tied_to_vcc_i                = 1'b1;
     assign tied_to_vcc_vec_i            = 8'hff;
 
-
-    gtwizard_v2_6_GT_USRCLK_SOURCE gt_usrclk_source
-   (
-    .Q0_CLK1_GTREFCLK_PAD_N_IN  (Q0_CLK1_GTREFCLK_PAD_N_IN),
-    .Q0_CLK1_GTREFCLK_PAD_P_IN  (Q0_CLK1_GTREFCLK_PAD_P_IN),
-    .Q0_CLK1_GTREFCLK_OUT       (q0_clk1_refclk_i),
- 
-    .GT0_TXUSRCLK_OUT    (gt0_txusrclk_i),
-    .GT0_TXUSRCLK2_OUT   (gt0_txusrclk2_i),
-    .GT0_TXOUTCLK_IN     (gt0_txoutclk_i),
-    .GT0_RXUSRCLK_OUT    (gt0_rxusrclk_i),
-    .GT0_RXUSRCLK2_OUT   (gt0_rxusrclk2_i),
- 
- 
-    .GT1_TXUSRCLK_OUT    (gt1_txusrclk_i),
-    .GT1_TXUSRCLK2_OUT   (gt1_txusrclk2_i),
-    .GT1_TXOUTCLK_IN     (gt1_txoutclk_i),
-    .GT1_RXUSRCLK_OUT    (gt1_rxusrclk_i),
-    .GT1_RXUSRCLK2_OUT   (gt1_rxusrclk2_i),
- 
-    .DRPCLK_IN (DRP_CLK_IN),
-    .DRPCLK_OUT(drpclk_in_i)
-);
-
     //***********************************************************************//
     //                                                                       //
     //--------------------------- The GT Wrapper ----------------------------//
@@ -394,7 +370,7 @@
     (
         .SYSCLK_IN                      (drpclk_in_i),
         .SOFT_RESET_IN                  (tied_to_ground_i),
-        .DONT_RESET_ON_DATA_ERROR_IN    (tied_to_ground_i),
+	.DONT_RESET_ON_DATA_ERROR_IN    (tied_to_ground_i),
         .GT0_TX_FSM_RESET_DONE_OUT      (gt0_txfsmresetdone_i),
         .GT0_RX_FSM_RESET_DONE_OUT      (gt0_rxfsmresetdone_i),
         .GT0_DATA_VALID_IN              (gt0_track_data_i),
