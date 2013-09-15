@@ -20,3 +20,11 @@ lib satagtx_v1_00_a s6_gtp/s6_gtp_top verilog
 lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11 verilog
 lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tile verilog
 lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tx_sync verilog
+
+lib satagtx_v1_00_a k7_gtx/k7_gtx_top.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_init.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_gt.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_sync_block.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_tx_startup_fsm.v verilog
+lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_rx_startup_fsm.v verilog
