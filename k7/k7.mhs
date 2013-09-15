@@ -52,8 +52,8 @@
 # PORT fpga_0_MCB_DDR3_mcbx_dram_ddr3_rst_pin = fpga_0_MCB_DDR3_mcbx_dram_ddr3_rst_pin, DIR = O
 # PORT fpga_0_MCB_DDR3_rzq_pin = fpga_0_MCB_DDR3_rzq_pin, DIR = IO
 # PORT fpga_0_MCB_DDR3_zio_pin = fpga_0_MCB_DDR3_zio_pin, DIR = IO
- PORT fpga_0_clk_1_sys_clk_p_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = P, CLK_FREQ = 32000000
- PORT fpga_0_clk_1_sys_clk_n_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = N, CLK_FREQ = 32000000
+ PORT fpga_0_clk_1_sys_clk_p_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = P, CLK_FREQ = 150000000
+ PORT fpga_0_clk_1_sys_clk_n_pin = CLK_S, DIR = I, SIGIS = CLK, DIFFERENTIAL_POLARITY = N, CLK_FREQ = 150000000
  PORT fpga_0_rst_1_sys_rst_pin = sys_rst_s, DIR = I, SIGIS = RST, RST_POLARITY = 1
 # PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_P_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = P
 # PORT fpga_0_PCIe_Diff_Clk_IBUF_DS_N_pin = PCIe_Diff_Clk, DIR = I, DIFFERENTIAL_POLARITY = N
@@ -253,7 +253,7 @@ END
 
 BEGIN clock_generator
  PARAMETER INSTANCE = clock_generator_0
- PARAMETER C_CLKIN_FREQ = 32000000
+ PARAMETER C_CLKIN_FREQ = 150000000
  PARAMETER C_CLKOUT0_FREQ = 640000000
  PARAMETER C_CLKOUT0_PHASE = 0
  PARAMETER C_CLKOUT0_GROUP = PLLE0
