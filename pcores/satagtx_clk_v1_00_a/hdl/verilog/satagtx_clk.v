@@ -178,7 +178,7 @@ begin
 	 .PLL_RESET_IN                  (refclkout_dcm0_reset)
     );
 end
-if (C_FAMILY == "kirtex7")
+if (C_FAMILY == "kintex7")
 begin
     IBUFDS_GTE2 tile0_refclkbufds
     (

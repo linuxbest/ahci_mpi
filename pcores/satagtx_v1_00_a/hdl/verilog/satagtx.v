@@ -332,7 +332,7 @@ end
 else if (C_FAMILY == "artix7")  // GTP
 begin
 end
-else if (C_FAMILY == "kirtex7") // GTX
+else if (C_FAMILY == "kintex7") // GTX
 begin: k7_gtx_top
      k7_gtx_top #(
 	   .C_CHIPSCOPE  (C_CHIPSCOPE),
