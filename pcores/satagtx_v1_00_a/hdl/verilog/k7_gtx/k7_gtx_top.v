@@ -12,7 +12,7 @@ module k7_gtx_top (/*AUTOARG*/
    gtx_txdata1, gtx_txdatak1, gtx_rxdata1, gtx_rxdatak1, oob2dbg0,
    oob2dbg1,
    // Inputs
-   GTXRESET_IN, RXN0_IN, RXP0_IN, RXN1_IN, RXP1_IN, refclk,
+   GTXRESET_IN, sys_clk, RXN0_IN, RXP0_IN, RXN1_IN, RXP1_IN, refclk,
    dcm_locked, txusrclk0, txusrclk20, txdata_fis0, tx_charisk_fis0,
    phyreset0, phyclk0, StartComm0, gtx_tune0, txdata_fis1,
    tx_charisk_fis1, phyreset1, phyclk1, StartComm1, gtx_tune1,
@@ -22,7 +22,8 @@ module k7_gtx_top (/*AUTOARG*/
    parameter C_CHIPSCOPE = 0;
    parameter C_BYPASS_TXBUF = 1;
    parameter C_SATA_SPEED = 1;
-   
+
+   parameter EXAMPLE_SIM_GTRESET_SPEEDUP = EXAMPLE_SIM_GTXRESET_SPEEDUP;
    parameter EXAMPLE_SIMULATION = EXAMPLE_SIM_GTXRESET_SPEEDUP;
    parameter STABLE_CLOCK_PERIOD = 6;
    parameter EXAMPLE_USE_CHIPSCOPE = 0;
@@ -89,6 +90,18 @@ module k7_gtx_top (/*AUTOARG*/
    output [127:0]  oob2dbg0;
    output [127:0]  oob2dbg1;
 
+   wire [1:0] RXP_IN;
+   wire [1:0] RXN_IN;
+   wire [1:0] TXP_OUT;
+   wire [1:0] TXN_OUT;
+   assign RXP_IN[0] = RXP0_IN;
+   assign RXN_IN[0] = RXN0_IN;
+   assign RXP_IN[1] = RXP1_IN;
+   assign RXN_IN[1] = RXN1_IN;
+   assign TXP0_OUT = TXP_OUT[0];
+   assign TXN0_OUT = TXN_OUT[0];
+   assign TXP1_OUT = TXP_OUT[1];
+   assign TXN1_OUT = TXP_OUT[1];
 //////////////////////////////////////////////////////////////////////////////
 //************************** Register Declarations ****************************
 

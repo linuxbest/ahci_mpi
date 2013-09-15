@@ -25,6 +25,14 @@ vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/s6_gtp/s6_gtpwizard_v1_11.v
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/s6_gtp/s6_gtpwizard_v1_11_tile.v
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/s6_gtp/s6_gtpwizard_v1_11_tx_sync.v
 
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/k7_gtx_top.v  +incdir+${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6_init.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6_gt.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6_tx_startup_fsm.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6_rx_startup_fsm.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/k7_gtx/gtwizard_v2_6_sync_block.v
+
 vlog ${TOPDIR}/sata_ip_sim/device_sim.v
 vlog ${TOPDIR}/sata_ip_sim/sata_device/phy_if_gtp.v
 vlog ${TOPDIR}/sata_ip_sim/sata_device/shdd_model_phy.v

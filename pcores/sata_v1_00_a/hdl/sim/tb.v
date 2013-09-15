@@ -99,6 +99,9 @@ module tb;
    reg MPMC_Clk0;
    wire MPMC_Rst0;
    
+   reg sys_clk = 0;
+   reg sys_rst = 1;
+   
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    wire			CommInit0;		// From gtx_0 of satagtx.v
@@ -217,6 +220,7 @@ module tb;
 	    .gtx_rxdatak1		(gtx_rxdatak1[3:0]),
 	    // Inputs
 	    .GTXRESET_IN		(GTXRESET_IN),
+	    .sys_clk			(sys_clk),
 	    .RXN0_IN			(RXN0_IN),
 	    .RXP0_IN			(RXP0_IN),
 	    .RXN1_IN			(RXN1_IN),
@@ -423,8 +427,6 @@ module tb;
 	   .tile0_refclkout(refclkout),
 	   .tile0_plllkdet(plllkdet));
 
-   reg sys_clk = 0;
-   reg sys_rst = 1;
    assign sys_clk0 = sys_clk;
    assign sys_clk1 = sys_clk;
    assign sys_rst0 = sys_rst;
