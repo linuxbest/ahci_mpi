@@ -1,0 +1,161 @@
+###############################################################################
+##
+## (c) Copyright 2004-2012 Xilinx, Inc. All rights reserved.
+##
+## This file contains confidential and proprietary information
+## of Xilinx, Inc. and is protected under U.S. and 
+## international copyright and other intellectual property
+## laws.
+##
+## DISCLAIMER
+## This disclaimer is not a license and does not grant any
+## rights to the materials distributed herewith. Except as
+## otherwise provided in a valid license issued to you by
+## Xilinx, and to the maximum extent permitted by applicable
+## law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+## WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+## AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+## BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+## INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+## (2) Xilinx shall not be liable (whether in contract or tort,
+## including negligence, or under any other theory of
+## liability) for any loss or damage of any kind or nature
+## related to, arising under or in connection with these
+## materials, including for any direct, or any indirect,
+## special, incidental, or consequential loss or damage
+## (including loss of data, profits, goodwill, or any type of
+## loss or damage suffered as a result of any action brought
+## by a third party) even if such damage or loss was
+## reasonably foreseeable or Xilinx had been advised of the
+## possibility of the same.
+##
+## CRITICAL APPLICATIONS
+## Xilinx products are not designed or intended to be fail-
+## safe, or for use in any application requiring fail-safe
+## performance, such as life-support or safety devices or
+## systems, Class III medical devices, nuclear facilities,
+## applications related to the deployment of airbags, or any
+## other applications that could lead to death, personal
+## injury, or severe property or environmental damage
+## (individually and collectively, "Critical
+## Applications"). Customer assumes the sole risk and
+## liability of any use of Xilinx products in Critical
+## Applications, subject only to applicable laws and
+## regulations governing limitations on product liability.
+##
+## THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+## PART OF THIS FILE AT ALL TIMES.
+##
+###############################################################################
+##
+## Name     : microblaze
+## Desc     : Peripheral Analyze Order
+##
+###############################################################################
+
+lib microblaze_v8_50_b microblaze_types_pkg vhdl
+lib microblaze_v8_50_b microblaze_types_pkg_body vhdl
+lib microblaze_v8_50_b microblaze_isa_be_pkg vhdl
+lib microblaze_v8_50_b microblaze_primitives vhdl
+lib microblaze_v8_50_b mux_bus vhdl
+lib microblaze_v8_50_b parity vhdl
+lib microblaze_v8_50_b comparator vhdl
+lib microblaze_v8_50_b carry_and vhdl
+#lib microblaze_v8_50_b carry_and_or vhdl
+lib microblaze_v8_50_b carry_or vhdl
+#lib microblaze_v8_50_b carry_or_vec vhdl
+lib microblaze_v8_50_b carry_equal vhdl
+lib microblaze_v8_50_b carry_compare vhdl
+lib microblaze_v8_50_b carry_compare_mask vhdl
+lib microblaze_v8_50_b carry_compare_const vhdl
+#lib microblaze_v8_50_b all_zero_detect vhdl
+#lib microblaze_v8_50_b all_one_detect vhdl
+lib microblaze_v8_50_b find_first_bit vhdl
+#lib microblaze_v8_50_b mux2_8 vhdl
+lib microblaze_v8_50_b mux4_8 vhdl
+lib microblaze_v8_50_b mux4 vhdl
+lib microblaze_v8_50_b vec_mux vhdl
+#lib microblaze_v8_50_b add_sub_with_const vhdl
+#lib microblaze_v8_50_b subtract_with_borrow vhdl
+lib microblaze_v8_50_b gen_srlfifo vhdl
+lib microblaze_v8_50_b alu_bit vhdl
+lib microblaze_v8_50_b alu vhdl
+lib microblaze_v8_50_b msr_reg_bit vhdl
+lib microblaze_v8_50_b msr_reg vhdl
+lib microblaze_v8_50_b msr_reg_gti vhdl
+lib microblaze_v8_50_b dsp_module vhdl
+lib microblaze_v8_50_b mul_unit vhdl
+lib microblaze_v8_50_b div_unit vhdl
+lib microblaze_v8_50_b div_unit_gti vhdl
+lib microblaze_v8_50_b operand_select_bit vhdl
+lib microblaze_v8_50_b operand_select vhdl
+lib microblaze_v8_50_b operand_select_gti vhdl
+lib microblaze_v8_50_b pc_bit vhdl
+lib microblaze_v8_50_b pc_module vhdl
+lib microblaze_v8_50_b pc_module_gti vhdl
+lib microblaze_v8_50_b prefetch_buffer vhdl
+lib microblaze_v8_50_b prefetch_buffer_gti vhdl
+lib microblaze_v8_50_b register_file_bit vhdl
+lib microblaze_v8_50_b register_file vhdl
+lib microblaze_v8_50_b register_file_gti vhdl
+lib microblaze_v8_50_b count_leading_zero vhdl
+lib microblaze_v8_50_b shift_logic_bit vhdl
+lib microblaze_v8_50_b shift_logic vhdl
+lib microblaze_v8_50_b shift_logic_gti vhdl
+lib microblaze_v8_50_b zero_detect vhdl
+lib microblaze_v8_50_b zero_detect_gti vhdl
+lib microblaze_v8_50_b barrel_shifter vhdl
+lib microblaze_v8_50_b barrel_shifter_gti vhdl
+lib microblaze_v8_50_b wb_mux_bit_gti vhdl
+lib microblaze_v8_50_b wb_mux_gti vhdl
+lib microblaze_v8_50_b data_read_steering vhdl
+lib microblaze_v8_50_b byte_doublet_handle vhdl
+lib microblaze_v8_50_b byte_doublet_handle_gti vhdl
+lib microblaze_v8_50_b data_flow_logic_gti vhdl
+lib microblaze_v8_50_b fsl_module vhdl
+lib microblaze_v8_50_b streaming_axi vhdl
+lib microblaze_v8_50_b exception_registers vhdl
+lib microblaze_v8_50_b exception_registers_gti vhdl
+lib microblaze_v8_50_b fpu_addsub vhdl
+lib microblaze_v8_50_b fpu_div vhdl
+lib microblaze_v8_50_b fpu_mul vhdl
+lib microblaze_v8_50_b fpu_conv vhdl
+lib microblaze_v8_50_b fpu_sqrt vhdl
+lib microblaze_v8_50_b fpu vhdl
+lib microblaze_v8_50_b pvr vhdl
+lib microblaze_v8_50_b result_mux_bit vhdl
+lib microblaze_v8_50_b result_mux vhdl
+lib microblaze_v8_50_b stack_protection vhdl
+lib microblaze_v8_50_b data_flow vhdl
+lib microblaze_v8_50_b data_flow_gti vhdl
+lib microblaze_v8_50_b jump_logic_gti vhdl
+lib microblaze_v8_50_b decode vhdl
+lib microblaze_v8_50_b decode_gti vhdl
+lib microblaze_v8_50_b address_hit vhdl
+lib microblaze_v8_50_b address_data_hit vhdl
+lib microblaze_v8_50_b debug vhdl
+lib microblaze_v8_50_b iplb_interface vhdl
+lib microblaze_v8_50_b dplb_interface vhdl
+lib microblaze_v8_50_b daxi_interface vhdl
+lib microblaze_v8_50_b iaxi_interface vhdl
+lib microblaze_v8_50_b ram_module vhdl
+lib microblaze_v8_50_b victim_cache vhdl
+lib microblaze_v8_50_b stream_cache vhdl
+lib microblaze_v8_50_b cache_interface vhdl
+lib microblaze_v8_50_b icache vhdl
+lib microblaze_v8_50_b dcache vhdl
+lib microblaze_v8_50_b dcache_gti vhdl
+lib microblaze_v8_50_b cache_valid_bit_detect vhdl
+lib microblaze_v8_50_b cachehit_detect vhdl
+lib microblaze_v8_50_b dcache_wb vhdl
+lib microblaze_v8_50_b instr_mux vhdl
+lib microblaze_v8_50_b read_data_mux_gti vhdl
+lib microblaze_v8_50_b interrupt_mode_converter vhdl
+lib microblaze_v8_50_b mmu_types_pkg vhdl
+lib microblaze_v8_50_b mmu_tlb vhdl
+lib microblaze_v8_50_b mmu_utlb_ram vhdl
+lib microblaze_v8_50_b mmu_utlb vhdl
+lib microblaze_v8_50_b mmu vhdl
+
+lib microblaze_v8_50_b microblaze_core vhdl
+lib microblaze_v8_50_b microblaze vhdl

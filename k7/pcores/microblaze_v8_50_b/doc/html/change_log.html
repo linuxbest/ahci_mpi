@@ -1,0 +1,5206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+  <title>Change log for MicroBlaze, 8.50.b</title>
+  <link href="../../../../../../doc/usenglish/css/xilhtml.css" rel="stylesheet" type="text/css">
+  <style>
+		P.Level1Heading {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1.05em;
+			margin-bottom: 0em;
+			margin-top: 0em;
+		}
+		P.Level2Heading  {
+			font-weight: bold;
+			margin-top: 2em;
+			margin-bottom: 0em;
+		}
+		P.Level3Heading {
+			font-weight: bold;
+			margin-top: 2em;
+		}
+		.GreyBackground {
+			background-color:#CCCCCC;
+		}
+		.PreformatFont  {
+			font-family: Fixed, Mono, Courier New, Courier;
+			font-size: .95em;
+		}
+	</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Location msdt:dt="string">Sweden</mso:Location>
+<mso:Description0 msdt:dt="string"></mso:Description0>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<h3 class="PageHeader">Xilinx Processor IP Library</h3>
+<h1>Change log for MicroBlaze<br>
+</h1>
+<hr class="whs1">
+<table style="vertical-align: top; text-align: left;" border="0"
+ cellpadding="1" cellspacing="0">
+  <tbody>
+<!-- BEGIN CHANGELOG FOR New core version --><!--spacer--><tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.50.b, introduced in 14.6</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.6 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Avoid stall for Stack Protection Violation exception caused by a cache miss memory access [CR<711085>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.50.a, v8.40.b, v8.40.a, v8.30.a, v8.20.b, v8.20.a, v8.10.d, v8.10.c, v8.10.b, v8.10.a.<br>
+            </li>
+            <li>
+              Can only occur when stack protection and area optimization are enabled, and write-back data cache is not used.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent spurious write to SHR and SLR in rare cases when exception occurs.<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.50.a, v8.40.b, v8.40.a, v8.30.a, v8.20.b, v8.20.a, v8.10.d, v8.10.c, v8.10.b, v8.10.a<br>
+            </li>
+            <li>
+              Can only occur when stack protection and area optimization are enabled<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent reading wrong data for multiple outstanding non-cacheable accesses via CacheLink (XCL) [CR<720388>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.50.a<br>
+            </li>
+            <li>
+              Can only occur when using write-through data cache, performance version and CacheLink data cache interface.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.6 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.6 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.6 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.50.b to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added new families in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Reset, Interrupts, Exceptions, and Break:<br>
+          <ul>
+            <li>
+              Updated description of compiler attributes.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Fault Tolerance:<br>
+          <ul>
+            <li>
+              Updated reference to LMB BRAM Interface Controller documentation.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added new families to Table 3-18.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Clarified MSRCLR and MSRSET pipeline stall behavior.<br>
+            </li>
+            <li>
+              Clarified Branch Target Cache clear behavior for BRI and MBAR.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.50.a, introduced in 14.5</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.5 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Cache coherency based on AXI Coherency Extension (ACE)<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Fixed issue with swapb for area version when C_USE_PCMP_INSTR = 0 [CR<695596>]<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.40.b, v8.40.a, v8.30.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.5 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added ACE bus interface signals<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.5 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added DRC to check that cache addresses are valid for AXI and ACE [CR<683297>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.5 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Updated block diagram to add ACE interfaces.<br>
+            </li>
+            <li>
+              Added v8.50 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.50.a to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Updated interface list and block diagram to add ACE interfaces.<br>
+            </li>
+            <li>
+              Added new ACE ports to Table 3-1.<br>
+            </li>
+            <li>
+              Updated AXI4 description to include ACE.<br>
+            </li>
+            <li>
+              Updated description of parameter C_INTERCONNECT in Table 3-15.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.40.b, introduced in 14.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Removed support for qvirtex7l and virtex7l<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Updated Table 3-18 to remove qvirtex7l and virtex7l.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Updated LWX and SWX to document restrictions for subsequent instruction.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.40.b, introduced in 14.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Relocatable base vectors<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Avoid timing issues due to unused flip-flops connecting clock to data [CR<663376>]<br>
+          <ul>
+            <li>
+              Version that have this issue: v8.40.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that memory barrier waits for adjacent data cache access in all cases [CR<675207>]<br>
+          <ul>
+            <li>
+              Version that have this issue: v8.40.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added C_BASE_VECTORS parameter<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Updated v8.40 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.40.b to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Privileged Instructions:<br>
+          <ul>
+            <li>
+              Added effect of C_BASE_VECTORS to description.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Reset, Interrupts, Exceptions, and Break<br>
+          <ul>
+            <li>
+              Added effect of C_BASE_VECTORS to description.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added C_BASE_VECTORS parameter description to Table 3-17.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Interrupt and Exception Handling<br>
+          <ul>
+            <li>
+              Added effect of C_BASE_VECTORS to description.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Corrected MBAR pseudo-code.<br>
+            </li>
+            <li>
+              Updated BRKI and BRALID descriptions with effect of C_BASE_VECTORS.<br>
+            </li>
+            <li>
+              Corrected WIC notes.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.40.a, introduced in 14.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Sleep mode for power reduction<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Remove inadvertent dependence on C_USE_PCMP_INSTR for byte and halfword swap instructions [CR<662339>]<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.30.a<br>
+            </li>
+            <li>
+              Can only occur when area optimization is not enabled<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added ports Sleep, Wakeup, and Dbg_Wakeup<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Added v8.40 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.40.a to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Debug and Trace<br>
+          <ul>
+            <li>
+              Added description of debug signals [CR<656143>]<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added ports Sleep, Wakeup and Dbg_Wakeup to Table 3-1.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Updated MBAR description, including SLEEP instruction description and delay slot restriction<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.30.a, introduced in 14.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Low-latency Interrupt Mode<br>
+        </li>
+        <li>
+          Support for qartix7, qartix7l, qkintex7, qkintex7l, qvirtex7, qvirtex7l, qzynq, and azynq families<br>
+        </li>
+        <li>
+          Byte and halfword swap instructions<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Ensure that MBAR is treated as a NOP when the data cache is not implemented (C_USE_DCACHE = 0).<br>
+          <ul>
+            <li>
+              Versions that have this issue: v8.20.b, v8.20.a, v8.10.a.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Generate Instruction Bus Error exception correctly when an instruction read error occurs on M_AXI_IC.<br>
+          <ul>
+            <li>
+              Only occurs when C_INTERCONNECT is set to 2 and C_ICACHE_ALWAYS_USED is set to 1 with the cache turned off.<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.20.b, v8.20.a, v8.10.a, v8.00.b, v8.00.a.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Directly use DSP48E1 for architectures that support it to avoid synthesis warning messages [CR<637301>].<br>
+          <ul>
+            <li>
+              Only applies when C_USE_HW_MUL is greater than 0 or C_USE_FPU is greater than 0.<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.20.b, v8.20.a, v8.10.a, v8.00.b, v8.00.a, v7.30.b, v7.30.a, v7.20.d, v7.20.c, v7.20.b.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed issue with interrupts taken twice for interrupted blocking GET, PUT, GETD, PUTD instructions.<br>
+          <ul>
+            <li>
+              Only occurs when area optimization is enabled, when C_INTERRUPT_IS_EDGE is set and when C_USE_EXTENDED_FSL_INSTR is enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.20.b, v8.20.a, v8.10.a, v8.00.b, v8.00.a, v7.30.b, v7.30.a, v7.20.d, v7.20.c, v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added INTERRUPT bus with new ports Interrupt_Address and Interrupt_Ack to support low-latency interrupt mode.<br>
+        </li>
+        <li>
+          Changed parameter C_USE_INTERRUPT to add low-latency interrupt mode.<br>
+        </li>
+        <li>
+          Added AXI Stream interfaces to clock input [CR<640767>].<br>
+        </li>
+        <li>
+          Added parameter C_USE_REORDER_INSTR to allow disabling of reversed load, reversed store, and swap instructions.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Set C_USE_INTERRUPT to support low-latency interrupt mode.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">14.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Added v8.30 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.30.a to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added C_USE_REORDER_INSTR parameter in PVR 0.<br>
+            </li>
+            <li>
+              Added new families in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Virtual Memory Management:<br>
+          <ul>
+            <li>
+              Added information about behavior of unimplemented zones.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Reset, Interrupts, Exception and Break:<br>
+          <ul>
+            <li>
+              Updated interrupt description with low-latency interrupt mode.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added new ports Interrupt_Address and Interrupt_ack to Table 3-1.<br>
+            </li>
+            <li>
+              Updated description of parameter C_USE_INTERRUPT in Table 3-15.<br>
+            </li>
+            <li>
+              Added description of parameter C_USE_REORDER_INSTR in Table 3-15.<br>
+            </li>
+            <li>
+              Added Table 3-16 to list supported families.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Interrupt and Exception Handling<br>
+          <ul>
+            <li>
+              Updated interrupt description with low-latency interrupt mode.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Added low-latency interrupt description to MSRSET, MTS and RTID.<br>
+            </li>
+            <li>
+              Corrected description of PUT extended instructions to also include test.<br>
+            </li>
+            <li>
+              Updated description of reversed load and reversed store instructions with effect of C_USE_REORDER_INSTR parameter.<br>
+            </li>
+            <li>
+              Added description of SWAPB and SWAPH instructions<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.20.b, introduced in 13.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Support for aartix7 and artix7l families<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected recognition of virtex7l family [CR<639120>].<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.20.b to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added new families in PVR.<br>
+            </li>
+            <li>
+              Clarified description of parameters C_ICACHE_ALWAYS_USED and C_DCACHE_ALWAYS_USED.<br>
+            </li>
+            <li>
+              Document that C_ENDIANNESS can be overridden.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added description of parameters C_ICACHE_ALWAYS_USED and C_DCACHE_ALWAYS_USED for AXI [CR<632879>].<br>
+            </li>
+            <li>
+              Added new families in Table 3-15.<br>
+            </li>
+            <li>
+              Clarified description of parameters C_ICACHE_ALWAYS_USED and C_DCACHE_ALWAYS_USED in Table 3-15.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Clarified GET, GETD, PUT, and PUTD behavior.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.20.a, introduced in 13.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Changed parameter C_ENDIANNESS to allow user override [CR<624380>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added DRC to ensure that clocks connected to MicroBlaze and LMB cores are identical [CR<623467>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.20.a, introduced in 13.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Changed cache connection DRC to take lockstep slave into account<br>
+        </li>
+        <li>
+          Improved DRC message when cacheable segment size is less than cache size [CR<615417>]<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 2 - Self-modifying Code<br>
+          <ul>
+            <li>
+              New chapter.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Special Purpose Registers<br>
+          <ul>
+            <li>
+              Added mnemonics for parameters C_ENDIANNESS, C_PVR, C_USE_FPU, C_USE_HW_MUL, and C_USE_MMU [CR<615165>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Debug and Trace<br>
+          <ul>
+            <li>
+              Corrected debug feature description.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - CacheLink Signal Interface<br>
+          <ul>
+            <li>
+              Clarified when entire cache lines become valid with write-back cache.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added mnemonics for C_USE_FPU [CR<615165>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 5 - Instructions:<br>
+          <ul>
+            <li>
+              Improved MBAR description.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.20.a, introduced in 13.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Lockstep support for high integrity applications<br>
+        </li>
+        <li>
+          Support for qvirtex5, artix7 and zynq families<br>
+        </li>
+        <li>
+          Configurable use of FPGA primitives<br>
+        </li>
+        <li>
+          Data width 512 bits for AXI cache interconnects<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected XCL read access protocol to avoid an incorrect repeated access in some cases [CR<591285>].<br>
+          <ul>
+            <li>
+              Can only occur when C_DCACHE_USE_WRITEBACK is set and C_INTERCONNECT is set to 1<br>
+            </li>
+            <li>
+              Only affects systems using the XPS_MCH_EMC memory controller <br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.b, v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that the LMB address strobe is always correctly asserted [CR<606664>]<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled, when C_FAULT_TOLERANT is set, and C_DCACHE_USE_WRITEBACK is not set<br>
+            </li>
+            <li>
+              Only occurs when a WDC instruction is immediately followed by an LMB memory load/store instruction<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.10.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Avoid stall when executing memory barrier instruction [CR<608836>]<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled, PLBv46 interconnect is used, and C_DCACHE_USE_WRITEBACK is not set<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.10.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected synthesis error when Branch Target Cache is set and MMU Protection is enabled [CR<612255>]<br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.30.a, v7.30.b, v8.00.a, v8.00.b, v8.10.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added parameter C_LOCKSTEP_SLAVE and lockstep ports<br>
+        </li>
+        <li>
+          Added parameter C_AVOID_PRIMITIVES for configurable use of FPGA primitives<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Set interconnects based on existing MicroBlaze instances, if any, when adding a new instance [CR<588251>]<br>
+        </li>
+        <li>
+          Added DRC to disallow use of PLBv46 with 7-Series or later families<br>
+        </li>
+        <li>
+          Added DRC to check lockstep slave parameters<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Added v8.20 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Special Purpose Registers<br>
+          <ul>
+            <li>
+              Clarified description of Machine Status Register FSL bit [CR<608401>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Privileged Instructions<br>
+          <ul>
+            <li>
+              Added description of C_MMU_PRIVILEGED_INSTR usage.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache:<br>
+          <ul>
+            <li>
+              Updated cache data width description to add 512 bits.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Cache:<br>
+          <ul>
+            <li>
+              Updated cache data width description to add 512 bits.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Fault Tolerance:<br>
+          <ul>
+            <li>
+              New chapter.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Lockstep<br>
+          <ul>
+            <li>
+              New chapter.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview:<br>
+          <ul>
+            <li>
+              Added ports for lockstep signals.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description<br>
+          <ul>
+            <li>
+              Clarified behavior of FSL_IN_Read signals with XCL2 protocol after starting burst read [CR<595953>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - AXI4 Interface Description<br>
+          <ul>
+            <li>
+              Updated AXI data width description to add 512 bits.<br>
+            </li>
+            <li>
+              Clarified parameters affecting read/write issuing [CR<608881>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Trace Interface Description<br>
+          <ul>
+            <li>
+              Added missing trace signals.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Lockstep Interface Description:<br>
+          <ul>
+            <li>
+              New chapter.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added parameters C_LOCKSTEP_SLAVE and C_AVOID_PRIMITIVES.<br>
+            </li>
+            <li>
+              Updated AXI and cache data width parameters to add 512 bits.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 3 - Stack Convention<br>
+          <ul>
+            <li>
+              Clarified calling convention.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.10.a, introduced in 13.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Count Leading Zeros (CLZ) instruction<br>
+        </li>
+        <li>
+          Memory Barrier (MBAR) instruction<br>
+        </li>
+        <li>
+          Stack overflow and underflow detection<br>
+        </li>
+        <li>
+          Parameter to allow AXI4-Stream/FSL instructions in user mode<br>
+        </li>
+        <li>
+          Added full support for virtex7 and kintex7 families<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Avoid reading incorrect data with simultaneous data cache invalidation with AXI interconnect [CR<582723>].<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is enabled, C_DCACHE_USE_WRITEBACK is not set, and C_INTERCONNECT is set to 2<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.b, v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that data cache invalidation always takes effect before subsequent memory access [CR<582776>].<br>
+          <ul>
+            <li>
+              Can only occur when data cache is enabled when invalidated<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a, 7.30.b, 7.30.a, 7.20.d, 7.20.c, 7.20.b, 7.20.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed instruction stream prefetch to avoid fetching wrong instructions with AXI interconnect in rare cases [CR<582776>].<br>
+          <ul>
+            <li>
+              Can only occur when instruction cache streams are enabled, and C_INTERCONNECT is set to 2<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.b, v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added parameter C_MMU_PRIVILEGED_INSTR to allow AXI4-Stream/FSL in user mode<br>
+        </li>
+        <li>
+          Added parameter C_USE_STACK_PROTECTION to activate stack underflow and overflow detection<br>
+        </li>
+        <li>
+          Added parameters and ports to support user signals on AXI cache interfaces<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Use AXI interconnect as default for new instances from 7 series target architectures<br>
+        </li>
+        <li>
+          Added DRC to check limitations of C_DCACHE_DATA_WIDTH and C_ICACHE_DATA_WIDTH<br>
+        </li>
+        <li>
+          Added DRC to disallow unreasonable cache sizes with C_DCACHE_FORCE_TAG_LUTRAM and C_ICACHE_FORCE_TAG_LUTRAM<br>
+        </li>
+        <li>
+          Automatically enable fault tolerance if ECC is enabled on an LMB BRAM controller<br>
+        </li>
+        <li>
+          Added DRC to check for correct LMB and LMB BRAM controller version when fault tolerance is enabled<br>
+        </li>
+        <li>
+          Added DRC to check that both or none of the LMB BRAM controllers use ECC<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">13.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Added v8.10 features in Table 1-1 Configurable Feature Overview.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instructions:<br>
+          <ul>
+            <li>
+              Added new CLZ and MBAR instructions to MicroBlaze Instruction Set Summary in Table 1-5.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added Stack Protection Violation exception to ESR.<br>
+            </li>
+            <li>
+              Added new Stack High and Stack Low registers.<br>
+            </li>
+            <li>
+              Added C_USE_STACK_PROTECTION and C_MMU_PRIVILEGED_INSTR to PVR.<br>
+            </li>
+            <li>
+              Added v8.10.a to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added new target architectures to PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added parameters C_USE_STACK_PROTECTION and C_MMU_PRIVILEGED_INSTR.<br>
+            </li>
+            <li>
+              Added parameters and ports for user signals on AXI cache interfaces.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Added new instructions CLZ and MBAR.<br>
+            </li>
+            <li>
+              Updated MFS and MTS instructions with Stack High and Stack Low registers.<br>
+            </li>
+            <li>
+              Corrected cycle count for WDC instruction.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.00.b, introduced in 12.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Parameters to enable use of AXI exclusive access with atomic load/store instructions<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Fixed cache fault tolerance to avoid inadvertent protection of distributed RAM [CR<573203>].<br>
+          <ul>
+            <li>
+              Can only occur when C_FAULT_TOLERANT is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed data cache stall when using AXI interconnect due to full write buffer [CR<574443>].<br>
+          <ul>
+            <li>
+              Can only occur when C_INTERCONNECT is set to 2 and C_AREA_OPTIMIZED is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that debug watchpoints are not missed when directly followed by a branch [CR<576079>].<br>
+          <ul>
+            <li>
+              Can only occur when C_AREA_OPTIMIZED is set to 0<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a, v7.30.b, v7.30.a, v7.20.d, v7.20.c, v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed issue with instruction cache streams rarely causing incorrect instruction sequences [CR<577823>].<br>
+          <ul>
+            <li>
+              Can only occur when C_ICACHE_STREAMS is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a, v7.30.b, v7.30.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that instruction cache is always correctly invalidated when using victim cache [CR<578267>].<br>
+          <ul>
+            <li>
+              Can only occur when C_ICACHE_VICTIMS is not set to 0<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a, v7.30.b, v7.30.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed stall due to LWX for AXI [CR<576826>].<br>
+          <ul>
+            <li>
+              Can only occur when C_M_AXI_DC_EXCLUSIVE_ACCESS is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Avoid incorrect handling of data cache read accesses in rare cases when using AXI interconnect [CR<578518>].<br>
+          <ul>
+            <li>
+              Can only occur for Spartan 6<br>
+            </li>
+            <li>
+              Can only occur when C_INTERCONNECT is set to 2 and C_DCACHE_USE_WRITEBACK is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Changed AXI cache interfaces to not use thread IDs, to fix issue with out-of-order read access completion [CR<578941>].<br>
+          <ul>
+            <li>
+              Can only occur when C_INTERCONNECT is set to 2 and C_ICACHE_STREAMS is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent stall due to incorrect handling of data cache write data [CR<581314>].<br>
+          <ul>
+            <li>
+              Can only occur when C_INTERCONNECT is set to 2 and C_DCACHE_DATA_WIDTH are set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v8.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Changed default AXI protocol to AXI4LITE for C_M_AXI_IP and C_M_AXI_DP<br>
+        </li>
+        <li>
+          Allow use of instruction streams with AXI<br>
+        </li>
+        <li>
+          Added AXI4-Stream protocol parameters and renamed AXI4-Stream bus standard<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Select AXI4 protocol for C_M_AXI_DP when exclusive access used<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v8.00.b to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview:<br>
+          <ul>
+            <li>
+              Changed peripheral AXI bus interfaces, to indicate when AXI4-Lite is used.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Advanced eXtensible Interface (AXI) Description:<br>
+          <ul>
+            <li>
+              Extended to cover AXI interface usage.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added description of parameters to enable use of AXI exclusive access.<br>
+            </li>
+            <li>
+              Added AXI4-Stream protocol parameters<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Instructions<br>
+          <ul>
+            <li>
+              Updated description of lwx and swx instructions for AXI exclusive access.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v8.00.a, introduced in 12.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          AXI interfaces added for peripherals and cache<br>
+        </li>
+        <li>
+          AXI stream interfaces added as alternative to FSL<br>
+        </li>
+        <li>
+          LMB bus upgraded to support error detection and correction<br>
+        </li>
+        <li>
+          Fault tolerant features: Protection of Instruction Cache, Data Cache, MMU, and Branch Target Cache Block RAMs<br>
+        </li>
+        <li>
+          Endianness selected according to bus interface: Little-endian for AXI and big-endian for PLBv46<br>
+        </li>
+        <li>
+          Reversed endian load/store instructions, and support for reversed endian MMU pages<br>
+        </li>
+        <li>
+          Parameters to force use of distributed RAM instead of Block RAM for cache tags<br>
+        </li>
+        <li>
+          Configurable cache width for AXI<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Fixed stream cache overwrite issue causing execution of incorrect instructions in rare cases [CR<567809>].<br>
+          <ul>
+            <li>
+              Can only occur when C_ICACHE_STREAMS is set to 1<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.30.a, v7.30.b<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed stall due to instruction TLB miss for address with entry in Branch Target Cache [CR<567827>].<br>
+          <ul>
+            <li>
+              Can only occur when C_BRANCH_TARGET_CACHE is set to 1, and C_USE_MMU is set to 3<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.30.a, v7.30.b<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed failure to invalidate instruction cache with WIC in some cases [CR<568393>]<br>
+          <ul>
+            <li>
+              Can only occur when C_ICACHE_VICTIMS is greater than 0<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.30.a, v7.30.b<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          AXI interfaces and parameters added<br>
+        </li>
+        <li>
+          Fault tolerance parameter and error signal added<br>
+        </li>
+        <li>
+          Endianness parameter added<br>
+        </li>
+        <li>
+          Option to generate timing constraints added<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          AXI interface design rule checks and parameter updates added<br>
+        </li>
+        <li>
+          Generate timing constraints for reset and interrupt signals when AXI is used<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 1-1 to add AXI interfaces.<br>
+            </li>
+            <li>
+              Added v8.00 to Configurable Feature Overview in Table 1-1.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Types and Endianness:<br>
+          <ul>
+            <li>
+              Added description of little endian data formats.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instructions:<br>
+          <ul>
+            <li>
+              Added reversed endian instructions lbur, lhur, lwr, sbr, shr, and swr.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Changed TLBHI to include description of reversed endian MMU pages.<br>
+            </li>
+            <li>
+              Added v8.00.a to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Changed PVR to add AXI.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Pipeline Architecture:<br>
+          <ul>
+            <li>
+              Added description of Branch Target Cache Block RAM protection<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Memory Architecture:<br>
+          <ul>
+            <li>
+              Added AXI for memory access interface description.<br>
+            </li>
+            <li>
+              Added description of MMU Block RAM protection.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Hardware Exceptions:<br>
+          <ul>
+            <li>
+              Added AXI and handling of LMB errors to bus exception descriptions.<br>
+            </li>
+            <li>
+              Added description of missed exceptions with fault tolerance enabled.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache:<br>
+          <ul>
+            <li>
+              Added caching over AXI.<br>
+            </li>
+            <li>
+              Added description of parameter to force use of distributed RAM for tags.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Cache:<br>
+          <ul>
+            <li>
+              Added caching over AXI.<br>
+            </li>
+            <li>
+              Added description of parameter to force use of distributed RAM for tags.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added description of AXI.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Added AXI bus interfaces.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview:<br>
+          <ul>
+            <li>
+              Added AXI bus interfaces.<br>
+            </li>
+            <li>
+              Changed Figure 2-1 to add AXI interfaces.<br>
+            </li>
+            <li>
+              Added AXI interface signals.<br>
+            </li>
+            <li>
+              Added error signal.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Advanced eXtensible Interface (AXI) Description:<br>
+          <ul>
+            <li>
+              New chapter.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description:<br>
+          <ul>
+            <li>
+              Added references to AXI.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added parameters for fault tolerance and endianness.<br>
+            </li>
+            <li>
+              Added parameters to force use of distributed RAM for cache tags.<br>
+            </li>
+            <li>
+              Added parameters for AXI interfaces.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Instructions<br>
+          <ul>
+            <li>
+              Added description of stream AXI to get, getd, put, and putd instructions.<br>
+            </li>
+            <li>
+              Added description of reversed endian instructions lbur, lhur, lwr, sbr, shr, and swr.<br>
+            </li>
+            <li>
+              Clarified behavior of brki when used as software break [CR<567841>].<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.30.b, introduced in 12.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Added Typical configuration to Configuration Wizard<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Ensure that software breakpoint instructions are ignored if invalid due to exceptions [CR<552376>].<br>
+        </li>
+        <li>
+          Corrected data corruption caused by data victim cache [CR<564312>].<br>
+          <ul>
+            <li>
+              Can only occur for Spartan 6.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.30.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v7.30.b to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions, and Break:<br>
+          <ul>
+            <li>
+              Clarified edge sensitive interrupt behavior when interrupts are disabled [CR<549614>].<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.30.a, introduced in 12.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          OPB interfaces removed<br>
+        </li>
+        <li>
+          Branch Target Cache (BTC)<br>
+        </li>
+        <li>
+          Configuration Wizard, replacing the current configuration dialog<br>
+        </li>
+        <li>
+          Cache performance improvements, including instruction cache stream buffers and victim caches<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Unused signals I_AddrTag and D_AddrTag removed  [CR<454265>]<br>
+          <ul>
+            <li>
+              Versions that have this issue: All previous versions<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Avoid spurious memory access occurring in some cases when using RTED to leave Virtual Mode [CR<541326>].<br>
+          <ul>
+            <li>
+              Can only occur when the Memory Management Unit is used.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.d, v7.20.c, v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent execution from hanging when Inhibit Caching bit is set in a TLB entry [CR<548647>].<br>
+          <ul>
+            <li>
+              Can only occur when using write-back caches, when data cache is always used and when the Memory Management Unit is used.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.d, v7.20.c, v7.20.b, v7.20.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          OPB interfaces removed<br>
+        </li>
+        <li>
+          Unused signals I_AddrTag and D_AddrTag removed<br>
+        </li>
+        <li>
+          Added Branch Target Cache parameters<br>
+        </li>
+        <li>
+          Added Instruction Cache stream buffer and victim cache parameters<br>
+        </li>
+        <li>
+          Added Data Cache victim cache parameter<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Removed OPB design rule checks<br>
+        </li>
+        <li>
+          Added handling of Configuration Wizard<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">12.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 1-1 to remove OPB interfaces and add BTC.<br>
+            </li>
+            <li>
+              Added v7.30 to Configurable Feature Overview in Table 1-1.<br>
+            </li>
+            <li>
+              Added BTC and cache improvement parameters to Table 1-1.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Changed bit 31 in MSR to Reserved, and removed footnote.<br>
+            </li>
+            <li>
+              Added v7.30.a to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Changed PVR to remove OPB and add BTC parameters.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Pipeline Architecture:<br>
+          <ul>
+            <li>
+              Added description of Branch Target Cache<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Memory Architecture:<br>
+          <ul>
+            <li>
+              Removed OPB for memory access interface description.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Hardware Exceptions:<br>
+          <ul>
+            <li>
+              Removed OPB for bus exception descriptions.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache:<br>
+          <ul>
+            <li>
+              Removed references to OPB.<br>
+            </li>
+            <li>
+              Added sections describing stream buffers and victim cache.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Cache:<br>
+          <ul>
+            <li>
+              Removed references to OPB.<br>
+            </li>
+            <li>
+              Added section describing victim cache.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Overview:<br>
+          <ul>
+            <li>
+              Removed OPB bus interfaces<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 2-1 to remove OPB interfaces and add BTC.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description:<br>
+          <ul>
+            <li>
+              Removed references to OPB.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Removed OPB parameters.<br>
+            </li>
+            <li>
+              Added BTC and cache improvement parameters.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Updated latency values with BTC branch prediction.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.20.d, introduced in 11.4</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.4 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Avoid synthesis error for Spartan 3 with 64K cache sizes [CR<532062>].<br>
+          <ul>
+            <li>
+              Can only occur for cache sizes that do not fit in Spartan 3 devices.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Added directive as work-around for tool issue, to ensure register file is not synthesised as BRAM [CR<534438>].<br>
+          <ul>
+            <li>
+              Can only occur for Spartan 3 and Virtex 4 families.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that the DZO flag in MSR is always set for Divide Overflow [CR<534418>]<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled, and when not using divide exception.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b, v7.20.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected Trace_Reg_Write to ensure that the signal is not set for WDC and WIC instructions.<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is enabled, and when using caches.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent data outside the cacheable range from being written to cache [CR<535252>].<br>
+          <ul>
+            <li>
+              Can only occur with C_DCACHE_USE_WRITEBACK set and when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b, v7.20.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that MicroBlaze does not read incorrect data from Block RAM [CR<529810>]<br>
+          <ul>
+            <li>
+              Can only occur for Virtex 6 family<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected WDC instruction for writeback cache, to ensure that the correct cache line is always indicated [CR<536235>].<br>
+          <ul>
+            <li>
+              Can only occur with C_DCACHE_USE_WRITEBACK set, when using the Memory Management Unit and virtual mode is selected.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b, v7.20.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Avoid reading incorrect data from data cache directly after disabling cache under rare circumstances [CR<536525>].<br>
+          <ul>
+            <li>
+              Can only occur with C_DCACHE_ALWAYS_USED and with C_DCACHE_LINE_LEN set to 8.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.c, v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.4 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.4 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.4 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v7.20.d to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Pipeline Architecture:<br>
+          <ul>
+            <li>
+              Added information about prefetch buffer handling with self-modifying code.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions and Break:<br>
+          <ul>
+            <li>
+              Added description of exception priority.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Improved description of WDC and WIC instructions, including corrections of pseudo code.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.20.c, introduced in 11.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected Trace_Jump_Taken to ensure that the signal is always generated when a jump occurs.<br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that erroneous interrupt, break or exception can not not occur after reset [CR<521839>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Improved usable range of cache sizes with MMU enabled, to allow all available sizes.<br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.20.b, v7.20.a, v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Removed INIT attributes to avoid warning messages in synthesis [CR<521455>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: All previous versions<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v7.20.c to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Corrected parameter name C_UNALIGNED_EXCEPTIONS [CR<518814>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Corrected parameter name C_UNALIGNED_EXCEPTIONS [CR<518814>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4: Corrected description of registers for XORI instruction [CR<523344>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.20.b, introduced in 11.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Added full support for spartan6 and virtex6 families.<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected erroneous instruction bus exception when writing TLB registers [CR<518606>].<br>
+          <ul>
+            <li>
+              Can only occur with C_ICACHE_ALWAYS_USED set to 1, when using the Memory Management Unit, instruction cache, and IPLB bus exception.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.20.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v7.20.b to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added Spartan 6 and Virtex 6 to target architectures in PVR.<br>
+            </li>
+            <li>
+              Added a section on Software Support for the Floating Point Unit [CR<498913>].<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability:<br>
+          <ul>
+            <li>
+              Added spartan6 and virtex6 to C_FAMILY.<br>
+            </li>
+            <li>
+              Corrected EDK Tool Assignment for C_INTERRUPT_IS_EDGE and C_EDGE_IS_POSITIVE [CR<507335>].<br>
+            </li>
+            <li>
+              Clarified that user can override EDK Tool Assignment for C_ICACHE_INTERFACE and C_DCACHE_INTERFACE.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.20.a, introduced in 11.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Writeback cache option<br>
+        </li>
+        <li>
+          Atomic memory access instructions LWX and SWX<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Improved data cache to handle the reception of of two cachelines back-to-back [CR<479952>]. <br>
+          <ul>
+            <li>
+              This issue can not occur in any system with Xilinx Memory Controllers.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected BTR which could get incorrect value when a a branch with a exception jumps to another branch [CR<479971>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected setting of EIP and EE in MSR for interrupt and FSL exception occurring simultaneously [CR<480637>]. <br>
+          <ul>
+            <li>
+              Can only occur when using extended FSL instructions and FSL exception.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected FSL GET instruction, which in some cases could return inconsistent data when preceded by a floating point, divide or load/store instruction [CR<496848>].<br>
+          <ul>
+            <li>
+              Can only occur when extended FSL instructions are not used.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that exception followed by a virtual address translation using the UTLB or a register access to MMU registers is always handled correctly [CR<497400>].<br>
+          <ul>
+            <li>
+              Can only occur when using FPU exception, integer divide exception or data bus exception. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent incorrect write to register after divide-by-zero [CR<497926>].<br>
+          <ul>
+            <li>
+              Only occurs if the instruction following the divide should not do a register write, such as a store instruction.<br>
+            </li>
+            <li>
+              Can only occur with area optimization enabled and when integer divide exception is not used.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent fetching incorrect instruction, which could occur when disabling the instruction cache while a cache line was being read from memory [CR<502099>].<br>
+          <ul>
+            <li>
+              Can only occur when using instruction cache with C_ICACHE_ALWAYS_USED set to 1.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.d, v7.10.c, v7.10.b, v7.10.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          GUI_PERMIT qualification added to parameters not needed in MUI file<br>
+        </li>
+        <li>
+          Added parameter C_DCACHE_USE_WRITEBACK to select new writeback cache option<br>
+        </li>
+        <li>
+          Added parameters C_ICACHE_INTERFACE and C_DCACHE_INTERFACE to select XCL protocol<br>
+        </li>
+        <li>
+          Default value for C_FAMILY changed to virtex5<br>
+        </li>
+        <li>
+          Added ASSIGNMENT=REQUIRE to CLK port<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Clarified error message for non standard LMB slave<br>
+        </li>
+        <li>
+          Improved warning message formatting<br>
+        </li>
+        <li>
+          Changed from warning to error message for 2kB and 4kB cache size in Spartan3 and 3E families<br>
+        </li>
+        <li>
+          Added possibility to override 2kB and 4kB cache size error message for Spartan3 and 3E families<br>
+        </li>
+        <li>
+          Updated DRC for cache line length to handle MPMC dual XCL interface<br>
+        </li>
+        <li>
+          Added DRC to check that correct XCL protocol is used with writeback data cache<br>
+        </li>
+        <li>
+          Added DRC to check that connected Memory Controller can handle selected XCL protocol<br>
+        </li>
+        <li>
+          Added automatic update of C_DCACHE_INTERFACE to use correct XCL protocol with writeback data cache<br>
+        </li>
+        <li>
+          Removed check that CLK port is connected<br>
+        </li>
+        <li>
+          Reordered code to move system level DRC to SYSLEVEL_DRC_PROC [CR<500074>]. <br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">11.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview: Added v7.20 in Table 1-1 Configurable Feature Overview, including new write-back cache feature.<br>
+        </li>
+        <li>
+          Chapter 1 - Instructions:<br>
+          <ul>
+            <li>
+              Added new LWX, SWX and WDC.FLUSH instructions to MicroBlaze Instruction Set Summary in Table 1-5.<br>
+            </li>
+            <li>
+              New Semaphore Synchronization section, describing use of new LWX and SWX instructions.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added description of division overflow handling, including changes in MSR and ESR.<br>
+            </li>
+            <li>
+              Changed description of W bit in TLBLO to show use with write-back data cache.<br>
+            </li>
+            <li>
+              Added v7.20.a to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added new configurable write-back data cache feature to PVR.<br>
+            </li>
+            <li>
+              Removed Virtex-II Pro from target architectures in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Memory Architecture: Added information about latency with write-back data cache.<br>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions, and Break:<br>
+          <ul>
+            <li>
+              Added note when LWX/SWX reservation bit is cleared.<br>
+            </li>
+            <li>
+              Added description of division overflow.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache: Removed requirement that the cache is disabled when WIC is executed.<br>
+        </li>
+        <li>
+          Chapter 1 - Data Cache: Added description of write-back and write-through caching policy in the data cache.<br>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description<br>
+          <ul>
+            <li>
+              Changed description to reflect use of linear fetch order or critical word first.<br>
+            </li>
+            <li>
+              Added description of new write burst encoding used with write-back data cache.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated with changes introduced in MicroBlaze v7.20.<br>
+        </li>
+        <li>
+          Chapter 3 - Register Usage Conventions: Clarified compiler use of R18.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Defined handling of LWX/SWX reservation bit by BRK and BRKI.<br>
+            </li>
+            <li>
+              Changed description of IDIV to show the new handling of divide overflow.<br>
+            </li>
+            <li>
+              Added new instructions LWX and SWX.<br>
+            </li>
+            <li>
+              Clarified requirement on instruction preceding MFS.<br>
+            </li>
+            <li>
+              Defined restriction on immediate value for MSRCLR and MSRSET when not using MMU.<br>
+            </li>
+            <li>
+              Added definition of WDC.FLUSH and WDC.CLEAR used with write-back data cache.<br>
+            </li>
+            <li>
+              Removed restriction that data and instruction caches must be disabled when using WDC and WIC, respectively. <br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.10.d, introduced in 10.1.3</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.3 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Added support for qvirtex4 and qrvirtex4 families. <br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected use of parameter C_RESET_MSR when only using XCL to access memory [CR<473377>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue:  v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected debug stop handling to prevent instruction load to incorrect cache address [CR<474571>]. <br>
+          <ul>
+            <li>
+              Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that access of TLB register in virtual mode always work correctly [CR<477031>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected PVR 3 to show 16 FSL links [CR<477032>]. <br>
+          <ul>
+            <li>
+              Only occurs when using 16 FSL links.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent PID register from being incorrectly updated after an exception has occurred [CR<477033>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue:  v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected write of ESR when an exception occurs in an RTED delay slot [CR<477145>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions, and cannot occur in normal code, since RTED is not used with exceptions enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected data cache byte write handling for uncommon parameter settings [CR<477146>]. <br>
+          <ul>
+            <li>
+              Can only occur with area optimization and 8-word cache lines.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v7.10.c, v7.10.b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.3 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.3 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added DRC to check that cache base address and size are a power-of-two.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.3 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers: Added v7.10.d to MicroBlaze release version code in PVR.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Use 5 bits for number of FSL links in PVR.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Added QPro Virtex-4 devices to target architectures in PVR.<br>
+        </li>
+        <li>
+          Chapter 1 - Data Cache: Clarified use of Block RAM with area optimization.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated to add QPro Virtex-4 devices.<br>
+        </li>
+        <li>
+          Chapter 4 - Corrected description of destination register use for store instructions.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.10.c, introduced in 10.1.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Improved support for Virtex 5 hardware primitives.<br>
+        </li>
+        <li>
+          Only implement interrupt, break and non-maskable break handling if used, in order to reduce area.<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Prevent instruction read on wrong address for exception followed by return [CR<469875>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that carry is correct for branch followed by MSRSET [CR<469876>]. <br>
+          <ul>
+            <li>
+              Can only occur with area optimization enabled. Can never occur in compiler generated code.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent prefetched illegal instruction from interfering with interrupt handling [CR<470395>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and with area optimization enabled. Can never occur in normal code.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected generation of float compare result for NaN operands [CR<470931>].<br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected destination register value when setting or clearing VMS bit [CR<471040>]. <br>
+          <ul>
+            <li>
+              Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that first instruction after RTED always runs in User Mode [CR<471041>]. <br>
+          <ul>
+            <li>
+              Only occurs if a multi-cycle instruction is in the RTED delay slot. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that Floating Point Status bits are sticky [CR<471198>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent incorrect write of Floating Point Status at FPU exception [CR<471199>].<br>
+          <ul>
+            <li>
+              Can only occur when using FPU exception.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent prefetched instruction from erroneously clearing UMS bit [CR<471827>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and with Memory Management Unit enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that first instruction after RTED always uses correct address [CR<471828>]. <br>
+          <ul>
+            <li>
+              Only occurs if a multi-cycle instruction is in the RTED delay slot. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Mirror write data correctly when using 128-bit data PLB connection [CR<471963>]. <br>
+          <ul>
+            <li>
+              Can only occur when using 128-bit wide PLB.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent execution from hanging when data cache is always used [CR<471976>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that external break is indicated on exception trace signals [CR<471982>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is enabled and with exceptions enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Always keep assertion of Ext_NM_BRK signal until it has been served [CR<471983>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected execution in both LMB and cacheable memory in virtual mode [CR<472027>]. <br>
+          <ul>
+            <li>
+              Only occurs when running code from LMB in virtual mode. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent prefetched instruction from invalidating first exception handler instruction [CR<472618>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and with area optimization disabled. The exception must occur immediately before a WIC or WDC instruction.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that Exception Status Register DIZ bit is always correctly set [CR<472619>]. <br>
+          <ul>
+            <li>
+              Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          When debugging, safely stop/continue, step if exception, and allow user mode access [CR<472948>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10b, v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added parameters to set if interrupt, break and non-maskable break are used.<br>
+        </li>
+        <li>
+          Added valid checks for FPU exception, FSL exception, and extended FSL instructions.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added procedures to update parameters for interrupt, break and non-maskable break.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Clarified effect of changing bits in MSR.<br>
+            </li>
+            <li>
+              Added explanation that bits in FSR are sticky.<br>
+            </li>
+            <li>
+              Added note that TID field is only stored in PID when not in User Mode.<br>
+            </li>
+            <li>
+              Added v7.10.c to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added Automotive Spartan devices to target architectures in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache: Explained size and alignment restrictions for cacheable segment.<br>
+        </li>
+        <li>
+          Chapter 1 - Data Cache: Explained size and alignment restrictions for cacheable segment.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Corrected sign extend in pseudocode for BRI and ORI.<br>
+            </li>
+            <li>
+              Corrected operand order in pseudocode for FDIV.<br>
+            </li>
+            <li>
+              Corrected table of floating point comparison operations, to show handling of quiet and signaling NaN.<br>
+            </li>
+            <li>
+              Corrected description of NaN handling in pseudocode for FINT.<br>
+            </li>
+            <li>
+              Clarified requirement on instruction preceding MFS.<br>
+            </li>
+            <li>
+              Corrected bit assignment for MSRCLR and MSRSET instructions.<br>
+            </li>
+            <li>
+              Added note to clarify requirement on the preceding instruction for the MSR value read by MSRCLR and MSRSET.<br>
+            </li>
+            <li>
+              Added note to clarify restriction on instructions following MTS.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.10.b, introduced in 10.1.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected reading of PVR registers with MMU enabled [CR<467312>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Removed warnings when using DSP48E to implement multiplication [CR<457940>].<br>
+        </li>
+        <li>
+          Handle MSR read correctly after an instruction changing MSR [CR<469027>]. <br>
+          <ul>
+            <li>
+              Can never occur in compiler generated code.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that RTED is discarded when following an instruction causing an exception [CR<469028>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions, and cannot occur in normal code, since RTED is not used with exceptions enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prevent write to R0 for branches with linking [CR<469241>]. <br>
+          <ul>
+            <li>
+              Cannot occur in normal code, since R0 is never written by a branch with linking.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Block prefetched return instructions from setting virtual mode [CR<469248>]. <br>
+          <ul>
+            <li>
+              Cannot occur in normal code, since these instructions are only used in real mode. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Set MSR flags correctly for service call branch with exception in delay slot [CR<469516>]. <br>
+          <ul>
+            <li>
+              Can only occur when using BRALID for the service call, which should not normally be done. Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.10.a, v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Improved procedure that checks the connections made to the debug interface<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Clarified MMU availability when area optimization is selected.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Added v7.10.b to MicroBlaze release version code in PVR.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Clarified behavior when changing the MSR IE, EIP or BIP bits using MSRCLR, MSRSET or MTS.<br>
+            </li>
+            <li>
+              Added information that a synchronizing branch must follow an MTS instruction changing the MSR VM bit or PID.<br>
+            </li>
+            <li>
+              Added note about when RTED should be used.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.10.a, introduced in 10.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Use Xilinx Cache Link (XCL) for all I- and D-Cache Memory Accesses<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected erroneously data bus access when single stepping past a load or store instruction [CR<455208>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and with area optimization enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected erroneously setting of the DZ bit for integer divide instruction during interrupt [CR<455214>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions and integer division.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Resolved Watchpoint not working when area optimized option selected [CR<455599>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected MicroBlaze handling cache tag valid bits when cache is turned off while it is accessed [CR<456096>]. <br>
+          <ul>
+            <li>
+              Only occurs when a WDC or WIC instruction is executed after turning off the cache.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that breakpoints are ignored while MicroBlaze is in debug stop and XMD is inserting instructions, to prevent XMD from falsely detecting breakpoints [CR<456453>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Remove Data Storage Exception generated for non load/store instructions [CR<466899>]. <br>
+          <ul>
+            <li>
+              Can only occur when using the Memory Management Unit.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.b, v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Virtex2p new default value for parameter C_FAMILY<br>
+        </li>
+        <li>
+          New parameter C_ICACHE_ALWAYS_USED, to enable the use Xilinx Cache Link (XCL) for all I-Cache Memory Accesses<br>
+        </li>
+        <li>
+          New parameter C_DCACHE_ALWAYS_USED, to enable the use Xilinx Cache Link (XCL) for all D-Cache Memory Accesses<br>
+        </li>
+        <li>
+          PORT IPLB_MRdBTerm typo corrected<br>
+        </li>
+        <li>
+          PORT DPLB_MRdBTerm typo corrected<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">10.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 1-1 to show direct FSL connections.<br>
+            </li>
+            <li>
+              Added v7.10 in Table 1-1 Configurable Feature Overview, including new feature to always use XCL for all cache memory accesses.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added new configurable features to PVR.<br>
+            </li>
+            <li>
+              Registers: Added v7.10.a to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview<br>
+          <ul>
+            <li>
+              Changed Figure 2-1 to show direct FSL connections.<br>
+            </li>
+            <li>
+              Added description of direct FSL connections and corrected PLB signal name IPLB_MRdBTerm in Table 2-1 Summary of MicroBlaze Core I/O.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Fast Simplex Link (FSL) Interface Description: Added description of direct FSL connections.<br>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description: Added description of new feature to always use XCL for all cache memory accesses.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated with changes introduced in MicroBlaze v7.10.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.00.b, introduced in 9.2.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected that signal on Ext_BRK was not taken if IE='1' [CR<452311>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected reading of PVR from Xilinx Microprocessor Debugger [CR<452912>] [CR<454609>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Changed 64-bit multiplication to avoid incorrect result for some operand values [CR<453420>]. <br>
+          <ul>
+            <li>
+              Can only occur with Spartan family.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Avoid incorrectly setting FSR on an interrupted floating-point instruction [CR<453429>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that exceptions following an interrupt or other exception are correctly discarded [CR<453459>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected erroneous clearing of the IE bit in MSR when an exception occurs [CR<453574>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions, and with area optimization enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected interrupt occurring after interrupts have been disabled [CR<454690>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Changed signed integer division to avoid incorrect result under certain circumstances [CR<454951>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v7.00.a, v6.00.b, v6.00.a, v4.00.b, v4.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers: Clarified that Buslock Enable in MSR is only applicable for OPB.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Corrected EDR description.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Added v7.00.b to MicroBlaze release version code in PVR.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview: Corrected debug module references in Table 2-1 Summary of MicroBlaze Core I/O.<br>
+        </li>
+        <li>
+          Chapter 3 - Memory Model: Corrected document references.<br>
+        </li>
+        <li>
+          Chapter 4 - Clarified delay slot use for blocking FSL instructions.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.00.a, introduced in 9.2.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected address strobe generation for LMB with MMU enabled [CR<450631>].<br>
+          <ul>
+            <li>
+              Version that has this issue: v7.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v7.00.a, introduced in 9.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Processor Local Bus (PLB) data and instruction side interface.<br>
+        </li>
+        <li>
+          Floating Point conversion and square root instructions.<br>
+        </li>
+        <li>
+          Memory Management Unit, MMU.<br>
+        </li>
+        <li>
+          Extended Fast Simplex Link (FSL) instructions.<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected erroneously service of interrupts during exception [CR<439651>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions, and with area optimization enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v6.00.b, v6.00.a, v4.00.b, v4.00.a <br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected inhibit of IMM instruction in conjunction with FPU instruction causing an exception [CR<441369], [CR<441114>], [CR<442298>]. <br>
+          <ul>
+            <li>
+              Can only occur when using FPU exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected erroneously implementation of 32 Kb caches in Virtex5 [CR<444167>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue:  v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected exception trace output when a divide by zero exception is signaled on trace_exception_kind.<br>
+          <ul>
+            <li>
+              Can only occur when exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected Reset signal connection inside MicroBlaze [CR<447698>]. <br>
+          <ul>
+            <li>
+              Does not affect MicroBlaze functionality,<br>
+            </li>
+            <li>
+              Versions that have this issue:  v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected BTR reading causing the program to the wrong address when handling an unaligned exception [CR<448608>]. <br>
+          <ul>
+            <li>
+              Can only occur when using area optimization.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v6.00.b, v6.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected erroneously executing of an invalidated FPU instruction [CR<453429>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v6.00.b, v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added ports and parameters for new IPLB and DPLB interface.<br>
+        </li>
+        <li>
+          Added parameter C_INTERCONNECT to select either OPB or PLB. <br>
+        </li>
+        <li>
+          Introduced new FSL direct connection DRFSL and DWFSL.<br>
+        </li>
+        <li>
+          Made MFSL and SFSL exclusive to the new DRFSL and DWFSL.<br>
+        </li>
+        <li>
+          ICACHE_FSL_IN and ICACHE_FSL_OUT removed.<br>
+        </li>
+        <li>
+          DCACHE_FSL_IN and DCACHE_FSL_OUT removed.<br>
+        </li>
+        <li>
+          Extend selection of C_USE_FPU to select new Floating Point conversion and square root instruction.<br>
+        </li>
+        <li>
+          Parameter C_DIV_ZERO_EXCEPTION only valid when C_USE_DIV = 1.<br>
+        </li>
+        <li>
+          Parameter FSL_EXCEPTION added to generate exception from FSL transaction.<br>
+        </li>
+        <li>
+          Maximum number of FSL interfaces (C_FSL_LINKS) increased to 16.<br>
+        </li>
+        <li>
+          Parameter C_USE_EXTENDED_FSL_INSTR added to enable new FSL instructions.<br>
+        </li>
+        <li>
+          Added assignment to cache addresses depending on connected IP.<br>
+        </li>
+        <li>
+          Added MMU parameters.<br>
+        </li>
+        <li>
+          Added DBG_SHIFT signal and DEBUG_RST signals.<br>
+        </li>
+        <li>
+          Added Trace_PID_Reg port.<br>
+        </li>
+        <li>
+          Added Trace_MB_Halted port.<br>
+        </li>
+        <li>
+          Changed width of port Trace_MSR_Reg.<br>
+        </li>
+        <li>
+          Changed width of port Trace_Exception_Kind.<br>
+        </li>
+        <li>
+          Added SIGIS = RST for ports RESET and DEBUG_RST [CR<437599>].<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Updated check of matching lmb_bram_if_cntrl to be higher than v2.10.a<br>
+        </li>
+        <li>
+          Improved procedure is_connected to also check for source of signal<br>
+        </li>
+        <li>
+          Add MPMC connections to check_icache_fsl and check_dcache_fsl procedures<br>
+        </li>
+        <li>
+          Added check that clock and reset is connected<br>
+        </li>
+        <li>
+          Updated check for debug bus interface to include new signals in bus definition<br>
+        </li>
+        <li>
+          Added check for new PLB bus<br>
+        </li>
+        <li>
+          Added warning message for cache sizes 2kB and 4kB<br>
+        </li>
+        <li>
+          Improved checks for interrupt signal connection<br>
+        </li>
+        <li>
+          Adding procedure to assign cache addresses depending on connected IP <br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 1-1 to add optional Memory Management Unit, Data and Instruction PLB connections, and increased number of FSL connections.<br>
+            </li>
+            <li>
+              Added v7.00 and removed older versions in Table 1-1 Configurable Feature Overview, including new features: MMU, PLB interfaces, extended FPU and FSL instructions.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Types and Endianness: Added missing Half-word Data Type description.<br>
+        </li>
+        <li>
+          Chapter 1 - Instructions: Added new extended FPU and FSL instructions to MicroBlaze Instruction Set Summary in Table 1-5. <br>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added description of new MMU bits in MSR, new MMU and FSL exceptions in EAR, new MMU registers, and new EDR register.<br>
+            </li>
+            <li>
+              Added new configurable features to PVR.<br>
+            </li>
+            <li>
+              Added v7.00.a to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Privileged Instructions: New section.<br>
+        </li>
+        <li>
+          Chapter 1 - Virtual-Memory Management: New section.<br>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions, and Break: Added description of MMU exceptions, FSL exception, and PLB interface exceptions.<br>
+        </li>
+        <li>
+          Chapter 1 - Floating Point Unit (FPU): Added description of new extended FPU instructions.<br>
+        </li>
+        <li>
+          Chapter 2 - Overview: Added description of new PLB interface.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 2-1 to add optional Memory Management Unit, Data and Instruction PLB connections, and increased number of FSL connections.<br>
+            </li>
+            <li>
+              Added description of PLB interface signals to Table 2-1 Summary of MicroBlaze Core I/O.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 2 - Processor Local Bus (PLB) Interface Description: New section.<br>
+        </li>
+        <li>
+          Chapter 2 - Debug Interface Description: Added information about DEBUG bus.<br>
+        </li>
+        <li>
+          Chapter 2 - Trace Interface Description: Added information about TRACE bus, and changes to support MMU.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated with changes introduced in MicroBlaze v7.00.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Included description of privileged instructions.<br>
+            </li>
+            <li>
+              Added description of special handling for BRALID, BRK, BRKI, RTBD, RTED and RTID with MMU.<br>
+            </li>
+            <li>
+              Added new FPU instructions FLT, FINT and FSQRT.<br>
+            </li>
+            <li>
+              Included description of access to new MMU registers for MFS and MTS.<br>
+            </li>
+            <li>
+              Added description of new FSL instructions, including GETD and PUTD.<br>
+            </li>
+            <li>
+              Added new 64-bit multiplication instruction MULHSU.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v6.00.b, introduced in 9.1.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected jump to wrong address on interrupts/exceptions in rare cases [CR<434687>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled and with exceptions enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Update debug status correctly for watchpoints [CR<434688>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ensure that IMM instruction effect does not prevail on exceptions [CR<434692>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled and with exceptions enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue: v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected integer divide [CR<435649>] [CR<435957>]. <br>
+          <ul>
+            <li>
+              Can only occur when area optimization is not enabled.<br>
+            </li>
+            <li>
+              Versions that have this issue:  v6.00.a, v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Removed TRACE and DEBUG bus definitions [CR<435919>].<br>
+        </li>
+        <li>
+          Added attribute "RST" to port RESET.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers: Added v6.00.b to MicroBlaze release version code in PVR.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers: Added Spartan3AN to target architectures in PVR.<br>
+        </li>
+        <li>
+          Chapter 2 - Debug Interface Description: Removed DEBUG bus.<br>
+        </li>
+        <li>
+          Chapter 2 - Trace Interface Description: Removed TRACE bus.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated to add Spartan3AN.<br>
+        </li>
+        <li>
+          Chapter 3 - Interrupt and Exception Handling: Added information that Break address location is reserved when XMD is used.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v6.00.a, introduced in 9.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          MicroCache 64-1024 bytes implemented LUT RAM in favor of BRAM<br>
+        </li>
+        <li>
+          Integer hardware multiplication handling 64-bit result<br>
+        </li>
+        <li>
+          Option to select area optimized implementation (3-stage pipeline) or performance optimized implementation (5-stage pipeline) <br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Improved XCL data cache interface to accept data the cycle after the XCL request is issued. <br>
+          <ul>
+            <li>
+              This issue can not occur in any system with Xilinx Memory Controllers.<br>
+            </li>
+            <li>
+              Versions that have this issue: v4.00.b, 4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Removed erroneously checking of the FSL Full signal during two clock cycles [CR<428345>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v4.00.b, 4.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected invalid instruction in EX during interrupt handling [CR<424337>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected register conflicts in pipeline during exception in delay slots [CR<430845>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Removed invalid breakpoint detection on flushed instructions after an exception was taken [CR<430827>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Stopped erroneously execution of invalidated FSL instruction at exception [CR<432238>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected not updating of FSR due to pipeline stall in EX pipe stage [CR<432545>]. <br>
+          <ul>
+            <li>
+              Can only occur when using exceptions.<br>
+            </li>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected Dbg_Stop input functionality [CR<432636>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v5.00.c, v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Bus DEBUG and TRACE added.<br>
+        </li>
+        <li>
+          Parameter C_AREA_OPTIMIZED added<br>
+        </li>
+        <li>
+          Parameters C_USE_MRS_INSTR and C_USE_PCMP_INSTR reinstated from being constant enabled<br>
+        </li>
+        <li>
+          Parameter C_USE_HW_MUL range changed to include new 64-bit result option<br>
+        </li>
+        <li>
+          Parameter C_DIV_ZERO_EXCEPTION cannot be set to 1 when C_USE_DIV is 0, i.e. no HW division<br>
+        </li>
+        <li>
+          Range of parameter C_ADDR_TAG_BITS, C_CACHE_BYTE_SIZE, C_DCACHE_ADDR_TAG and C_DCACHE_BYTE_SIZE adjusted to accommodate for new cache sizes (Micro Cache)<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Updated error message on non-standard LMB slave<br>
+        </li>
+        <li>
+          Updated error message on required version of LMB BRAM controller<br>
+        </li>
+        <li>
+          Procedure to output warning message added<br>
+        </li>
+        <li>
+          Enhanced cache address checking<br>
+        </li>
+        <li>
+          Added check on connection of Debug interface<br>
+        </li>
+        <li>
+          Added check on enabled exception without corresponding feature in use<br>
+        </li>
+        <li>
+          Adding procedure to assign parameters C_I_OPB and C_I_LMB depending on if the buses are in use <br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">9.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Entire document: Editorial improvements and corrections, including new contents overview in each chapter.<br>
+        </li>
+        <li>
+          Chapter 1 - Overview: Added v6.00 to Configurable Feature Overview in Table 1-1, including new features: Area or speed optimized, Hardware multiplier 64-bit result, and LUT cache memory.<br>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added description of configuration effects on MSR bits.<br>
+            </li>
+            <li>
+              Added new configurable features to PVR.<br>
+            </li>
+            <li>
+              Added v6.00.a to MicroBlaze release version code in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Pipeline Architecture: Added description of three-stage pipeline used with area optimization.<br>
+        </li>
+        <li>
+          Chapter 1 - Branches: Clarified that R17 is not valid for exceptions in delay slots.<br>
+        </li>
+        <li>
+          Chapter 1 - Memory Architecture: Added latency for area optimization, and description of 8 word cache lines.<br>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions, and Break: Corrected equivalent pseudocode for exceptions.<br>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache: Added information on LUT cache memory feature.<br>
+        </li>
+        <li>
+          Chapter 1 - Data Cache: Added information on LUT cache memory feature.<br>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description: Added information on required wait states for XCL.<br>
+        </li>
+        <li>
+          Chapter 2 - Debug Interface Description: Added information about DEBUG bus.<br>
+        </li>
+        <li>
+          Chapter 2 - Trace Interface Description: Added information about TRACE bus.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated with changes introduced in MicroBlaze v6.00.<br>
+        </li>
+        <li>
+          Chapter 3 - Register Usage Conventions: Added missing special registers rbtr and rpvr.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Added instruction latency values applicable for area optimization.<br>
+            </li>
+            <li>
+              Clarified allowed instruction usage in delay slots.<br>
+            </li>
+            <li>
+              Added new 64-bit multiplication instructions MULH and MULHU.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v5.00.c, introduced in 8.2.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Corrected output signal MB_Halted [CR<422279>]. <br>
+          <ul>
+            <li>
+              Versions that have this issue: v5.00.b, v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v5.00.c to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Corrected PVR mnemonics.<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v5.00.b, introduced in 8.2.1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.1 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Changed all asynchronous resets in the code to be synchronous [CR<234785>]. <br>
+          <ul>
+            <li>
+              Does not affect MicroBlaze functionality,<br>
+            </li>
+            <li>
+              Version that have this issue: v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed problem with interrupt during an IMM instruction [CR<234785>]. <br>
+          <ul>
+            <li>
+              Version that have this issue: v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Changed FPU FDIV instruction to not depend on the C_USE_DIV parameter [CR<234703>]. <br>
+          <ul>
+            <li>
+              Version that have this issue: v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Corrected problem with using software breakpoints with caches enabled [CR<233573>]. <br>
+          <ul>
+            <li>
+              Version that have this issue: v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fixed problem with delay slot in pipeline during debug sessions [CR<234785>]. <br>
+          <ul>
+            <li>
+              Version that have this issue: v5.00.a<br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.1 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+            None
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.1 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Error generated for unconnected XCL bus<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2.1 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview: Changed v4.00 to active in Configurable Feature Overview in Table 1-1. <br>
+        </li>
+        <li>
+          Chapter 1 - Instructions: Correction of WIC and WDC semantics in Table 1-5 MicroBlaze Instruction Set Summary. <br>
+        </li>
+        <li>
+          Chapter 1 - Registers:<br>
+          <ul>
+            <li>
+              Added v5.00.b to MicroBlaze release version code in PVR.<br>
+            </li>
+            <li>
+              Added Spartan3A to target architectures in PVR.<br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 4 - Corrected description of WIC and WDC semantics.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="GreyBackground">
+      <p class="Level1Heading">Changes in v5.00.a, introduced in 8.2</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2 - Changes in VHDL/Verilog/Netlist sources (.vhd, .v, .ngc, .edn)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">New Features:</span><font size="-1"><br></font></pre>
+      <ul>
+        <li>
+          Performance version with 5-stage pipeline<br>
+        </li>
+        <li>
+          Processor Version Register, PVR<br>
+        </li>
+        <li>
+          Option to select 8 word cacheline sizes<br>
+        </li>
+      </ul>
+      <pre><span style="font-family: Arial;">Resolved issues:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre><span style="font-family: Arial;">Known Issues / Limitations:</span><font size="-1"><br></font></pre>
+      <ul><li>  None</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2 - Changes in tool interface files (.mpd)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added attribute SYSLEVEL_UPDATE_VALUE_PROC to update parameters C_INTERRUPT_IS_EDGE and C_EDGE_IS_POSITIVE<br>
+        </li>
+        <li>
+          Added parameters C_SCO, C_DATA_SIZE, C_DYNAMIC_SIZING<br>
+        </li>
+        <li>
+          Previous options enabled by C_USE_MSR_INSTR and C_USE_PCMP_INSTR now always enabled<br>
+        </li>
+        <li>
+          Parameters to control new PVR feature introduced<br>
+        </li>
+        <li>
+          Instruction cache parameters changed to not allow the size 1024<br>
+        </li>
+        <li>
+          Parameters C_ICACHE_LIN_LEN and C_DCACHE_LIN_LEN added to allow 4 or 8 word size cacheline sizes<br>
+        </li>
+        <li>
+          Port MB_Halted added<br>
+        </li>
+        <li>
+          New Trace interface, with changes to all trace signals<br>
+            <br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2 - Changes in Tcl script files associated with core (.tcl)</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Added procedure syslevel_update_interrupt_edge to assure that the MicroBlaze and interrupt controller use the same type of interrupts<br>
+        </li>
+        <li>
+          Clean up old data-structure APIs<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="Level2Heading">8.2 - Changes in documentation associated with core</p>
+    <hr class=whs1> </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>
+          Chapter 1 - Overview:<br>
+          <ul>
+            <li>
+              Changed Figure 1-1 to remove IOPB and DOPB connections to caches.<br>
+            </li>
+            <li>
+              Added v5.00 to Configurable Feature Overview in Table 1-1. <br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Data Types and Endianness: Corrected Byte Data Type description in Table 1-4.<br>
+        </li>
+        <li>
+          Chapter 1 - Instructions:<br>
+          <ul>
+            <li>
+              Minor corrections of semantics of MicroBlaze Instruction Set Summary in Table 1-5. <br>
+            </li>
+            <li>
+              Added BTR and PVR registers to Table 1-5. <br>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chapter 1 - Registers: Added description of BTR and PVR registers.<br>
+        </li>
+        <li>
+          Chapter 1 - Pipeline Architecture: Changed to describe new five-stage pipeline implementation.<br>
+        </li>
+        <li>
+          Chapter 1 - Branches: Added description of exception in delay slots.<br>
+        </li>
+        <li>
+          Chapter 1 - Memory Architecture: Changed description of memory access latency.<br>
+        </li>
+        <li>
+          Chapter 1 - Reset, Interrupts, Exceptions, and Break: Clarified exception descriptions.<br>
+        </li>
+        <li>
+          Chapter 1 - Instruction Cache: Removed IOPB caching, HW Debugging and Lock Bit.<br>
+        </li>
+        <li>
+          Chapter 1 - Data Cache: Removed IOPB caching, HW Debugging and Lock Bit.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze I/O Overview: Changed Figure 2-1 to remove IOPB and DOPB connections to caches.<br>
+        </li>
+        <li>
+          Chapter 2 - On-Chip Peripheral Bus (OPB) Interface Description: Removed paragraph on bus OR-logic.<br>
+        </li>
+        <li>
+          Chapter 2 - Xilinx CacheLink (XCL) Interface Description: Added clarifications and improved Read Miss description.<br>
+        </li>
+        <li>
+          Chapter 2 - MicroBlaze Core Configurability: Updated with changes introduced in MicroBlaze v5.00.<br>
+        </li>
+        <li>
+          Chapter 3 - Register Usage Conventions: Added BTR and PVR registers.<br>
+        </li>
+        <li>
+          Chapter 4:<br>
+          <ul>
+            <li>
+              Reduced instruction latency values to reflect performance improvements. <br>
+            </li>
+            <li>
+              Added BTR and PVR registers to MFS description.<br>
+            </li>
+            <li>
+              Changed description of WIC and WDC to reflect new semantics.<br>
+<!-- END CHANGELOG FOR New core version. BEGIN change logs for new version here -->
+  </tbody>
+</table>
+<p class="Copyright"> Copyright &copy; 1995-2013 Xilinx, Inc. All rights reserved. </p>
+</body>
+</html>

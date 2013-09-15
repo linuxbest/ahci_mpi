@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- add comment here -->
+
+<!DOCTYPE doc SYSTEM "../../ipdialog.dtd" [
+<!ENTITY C_JTAG_CHAIN '
+	<widget id="C_JTAG_CHAIN">
+		<key>C_JTAG_CHAIN</key>
+		<label>Specifies the JTAG user-defined register used </label>
+		<tip></tip>
+	</widget>
+'>
+<!ENTITY C_INTERCONNECT '
+	<widget id="C_INTERCONNECT">
+		<key>C_INTERCONNECT</key>
+		<label>Specifies the Bus Interface for the JTAG UART </label>
+		<tip></tip>
+	</widget>
+'>
+<!ENTITY C_MB_DBG_PORTS '
+	<widget id="C_MB_DBG_PORTS">
+		<key>C_MB_DBG_PORTS</key>
+		<label>Number of MicroBlaze debug ports </label>
+		<tip></tip>
+	</widget>
+'>
+<!ENTITY C_USE_UART '
+	<widget id="C_USE_UART">
+		<key>C_USE_UART</key>
+		<label>Enable JTAG UART </label>
+		<tip></tip>
+	</widget>
+'>
+<!ENTITY C_USE_BSCAN '
+	<widget id="C_USE_BSCAN">
+		<key>C_USE_BSCAN</key>
+		<label>Select BSCAN location </label>
+		<tip></tip>
+	</widget>
+'>
+<!ENTITY C_S_AXI_DATA_WIDTH '
+  <widget id="C_S_AXI_DATA_WIDTH">
+    <key>C_S_AXI_DATA_WIDTH</key>
+    <label>AXI Data Width</label>
+    <tip></tip>
+  </widget>
+'>
+<!ENTITY C_S_AXI_ADDR_WIDTH '
+  <widget id="C_S_AXI_ADDR_WIDTH">
+    <key>C_S_AXI_ADDR_WIDTH</key>
+    <label>AXI Address Width</label>
+    <tip></tip>
+  </widget>
+'>
+<!ENTITY C_S_AXI_PROTOCOL '
+    <widget id="C_S_AXI_PROTOCOL">
+    <key>C_S_AXI_PROTOCOL</key>
+    <label>AXI4LITE protocal</label>
+    <tip></tip>
+        </widget>
+'>
+]>
+
+<doc>
+        <view id="User">
+                <display>User</display>
+                <group id="Debug">
+                        <display>Debug</display>
+                        <item>&C_MB_DBG_PORTS;</item>
+                </group>
+                <group id="UART">
+                        <display>UART</display>
+                        <item>&C_USE_UART;</item>
+                        <item>&C_INTERCONNECT;</item>
+                </group>
+                <group id="Advanced">
+                        <display>Advanced</display>
+                        <item>&C_JTAG_CHAIN;</item>
+                        <item>&C_USE_BSCAN;</item>
+                </group>
+	</view>
+        <view id="System">
+                <display>System</display>
+                <group id="Address">
+                        <display>Address</display>
+                        <item>&C_BASEADDR;</item>
+                        <item>&C_HIGHADDR;</item>
+		</group>
+                <group id="Hidden">
+                        <display>Hidden</display>
+                        <item>&C_FAMILY;</item>
+                        <item>&C_SPLB_AWIDTH;</item>
+                        <item>&C_SPLB_DWIDTH;</item>
+                        <item>&C_SPLB_P2P;</item>
+                        <item>&C_SPLB_MID_WIDTH;</item>
+                        <item>&C_SPLB_NUM_MASTERS;</item>
+                        <item>&C_SPLB_NATIVE_DWIDTH;</item>
+                        <item>&C_SPLB_SUPPORT_BURSTS;</item>
+                        <item>&C_S_AXI_ADDR_WIDTH;</item>
+                        <item>&C_S_AXI_DATA_WIDTH;</item>
+                        <item>&C_S_AXI_PROTOCOL;</item>
+                </group>
+	</view>
+</doc>
