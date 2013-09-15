@@ -1,0 +1,8 @@
+NET fpga_0_clk_1_sys_clk_p_pin LOC=E18;
+NET fpga_0_clk_1_sys_clk_n_pin LOC=D18;
+
+NET sata_0_GREFCLK_P_pin LOC=K5;
+NET sata_0_GREFCLK_N_pin LOC=K6;
+
+INST gtx_0/*/gtwizard_sata_i/gt0_gtwizard_sata_i/gtxe2_i LOC=GTXE2_CHANNEL_X0Y0;
+INST gtx_0/*/gtwizard_sata_i/gt1_gtwizard_sata_i/gtxe2_i LOC=GTXE2_CHANNEL_X1Y0;
