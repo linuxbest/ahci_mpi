@@ -1,0 +1,41 @@
+################################################################################
+## $Id: xps_bram_if_cntlr_v2_1_0.pao,v 1.1 2008/09/09 20:37:10 dougt Exp $
+################################################################################
+##
+## Copyright (c) 1995-2007 Xilinx, Inc.  All rights reserved.
+##
+## xps_bram_if_cntlr_v2_1_0.pao
+##
+## Peripheral Analyze Order
+##
+################################################################################
+#
+#----- PROC COMMON LIBRARY FILES ----------------------------------------------
+#
+lib proc_common_v3_00_a  all       
+#
+#
+#-----  CORE FILES ------------------------------------------------------
+#
+# PLBV46 Baseline (Singles only) Support Files
+lib xps_bram_if_cntlr_v1_00_b xbic_addr_be_support.vhd vhdl        
+lib xps_bram_if_cntlr_v1_00_b xbic_addr_decode.vhd vhdl       
+lib xps_bram_if_cntlr_v1_00_b xbic_data_steer_mirror.vhd vhdl 
+lib xps_bram_if_cntlr_v1_00_b xbic_slave_attach_sngl.vhd vhdl 
+#
+# Additional files for PLBV46 Performance Support
+# (Singles,Burst,Cachelines)
+lib xps_bram_if_cntlr_v1_00_b xbic_be_reset_gen.vhd vhdl            
+lib xps_bram_if_cntlr_v1_00_b xbic_addr_cntr.vhd vhdl          
+lib xps_bram_if_cntlr_v1_00_b xbic_dbeat_control.vhd vhdl           
+lib xps_bram_if_cntlr_v1_00_b xbic_slave_attach_burst.vhd vhdl      
+#
+# Core Top Level
+lib xps_bram_if_cntlr_v1_00_b xps_bram_if_cntlr.vhd vhdl 
+
+
+
+
+
+
+
