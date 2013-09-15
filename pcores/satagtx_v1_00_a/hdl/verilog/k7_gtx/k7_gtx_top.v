@@ -759,6 +759,9 @@ module k7_gtx_top (/*AUTOARG*/
         end
     end
 //////////////////////////////////////////////////////////////////////////////
+//RXSTATUS[0]: Transmission of COM* sequence complete
+//RXSTATUS[1]: COMWAKE signal received
+//RXSTATUS[2]: COMRESET/COMINIT signal received
 
    wire [35:0] CONTROL0;
    wire [35:0] CONTROL1;
@@ -777,10 +780,15 @@ module k7_gtx_top (/*AUTOARG*/
    //************************** OOB0 ****************************
    wire gt0_txcomstart;
    wire gt0_txcomtype;
-   wire gt0_txelecidle;
    wire [2:0] gt0_rxstatus;
    assign rxdata_fis0        = gt0_rxdata_i;
    assign rxcharisk0         = gt0_rxcharisk_i;
+   assign gt0_txcominit_i    = gt0_txcomstart & (gt0_txcomtype == 1'b0);
+   assign gt0_txcomwake_i    = gt0_txcomstart & (gt0_txcomtype == 1'b1);
+   assign gt0_txcomsas_i     = 1'b0;
+   assign gt0_rxstatus[0]    = gt0_txcomfinish_i;
+   assign gt0_rxstatus[1]    = gt0_rxcomwakedet_i;
+   assign gt0_rxstatus[2]    = gt0_rxcominitdet_i;
    gtx_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
    gtx_oob_0
      (
@@ -789,7 +797,7 @@ module k7_gtx_top (/*AUTOARG*/
       .link_up				(link_up0),
       .txcomstart			(gt0_txcomstart),
       .txcomtype			(gt0_txcomtype),
-      .txelecidle			(gt0_txelecidle),
+      .txelecidle			(gt0_txelecidle_i),
       .rxreset				(/*tile0_rxreset0_i*/),
       .txdata				(gt0_txdata_i),
       .txdatak				(gt0_txcharisk_i),
@@ -815,10 +823,15 @@ module k7_gtx_top (/*AUTOARG*/
    //************************** OOB1 ****************************
    wire gt1_txcomstart;
    wire gt1_txcomtype;
-   wire gt1_txelecidle;
    wire [2:0] gt1_rxstatus;
    assign rxdata_fis1        = gt1_rxdata_i;
    assign rxcharisk1         = gt1_rxcharisk_i;
+   assign gt1_txcominit_i    = gt1_txcomstart & (gt1_txcomtype == 1'b0);
+   assign gt1_txcomwake_i    = gt1_txcomstart & (gt1_txcomtype == 1'b1);
+   assign gt1_txcomsas_i     = 1'b0;
+   assign gt1_rxstatus[0]    = gt1_txcomfinish_i;
+   assign gt1_rxstatus[1]    = gt1_rxcomwakedet_i;
+   assign gt1_rxstatus[2]    = gt1_rxcominitdet_i;
    gtx_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
    gtx_oob_1
      (
@@ -827,7 +840,7 @@ module k7_gtx_top (/*AUTOARG*/
       .link_up				(link_up1),
       .txcomstart			(gt1_txcomstart),
       .txcomtype			(gt1_txcomtype),
-      .txelecidle			(gt1_txelecidle),
+      .txelecidle			(gt1_txelecidle_i),
       .rxreset				(/*tile0_rxreset1_i*/),
       .txdata				(gt1_txdata_i),
       .txdatak				(gt1_txcharisk_i),

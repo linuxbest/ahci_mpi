@@ -183,6 +183,8 @@ begin
     IBUFDS_GTE2 tile0_refclkbufds
     (
         .O                              (tile0_refclk), 
+	.ODIV2                          (),
+	.CEB                            (1'b0),
         .I                              (TILE0_REFCLK_PAD_P_IN),
         .IB                             (TILE0_REFCLK_PAD_N_IN)
     );     
