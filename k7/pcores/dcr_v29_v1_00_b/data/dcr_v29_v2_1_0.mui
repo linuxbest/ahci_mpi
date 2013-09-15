@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+################################################################################
+## *************************************************************************
+## **                                                                     **
+## ** DISCLAIMER OF LIABILITY                                             **
+## **                                                                     **
+## ** This text/file contains proprietary, confidential                   **
+## ** information of Xilinx, Inc., is distributed under                   **
+## ** license from Xilinx, Inc., and may be used, copied                  **
+## ** and/or disclosed only pursuant to the terms of a valid              **
+## ** license agreement with Xilinx, Inc. Xilinx hereby                   **
+## ** grants you a license to use this text/file solely for               **
+## ** design, simulation, implementation and creation of                  **
+## ** design files limited to Xilinx devices or technologies.             **
+## ** Use with non-Xilinx devices or technologies is expressly            **
+## ** prohibited and immediately terminates your license unless           **
+## ** covered by a separate agreement.                                    **
+## **                                                                     **
+## ** Xilinx is providing this design, code, or information               **
+## ** "as-is" solely for use in developing programs and                   **
+## ** solutions for Xilinx devices, with no obligation on the             **
+## ** part of Xilinx to provide support. By providing this design,        **
+## ** code, or information as one possible implementation of              **
+## ** this feature, application or standard, Xilinx is making no          **
+## ** representation that this implementation is free from any            **
+## ** claims of infringement. You are responsible for obtaining           **
+## ** any rights you may require for your implementation.                 **
+## ** Xilinx expressly disclaims any warranty whatsoever with             **
+## ** respect to the adequacy of the implementation, including            **
+## ** but not limited to any warranties or representations that this      **
+## ** implementation is free from claims of infringement, implied         **
+## ** warranties of merchantability or fitness for a particular           **
+## ** purpose.                                                            **
+## **                                                                     **
+## ** Xilinx products are not intended for use in life support            **
+## ** appliances, devices, or systems. Use in such applications is        **
+## ** expressly prohibited.                                               **
+## **                                                                     **
+## ** Any modifications that are made to the Source Code are              **
+## ** done at the user’s sole risk and will be unsupported.               **
+## ** The Xilinx Support Hotline does not have access to source           **
+## ** code and therefore cannot answer specific questions related         **
+## ** to source HDL. The Xilinx Hotline support of original source        **
+## ** code IP shall only address issues and questions related             **
+## ** to the standard Netlist version of the core (and thus               **
+## ** indirectly, the original core source).                              **
+## **                                                                     **
+## ** Copyright (c) 2005,2009 Xilinx, Inc. All rights reserved.           **
+## **                                                                     **
+## ** This copyright and support notice must be retained as part          **
+## ** of this text at all times.                                          **
+## **                                                                     **
+## *************************************************************************
+################################################################################
+-->
+
+<!DOCTYPE doc SYSTEM "../../ipdialog.dtd" [
+	<!ENTITY C_USE_LUT_OR '
+	<widget id="C_USE_LUT_OR">
+		<key>C_USE_LUT_OR</key>
+		<label>Implement OR Gate Using LUT </label>
+		<tip> 1=LUT, 0=MUXCY</tip>
+	</widget>
+	'>
+]>
+
+<doc>
+	<view id="User">
+		<display>User</display>
+		<group id="All">
+			<display>All</display>
+			<item>&C_DCR_NUM_SLAVES;</item>
+			<item>&C_USE_LUT_OR;</item>
+		</group>
+	</view>
+	<view id="System">
+		<display>System</display>
+		<group id="DCR">
+			<display>DCR</display>
+			<item>&C_DCR_AWIDTH;</item>
+			<item>&C_DCR_DWIDTH;</item>
+		</group>
+	</view>
+</doc>
