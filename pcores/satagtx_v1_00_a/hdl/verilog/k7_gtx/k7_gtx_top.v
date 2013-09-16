@@ -101,7 +101,7 @@ module k7_gtx_top (/*AUTOARG*/
    assign TXP0_OUT = TXP_OUT[0];
    assign TXN0_OUT = TXN_OUT[0];
    assign TXP1_OUT = TXP_OUT[1];
-   assign TXN1_OUT = TXP_OUT[1];
+   assign TXN1_OUT = TXN_OUT[1];
 //////////////////////////////////////////////////////////////////////////////
 //************************** Register Declarations ****************************
 
