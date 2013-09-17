@@ -1,6 +1,6 @@
 #set C_FAMILY "virtex5"
 #set C_FAMILY "spartan6"
-set C_FAMILY "kirtex7"
+set C_FAMILY "kintex7"
 
 do compile.do
 

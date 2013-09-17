@@ -7,7 +7,7 @@ set ascopt {-literal -ascii}
 
 set v5_cmp [string compare $C_FAMILY "virtex5"]
 set v6_cmp [string compare $C_FAMILY "spartan6"]
-set k7_cmp [string compare $C_FAMILY "kirtex7"]
+set k7_cmp [string compare $C_FAMILY "kintex7"]
 
 if {$v5_cmp == 0} {
 	set lltype "v5_gtx_top"
