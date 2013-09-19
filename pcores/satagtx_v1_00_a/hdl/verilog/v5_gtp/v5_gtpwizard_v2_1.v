@@ -108,6 +108,8 @@ module V5_GTPWIZARD_V2_1 #
     //----------------- Receive Ports - RX Data Path interface -----------------
     TILE0_RXDATA0_OUT,
     TILE0_RXDATA1_OUT,
+    TILE0_RXRESET0_IN,
+    TILE0_RXRESET1_IN,
     TILE0_RXUSRCLK0_IN,
     TILE0_RXUSRCLK1_IN,
     TILE0_RXUSRCLK20_IN,
@@ -141,6 +143,8 @@ module V5_GTPWIZARD_V2_1 #
     //---------------- Transmit Ports - TX Data Path interface -----------------
     TILE0_TXDATA0_IN,
     TILE0_TXDATA1_IN,
+    TILE0_TXRESET0_IN,
+    TILE0_TXRESET1_IN,
     TILE0_TXUSRCLK0_IN,
     TILE0_TXUSRCLK1_IN,
     TILE0_TXUSRCLK20_IN,
@@ -199,6 +203,8 @@ module V5_GTPWIZARD_V2_1 #
     //----------------- Receive Ports - RX Data Path interface -----------------
     output  [15:0]  TILE0_RXDATA0_OUT;
     output  [15:0]  TILE0_RXDATA1_OUT;
+    input           TILE0_RXRESET0_IN;
+    input           TILE0_RXRESET1_IN;
     input           TILE0_RXUSRCLK0_IN;
     input           TILE0_RXUSRCLK1_IN;
     input           TILE0_RXUSRCLK20_IN;
@@ -232,6 +238,8 @@ module V5_GTPWIZARD_V2_1 #
     //---------------- Transmit Ports - TX Data Path interface -----------------
     input   [15:0]  TILE0_TXDATA0_IN;
     input   [15:0]  TILE0_TXDATA1_IN;
+    input           TILE0_TXRESET0_IN;
+    input           TILE0_TXRESET1_IN;
     input           TILE0_TXUSRCLK0_IN;
     input           TILE0_TXUSRCLK1_IN;
     input           TILE0_TXUSRCLK20_IN;
@@ -325,6 +333,8 @@ module V5_GTPWIZARD_V2_1 #
         //----------------- Receive Ports - RX Data Path interface -----------------
         .RXDATA0_OUT                    (TILE0_RXDATA0_OUT),
         .RXDATA1_OUT                    (TILE0_RXDATA1_OUT),
+        .RXRESET0_IN                    (TILE0_RXRESET0_IN),
+        .RXRESET1_IN                    (TILE0_RXRESET1_IN),
         .RXUSRCLK0_IN                   (TILE0_RXUSRCLK0_IN),
         .RXUSRCLK1_IN                   (TILE0_RXUSRCLK1_IN),
         .RXUSRCLK20_IN                  (TILE0_RXUSRCLK20_IN),
@@ -358,6 +368,8 @@ module V5_GTPWIZARD_V2_1 #
         //---------------- Transmit Ports - TX Data Path interface -----------------
         .TXDATA0_IN                     (TILE0_TXDATA0_IN),
         .TXDATA1_IN                     (TILE0_TXDATA1_IN),
+        .TXRESET0_IN                    (TILE0_TXRESET0_IN),
+        .TXRESET1_IN                    (TILE0_TXRESET1_IN),
         .TXUSRCLK0_IN                   (TILE0_TXUSRCLK0_IN),
         .TXUSRCLK1_IN                   (TILE0_TXUSRCLK1_IN),
         .TXUSRCLK20_IN                  (TILE0_TXUSRCLK20_IN),

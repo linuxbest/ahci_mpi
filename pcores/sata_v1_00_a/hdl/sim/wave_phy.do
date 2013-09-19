@@ -6,11 +6,15 @@ set hexopt {-literal -hex}
 set ascopt {-literal -ascii}
 
 set v5_cmp [string compare $C_FAMILY "virtex5"]
+set fx_cmp [string compare $C_SUBFAMILY "FX"]
 set v6_cmp [string compare $C_FAMILY "spartan6"]
 set k7_cmp [string compare $C_FAMILY "kintex7"]
 
-if {$v5_cmp == 0} {
+if {$v5_cmp == 0 && $fx_cmp == 0} {
 	set lltype "v5_gtx_top"
+}
+if {$v5_cmp == 0 && $fx_cmp == 1} {
+	set lltype "v5_gtp_top"
 }
 if {$v6_cmp == 0} {
 	set lltype "s6_gtp_top"

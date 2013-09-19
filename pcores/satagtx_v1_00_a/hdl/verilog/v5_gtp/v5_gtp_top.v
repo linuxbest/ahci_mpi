@@ -10,7 +10,8 @@ module v5_gtp_top #
     parameter EXAMPLE_SIM_GTXRESET_SPEEDUP              =   0,      // simulation setting for MGT smartmodel
     parameter EXAMPLE_SIM_PLL_PERDIV2                   =   9'h14d, // simulation setting for MGT smartmodel
     parameter C_CHIPSCOPE = 0,
-    parameter C_BYPASS_TXBUF = 1
+    parameter C_BYPASS_TXBUF = 1,
+    parameter C_SATA_SPEED = 2
 )
 (/*AUTOARG*/
    // Outputs
@@ -296,9 +297,9 @@ module v5_gtp_top #
     V5_GTPWIZARD_V2_1 #
     (
         .WRAPPER_SIM_MODE               (EXAMPLE_SIM_MODE),
-        .WRAPPER_SIM_GTXRESET_SPEEDUP   (EXAMPLE_SIM_GTXRESET_SPEEDUP),
-        .WRAPPER_SIM_PLL_PERDIV2        (EXAMPLE_SIM_PLL_PERDIV2),
-	//.C_BYPASS_TXBUF                 (C_BYPASS_TXBUF)
+        .WRAPPER_SIM_GTPRESET_SPEEDUP   (EXAMPLE_SIM_GTXRESET_SPEEDUP),
+        .WRAPPER_SIM_PLL_PERDIV2        (EXAMPLE_SIM_PLL_PERDIV2)/*,
+	.C_BYPASS_TXBUF                 (C_BYPASS_TXBUF)*/
     )
     rocketio_wrapper_i
     (
@@ -353,7 +354,7 @@ module v5_gtp_top #
         .TILE0_RXSTATUS1_OUT            (tile0_rxstatus1_i),
         //------------------- Shared Ports - Tile and PLL Ports --------------------
         .TILE0_CLKIN_IN                 (tile0_refclk_i),
-        .TILE0_GTXRESET_IN              (tile0_gtxreset_i),
+        .TILE0_GTPRESET_IN              (tile0_gtxreset_i),
         .TILE0_PLLLKDET_OUT             (tile0_plllkdet_i),
         .TILE0_REFCLKOUT_OUT            (tile0_refclkout_i),
         .TILE0_RESETDONE0_OUT           (tile0_resetdone0_i),
@@ -377,13 +378,13 @@ module v5_gtp_top #
         .TILE0_TXN1_OUT                 (TXN1_OUT),
         .TILE0_TXP0_OUT                 (TXP0_OUT),
         .TILE0_TXP1_OUT                 (TXP1_OUT),
-        .TILE0_TXPREEMPHASIS0_IN        (tile0_txpreemphasis0_i),
-        .TILE0_TXPREEMPHASIS1_IN        (tile0_txpreemphasis1_i),
+        //.TILE0_TXPREEMPHASIS0_IN        (tile0_txpreemphasis0_i),
+        //.TILE0_TXPREEMPHASIS1_IN        (tile0_txpreemphasis1_i),
         //------ Transmit Ports - TX Elastic Buffer and Phase Alignment Ports ------
-        .TILE0_TXENPMAPHASEALIGN0_IN    (tile0_txenpmaphasealign0_i),
-        .TILE0_TXENPMAPHASEALIGN1_IN    (tile0_txenpmaphasealign1_i),
-        .TILE0_TXPMASETPHASE0_IN        (tile0_txpmasetphase0_i),
-        .TILE0_TXPMASETPHASE1_IN        (tile0_txpmasetphase1_i),
+        //.TILE0_TXENPMAPHASEALIGN0_IN    (tile0_txenpmaphasealign0_i),
+        //.TILE0_TXENPMAPHASEALIGN1_IN    (tile0_txenpmaphasealign1_i),
+        //.TILE0_TXPMASETPHASE0_IN        (tile0_txpmasetphase0_i),
+        //.TILE0_TXPMASETPHASE1_IN        (tile0_txpmasetphase1_i),
         //------------------- Transmit Ports - TX Ports for SATA -------------------
         .TILE0_TXCOMSTART0_IN           (tile0_txcomstart0_i),
         .TILE0_TXCOMSTART1_IN           (tile0_txcomstart1_i),

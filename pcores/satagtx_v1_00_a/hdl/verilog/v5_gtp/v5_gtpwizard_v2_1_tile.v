@@ -111,6 +111,8 @@ module V5_GTPWIZARD_V2_1_TILE #
     //----------------- Receive Ports - RX Data Path interface -----------------
     RXDATA0_OUT,
     RXDATA1_OUT,
+    RXRESET0_IN,
+    RXRESET1_IN,
     RXUSRCLK0_IN,
     RXUSRCLK1_IN,
     RXUSRCLK20_IN,
@@ -144,6 +146,8 @@ module V5_GTPWIZARD_V2_1_TILE #
     //---------------- Transmit Ports - TX Data Path interface -----------------
     TXDATA0_IN,
     TXDATA1_IN,
+    TXRESET0_IN,
+    TXRESET1_IN,
     TXUSRCLK0_IN,
     TXUSRCLK1_IN,
     TXUSRCLK20_IN,
@@ -197,6 +201,8 @@ module V5_GTPWIZARD_V2_1_TILE #
     //----------------- Receive Ports - RX Data Path interface -----------------
     output  [15:0]  RXDATA0_OUT;
     output  [15:0]  RXDATA1_OUT;
+    input           RXRESET0_IN;
+    input           RXRESET1_IN;
     input           RXUSRCLK0_IN;
     input           RXUSRCLK1_IN;
     input           RXUSRCLK20_IN;
@@ -230,6 +236,8 @@ module V5_GTPWIZARD_V2_1_TILE #
     //---------------- Transmit Ports - TX Data Path interface -----------------
     input   [15:0]  TXDATA0_IN;
     input   [15:0]  TXDATA1_IN;
+    input           TXRESET0_IN;
+    input           TXRESET1_IN;
     input           TXUSRCLK0_IN;
     input           TXUSRCLK1_IN;
     input           TXUSRCLK20_IN;
@@ -676,8 +684,8 @@ module V5_GTPWIZARD_V2_1_TILE #
         .RXDATAWIDTH1                   (tied_to_vcc_i),
         .RXRECCLK0                      (),
         .RXRECCLK1                      (),
-        .RXRESET0                       (tied_to_ground_i),
-        .RXRESET1                       (tied_to_ground_i),
+        .RXRESET0                       (RXRESET0_IN),
+        .RXRESET1                       (RXRESET1_IN),
         .RXUSRCLK0                      (RXUSRCLK0_IN),
         .RXUSRCLK1                      (RXUSRCLK1_IN),
         .RXUSRCLK20                     (RXUSRCLK20_IN),
@@ -776,8 +784,8 @@ module V5_GTPWIZARD_V2_1_TILE #
         .TXDATAWIDTH1                   (tied_to_vcc_i),
         .TXOUTCLK0                      (),
         .TXOUTCLK1                      (),
-        .TXRESET0                       (tied_to_ground_i),
-        .TXRESET1                       (tied_to_ground_i),
+        .TXRESET0                       (TXRESET0_IN),
+        .TXRESET1                       (TXRESET1_IN),
         .TXUSRCLK0                      (TXUSRCLK0_IN),
         .TXUSRCLK1                      (TXUSRCLK1_IN),
         .TXUSRCLK20                     (TXUSRCLK20_IN),

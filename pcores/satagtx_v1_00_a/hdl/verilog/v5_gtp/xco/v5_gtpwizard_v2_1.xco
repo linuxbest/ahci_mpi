@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.6
-# Date: Thu Sep 19 22:26:44 2013
+# Date: Thu Sep 19 22:51:37 2013
 #
 ##############################################################
 #
@@ -180,7 +180,7 @@ CSET gtp0_use_port_rxoversampleerr=false
 CSET gtp0_use_port_rxpolarity=false
 CSET gtp0_use_port_rxpowerdown=false
 CSET gtp0_use_port_rxrecclk=false
-CSET gtp0_use_port_rxreset=false
+CSET gtp0_use_port_rxreset=true
 CSET gtp0_use_port_rxrundisp=false
 CSET gtp0_use_port_rxslide=false
 CSET gtp0_use_port_rxstatus=true
@@ -199,7 +199,7 @@ CSET gtp0_use_port_txkerr=false
 CSET gtp0_use_port_txoutclk=false
 CSET gtp0_use_port_txpolarity=false
 CSET gtp0_use_port_txpowerdown=false
-CSET gtp0_use_port_txreset=false
+CSET gtp0_use_port_txreset=true
 CSET gtp0_use_port_txrundisp=false
 CSET gtp0_use_prbs_detector=false
 CSET gtp0_use_resistor_cal_circuit=false
@@ -350,7 +350,7 @@ CSET gtp1_use_port_rxoversampleerr=false
 CSET gtp1_use_port_rxpolarity=false
 CSET gtp1_use_port_rxpowerdown=false
 CSET gtp1_use_port_rxrecclk=false
-CSET gtp1_use_port_rxreset=false
+CSET gtp1_use_port_rxreset=true
 CSET gtp1_use_port_rxrundisp=false
 CSET gtp1_use_port_rxslide=false
 CSET gtp1_use_port_rxstatus=true
@@ -369,7 +369,7 @@ CSET gtp1_use_port_txkerr=false
 CSET gtp1_use_port_txoutclk=false
 CSET gtp1_use_port_txpolarity=false
 CSET gtp1_use_port_txpowerdown=false
-CSET gtp1_use_port_txreset=false
+CSET gtp1_use_port_txreset=true
 CSET gtp1_use_port_txrundisp=false
 CSET gtp1_use_prbs_detector=false
 CSET gtp1_use_resistor_cal_circuit=false
@@ -438,4 +438,4 @@ CSET use_txbuffer=false
 MISC pkg_timestamp=2013-06-08T23:00:50Z
 # END Extra information
 GENERATE
-# CRC: bc4eb42b
+# CRC: 5b9fde73
