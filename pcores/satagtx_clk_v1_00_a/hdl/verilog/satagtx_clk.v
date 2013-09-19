@@ -53,6 +53,7 @@ module satagtx_clk (/*AUTOARG*/
    tile0_plllkdet, tile0_gtpclkfb
    );
    parameter C_FAMILY = "virtex5";
+   parameter C_SUBFAMILY = "LX";
    parameter C_SATA_SPEED = 1;
    
    input TILE0_REFCLK_PAD_P_IN;

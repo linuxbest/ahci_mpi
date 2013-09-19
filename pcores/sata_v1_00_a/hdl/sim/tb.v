@@ -179,10 +179,12 @@ module tb;
    // End of automatics
 
    parameter C_FAMILY = `C_FAMILY;
+   parameter C_SUBFAMILY = `C_SUBFAMILY;
    parameter C_SATA_SPEED = 1;
    
    satagtx  #(
 	      .C_FAMILY(C_FAMILY),
+	      .C_SUBFAMILY(C_SUBFAMILY),
 	      .C_SATA_SPEED(C_SATA_SPEED)
            )
    gtx_0   (/*AUTOINST*/
@@ -415,6 +417,7 @@ module tb;
 
    satagtx_clk #(
 	      .C_FAMILY(C_FAMILY),
+	      .C_SUBFAMILY(C_SUBFAMILY),
 	      .C_SATA_SPEED(C_SATA_SPEED)
 	)
      clk0 (.tile0_refclk(refclk),

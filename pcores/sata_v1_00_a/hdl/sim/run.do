@@ -1,6 +1,8 @@
-#set C_FAMILY "virtex5"
+set C_FAMILY "virtex5"
 #set C_FAMILY "spartan6"
-set C_FAMILY "kintex7"
+#set C_FAMILY "kintex7"
+
+set C_SUBFAMILY "LX"
 
 do compile.do
 
@@ -45,7 +47,7 @@ sccom -D_SIM_ -I$mpi/include -I$mpi/ -I. $mpi/sata_mpi.c -DGITVERSION=0x0
 
 sccom -link
 
-vlog tb.v +define+C_FAMILY=\"${C_FAMILY}\"
+vlog tb.v +define+C_FAMILY=\"${C_FAMILY}\" +define+C_SUBFAMILY=\"$C_SUBFAMILY\"
 vlog -novopt -incr -work work $::env(XILINX)/verilog/src/glbl.v
 
 vsim +nowarnTSCALE -novopt -t ps -L xilinxcorelib_ver -L secureip -L unisims_ver +notimingchecks tb glbl

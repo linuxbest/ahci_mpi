@@ -298,7 +298,7 @@ module v5_gtp_top #
         .WRAPPER_SIM_MODE               (EXAMPLE_SIM_MODE),
         .WRAPPER_SIM_GTXRESET_SPEEDUP   (EXAMPLE_SIM_GTXRESET_SPEEDUP),
         .WRAPPER_SIM_PLL_PERDIV2        (EXAMPLE_SIM_PLL_PERDIV2),
-	.C_BYPASS_TXBUF                 (C_BYPASS_TXBUF)
+	//.C_BYPASS_TXBUF                 (C_BYPASS_TXBUF)
     )
     rocketio_wrapper_i
     (
@@ -399,12 +399,7 @@ begin
     
     // Include the TX_SYNC module in your own design to perform phase synchronization if
     // your protocol bypasses the TX Buffers
-    TX_SYNC #
-    (
-	.TILE_SIM_GTXRESET_SPEEDUP (EXAMPLE_SIM_GTXRESET_SPEEDUP),
-        .PLL_DIVSEL_OUT   (1)
-    )
-    tile0_txsync0_i 
+    TX_SYNC tile0_txsync0_i 
     (
         .TXENPMAPHASEALIGN(tile0_txenpmaphasealign0_i),
         .TXPMASETPHASE(tile0_txpmasetphase0_i),
@@ -413,13 +408,7 @@ begin
         .RESET(!tile0_tx_resetdone0_r2)
     );
   
-    
-    TX_SYNC #
-    (
-	.TILE_SIM_GTXRESET_SPEEDUP (EXAMPLE_SIM_GTXRESET_SPEEDUP),
-        .PLL_DIVSEL_OUT   (1)
-    )
-    tile0_txsync1_i 
+    TX_SYNC tile0_txsync1_i 
     (
         .TXENPMAPHASEALIGN(tile0_txenpmaphasealign1_i),
         .TXPMASETPHASE(tile0_txpmasetphase1_i),
