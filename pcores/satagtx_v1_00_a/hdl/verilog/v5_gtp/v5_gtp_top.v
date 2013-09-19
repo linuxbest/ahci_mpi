@@ -398,7 +398,7 @@ begin
     
     // Include the TX_SYNC module in your own design to perform phase synchronization if
     // your protocol bypasses the TX Buffers
-    TX_SYNC tile0_txsync0_i 
+    GTP_TX_SYNC tile0_txsync0_i 
     (
         .TXENPMAPHASEALIGN(tile0_txenpmaphasealign0_i),
         .TXPMASETPHASE(tile0_txpmasetphase0_i),
@@ -407,7 +407,7 @@ begin
         .RESET(!tile0_tx_resetdone0_r2)
     );
   
-    TX_SYNC tile0_txsync1_i 
+    GTP_TX_SYNC tile0_txsync1_i 
     (
         .TXENPMAPHASEALIGN(tile0_txenpmaphasealign1_i),
         .TXPMASETPHASE(tile0_txpmasetphase1_i),

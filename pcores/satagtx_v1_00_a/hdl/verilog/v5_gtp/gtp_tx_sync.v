@@ -67,7 +67,7 @@
 `timescale 1ns / 1ps
 `define DLY #1
 
-module TX_SYNC 
+module GTP_TX_SYNC 
 (
     output          TXENPMAPHASEALIGN,
     output          TXPMASETPHASE,

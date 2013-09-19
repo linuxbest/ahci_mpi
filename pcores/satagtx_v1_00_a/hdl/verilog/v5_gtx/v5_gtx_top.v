@@ -10,7 +10,8 @@ module v5_gtx_top #
     parameter EXAMPLE_SIM_GTXRESET_SPEEDUP              =   0,      // simulation setting for MGT smartmodel
     parameter EXAMPLE_SIM_PLL_PERDIV2                   =   9'h14d, // simulation setting for MGT smartmodel
     parameter C_CHIPSCOPE = 0,
-    parameter C_BYPASS_TXBUF = 1
+    parameter C_BYPASS_TXBUF = 1,
+    parameter C_SATA_SPEED = 2
 )
 (/*AUTOARG*/
    // Outputs

@@ -180,7 +180,7 @@ module tb;
 
    parameter C_FAMILY = `C_FAMILY;
    parameter C_SUBFAMILY = `C_SUBFAMILY;
-   parameter C_SATA_SPEED = 1;
+   parameter C_SATA_SPEED = 2;
    
    satagtx  #(
 	      .C_FAMILY(C_FAMILY),
