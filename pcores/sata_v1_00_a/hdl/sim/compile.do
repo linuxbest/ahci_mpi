@@ -37,6 +37,8 @@ vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/v5_gtp_top.v  +incdir+$
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/v5_gtpwizard_v2_1.v
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/v5_gtpwizard_v2_1_tile.v
 vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/gtp_tx_sync.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/mpmc_sample_cycle.v
+vlog ${TOPDIR}/pcores/satagtx_v1_00_a/hdl/verilog/v5_gtp/gtp_oob.v
 
 vlog ${TOPDIR}/sata_ip_sim/device_sim.v
 vlog ${TOPDIR}/sata_ip_sim/sata_device/phy_if_gtp.v

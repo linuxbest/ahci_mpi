@@ -500,9 +500,13 @@ endgenerate
    reg [31:0] gtx_rxdata1;
    reg [3:0]  gtx_rxdatak1;
    //************************** OOB0 ****************************
+   wire       clk_pi_enable;
+   mpmc_sample_cycle sample_cycle(.sample_cycle(clk_pi_enable),
+				  .fast_clk    (tile0_txusrclk20_i),
+				  .slow_clk    (phyclk0));
    assign rxdata_fis0        = tile0_rxdata0_i;
    assign rxcharisk0         = tile0_rxcharisk0_i;
-   gtx_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
+   gtp_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
    gtx_oob_0
      (
       // Outputs
@@ -521,6 +525,7 @@ endgenerate
       // Inputs
       .sys_clk				(tile0_txusrclk20_i),
       .sys_rst				(phyreset0),
+      .clk_pi_enable                    (clk_pi_enable),
       .StartComm			(StartComm0),
       .rxstatus				(tile0_rxstatus0_i[2:0]),
       .rxbyteisaligned			(tile0_rxbyteisaligned0_i),
@@ -536,7 +541,7 @@ endgenerate
    //************************** OOB1 ****************************
    assign rxdata_fis1        = tile0_rxdata1_i;
    assign rxcharisk1         = tile0_rxcharisk1_i;
-   gtx_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
+   gtp_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
    gtx_oob_1
      (
       // Outputs
@@ -555,6 +560,7 @@ endgenerate
       // Inputs
       .sys_clk				(tile0_txusrclk20_i),
       .sys_rst				(phyreset1),
+      .clk_pi_enable                    (clk_pi_enable),
       .StartComm			(StartComm1),
       .rxstatus				(tile0_rxstatus1_i[2:0]),
       .rxbyteisaligned			(tile0_rxbyteisaligned1_i),
