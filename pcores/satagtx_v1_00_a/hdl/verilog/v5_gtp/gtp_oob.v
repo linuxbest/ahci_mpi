@@ -211,11 +211,11 @@ module gtp_oob (/*AUTOARG*/
 	     state == S_HR_AwaitCOMINIT ||
 	     state == S_HR_COMWAKE ||
 	     state == S_HR_AwaitCOMWAKE ||
-	     state == S_HR_AwaitAlign))
+	     state == S_HR_AwaitAlign) && clk_pi_enable)
 	  begin
 	     count <= #1 count + 1'b1;
 	  end
-	else
+	else if (clk_pi_enable)
 	  begin
 	     count <= #1 16'h0;
 	  end
@@ -225,20 +225,23 @@ module gtp_oob (/*AUTOARG*/
    assign await_align_timeout   = count == 16'hffff; // 873.8 us, 32768 GEN1 dword
    assign await_comreset_done   = count == 16'h0288 | rxstatus[0];
    assign await_comwake_done    = count == 16'h0288 | rxstatus[0];
-   assign align_det = ((rxdatak[0] && rxdata == 32'h7B4A_4ABC) |
-		       (rxdatak[1] && rxdata == 32'h4A4A_BC7B) |
-		       (rxdatak[2] && rxdata == 32'h4ABC_7B4A) |
-		       (rxdatak[3] && rxdata == 32'hBC7B_4A4A) && rxbyteisaligned);
+   assign align_det = (((rxdatak[0] && rxdata == 32'h7B4A_4ABC) |
+		        (rxdatak[1] && rxdata == 32'h4A4A_BC7B) |
+		        (rxdatak[2] && rxdata == 32'h4ABC_7B4A) |
+		        (rxdatak[3] && rxdata == 32'hBC7B_4A4A)) && rxbyteisaligned && clk_pi_enable);
    wire nonalign_prim;
-   assign nonalign_prim = ((rxdatak[0] && rxdata[07:00] == 8'h7C) |
-			   (rxdatak[1] && rxdata[15:08] == 8'h7C) |
-			   (rxdatak[2] && rxdata[23:16] == 8'h7C) |
-			   (rxdatak[3] && rxdata[31:24] == 8'h7C) && rxbyteisaligned);
+   assign nonalign_prim = (((rxdatak[0] && rxdata[07:00] == 8'h7C) |
+			    (rxdatak[1] && rxdata[15:08] == 8'h7C) |
+			    (rxdatak[2] && rxdata[23:16] == 8'h7C) |
+			    (rxdatak[3] && rxdata[31:24] == 8'h7C)) && rxbyteisaligned && clk_pi_enable);
    reg [2:0] nonalign_prim_sync;
    always @(posedge sys_clk)
      begin
-	nonalign_prim_sync <= #1 {nonalign_prim_sync[1:0], 
-				  nonalign_prim && state == S_HR_SendAlign};
+	if (clk_pi_enable)
+	  begin
+	     nonalign_prim_sync <= #1 {nonalign_prim_sync[1:0], 
+				       nonalign_prim && state == S_HR_SendAlign};
+	  end
      end
    assign tree_nonalign_prim_det = nonalign_prim_sync == 3'b111;
    /**********************************************************************/
@@ -331,8 +334,8 @@ module gtp_oob (/*AUTOARG*/
 	    end
 	endcase
      end // always @ (posedge sys_clk)
-   assign txdata = txdata_o;
-   assign txdatak= txdatak_o;
+   assign txdata  = ~clk_pi_enable ? txdata_o[31:16] : txdata_o[15:0];
+   assign txdatak = clk_pi_enable && txdatak_o;
    cross_signal 
      StartComm_0 (.clkA(),
 		  .signalIn(StartComm),

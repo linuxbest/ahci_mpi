@@ -504,8 +504,8 @@ endgenerate
    mpmc_sample_cycle sample_cycle(.sample_cycle(clk_pi_enable),
 				  .fast_clk    (tile0_txusrclk20_i),
 				  .slow_clk    (phyclk0));
-   assign rxdata_fis0        = tile0_rxdata0_i;
-   assign rxcharisk0         = tile0_rxcharisk0_i;
+   assign rxdata_fis0        = gtx_rxdata0;
+   assign rxcharisk0         = gtx_rxdatak0;
    gtp_oob #(.C_CHIPSCOPE(C_CHIPSCOPE))
    gtx_oob_0
      (
@@ -612,36 +612,46 @@ endgenerate
    /* synthesis attribute keep of txusrclk20 is "true" */
    always @(posedge tile0_txusrclk20_i)
      begin
-	gtx_txdata0  <= #1 tile0_txdata0_i;
-	gtx_txdatak0 <= #1 tile0_txcharisk0_i;
-	gtx_rxdata0  <= #1 tile0_rxdata0_i;
-	gtx_rxdatak0 <= #1 tile0_rxcharisk0_i;
+	gtx_txdata0[31:16]  <= #1  clk_pi_enable ? gtx_txdata0[31:16] : tile0_txdata0_i;
+	gtx_txdata0[15:0]   <= #1 ~clk_pi_enable ? gtx_txdata0[15:0]  : tile0_txdata0_i;
+	gtx_txdatak0[3:2]   <= #1  clk_pi_enable ? gtx_txdatak0[3:2]  : tile0_txcharisk0_i;
+	gtx_txdatak0[1:0]   <= #1 ~clk_pi_enable ? gtx_txdatak0[1:0]  : tile0_txcharisk0_i;
 
-	gtx_txdata1  <= #1 tile0_txdata1_i;
-	gtx_txdatak1 <= #1 tile0_txcharisk1_i;
-	gtx_rxdata1  <= #1 tile0_rxdata1_i;
-	gtx_rxdatak1 <= #1 tile0_rxcharisk1_i;
+	gtx_rxdata0[31:16]  <= #1  clk_pi_enable ? gtx_rxdata0[31:16] : tile0_rxdata0_i;
+	gtx_rxdata0[15:0]   <= #1 ~clk_pi_enable ? gtx_rxdata0[15:0]  : tile0_rxdata0_i;
+	gtx_rxdatak0[3:2]   <= #1  clk_pi_enable ? gtx_rxdatak0[3:2]  : tile0_rxcharisk0_i;
+	gtx_rxdatak0[1:0]   <= #1 ~clk_pi_enable ? gtx_rxdatak0[1:0]  : tile0_rxcharisk0_i;
+
+	gtx_txdata1[31:16]  <= #1  clk_pi_enable ? gtx_txdata1[31:16] : tile0_txdata1_i;
+	gtx_txdata1[15:0]   <= #1 ~clk_pi_enable ? gtx_txdata1[15:0]  : tile0_txdata1_i;
+	gtx_txdatak1[3:2]   <= #1  clk_pi_enable ? gtx_txdatak1[3:2]  : tile0_txcharisk1_i;
+	gtx_txdatak1[1:0]   <= #1 ~clk_pi_enable ? gtx_txdatak1[1:0]  : tile0_txcharisk1_i;
+
+	gtx_rxdata1[31:16]  <= #1  clk_pi_enable ? gtx_rxdata1[31:16] : tile0_rxdata1_i;
+	gtx_rxdata1[15:0]   <= #1 ~clk_pi_enable ? gtx_rxdata1[15:0]  : tile0_rxdata1_i;
+	gtx_rxdatak1[3:2]   <= #1  clk_pi_enable ? gtx_rxdatak1[3:2]  : tile0_rxcharisk1_i;
+	gtx_rxdatak1[1:0]   <= #1 ~clk_pi_enable ? gtx_rxdatak1[1:0]  : tile0_rxcharisk1_i;
      end
     /* synthesis attribute keep of gtx_rxdata0 is "true" */
     /* synthesis attribute keep of gtx_rxdatak0 is "true" */
     /* synthesis attribute keep of gtx_rxdata1 is "true" */
     /* synthesis attribute keep of gtx_rxdatak1 is "true" */
 
-   assign oob2dbg0[31:0]  = tile0_txdata0_i;
-   assign oob2dbg0[63:32] = tile0_rxdata0_i;
-   assign oob2dbg0[67:64] = tile0_txcharisk0_i;
-   assign oob2dbg0[71:68] = tile0_rxcharisk0_i;
-   assign oob2dbg0[79:72] = encode_prim(tile0_txdata0_i);
-   assign oob2dbg0[87:80] = encode_prim(tile0_rxdata0_i);
+   assign oob2dbg0[31:0]  = gtx_txdata0;
+   assign oob2dbg0[63:32] = gtx_rxdata0;
+   assign oob2dbg0[67:64] = gtx_txdatak0;
+   assign oob2dbg0[71:68] = gtx_rxdatak0;
+   assign oob2dbg0[79:72] = encode_prim(gtx_txdata0);
+   assign oob2dbg0[87:80] = encode_prim(gtx_rxdata0);
    assign oob2dbg0[119:88]= phy2cs_data0;
    assign oob2dbg0[120]   = phy2cs_k0;
 
-   assign oob2dbg1[31:0]  = tile0_txdata1_i;
-   assign oob2dbg1[63:32] = tile0_rxdata1_i;
-   assign oob2dbg1[67:64] = tile0_txcharisk1_i;
-   assign oob2dbg1[71:68] = tile0_rxcharisk1_i;
-   assign oob2dbg1[79:72] = encode_prim(tile0_txdata1_i);
-   assign oob2dbg1[87:80] = encode_prim(tile0_rxdata1_i);
+   assign oob2dbg1[31:0]  = gtx_txdata1;
+   assign oob2dbg1[63:32] = gtx_rxdata1;
+   assign oob2dbg1[67:64] = gtx_txdatak1;
+   assign oob2dbg1[71:68] = gtx_rxdatak1;
+   assign oob2dbg1[79:72] = encode_prim(gtx_txdata1);
+   assign oob2dbg1[87:80] = encode_prim(gtx_rxdata1);
    assign oob2dbg1[119:88]= phy2cs_data1;
    assign oob2dbg1[120]   = phy2cs_k1;
    
@@ -659,10 +669,10 @@ begin
 	      .TRIG0    (dbg2));
         assign dbg2[127] = trig0;
 	assign dbg2[126] = trig1;
-	assign dbg2[31:0]= tile0_txdata0_i;
-	assign dbg2[63:32]=tile0_rxdata0_i;
-	assign dbg2[71:64]=tile0_txcharisk0_i;
-	assign dbg2[79:72]=tile0_rxcharisk0_i;
+	assign dbg2[31:0]= gtx_txdata0;
+	assign dbg2[63:32]=gtx_rxdata0;
+	assign dbg2[71:64]=gtx_txdatak0;
+	assign dbg2[79:72]=gtx_rxdatak0;
 	assign dbg2[87:80]=4'h0;
 	assign dbg2[111:88]=phy2cs_data0;
 	assign dbg2[120]   =phy2cs_k0;

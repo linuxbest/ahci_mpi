@@ -48,7 +48,10 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk0
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk20
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phyclk
 
+if {$fx_cmp == 1} {
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}clk_pi_enable
+}
+
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}refclk
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}GTXRESET_IN
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}txusrclk0
@@ -69,6 +72,9 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy
 
 eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}txdata
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}txdatak
+
+eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}rxdata
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}gtx_oob_0${ps}rxdatak
 
 eval add wave -noupdate $hexopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}rxdata_fis0
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}rxcharisk0
