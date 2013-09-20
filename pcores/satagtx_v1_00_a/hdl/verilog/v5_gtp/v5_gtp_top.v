@@ -680,22 +680,3 @@ end
 endgenerate
 
 endmodule
-
-module chipscope_icon3 (
-CONTROL0, CONTROL1, CONTROL2
-)/* synthesis syn_black_box syn_noprune=1 */;
-  inout [35 : 0] CONTROL0;
-  inout [35 : 0] CONTROL1;
-  inout [35 : 0] CONTROL2;
- 
-endmodule
-
-module chipscope_ila_128x1 (
-  CLK, TRIG_OUT, CONTROL, TRIG0
-)/* synthesis syn_black_box syn_noprune=1 */;
-  input CLK;
-  output TRIG_OUT;
-  inout [35 : 0] CONTROL;
-  input [127 : 0] TRIG0;
- 
-endmodule

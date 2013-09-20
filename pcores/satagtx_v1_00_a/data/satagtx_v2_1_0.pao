@@ -6,20 +6,27 @@
 # 
 ##############################################################
 
-lib satagtx_v1_00_a satagtx verilog
-lib satagtx_v1_00_a phy_if_gtx verilog
-lib satagtx_v1_00_a gtx_oob verilog
-lib satagtx_v1_00_a cross_signal verilog
+lib satagtx_v1_00_a satagtx.v      verilog
+lib satagtx_v1_00_a phy_if_gtx.v   verilog
+lib satagtx_v1_00_a gtx_oob.v      verilog
+lib satagtx_v1_00_a cross_signal.v verilog
 
-lib satagtx_v1_00_a v5_gtx/v5_gtx_top verilog
-lib satagtx_v1_00_a v5_gtx/rocketio_wrapper verilog
-lib satagtx_v1_00_a v5_gtx/rocketio_wrapper_tile verilog
-lib satagtx_v1_00_a v5_gtx/tx_sync verilog
+lib satagtx_v1_00_a v5_gtx/v5_gtx_top.v            verilog
+lib satagtx_v1_00_a v5_gtx/rocketio_wrapper.v      verilog
+lib satagtx_v1_00_a v5_gtx/rocketio_wrapper_tile.v verilog
+lib satagtx_v1_00_a v5_gtx/tx_sync.v               verilog
 
-lib satagtx_v1_00_a s6_gtp/s6_gtp_top verilog
-lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11 verilog
-lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tile verilog
-lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tx_sync verilog
+lib satagtx_v1_00_a v5_gtp/v5_gtp_top.v        verilog
+lib satagtx_v1_00_a v5_gtp/gtp_tx_sync.v       verilog
+lib satagtx_v1_00_a v5_gtp/gtp_oob.v           verilog
+lib satagtx_v1_00_a v5_gtp/mpmc_sample_cycle.v verilog
+lib satagtx_v1_00_a v5_gtp/v5_gtpwizard_v2_1.v verilog
+lib satagtx_v1_00_a v5_gtp/v5_gtpwizard_v2_1_tile.v  verilog
+
+lib satagtx_v1_00_a s6_gtp/s6_gtp_top.v                 verilog
+lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11.v         verilog
+lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tile.v    verilog
+lib satagtx_v1_00_a s6_gtp/s6_gtpwizard_v1_11_tx_sync.v verilog
 
 lib satagtx_v1_00_a k7_gtx/k7_gtx_top.v verilog
 lib satagtx_v1_00_a k7_gtx/gtwizard_v2_6_init.v verilog
