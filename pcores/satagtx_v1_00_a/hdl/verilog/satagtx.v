@@ -261,7 +261,7 @@ begin: v5_gtx_top
 // synopsys translate_on
 
 end
-else if (C_FAMILY == "virtex5" && C_SUBFAMILY == "LX")
+else if (C_FAMILY == "virtex5" && C_SUBFAMILY != "FX")
 begin: v5_gtp_top
    v5_gtp_top #(
 	   .C_CHIPSCOPE  (C_CHIPSCOPE),
