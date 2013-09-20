@@ -72,6 +72,7 @@ module MGT_USRCLK_SOURCE_GTX #
 (
     DIV1_OUT,  
     DIV2_OUT,
+    CLK2X_OUT,
     DCM_LOCKED_OUT,
     CLK_IN,  
     DCM_RESET_IN
@@ -87,6 +88,7 @@ module MGT_USRCLK_SOURCE_GTX #
 
     output          DIV1_OUT;
     output          DIV2_OUT;
+    output          CLK2X_OUT;
     output          DCM_LOCKED_OUT;
     input           CLK_IN;
     input           DCM_RESET_IN;
@@ -97,6 +99,7 @@ module MGT_USRCLK_SOURCE_GTX #
     wire            clkfb_i;
     wire            clkdv_i;
     wire            clk0_i;
+    wire            clk2x_i;
 
 //*********************************** Beginning of Code *******************************
 
@@ -114,7 +117,7 @@ module MGT_USRCLK_SOURCE_GTX #
         .CLK0                       (clk0_i),
         .CLK180                     (not_connected_i[0]),
         .CLK270                     (not_connected_i[1]),
-        .CLK2X                      (not_connected_i[2]),
+        .CLK2X                      (clk2x_i),
         .CLK2X180                   (not_connected_i[3]),
         .CLK90                      (not_connected_i[4]),
         .CLKDV                      (clkdv_i),
@@ -142,6 +145,11 @@ module MGT_USRCLK_SOURCE_GTX #
         .O                          (DIV2_OUT)
     );
 
+    BUFG dcm_div2x_bufg_i
+    (
+        .I                          (clk2x_i),
+        .O                          (CLK2X_OUT)
+    );
 
 endmodule
 

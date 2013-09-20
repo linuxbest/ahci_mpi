@@ -47,7 +47,7 @@
 module satagtx_clk (/*AUTOARG*/
    // Outputs
    tile0_refclk, refclkout_dcm0_locked, tile0_txusrclk0,
-   tile0_txusrclk20,
+   tile0_txusrclk20, tile0_phyclk,
    // Inputs
    TILE0_REFCLK_PAD_P_IN, TILE0_REFCLK_PAD_N_IN, tile0_refclkout,
    tile0_plllkdet, tile0_gtpclkfb
@@ -67,6 +67,7 @@ module satagtx_clk (/*AUTOARG*/
    output refclkout_dcm0_locked;
    output tile0_txusrclk0;
    output tile0_txusrclk20;
+   output tile0_phyclk;
    
     //---------------------Dedicated GTX Reference Clock Inputs ---------------
     // The dedicated reference clock inputs you selected in the GUI are implemented using
@@ -110,6 +111,9 @@ begin
         .I                              (tile0_refclkout),
         .O                              (tile0_refclkout_to_dcm)
     );
+    wire clk_300mhz;
+    wire clk_150mhz;
+    wire clk_75mhz;
     MGT_USRCLK_SOURCE_GTX #
     (
         .FREQUENCY_MODE                 ("HIGH"),
@@ -117,12 +121,16 @@ begin
     )
     refclkout_dcm0
     (
-        .DIV1_OUT                       (tile0_txusrclk0),
-        .DIV2_OUT                       (tile0_txusrclk20),
+	.CLK2X_OUT                      (clk_300mhz),
+        .DIV1_OUT                       (clk_150mhz),
+        .DIV2_OUT                       (clk_75mhz),
         .DCM_LOCKED_OUT                 (refclkout_dcm0_locked),
         .CLK_IN                         (tile0_refclkout_to_dcm),
         .DCM_RESET_IN                   (refclkout_dcm0_reset)
     );
+    assign tile0_txusrclk0 = C_SUBFAMILY == "FX" ? clk_150mhz : clk_300mhz;
+    assign tile0_txusrclk20= C_SUBFAMILY == "FX" ? clk_75mhz  : clk_150mhz;
+    assign tile0_phyclk    = clk_75mhz;
 end
 if (C_FAMILY == "spartan6")
 begin
@@ -178,6 +186,7 @@ begin
 	 .PLL_LOCKED_OUT                (refclkout_dcm0_locked),
 	 .PLL_RESET_IN                  (refclkout_dcm0_reset)
     );
+    assign tile0_phyclk = tile0_txusrclk20;
 end
 if (C_FAMILY == "kintex7")
 begin
@@ -196,6 +205,7 @@ begin
     );
    assign tile0_txusrclk20 = tile0_refclkout_to_dcm;
    assign tile0_txusrclk0  = tile0_refclkout_to_dcm;
+   assign tile0_phyclk     = tile0_txusrclk20;
    assign refclkout_dcm0_locked = 1'b1;
 end   
 endgenerate

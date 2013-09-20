@@ -83,6 +83,7 @@ module tb;
    wire 	sys_rst1;
    wire 	txusrclk0;
    wire 	txusrclk20;
+   wire         phyclk;
 
    wire [31:0] 	PIM_RdFIFO_Data1;
    wire [1:0] 	PIM_RdFIFO_Latency1;
@@ -231,6 +232,7 @@ module tb;
 	    .dcm_locked			(dcm_locked),
 	    .txusrclk0			(txusrclk0),
 	    .txusrclk20			(txusrclk20),
+	    .phyclk			(phyclk),
 	    .phyreset0			(phyreset0),
 	    .txdata0			(txdata0[31:0]),
 	    .txdatak0			(txdatak0),
@@ -425,6 +427,7 @@ module tb;
 	   .refclkout_dcm0_locked(dcm_locked),
 	   .tile0_txusrclk0(txusrclk0),
 	   .tile0_txusrclk20(txusrclk20),
+	   .tile0_phyclk(phyclk),
 	   .TILE0_REFCLK_PAD_P_IN(TILE0_REFCLK_PAD_P_IN),
 	   .TILE0_REFCLK_PAD_N_IN(~TILE0_REFCLK_PAD_P_IN),
 	   .tile0_refclkout(refclkout),

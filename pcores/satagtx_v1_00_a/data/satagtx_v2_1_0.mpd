@@ -82,6 +82,7 @@ PORT gtpclkfb   = "", DIR = O
 PORT dcm_locked = "", DIR = I
 PORT txusrclk0  = "", DIR = I
 PORT txusrclk20 = "", DIR = I
+PORT phyclk     = "", DIR = I
 
 PORT GTXRESET_IN = "", DIR = I, SIGIS = RST
 PORT sys_clk = "", DIR = I, SIGIS = CLK, ASSIGNMENT = REQUIRE

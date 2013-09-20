@@ -55,9 +55,9 @@ module satagtx (/*AUTOARG*/
    gtx_txdatak1, gtx_rxdata1, gtx_rxdatak1,
    // Inputs
    GTXRESET_IN, sys_clk, RXN0_IN, RXP0_IN, RXN1_IN, RXP1_IN, refclk,
-   dcm_locked, txusrclk0, txusrclk20, phyreset0, txdata0, txdatak0,
-   StartComm0, gtx_tune0, phyreset1, txdata1, txdatak1, StartComm1,
-   gtx_tune1
+   dcm_locked, txusrclk0, txusrclk20, phyclk, phyreset0, txdata0,
+   txdatak0, StartComm0, gtx_tune0, phyreset1, txdata1, txdatak1,
+   StartComm1, gtx_tune1
    );
    parameter C_FAMILY = "virtex5";
    parameter C_SUBFAMILY = "FX";
@@ -85,6 +85,7 @@ module satagtx (/*AUTOARG*/
    input                dcm_locked;
    input                txusrclk0;
    input                txusrclk20;
+   input                phyclk;
 
    input                phyreset0;
    input [31:0]         txdata0;
@@ -471,11 +472,11 @@ begin
 end
 endgenerate
 
-   assign phyclk0 = txusrclk20;
-   assign phyclk1 = txusrclk20;
+   assign phyclk0 = phyclk;
+   assign phyclk1 = phyclk;
 endmodule
 // Local Variables:
-// verilog-library-directories:("." "s6_gtp" "v5_gtx" "k7_gtx")
+// verilog-library-directories:("." "s6_gtp" "v5_gtx" "k7_gtx" "v5_gtp")
 // verilog-library-files:(".")
 // verilog-library-extensions:(".v" ".h")
 // End:

@@ -32,5 +32,6 @@ PORT tile0_gtpclkfb  = "",     DIR = I
 PORT refclkout_dcm0_locked = "", DIR = O
 PORT tile0_txusrclk0       = "", DIR = O
 PORT tile0_txusrclk20      = "", DIR = O
+PORT tile0_phyclk          = "", DIR = O
 
 END

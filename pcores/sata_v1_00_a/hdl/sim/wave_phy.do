@@ -46,6 +46,7 @@ eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phy_if_gtx0${ps}phy_sync_1
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}dcm_locked
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk0
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}txusrclk20
+eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}phyclk
 
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}refclk
 eval add wave -noupdate $binopt $tbpath${ps}gtx_0${ps}${lltype}${ps}sata_gtx_phy${ps}GTXRESET_IN
