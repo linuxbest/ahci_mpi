@@ -101,6 +101,8 @@ module gtp_oob (/*AUTOARG*/
    reg			rxreset;
    reg			txcomstart;
    reg			txcomtype;
+   reg [31:0]		txdata;
+   reg [3:0]		txdatak;
    reg			txelecidle;
    // End of automatics
 
@@ -334,8 +336,11 @@ module gtp_oob (/*AUTOARG*/
 	    end
 	endcase
      end // always @ (posedge sys_clk)
-   assign txdata  = ~clk_pi_enable ? txdata_o[31:16] : txdata_o[15:0];
-   assign txdatak = clk_pi_enable && txdatak_o;
+   always @(posedge sys_clk)
+     begin
+	txdata  <= #1 ~clk_pi_enable ? txdata_o[31:16] : txdata_o[15:0];
+	txdatak <= #1 clk_pi_enable && txdatak_o;
+     end
    cross_signal 
      StartComm_0 (.clkA(),
 		  .signalIn(StartComm),
