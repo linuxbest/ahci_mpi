@@ -101,7 +101,7 @@ begin
 end
 endgenerate
 
-generate if (C_FAMILY != "virtx5")
+generate if (C_FAMILY != "virtex5")
 begin
    axi_async_fifo #(.C_FAMILY              (C_FAMILY),
 		    .C_FIFO_DEPTH          (512),
