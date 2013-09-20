@@ -406,15 +406,7 @@ begin
         .USER_CLK(tile0_txusrclk20_i),
         .RESET(!tile0_tx_resetdone0_r2)
     );
-  
-    GTP_TX_SYNC tile0_txsync1_i 
-    (
-        .TXENPMAPHASEALIGN(tile0_txenpmaphasealign1_i),
-        .TXPMASETPHASE(tile0_txpmasetphase1_i),
-        .SYNC_DONE(tile0_tx_sync_done1_i),
-        .USER_CLK(tile0_txusrclk20_i),
-        .RESET(!tile0_tx_resetdone1_r2)
-    );
+    assign tile0_tx_sync_done1_i = tile0_tx_sync_done0_i;
 end
 endgenerate
 generate if (C_BYPASS_TXBUF == 0)
