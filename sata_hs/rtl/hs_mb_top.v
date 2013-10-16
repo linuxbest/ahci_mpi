@@ -50,11 +50,7 @@ module hs_mb_top(/*AUTOARG*/
    io_writedata0, io_write3, io_write2, io_write1, io_write0,
    io_address3, io_address2, io_address1, io_address0,
    inband_cons_index, ilmb_BRAM_Din, dlmb_BRAM_Din, Trace_FW3,
-   Trace_FW2, Trace_FW1, Trace_FW0, ICACHE_FSL_OUT_WRITE,
-   ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL, ICACHE_FSL_OUT_CLK,
-   ICACHE_FSL_IN_READ, ICACHE_FSL_IN_CLK, DCACHE_FSL_OUT_WRITE,
-   DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL, DCACHE_FSL_OUT_CLK,
-   DCACHE_FSL_IN_READ, DCACHE_FSL_IN_CLK, DBG_TDO,
+   Trace_FW2, Trace_FW1, Trace_FW0, DBG_TDO,
    // Inputs
    ring_enable, outband_prod_addr, outband_cons_index, outband_base,
    irq3, irq2, irq1, irq0, io_readdata3, io_readdata2, io_readdata1,
@@ -62,11 +58,8 @@ module hs_mb_top(/*AUTOARG*/
    ilmb_BRAM_WEN, ilmb_BRAM_Rst, ilmb_BRAM_EN, ilmb_BRAM_Dout,
    ilmb_BRAM_Clk, ilmb_BRAM_Addr, dlmb_BRAM_WEN, dlmb_BRAM_Rst,
    dlmb_BRAM_EN, dlmb_BRAM_Dout, dlmb_BRAM_Clk, dlmb_BRAM_Addr,
-   ICACHE_FSL_OUT_FULL, ICACHE_FSL_IN_EXISTS, ICACHE_FSL_IN_DATA,
-   ICACHE_FSL_IN_CONTROL, DCACHE_FSL_OUT_FULL, DCACHE_FSL_IN_EXISTS,
-   DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL, DBG_UPDATE, DBG_TDI,
-   DBG_STOP, DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK, DBG_CAPTURE,
-   sys_clk, sys_rst
+   DBG_UPDATE, DBG_TDI, DBG_STOP, DBG_SHIFT, DBG_RST, DBG_REG_EN,
+   DBG_CLK, DBG_CAPTURE, sys_clk, sys_rst
    );
    parameter C_FAMILY = "virtex5";
    parameter C_DEBUG_ENABLED = 1;
@@ -166,14 +159,6 @@ module hs_mb_top(/*AUTOARG*/
    input		DBG_STOP;		// To microblaze_mcs of microblaze_mcs.v
    input		DBG_TDI;		// To microblaze_mcs of microblaze_mcs.v
    input		DBG_UPDATE;		// To microblaze_mcs of microblaze_mcs.v
-   input		DCACHE_FSL_IN_CONTROL;	// To microblaze_mcs of microblaze_mcs.v
-   input [0:31]		DCACHE_FSL_IN_DATA;	// To microblaze_mcs of microblaze_mcs.v
-   input		DCACHE_FSL_IN_EXISTS;	// To microblaze_mcs of microblaze_mcs.v
-   input		DCACHE_FSL_OUT_FULL;	// To microblaze_mcs of microblaze_mcs.v
-   input		ICACHE_FSL_IN_CONTROL;	// To microblaze_mcs of microblaze_mcs.v
-   input [0:31]		ICACHE_FSL_IN_DATA;	// To microblaze_mcs of microblaze_mcs.v
-   input		ICACHE_FSL_IN_EXISTS;	// To microblaze_mcs of microblaze_mcs.v
-   input		ICACHE_FSL_OUT_FULL;	// To microblaze_mcs of microblaze_mcs.v
    input [0:31]		dlmb_BRAM_Addr;		// To microblaze_mcs of microblaze_mcs.v
    input		dlmb_BRAM_Clk;		// To microblaze_mcs of microblaze_mcs.v
    input [0:31]		dlmb_BRAM_Dout;		// To microblaze_mcs of microblaze_mcs.v
@@ -205,18 +190,6 @@ module hs_mb_top(/*AUTOARG*/
    /*AUTOOUTPUT*/
    // Beginning of automatic outputs (from unused autoinst outputs)
    output		DBG_TDO;		// From microblaze_mcs of microblaze_mcs.v
-   output		DCACHE_FSL_IN_CLK;	// From microblaze_mcs of microblaze_mcs.v
-   output		DCACHE_FSL_IN_READ;	// From microblaze_mcs of microblaze_mcs.v
-   output		DCACHE_FSL_OUT_CLK;	// From microblaze_mcs of microblaze_mcs.v
-   output		DCACHE_FSL_OUT_CONTROL;	// From microblaze_mcs of microblaze_mcs.v
-   output [0:31]	DCACHE_FSL_OUT_DATA;	// From microblaze_mcs of microblaze_mcs.v
-   output		DCACHE_FSL_OUT_WRITE;	// From microblaze_mcs of microblaze_mcs.v
-   output		ICACHE_FSL_IN_CLK;	// From microblaze_mcs of microblaze_mcs.v
-   output		ICACHE_FSL_IN_READ;	// From microblaze_mcs of microblaze_mcs.v
-   output		ICACHE_FSL_OUT_CLK;	// From microblaze_mcs of microblaze_mcs.v
-   output		ICACHE_FSL_OUT_CONTROL;	// From microblaze_mcs of microblaze_mcs.v
-   output [0:31]	ICACHE_FSL_OUT_DATA;	// From microblaze_mcs of microblaze_mcs.v
-   output		ICACHE_FSL_OUT_WRITE;	// From microblaze_mcs of microblaze_mcs.v
    output [127:0]	Trace_FW0;		// From mb_io of hs_mb_io.v
    output [127:0]	Trace_FW1;		// From mb_io of hs_mb_io.v
    output [127:0]	Trace_FW2;		// From mb_io of hs_mb_io.v
@@ -242,6 +215,16 @@ module hs_mb_top(/*AUTOARG*/
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    wire			Clk;			// From mb_io of hs_mb_io.v
+   wire			DCACHE_FSL_IN_CLK;	// From microblaze_mcs of microblaze_mcs.v
+   wire			DCACHE_FSL_IN_CONTROL;	// From mb_io of hs_mb_io.v
+   wire [0:31]		DCACHE_FSL_IN_DATA;	// From mb_io of hs_mb_io.v
+   wire			DCACHE_FSL_IN_EXISTS;	// From mb_io of hs_mb_io.v
+   wire			DCACHE_FSL_IN_READ;	// From microblaze_mcs of microblaze_mcs.v
+   wire			DCACHE_FSL_OUT_CLK;	// From microblaze_mcs of microblaze_mcs.v
+   wire			DCACHE_FSL_OUT_CONTROL;	// From microblaze_mcs of microblaze_mcs.v
+   wire [0:31]		DCACHE_FSL_OUT_DATA;	// From microblaze_mcs of microblaze_mcs.v
+   wire			DCACHE_FSL_OUT_FULL;	// From mb_io of hs_mb_io.v
+   wire			DCACHE_FSL_OUT_WRITE;	// From microblaze_mcs of microblaze_mcs.v
    wire			FIT1_Interrupt;		// From microblaze_mcs of microblaze_mcs.v
    wire			FIT1_Toggle;		// From microblaze_mcs of microblaze_mcs.v
    wire			FIT2_Interrupt;		// From microblaze_mcs of microblaze_mcs.v
@@ -258,6 +241,16 @@ module hs_mb_top(/*AUTOARG*/
    wire [C_GPO2_SIZE-1:0] GPO2;			// From microblaze_mcs of microblaze_mcs.v
    wire [C_GPO3_SIZE-1:0] GPO3;			// From microblaze_mcs of microblaze_mcs.v
    wire [C_GPO4_SIZE-1:0] GPO4;			// From microblaze_mcs of microblaze_mcs.v
+   wire			ICACHE_FSL_IN_CLK;	// From microblaze_mcs of microblaze_mcs.v
+   wire			ICACHE_FSL_IN_CONTROL;	// From mb_io of hs_mb_io.v
+   wire [0:31]		ICACHE_FSL_IN_DATA;	// From mb_io of hs_mb_io.v
+   wire			ICACHE_FSL_IN_EXISTS;	// From mb_io of hs_mb_io.v
+   wire			ICACHE_FSL_IN_READ;	// From microblaze_mcs of microblaze_mcs.v
+   wire			ICACHE_FSL_OUT_CLK;	// From microblaze_mcs of microblaze_mcs.v
+   wire			ICACHE_FSL_OUT_CONTROL;	// From microblaze_mcs of microblaze_mcs.v
+   wire [0:31]		ICACHE_FSL_OUT_DATA;	// From microblaze_mcs of microblaze_mcs.v
+   wire			ICACHE_FSL_OUT_FULL;	// From mb_io of hs_mb_io.v
+   wire			ICACHE_FSL_OUT_WRITE;	// From microblaze_mcs of microblaze_mcs.v
    wire			INTC_IRQ;		// From microblaze_mcs of microblaze_mcs.v
    wire [C_INTC_INTR_SIZE-1:0] INTC_Interrupt;	// From mb_io of hs_mb_io.v
    wire			IO_Addr_Strobe;		// From microblaze_mcs of microblaze_mcs.v
@@ -608,6 +601,14 @@ module hs_mb_top(/*AUTOARG*/
 	   .GPI4			(GPI4[C_GPI4_SIZE-1:0]),
 	   .IO_Read_Data		(IO_Read_Data[31:0]),
 	   .IO_Ready			(IO_Ready),
+	   .ICACHE_FSL_IN_DATA		(ICACHE_FSL_IN_DATA[0:31]),
+	   .ICACHE_FSL_IN_CONTROL	(ICACHE_FSL_IN_CONTROL),
+	   .ICACHE_FSL_IN_EXISTS	(ICACHE_FSL_IN_EXISTS),
+	   .ICACHE_FSL_OUT_FULL		(ICACHE_FSL_OUT_FULL),
+	   .DCACHE_FSL_IN_DATA		(DCACHE_FSL_IN_DATA[0:31]),
+	   .DCACHE_FSL_IN_CONTROL	(DCACHE_FSL_IN_CONTROL),
+	   .DCACHE_FSL_IN_EXISTS	(DCACHE_FSL_IN_EXISTS),
+	   .DCACHE_FSL_OUT_FULL		(DCACHE_FSL_OUT_FULL),
 	   .io_address0			(io_address0[5:0]),
 	   .io_address1			(io_address1[5:0]),
 	   .io_address2			(io_address2[5:0]),
@@ -688,6 +689,18 @@ module hs_mb_top(/*AUTOARG*/
 	   .IO_Address			(IO_Address[31:0]),
 	   .IO_Byte_Enable		(IO_Byte_Enable[3:0]),
 	   .IO_Write_Data		(IO_Write_Data[31:0]),
+	   .ICACHE_FSL_IN_CLK		(ICACHE_FSL_IN_CLK),
+	   .ICACHE_FSL_IN_READ		(ICACHE_FSL_IN_READ),
+	   .ICACHE_FSL_OUT_CLK		(ICACHE_FSL_OUT_CLK),
+	   .ICACHE_FSL_OUT_WRITE	(ICACHE_FSL_OUT_WRITE),
+	   .ICACHE_FSL_OUT_DATA		(ICACHE_FSL_OUT_DATA[0:31]),
+	   .ICACHE_FSL_OUT_CONTROL	(ICACHE_FSL_OUT_CONTROL),
+	   .DCACHE_FSL_IN_CLK		(DCACHE_FSL_IN_CLK),
+	   .DCACHE_FSL_IN_READ		(DCACHE_FSL_IN_READ),
+	   .DCACHE_FSL_OUT_CLK		(DCACHE_FSL_OUT_CLK),
+	   .DCACHE_FSL_OUT_WRITE	(DCACHE_FSL_OUT_WRITE),
+	   .DCACHE_FSL_OUT_DATA		(DCACHE_FSL_OUT_DATA[0:31]),
+	   .DCACHE_FSL_OUT_CONTROL	(DCACHE_FSL_OUT_CONTROL),
 	   .io_readdata0		(io_readdata0[31:0]),
 	   .io_readdata1		(io_readdata1[31:0]),
 	   .io_readdata2		(io_readdata2[31:0]),

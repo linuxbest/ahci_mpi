@@ -46,13 +46,20 @@
 // Code:
 module hs_mb_io (/*AUTOARG*/
    // Outputs
-   IO_Read_Data, IO_Ready, GPI1, GPI2, GPI3, GPI4, INTC_Interrupt,
-   UART_Rx, PIT1_Enable, PIT2_Enable, PIT3_Enable, PIT4_Enable, Clk,
-   Reset, io_address0, io_address1, io_address2, io_address3,
-   io_write0, io_write1, io_write2, io_write3, io_writedata0,
-   io_writedata1, io_writedata2, io_writedata3, inband_cons_index,
-   outband_prod_index, Trace_FW0, Trace_FW1, Trace_FW2, Trace_FW3,
+   DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL, DCACHE_FSL_IN_EXISTS,
+   DCACHE_FSL_OUT_FULL, ICACHE_FSL_IN_DATA, ICACHE_FSL_IN_CONTROL,
+   ICACHE_FSL_IN_EXISTS, ICACHE_FSL_OUT_FULL, IO_Read_Data, IO_Ready,
+   GPI1, GPI2, GPI3, GPI4, INTC_Interrupt, UART_Rx, PIT1_Enable,
+   PIT2_Enable, PIT3_Enable, PIT4_Enable, Clk, Reset, io_address0,
+   io_address1, io_address2, io_address3, io_write0, io_write1,
+   io_write2, io_write3, io_writedata0, io_writedata1, io_writedata2,
+   io_writedata3, inband_cons_index, outband_prod_index, Trace_FW0,
+   Trace_FW1, Trace_FW2, Trace_FW3,
    // Inputs
+   DCACHE_FSL_IN_CLK, DCACHE_FSL_IN_READ, DCACHE_FSL_OUT_CLK,
+   DCACHE_FSL_OUT_WRITE, DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL,
+   ICACHE_FSL_IN_CLK, ICACHE_FSL_IN_READ, ICACHE_FSL_OUT_CLK,
+   ICACHE_FSL_OUT_WRITE, ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL,
    IO_Addr_Strobe, IO_Read_Strobe, IO_Write_Strobe, IO_Address,
    IO_Byte_Enable, IO_Write_Data, GPO1, GPO2, GPO3, GPO4, INTC_IRQ,
    UART_Tx, UART_Interrupt, FIT1_Interrupt, FIT1_Toggle,
@@ -256,6 +263,33 @@ module hs_mb_io (/*AUTOARG*/
    input [31:0]		IO_Write_Data;
    // End of automatics
 
+   /*AUTOINOUTCOMP("microblaze_mcs", "^ICACHE")*/
+   // Beginning of automatic in/out/inouts (from specific module)
+   output [0:31]	ICACHE_FSL_IN_DATA;
+   output		ICACHE_FSL_IN_CONTROL;
+   output		ICACHE_FSL_IN_EXISTS;
+   output		ICACHE_FSL_OUT_FULL;
+   input		ICACHE_FSL_IN_CLK;
+   input		ICACHE_FSL_IN_READ;
+   input		ICACHE_FSL_OUT_CLK;
+   input		ICACHE_FSL_OUT_WRITE;
+   input [0:31]		ICACHE_FSL_OUT_DATA;
+   input		ICACHE_FSL_OUT_CONTROL;
+   // End of automatics
+   /*AUTOINOUTCOMP("microblaze_mcs", "^DCACHE")*/
+   // Beginning of automatic in/out/inouts (from specific module)
+   output [0:31]	DCACHE_FSL_IN_DATA;
+   output		DCACHE_FSL_IN_CONTROL;
+   output		DCACHE_FSL_IN_EXISTS;
+   output		DCACHE_FSL_OUT_FULL;
+   input		DCACHE_FSL_IN_CLK;
+   input		DCACHE_FSL_IN_READ;
+   input		DCACHE_FSL_OUT_CLK;
+   input		DCACHE_FSL_OUT_WRITE;
+   input [0:31]		DCACHE_FSL_OUT_DATA;
+   input		DCACHE_FSL_OUT_CONTROL;
+   // End of automatics
+   
    output [5:0]		io_address0;
    output [5:0]		io_address1;
    output [5:0]		io_address2;
@@ -436,6 +470,15 @@ module hs_mb_io (/*AUTOARG*/
    assign MB_stopped = 0;
    assign trigger_in = 0;
    assign include_data = 0;
+   /**********************************************************************/
+   assign DCACHE_FSL_IN_CONTROL = 1'b0;
+   assign DCACHE_FSL_IN_DATA    = 32'h0;
+   assign DCACHE_FSL_IN_EXISTS  = 1'b0;
+   assign DCACHE_FSL_OUT_FULL   = 1'b0;
+   assign ICACHE_FSL_IN_CONTROL = 1'b0;
+   assign ICACHE_FSL_IN_DATA    = 32'h0;
+   assign ICACHE_FSL_IN_EXISTS  = 1'b0;
+   assign ICACHE_FSL_OUT_FULL   = 1'b0;   
 endmodule // hs_mb_io
 // Local Variables:
 // verilog-library-directories:("." "../../pcores/sata_v1_00_a/hdl/verilog" )

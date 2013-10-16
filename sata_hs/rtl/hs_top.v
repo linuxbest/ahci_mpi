@@ -66,11 +66,7 @@ module hs_top (/*AUTOARG*/
    RdFIFO_DataReq2, RdFIFO_DataReq1, RdFIFO_DataReq0, RdFIFO_DataId3,
    RdFIFO_DataId2, RdFIFO_DataId1, RdFIFO_DataId0, RdFIFO_Data3,
    RdFIFO_Data2, RdFIFO_Data1, RdFIFO_Data0, PhyReady3, PhyReady2,
-   PhyReady1, PhyReady0, ICACHE_FSL_OUT_WRITE, ICACHE_FSL_OUT_DATA,
-   ICACHE_FSL_OUT_CONTROL, ICACHE_FSL_OUT_CLK, ICACHE_FSL_IN_READ,
-   ICACHE_FSL_IN_CLK, DCACHE_FSL_OUT_WRITE, DCACHE_FSL_OUT_DATA,
-   DCACHE_FSL_OUT_CONTROL, DCACHE_FSL_OUT_CLK, DCACHE_FSL_IN_READ,
-   DCACHE_FSL_IN_CLK, DBG_TDO, CmdAck3, CmdAck2, CmdAck1, CmdAck0,
+   PhyReady1, PhyReady0, DBG_TDO, CmdAck3, CmdAck2, CmdAck1, CmdAck0,
    // Inputs
    txdatak_pop3, txdatak_pop2, txdatak_pop1, txdatak_pop0,
    rxfifo_irq3, rxfifo_irq2, rxfifo_irq1, rxfifo_irq0, rxdatak3,
@@ -91,14 +87,11 @@ module hs_top (/*AUTOARG*/
    RspAck2, RspAck1, RspAck0, RdFIFO_Pop3, RdFIFO_Pop2, RdFIFO_Pop1,
    RdFIFO_Pop0, RdFIFO_DataAck3, RdFIFO_DataAck2, RdFIFO_DataAck1,
    RdFIFO_DataAck0, PhyReset3, PhyReset2, PhyReset1, PhyReset0,
-   ICACHE_FSL_OUT_FULL, ICACHE_FSL_IN_EXISTS, ICACHE_FSL_IN_DATA,
-   ICACHE_FSL_IN_CONTROL, DCACHE_FSL_OUT_FULL, DCACHE_FSL_IN_EXISTS,
-   DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL, DBG_UPDATE, DBG_TDI,
-   DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK, DBG_CAPTURE, CommInit3,
-   CommInit2, CommInit1, CommInit0, CmdWr3, CmdWr2, CmdWr1, CmdWr0,
-   CmdReq3, CmdReq2, CmdReq1, CmdReq0, CmdId3, CmdId2, CmdId1, CmdId0,
-   CmdAddr3, CmdAddr2, CmdAddr1, CmdAddr0, Cmd3, Cmd2, Cmd1, Cmd0,
-   sys_clk, sys_rst
+   DBG_UPDATE, DBG_TDI, DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK,
+   DBG_CAPTURE, CommInit3, CommInit2, CommInit1, CommInit0, CmdWr3,
+   CmdWr2, CmdWr1, CmdWr0, CmdReq3, CmdReq2, CmdReq1, CmdReq0, CmdId3,
+   CmdId2, CmdId1, CmdId0, CmdAddr3, CmdAddr2, CmdAddr1, CmdAddr0,
+   Cmd3, Cmd2, Cmd1, Cmd0, sys_clk, sys_rst
    );
    parameter C_PORT = 4;
    parameter C_FAMILY = "virtex5";
@@ -143,21 +136,13 @@ module hs_top (/*AUTOARG*/
    input		CommInit1;		// To dma1 of hs_if.v
    input		CommInit2;		// To dma2 of hs_if.v
    input		CommInit3;		// To dma3 of hs_if.v
-   input		DBG_CAPTURE;		// To mb_top of mb_top.v
-   input		DBG_CLK;		// To mb_top of mb_top.v
-   input [0:7]		DBG_REG_EN;		// To mb_top of mb_top.v
-   input		DBG_RST;		// To mb_top of mb_top.v
-   input		DBG_SHIFT;		// To mb_top of mb_top.v
-   input		DBG_TDI;		// To mb_top of mb_top.v
-   input		DBG_UPDATE;		// To mb_top of mb_top.v
-   input		DCACHE_FSL_IN_CONTROL;	// To mb_top of mb_top.v
-   input [0:31]		DCACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
-   input		DCACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
-   input		DCACHE_FSL_OUT_FULL;	// To mb_top of mb_top.v
-   input		ICACHE_FSL_IN_CONTROL;	// To mb_top of mb_top.v
-   input [0:31]		ICACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
-   input		ICACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
-   input		ICACHE_FSL_OUT_FULL;	// To mb_top of mb_top.v
+   input		DBG_CAPTURE;		// To mb_top of hs_mb_top.v
+   input		DBG_CLK;		// To mb_top of hs_mb_top.v
+   input [0:7]		DBG_REG_EN;		// To mb_top of hs_mb_top.v
+   input		DBG_RST;		// To mb_top of hs_mb_top.v
+   input		DBG_SHIFT;		// To mb_top of hs_mb_top.v
+   input		DBG_TDI;		// To mb_top of hs_mb_top.v
+   input		DBG_UPDATE;		// To mb_top of hs_mb_top.v
    input		PhyReset0;		// To dma0 of hs_if.v
    input		PhyReset1;		// To dma1 of hs_if.v
    input		PhyReset2;		// To dma2 of hs_if.v
@@ -190,12 +175,12 @@ module hs_top (/*AUTOARG*/
    input		WrFIFO_Push1;		// To dma1 of hs_if.v
    input		WrFIFO_Push2;		// To dma2 of hs_if.v
    input		WrFIFO_Push3;		// To dma3 of hs_if.v
-   input [0:31]		dlmb_BRAM_Addr;		// To mb_top of mb_top.v
-   input		dlmb_BRAM_Clk;		// To mb_top of mb_top.v
-   input [0:31]		dlmb_BRAM_Dout;		// To mb_top of mb_top.v
-   input		dlmb_BRAM_EN;		// To mb_top of mb_top.v
-   input		dlmb_BRAM_Rst;		// To mb_top of mb_top.v
-   input [0:3]		dlmb_BRAM_WEN;		// To mb_top of mb_top.v
+   input [0:31]		dlmb_BRAM_Addr;		// To mb_top of hs_mb_top.v
+   input		dlmb_BRAM_Clk;		// To mb_top of hs_mb_top.v
+   input [0:31]		dlmb_BRAM_Dout;		// To mb_top of hs_mb_top.v
+   input		dlmb_BRAM_EN;		// To mb_top of hs_mb_top.v
+   input		dlmb_BRAM_Rst;		// To mb_top of hs_mb_top.v
+   input [0:3]		dlmb_BRAM_WEN;		// To mb_top of hs_mb_top.v
    input [31:0]		dma_state0;		// To hs_host_if of hs_host_if.v
    input [31:0]		dma_state1;		// To hs_host_if of hs_host_if.v
    input [31:0]		dma_state2;		// To hs_host_if of hs_host_if.v
@@ -216,12 +201,12 @@ module hs_top (/*AUTOARG*/
    input [3:0]		gtx_txdatak1;		// To dma1 of hs_if.v
    input [3:0]		gtx_txdatak2;		// To dma2 of hs_if.v
    input [3:0]		gtx_txdatak3;		// To dma3 of hs_if.v
-   input [0:31]		ilmb_BRAM_Addr;		// To mb_top of mb_top.v
-   input		ilmb_BRAM_Clk;		// To mb_top of mb_top.v
-   input [0:31]		ilmb_BRAM_Dout;		// To mb_top of mb_top.v
-   input		ilmb_BRAM_EN;		// To mb_top of mb_top.v
-   input		ilmb_BRAM_Rst;		// To mb_top of mb_top.v
-   input [0:3]		ilmb_BRAM_WEN;		// To mb_top of mb_top.v
+   input [0:31]		ilmb_BRAM_Addr;		// To mb_top of hs_mb_top.v
+   input		ilmb_BRAM_Clk;		// To mb_top of hs_mb_top.v
+   input [0:31]		ilmb_BRAM_Dout;		// To mb_top of hs_mb_top.v
+   input		ilmb_BRAM_EN;		// To mb_top of hs_mb_top.v
+   input		ilmb_BRAM_Rst;		// To mb_top of hs_mb_top.v
+   input [0:3]		ilmb_BRAM_WEN;		// To mb_top of hs_mb_top.v
    input		linkup0;		// To dma0 of hs_if.v
    input		linkup1;		// To dma1 of hs_if.v
    input		linkup2;		// To dma2 of hs_if.v
@@ -261,19 +246,7 @@ module hs_top (/*AUTOARG*/
    output		CmdAck1;		// From dma1 of hs_if.v
    output		CmdAck2;		// From dma2 of hs_if.v
    output		CmdAck3;		// From dma3 of hs_if.v
-   output		DBG_TDO;		// From mb_top of mb_top.v
-   output		DCACHE_FSL_IN_CLK;	// From mb_top of mb_top.v
-   output		DCACHE_FSL_IN_READ;	// From mb_top of mb_top.v
-   output		DCACHE_FSL_OUT_CLK;	// From mb_top of mb_top.v
-   output		DCACHE_FSL_OUT_CONTROL;	// From mb_top of mb_top.v
-   output [0:31]	DCACHE_FSL_OUT_DATA;	// From mb_top of mb_top.v
-   output		DCACHE_FSL_OUT_WRITE;	// From mb_top of mb_top.v
-   output		ICACHE_FSL_IN_CLK;	// From mb_top of mb_top.v
-   output		ICACHE_FSL_IN_READ;	// From mb_top of mb_top.v
-   output		ICACHE_FSL_OUT_CLK;	// From mb_top of mb_top.v
-   output		ICACHE_FSL_OUT_CONTROL;	// From mb_top of mb_top.v
-   output [0:31]	ICACHE_FSL_OUT_DATA;	// From mb_top of mb_top.v
-   output		ICACHE_FSL_OUT_WRITE;	// From mb_top of mb_top.v
+   output		DBG_TDO;		// From mb_top of hs_mb_top.v
    output		PhyReady0;		// From dma0 of hs_if.v
    output		PhyReady1;		// From dma1 of hs_if.v
    output		PhyReady2;		// From dma2 of hs_if.v
@@ -346,12 +319,12 @@ module hs_top (/*AUTOARG*/
    output		cmd_req1;		// From dma1 of hs_if.v
    output		cmd_req2;		// From dma2 of hs_if.v
    output		cmd_req3;		// From dma3 of hs_if.v
-   output [0:31]	dlmb_BRAM_Din;		// From mb_top of mb_top.v
+   output [0:31]	dlmb_BRAM_Din;		// From mb_top of hs_mb_top.v
    output [31:0]	gtx_tune0;		// From dma0 of hs_if.v
    output [31:0]	gtx_tune1;		// From dma1 of hs_if.v
    output [31:0]	gtx_tune2;		// From dma2 of hs_if.v
    output [31:0]	gtx_tune3;		// From dma3 of hs_if.v
-   output [0:31]	ilmb_BRAM_Din;		// From mb_top of mb_top.v
+   output [0:31]	ilmb_BRAM_Din;		// From mb_top of hs_mb_top.v
    output		phyreset0;		// From dma0 of hs_if.v
    output		phyreset1;		// From dma1 of hs_if.v
    output		phyreset2;		// From dma2 of hs_if.v
@@ -386,10 +359,10 @@ module hs_top (/*AUTOARG*/
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    wire			DBG_STOP;		// From hs_host_if of hs_host_if.v
-   wire [127:0]		Trace_FW0;		// From mb_top of mb_top.v
-   wire [127:0]		Trace_FW1;		// From mb_top of mb_top.v
-   wire [127:0]		Trace_FW2;		// From mb_top of mb_top.v
-   wire [127:0]		Trace_FW3;		// From mb_top of mb_top.v
+   wire [127:0]		Trace_FW0;		// From mb_top of hs_mb_top.v
+   wire [127:0]		Trace_FW1;		// From mb_top of hs_mb_top.v
+   wire [127:0]		Trace_FW2;		// From mb_top of hs_mb_top.v
+   wire [127:0]		Trace_FW3;		// From mb_top of hs_mb_top.v
    wire [7:0]		err_ack0;		// From dma0 of hs_if.v
    wire [7:0]		err_ack1;		// From dma1 of hs_if.v
    wire [7:0]		err_ack2;		// From dma2 of hs_if.v
@@ -400,24 +373,24 @@ module hs_top (/*AUTOARG*/
    wire [7:0]		err_req3;		// From hs_host_if of hs_host_if.v
    wire [31:0]		inband_base;		// From hs_host_if of hs_host_if.v
    wire [31:0]		inband_cons_addr;	// From hs_host_if of hs_host_if.v
-   wire [11:0]		inband_cons_index;	// From mb_top of mb_top.v
+   wire [11:0]		inband_cons_index;	// From mb_top of hs_mb_top.v
    wire [11:0]		inband_prod_index;	// From hs_host_if of hs_host_if.v
-   wire [5:0]		io_address0;		// From mb_top of mb_top.v
-   wire [5:0]		io_address1;		// From mb_top of mb_top.v
-   wire [5:0]		io_address2;		// From mb_top of mb_top.v
-   wire [5:0]		io_address3;		// From mb_top of mb_top.v
-   wire			io_write0;		// From mb_top of mb_top.v
-   wire			io_write1;		// From mb_top of mb_top.v
-   wire			io_write2;		// From mb_top of mb_top.v
-   wire			io_write3;		// From mb_top of mb_top.v
-   wire [31:0]		io_writedata0;		// From mb_top of mb_top.v
-   wire [31:0]		io_writedata1;		// From mb_top of mb_top.v
-   wire [31:0]		io_writedata2;		// From mb_top of mb_top.v
-   wire [31:0]		io_writedata3;		// From mb_top of mb_top.v
+   wire [5:0]		io_address0;		// From mb_top of hs_mb_top.v
+   wire [5:0]		io_address1;		// From mb_top of hs_mb_top.v
+   wire [5:0]		io_address2;		// From mb_top of hs_mb_top.v
+   wire [5:0]		io_address3;		// From mb_top of hs_mb_top.v
+   wire			io_write0;		// From mb_top of hs_mb_top.v
+   wire			io_write1;		// From mb_top of hs_mb_top.v
+   wire			io_write2;		// From mb_top of hs_mb_top.v
+   wire			io_write3;		// From mb_top of hs_mb_top.v
+   wire [31:0]		io_writedata0;		// From mb_top of hs_mb_top.v
+   wire [31:0]		io_writedata1;		// From mb_top of hs_mb_top.v
+   wire [31:0]		io_writedata2;		// From mb_top of hs_mb_top.v
+   wire [31:0]		io_writedata3;		// From mb_top of hs_mb_top.v
    wire [31:0]		outband_base;		// From hs_host_if of hs_host_if.v
    wire [11:0]		outband_cons_index;	// From hs_host_if of hs_host_if.v
    wire [31:0]		outband_prod_addr;	// From hs_host_if of hs_host_if.v
-   wire [11:0]		outband_prod_index;	// From mb_top of mb_top.v
+   wire [11:0]		outband_prod_index;	// From mb_top of hs_mb_top.v
    wire			ring_enable;		// From hs_host_if of hs_host_if.v
    // End of automatics
    
@@ -577,8 +550,6 @@ module hs_top (/*AUTOARG*/
      begin
 	assign irq1         = 1'b0;
 	assign io_readdata1 = 32'h0;
-	assign PIM1_AddrReq     = 1'b0;
-	assign PIM1_WrFIFO_Push = 1'b0;
      end      
    endgenerate
 
@@ -654,8 +625,6 @@ module hs_top (/*AUTOARG*/
      begin
 	assign irq2         = 1'b0;
 	assign io_readdata2 = 32'h0;
-	assign PIM2_AddrReq     = 1'b0;
-	assign PIM2_WrFIFO_Push = 1'b0;	
      end
    endgenerate
 
@@ -731,8 +700,6 @@ module hs_top (/*AUTOARG*/
      begin
 	assign irq3         = 1'b0;
 	assign io_readdata3 = 32'h0;
-	assign PIM3_AddrReq     = 1'b0;
-	assign PIM3_WrFIFO_Push = 1'b0;		
      end
    endgenerate
 
@@ -769,25 +736,13 @@ module hs_top (/*AUTOARG*/
 		 .dma_state2		(dma_state2[31:0]),
 		 .dma_state3		(dma_state3[31:0]));
 
-   mb_top #(/*AUTOINSTPARAM*/
-	    // Parameters
-	    .C_FAMILY			(C_FAMILY),
-	    .C_DEBUG_ENABLED		(C_DEBUG_ENABLED))
+   hs_mb_top #(/*AUTOINSTPARAM*/
+	       // Parameters
+	       .C_FAMILY		(C_FAMILY),
+	       .C_DEBUG_ENABLED		(C_DEBUG_ENABLED))
    mb_top  (/*AUTOINST*/
 	    // Outputs
 	    .DBG_TDO			(DBG_TDO),
-	    .DCACHE_FSL_IN_CLK		(DCACHE_FSL_IN_CLK),
-	    .DCACHE_FSL_IN_READ		(DCACHE_FSL_IN_READ),
-	    .DCACHE_FSL_OUT_CLK		(DCACHE_FSL_OUT_CLK),
-	    .DCACHE_FSL_OUT_CONTROL	(DCACHE_FSL_OUT_CONTROL),
-	    .DCACHE_FSL_OUT_DATA	(DCACHE_FSL_OUT_DATA[0:31]),
-	    .DCACHE_FSL_OUT_WRITE	(DCACHE_FSL_OUT_WRITE),
-	    .ICACHE_FSL_IN_CLK		(ICACHE_FSL_IN_CLK),
-	    .ICACHE_FSL_IN_READ		(ICACHE_FSL_IN_READ),
-	    .ICACHE_FSL_OUT_CLK		(ICACHE_FSL_OUT_CLK),
-	    .ICACHE_FSL_OUT_CONTROL	(ICACHE_FSL_OUT_CONTROL),
-	    .ICACHE_FSL_OUT_DATA	(ICACHE_FSL_OUT_DATA[0:31]),
-	    .ICACHE_FSL_OUT_WRITE	(ICACHE_FSL_OUT_WRITE),
 	    .Trace_FW0			(Trace_FW0[127:0]),
 	    .Trace_FW1			(Trace_FW1[127:0]),
 	    .Trace_FW2			(Trace_FW2[127:0]),
@@ -819,14 +774,6 @@ module hs_top (/*AUTOARG*/
 	    .DBG_STOP			(DBG_STOP),
 	    .DBG_TDI			(DBG_TDI),
 	    .DBG_UPDATE			(DBG_UPDATE),
-	    .DCACHE_FSL_IN_CONTROL	(DCACHE_FSL_IN_CONTROL),
-	    .DCACHE_FSL_IN_DATA		(DCACHE_FSL_IN_DATA[0:31]),
-	    .DCACHE_FSL_IN_EXISTS	(DCACHE_FSL_IN_EXISTS),
-	    .DCACHE_FSL_OUT_FULL	(DCACHE_FSL_OUT_FULL),
-	    .ICACHE_FSL_IN_CONTROL	(ICACHE_FSL_IN_CONTROL),
-	    .ICACHE_FSL_IN_DATA		(ICACHE_FSL_IN_DATA[0:31]),
-	    .ICACHE_FSL_IN_EXISTS	(ICACHE_FSL_IN_EXISTS),
-	    .ICACHE_FSL_OUT_FULL	(ICACHE_FSL_OUT_FULL),
 	    .dlmb_BRAM_Addr		(dlmb_BRAM_Addr[0:31]),
 	    .dlmb_BRAM_Clk		(dlmb_BRAM_Clk),
 	    .dlmb_BRAM_Dout		(dlmb_BRAM_Dout[0:31]),
