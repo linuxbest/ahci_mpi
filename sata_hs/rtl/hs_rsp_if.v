@@ -45,20 +45,13 @@
 // Code:
 module hs_rsp_if (/*AUTOARG*/
    // Outputs
-   outband_base, outband_prod_addr, outband_cons_index,
+   RspReq, RspSts, RspId, Rsp,
    // Inputs
-   outband_prod_index, sys_clk, sys_rst
+   sys_clk, sys_rst, RspAck, RspAddr, rsp_done, rsp_we, rsp_waddr,
+   rsp_wdata
    );
    input sys_clk;
    input sys_rst;
-
-   /*AUTOINOUTCOMP("mb_io", "^outband")*/   
-   // Beginning of automatic in/out/inouts (from specific module)
-   output [31:0]	outband_base;
-   output [31:0]	outband_prod_addr;
-   output [11:0]	outband_cons_index;
-   input [11:0]		outband_prod_index;
-   // End of automatics
 
    output 	 RspReq;
    output 	 RspSts;
@@ -66,6 +59,11 @@ module hs_rsp_if (/*AUTOARG*/
    output [4:0]  RspId;
    output [31:0] Rsp;
    input [3:0] 	 RspAddr;
+
+   input 	 rsp_done;
+   input 	 rsp_we;
+   input [4:0] 	 rsp_waddr;
+   input [31:0]  rsp_wdata;
    
 endmodule // hs_rsp_if
 // Local Variables:

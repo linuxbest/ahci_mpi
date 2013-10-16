@@ -46,22 +46,23 @@
 
 module hs_if (/*AUTOARG*/
    // Outputs
-   txdatak, txdata, readdata, irq, err_ack, cmd_raddr, WrFIFO_Full,
+   txdatak, txdata, readdata, irq, err_ack, cmd_req, WrFIFO_Full,
    WrFIFO_Empty, WrFIFO_DataSize, WrFIFO_DataReq, WrFIFO_DataId,
-   StartComm, RdFIFO_Full, RdFIFO_Empty, RdFIFO_DataSize,
-   RdFIFO_DataReq, RdFIFO_DataId, RdFIFO_Data, gtx_tune, phyreset,
-   sata_ledA, sata_ledB,
+   StartComm, RspSts, RspReq, RspId, Rsp, RdFIFO_Full, RdFIFO_Empty,
+   RdFIFO_DataSize, RdFIFO_DataReq, RdFIFO_DataId, RdFIFO_Data,
+   PhyReady, CmdAck, gtx_tune, phyreset, sata_ledA, sata_ledB,
    // Inputs
    writedata, write, txdatak_pop, rxfifo_irq, rxdatak, rxdata,
    plllock, phyclk, oob2dbg, linkup, gtx_txdatak, gtx_txdata,
-   gtx_rxdatak, gtx_rxdata, err_req, cmd_rdata, address, WrFIFO_Push,
-   WrFIFO_DataAck, WrFIFO_Data, Trace_FW, RdFIFO_Pop, RdFIFO_DataAck,
-   CommInit, sys_clk, sys_rst
+   gtx_rxdatak, gtx_rxdata, err_req, address, WrFIFO_Push,
+   WrFIFO_DataAck, WrFIFO_Data, Trace_FW, RspAddr, RspAck, RdFIFO_Pop,
+   RdFIFO_DataAck, PhyReset, CommInit, CmdWr, CmdReq, CmdId, CmdAddr,
+   Cmd, sys_clk, sys_rst
    );
    parameter C_FAMILY = "virtex5";
    parameter C_PORT = 0;
    parameter C_SATA_CHIPSCOPE = 0;
-   
+
    input sys_clk;
    input sys_rst;
 
@@ -69,18 +70,25 @@ module hs_if (/*AUTOARG*/
    output 	 phyreset;
    output 	 sata_ledA;
    output 	 sata_ledB;
-   
+ 
    /*AUTOINPUT*/
    // Beginning of automatic inputs (from unused autoinst inputs)
+   input [31:0]		Cmd;			// To hs_cmd_if of hs_cmd_if.v
+   input [3:0]		CmdAddr;		// To hs_cmd_if of hs_cmd_if.v
+   input [4:0]		CmdId;			// To hs_cmd_if of hs_cmd_if.v
+   input		CmdReq;			// To hs_cmd_if of hs_cmd_if.v
+   input		CmdWr;			// To hs_cmd_if of hs_cmd_if.v
    input		CommInit;		// To hs_dcr_if of hs_dcr_if.v
+   input		PhyReset;		// To hs_cmd_if of hs_cmd_if.v
    input		RdFIFO_DataAck;		// To hs_dma of hs_dma.v
    input		RdFIFO_Pop;		// To hs_dma of hs_dma.v
+   input		RspAck;			// To hs_rsp_if of hs_rsp_if.v
+   input [3:0]		RspAddr;		// To hs_rsp_if of hs_rsp_if.v
    input [127:0]	Trace_FW;		// To hs_dcr_if of hs_dcr_if.v
    input [31:0]		WrFIFO_Data;		// To hs_dma of hs_dma.v
    input		WrFIFO_DataAck;		// To hs_dma of hs_dma.v
    input		WrFIFO_Push;		// To hs_dma of hs_dma.v
    input [5:0]		address;		// To hs_dcr_if of hs_dcr_if.v
-   input [31:0]		cmd_rdata;		// To hs_dcr_if of hs_dcr_if.v
    input [7:0]		err_req;		// To sata_link of sata_link.v
    input [31:0]		gtx_rxdata;		// To sata_link of sata_link.v
    input [3:0]		gtx_rxdatak;		// To sata_link of sata_link.v
@@ -99,19 +107,25 @@ module hs_if (/*AUTOARG*/
    // End of automatics
    /*AUTOOUTPUT*/
    // Beginning of automatic outputs (from unused autoinst outputs)
+   output		CmdAck;			// From hs_cmd_if of hs_cmd_if.v
+   output		PhyReady;		// From hs_cmd_if of hs_cmd_if.v
    output [31:0]	RdFIFO_Data;		// From hs_dma of hs_dma.v
    output [4:0]		RdFIFO_DataId;		// From hs_dma of hs_dma.v
    output		RdFIFO_DataReq;		// From hs_dma of hs_dma.v
    output [7:0]		RdFIFO_DataSize;	// From hs_dma of hs_dma.v
    output		RdFIFO_Empty;		// From hs_dma of hs_dma.v
    output		RdFIFO_Full;		// From hs_dma of hs_dma.v
+   output [31:0]	Rsp;			// From hs_rsp_if of hs_rsp_if.v
+   output [4:0]		RspId;			// From hs_rsp_if of hs_rsp_if.v
+   output		RspReq;			// From hs_rsp_if of hs_rsp_if.v
+   output		RspSts;			// From hs_rsp_if of hs_rsp_if.v
    output		StartComm;		// From hs_dcr_if of hs_dcr_if.v
    output [4:0]		WrFIFO_DataId;		// From hs_dma of hs_dma.v
    output		WrFIFO_DataReq;		// From hs_dma of hs_dma.v
    output [7:0]		WrFIFO_DataSize;	// From hs_dma of hs_dma.v
    output		WrFIFO_Empty;		// From hs_dma of hs_dma.v
    output		WrFIFO_Full;		// From hs_dma of hs_dma.v
-   output [4:0]		cmd_raddr;		// From hs_dcr_if of hs_dcr_if.v
+   output		cmd_req;		// From hs_cmd_if of hs_cmd_if.v
    output [7:0]		err_ack;		// From sata_link of sata_link.v
    output		irq;			// From hs_dcr_if of hs_dcr_if.v
    output [31:0]	readdata;		// From hs_dcr_if of hs_dcr_if.v
@@ -122,6 +136,9 @@ module hs_if (/*AUTOARG*/
    /**********************************************************************/   
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
+   wire			cmd_done;		// From hs_dcr_if of hs_dcr_if.v
+   wire [4:0]		cmd_raddr;		// From hs_dcr_if of hs_dcr_if.v
+   wire [31:0]		cmd_rdata;		// From hs_cmd_if of hs_cmd_if.v
    wire [8:0]		cs2dcr_cnt;		// From sata_link of sata_link.v
    wire [35:0]		cs2dcr_prim;		// From sata_link of sata_link.v
    wire			cxfifo_ack;		// From hs_dcr_if of hs_dcr_if.v
@@ -145,6 +162,10 @@ module hs_if (/*AUTOARG*/
    wire			host_rst;		// From hs_dcr_if of hs_dcr_if.v
    wire [127:0]		link_fsm2dbg;		// From sata_link of sata_link.v
    wire [7:0]		port_state;		// From hs_dcr_if of hs_dcr_if.v
+   wire			rsp_done;		// From hs_dcr_if of hs_dcr_if.v
+   wire [4:0]		rsp_waddr;		// From hs_dcr_if of hs_dcr_if.v
+   wire [31:0]		rsp_wdata;		// From hs_dcr_if of hs_dcr_if.v
+   wire			rsp_we;			// From hs_dcr_if of hs_dcr_if.v
    wire [127:0]		rx_cs2dbg;		// From sata_link of sata_link.v
    wire			rxfifo_almost_empty;	// From rxll of rxll.v
    wire			rxfifo_clk;		// From hs_dma of hs_dma.v
@@ -344,6 +365,11 @@ module hs_if (/*AUTOARG*/
 	      .cxfifo_ok		(cxfifo_ok),
 	      .rxfis_raddr		(rxfis_raddr[4:0]),
 	      .cmd_raddr		(cmd_raddr[4:0]),
+	      .cmd_done			(cmd_done),
+	      .rsp_wdata		(rsp_wdata[31:0]),
+	      .rsp_waddr		(rsp_waddr[4:0]),
+	      .rsp_we			(rsp_we),
+	      .rsp_done			(rsp_done),
 	      // Inputs
 	      .sys_clk			(sys_clk),
 	      .sys_rst			(sys_rst),
@@ -420,6 +446,40 @@ module hs_if (/*AUTOARG*/
 	    .WrFIFO_DataAck		(WrFIFO_DataAck),
 	    .RdFIFO_Pop			(RdFIFO_Pop),
 	    .RdFIFO_DataAck		(RdFIFO_DataAck));
+   hs_cmd_if
+     hs_cmd_if (/*AUTOINST*/
+		// Outputs
+		.PhyReady		(PhyReady),
+		.CmdAck			(CmdAck),
+		.cmd_req		(cmd_req),
+		.cmd_rdata		(cmd_rdata[31:0]),
+		// Inputs
+		.sys_clk		(sys_clk),
+		.sys_rst		(sys_rst),
+		.PhyReset		(PhyReset),
+		.CmdReq			(CmdReq),
+		.CmdId			(CmdId[4:0]),
+		.Cmd			(Cmd[31:0]),
+		.CmdAddr		(CmdAddr[3:0]),
+		.CmdWr			(CmdWr),
+		.cmd_done		(cmd_done),
+		.cmd_raddr		(cmd_raddr[4:0]));
+   hs_rsp_if
+     hs_rsp_if (/*AUTOINST*/
+		// Outputs
+		.RspReq			(RspReq),
+		.RspSts			(RspSts),
+		.RspId			(RspId[4:0]),
+		.Rsp			(Rsp[31:0]),
+		// Inputs
+		.sys_clk		(sys_clk),
+		.sys_rst		(sys_rst),
+		.RspAck			(RspAck),
+		.RspAddr		(RspAddr[3:0]),
+		.rsp_done		(rsp_done),
+		.rsp_we			(rsp_we),
+		.rsp_waddr		(rsp_waddr[4:0]),
+		.rsp_wdata		(rsp_wdata[31:0]));
 endmodule // hs
 // Local Variables:
 // verilog-library-directories:("." "../../pcores/sata_v1_00_a/hdl/verilog" )

@@ -49,52 +49,56 @@ module hs_top (/*AUTOARG*/
    txdatak3, txdatak2, txdatak1, txdatak0, txdata3, txdata2, txdata1,
    txdata0, sata_ledB3, sata_ledB2, sata_ledB1, sata_ledB0,
    sata_ledA3, sata_ledA2, sata_ledA1, sata_ledA0, phyreset3,
-   phyreset2, phyreset1, phyreset0, interrupt, ilmb_BRAM_Din,
-   gtx_tune3, gtx_tune2, gtx_tune1, gtx_tune0, dlmb_BRAM_Din,
-   cmd_raddr3, cmd_raddr2, cmd_raddr1, cmd_raddr0, WrFIFO_Full3,
-   WrFIFO_Full2, WrFIFO_Full1, WrFIFO_Full0, WrFIFO_Empty3,
-   WrFIFO_Empty2, WrFIFO_Empty1, WrFIFO_Empty0, WrFIFO_DataSize3,
-   WrFIFO_DataSize2, WrFIFO_DataSize1, WrFIFO_DataSize0,
-   WrFIFO_DataReq3, WrFIFO_DataReq2, WrFIFO_DataReq1, WrFIFO_DataReq0,
-   WrFIFO_DataId3, WrFIFO_DataId2, WrFIFO_DataId1, WrFIFO_DataId0,
-   StartComm3, StartComm2, StartComm1, StartComm0, Sl_dcrDBus,
-   Sl_dcrAck, RdFIFO_Full3, RdFIFO_Full2, RdFIFO_Full1, RdFIFO_Full0,
-   RdFIFO_Empty3, RdFIFO_Empty2, RdFIFO_Empty1, RdFIFO_Empty0,
-   RdFIFO_DataSize3, RdFIFO_DataSize2, RdFIFO_DataSize1,
-   RdFIFO_DataSize0, RdFIFO_DataReq3, RdFIFO_DataReq2,
-   RdFIFO_DataReq1, RdFIFO_DataReq0, RdFIFO_DataId3, RdFIFO_DataId2,
-   RdFIFO_DataId1, RdFIFO_DataId0, RdFIFO_Data3, RdFIFO_Data2,
-   RdFIFO_Data1, RdFIFO_Data0, ICACHE_FSL_OUT_WRITE,
-   ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL, ICACHE_FSL_OUT_CLK,
-   ICACHE_FSL_IN_READ, ICACHE_FSL_IN_CLK, DCACHE_FSL_OUT_WRITE,
-   DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL, DCACHE_FSL_OUT_CLK,
-   DCACHE_FSL_IN_READ, DCACHE_FSL_IN_CLK, DBG_TDO,
+   phyreset2, phyreset1, phyreset0, ilmb_BRAM_Din, gtx_tune3,
+   gtx_tune2, gtx_tune1, gtx_tune0, dlmb_BRAM_Din, cmd_req3, cmd_req2,
+   cmd_req1, cmd_req0, WrFIFO_Full3, WrFIFO_Full2, WrFIFO_Full1,
+   WrFIFO_Full0, WrFIFO_Empty3, WrFIFO_Empty2, WrFIFO_Empty1,
+   WrFIFO_Empty0, WrFIFO_DataSize3, WrFIFO_DataSize2,
+   WrFIFO_DataSize1, WrFIFO_DataSize0, WrFIFO_DataReq3,
+   WrFIFO_DataReq2, WrFIFO_DataReq1, WrFIFO_DataReq0, WrFIFO_DataId3,
+   WrFIFO_DataId2, WrFIFO_DataId1, WrFIFO_DataId0, StartComm3,
+   StartComm2, StartComm1, StartComm0, RspSts3, RspSts2, RspSts1,
+   RspSts0, RspReq3, RspReq2, RspReq1, RspReq0, RspId3, RspId2,
+   RspId1, RspId0, Rsp3, Rsp2, Rsp1, Rsp0, RdFIFO_Full3, RdFIFO_Full2,
+   RdFIFO_Full1, RdFIFO_Full0, RdFIFO_Empty3, RdFIFO_Empty2,
+   RdFIFO_Empty1, RdFIFO_Empty0, RdFIFO_DataSize3, RdFIFO_DataSize2,
+   RdFIFO_DataSize1, RdFIFO_DataSize0, RdFIFO_DataReq3,
+   RdFIFO_DataReq2, RdFIFO_DataReq1, RdFIFO_DataReq0, RdFIFO_DataId3,
+   RdFIFO_DataId2, RdFIFO_DataId1, RdFIFO_DataId0, RdFIFO_Data3,
+   RdFIFO_Data2, RdFIFO_Data1, RdFIFO_Data0, PhyReady3, PhyReady2,
+   PhyReady1, PhyReady0, ICACHE_FSL_OUT_WRITE, ICACHE_FSL_OUT_DATA,
+   ICACHE_FSL_OUT_CONTROL, ICACHE_FSL_OUT_CLK, ICACHE_FSL_IN_READ,
+   ICACHE_FSL_IN_CLK, DCACHE_FSL_OUT_WRITE, DCACHE_FSL_OUT_DATA,
+   DCACHE_FSL_OUT_CONTROL, DCACHE_FSL_OUT_CLK, DCACHE_FSL_IN_READ,
+   DCACHE_FSL_IN_CLK, DBG_TDO, CmdAck3, CmdAck2, CmdAck1, CmdAck0,
    // Inputs
    txdatak_pop3, txdatak_pop2, txdatak_pop1, txdatak_pop0,
    rxfifo_irq3, rxfifo_irq2, rxfifo_irq1, rxfifo_irq0, rxdatak3,
    rxdatak2, rxdatak1, rxdatak0, rxdata3, rxdata2, rxdata1, rxdata0,
    plllock3, plllock2, plllock1, plllock0, phyclk3, phyclk2, phyclk1,
-   phyclk0, oob2dbg3, oob2dbg2, oob2dbg1, oob2dbg0, npi_ict_state,
-   linkup3, linkup2, linkup1, linkup0, ilmb_BRAM_WEN, ilmb_BRAM_Rst,
-   ilmb_BRAM_EN, ilmb_BRAM_Dout, ilmb_BRAM_Clk, ilmb_BRAM_Addr,
-   gtx_txdatak3, gtx_txdatak2, gtx_txdatak1, gtx_txdatak0,
-   gtx_txdata3, gtx_txdata2, gtx_txdata1, gtx_txdata0, gtx_rxdatak3,
-   gtx_rxdatak2, gtx_rxdatak1, gtx_rxdatak0, gtx_rxdata3, gtx_rxdata2,
-   gtx_rxdata1, gtx_rxdata0, dma_state3, dma_state2, dma_state1,
-   dma_state0, dlmb_BRAM_WEN, dlmb_BRAM_Rst, dlmb_BRAM_EN,
-   dlmb_BRAM_Dout, dlmb_BRAM_Clk, dlmb_BRAM_Addr, cmd_rdata3,
-   cmd_rdata2, cmd_rdata1, cmd_rdata0, WrFIFO_Push3, WrFIFO_Push2,
-   WrFIFO_Push1, WrFIFO_Push0, WrFIFO_DataAck3, WrFIFO_DataAck2,
-   WrFIFO_DataAck1, WrFIFO_DataAck0, WrFIFO_Data3, WrFIFO_Data2,
-   WrFIFO_Data1, WrFIFO_Data0, RdFIFO_Pop3, RdFIFO_Pop2, RdFIFO_Pop1,
+   phyclk0, oob2dbg3, oob2dbg2, oob2dbg1, oob2dbg0, linkup3, linkup2,
+   linkup1, linkup0, ilmb_BRAM_WEN, ilmb_BRAM_Rst, ilmb_BRAM_EN,
+   ilmb_BRAM_Dout, ilmb_BRAM_Clk, ilmb_BRAM_Addr, gtx_txdatak3,
+   gtx_txdatak2, gtx_txdatak1, gtx_txdatak0, gtx_txdata3, gtx_txdata2,
+   gtx_txdata1, gtx_txdata0, gtx_rxdatak3, gtx_rxdatak2, gtx_rxdatak1,
+   gtx_rxdatak0, gtx_rxdata3, gtx_rxdata2, gtx_rxdata1, gtx_rxdata0,
+   dma_state3, dma_state2, dma_state1, dma_state0, dlmb_BRAM_WEN,
+   dlmb_BRAM_Rst, dlmb_BRAM_EN, dlmb_BRAM_Dout, dlmb_BRAM_Clk,
+   dlmb_BRAM_Addr, WrFIFO_Push3, WrFIFO_Push2, WrFIFO_Push1,
+   WrFIFO_Push0, WrFIFO_DataAck3, WrFIFO_DataAck2, WrFIFO_DataAck1,
+   WrFIFO_DataAck0, WrFIFO_Data3, WrFIFO_Data2, WrFIFO_Data1,
+   WrFIFO_Data0, RspAddr3, RspAddr2, RspAddr1, RspAddr0, RspAck3,
+   RspAck2, RspAck1, RspAck0, RdFIFO_Pop3, RdFIFO_Pop2, RdFIFO_Pop1,
    RdFIFO_Pop0, RdFIFO_DataAck3, RdFIFO_DataAck2, RdFIFO_DataAck1,
-   RdFIFO_DataAck0, ICACHE_FSL_OUT_FULL, ICACHE_FSL_IN_EXISTS,
-   ICACHE_FSL_IN_DATA, ICACHE_FSL_IN_CONTROL, DCR_Write, DCR_Sl_DBus,
-   DCR_Rst, DCR_Read, DCR_Clk, DCR_ABus, DCACHE_FSL_OUT_FULL,
-   DCACHE_FSL_IN_EXISTS, DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL,
-   DBG_UPDATE, DBG_TDI, DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK,
-   DBG_CAPTURE, CommInit3, CommInit2, CommInit1, CommInit0, sys_clk,
-   sys_rst
+   RdFIFO_DataAck0, PhyReset3, PhyReset2, PhyReset1, PhyReset0,
+   ICACHE_FSL_OUT_FULL, ICACHE_FSL_IN_EXISTS, ICACHE_FSL_IN_DATA,
+   ICACHE_FSL_IN_CONTROL, DCACHE_FSL_OUT_FULL, DCACHE_FSL_IN_EXISTS,
+   DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL, DBG_UPDATE, DBG_TDI,
+   DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK, DBG_CAPTURE, CommInit3,
+   CommInit2, CommInit1, CommInit0, CmdWr3, CmdWr2, CmdWr1, CmdWr0,
+   CmdReq3, CmdReq2, CmdReq1, CmdReq0, CmdId3, CmdId2, CmdId1, CmdId0,
+   CmdAddr3, CmdAddr2, CmdAddr1, CmdAddr0, Cmd3, Cmd2, Cmd1, Cmd0,
+   sys_clk, sys_rst
    );
    parameter C_PORT = 4;
    parameter C_FAMILY = "virtex5";
@@ -115,6 +119,26 @@ module hs_top (/*AUTOARG*/
    
    /*AUTOINPUT*/
    // Beginning of automatic inputs (from unused autoinst inputs)
+   input [31:0]		Cmd0;			// To dma0 of hs_if.v
+   input [31:0]		Cmd1;			// To dma1 of hs_if.v
+   input [31:0]		Cmd2;			// To dma2 of hs_if.v
+   input [31:0]		Cmd3;			// To dma3 of hs_if.v
+   input [3:0]		CmdAddr0;		// To dma0 of hs_if.v
+   input [3:0]		CmdAddr1;		// To dma1 of hs_if.v
+   input [3:0]		CmdAddr2;		// To dma2 of hs_if.v
+   input [3:0]		CmdAddr3;		// To dma3 of hs_if.v
+   input [4:0]		CmdId0;			// To dma0 of hs_if.v
+   input [4:0]		CmdId1;			// To dma1 of hs_if.v
+   input [4:0]		CmdId2;			// To dma2 of hs_if.v
+   input [4:0]		CmdId3;			// To dma3 of hs_if.v
+   input		CmdReq0;		// To dma0 of hs_if.v
+   input		CmdReq1;		// To dma1 of hs_if.v
+   input		CmdReq2;		// To dma2 of hs_if.v
+   input		CmdReq3;		// To dma3 of hs_if.v
+   input		CmdWr0;			// To dma0 of hs_if.v
+   input		CmdWr1;			// To dma1 of hs_if.v
+   input		CmdWr2;			// To dma2 of hs_if.v
+   input		CmdWr3;			// To dma3 of hs_if.v
    input		CommInit0;		// To dma0 of hs_if.v
    input		CommInit1;		// To dma1 of hs_if.v
    input		CommInit2;		// To dma2 of hs_if.v
@@ -130,16 +154,14 @@ module hs_top (/*AUTOARG*/
    input [0:31]		DCACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
    input		DCACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
    input		DCACHE_FSL_OUT_FULL;	// To mb_top of mb_top.v
-   input [0:9]		DCR_ABus;		// To hs_host_if of hs_host_if.v
-   input		DCR_Clk;		// To hs_host_if of hs_host_if.v
-   input		DCR_Read;		// To hs_host_if of hs_host_if.v
-   input		DCR_Rst;		// To hs_host_if of hs_host_if.v
-   input [0:31]		DCR_Sl_DBus;		// To hs_host_if of hs_host_if.v
-   input		DCR_Write;		// To hs_host_if of hs_host_if.v
    input		ICACHE_FSL_IN_CONTROL;	// To mb_top of mb_top.v
    input [0:31]		ICACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
    input		ICACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
    input		ICACHE_FSL_OUT_FULL;	// To mb_top of mb_top.v
+   input		PhyReset0;		// To dma0 of hs_if.v
+   input		PhyReset1;		// To dma1 of hs_if.v
+   input		PhyReset2;		// To dma2 of hs_if.v
+   input		PhyReset3;		// To dma3 of hs_if.v
    input		RdFIFO_DataAck0;	// To dma0 of hs_if.v
    input		RdFIFO_DataAck1;	// To dma1 of hs_if.v
    input		RdFIFO_DataAck2;	// To dma2 of hs_if.v
@@ -148,6 +170,14 @@ module hs_top (/*AUTOARG*/
    input		RdFIFO_Pop1;		// To dma1 of hs_if.v
    input		RdFIFO_Pop2;		// To dma2 of hs_if.v
    input		RdFIFO_Pop3;		// To dma3 of hs_if.v
+   input		RspAck0;		// To dma0 of hs_if.v
+   input		RspAck1;		// To dma1 of hs_if.v
+   input		RspAck2;		// To dma2 of hs_if.v
+   input		RspAck3;		// To dma3 of hs_if.v
+   input [3:0]		RspAddr0;		// To dma0 of hs_if.v
+   input [3:0]		RspAddr1;		// To dma1 of hs_if.v
+   input [3:0]		RspAddr2;		// To dma2 of hs_if.v
+   input [3:0]		RspAddr3;		// To dma3 of hs_if.v
    input [31:0]		WrFIFO_Data0;		// To dma0 of hs_if.v
    input [31:0]		WrFIFO_Data1;		// To dma1 of hs_if.v
    input [31:0]		WrFIFO_Data2;		// To dma2 of hs_if.v
@@ -160,10 +190,6 @@ module hs_top (/*AUTOARG*/
    input		WrFIFO_Push1;		// To dma1 of hs_if.v
    input		WrFIFO_Push2;		// To dma2 of hs_if.v
    input		WrFIFO_Push3;		// To dma3 of hs_if.v
-   input [31:0]		cmd_rdata0;		// To dma0 of hs_if.v
-   input [31:0]		cmd_rdata1;		// To dma1 of hs_if.v
-   input [31:0]		cmd_rdata2;		// To dma2 of hs_if.v
-   input [31:0]		cmd_rdata3;		// To dma3 of hs_if.v
    input [0:31]		dlmb_BRAM_Addr;		// To mb_top of mb_top.v
    input		dlmb_BRAM_Clk;		// To mb_top of mb_top.v
    input [0:31]		dlmb_BRAM_Dout;		// To mb_top of mb_top.v
@@ -200,7 +226,6 @@ module hs_top (/*AUTOARG*/
    input		linkup1;		// To dma1 of hs_if.v
    input		linkup2;		// To dma2 of hs_if.v
    input		linkup3;		// To dma3 of hs_if.v
-   input [31:0]		npi_ict_state;		// To hs_host_if of hs_host_if.v
    input [127:0]	oob2dbg0;		// To dma0 of hs_if.v
    input [127:0]	oob2dbg1;		// To dma1 of hs_if.v
    input [127:0]	oob2dbg2;		// To dma2 of hs_if.v
@@ -232,6 +257,10 @@ module hs_top (/*AUTOARG*/
    // End of automatics
    /*AUTOOUTPUT*/
    // Beginning of automatic outputs (from unused autoinst outputs)
+   output		CmdAck0;		// From dma0 of hs_if.v
+   output		CmdAck1;		// From dma1 of hs_if.v
+   output		CmdAck2;		// From dma2 of hs_if.v
+   output		CmdAck3;		// From dma3 of hs_if.v
    output		DBG_TDO;		// From mb_top of mb_top.v
    output		DCACHE_FSL_IN_CLK;	// From mb_top of mb_top.v
    output		DCACHE_FSL_IN_READ;	// From mb_top of mb_top.v
@@ -245,6 +274,10 @@ module hs_top (/*AUTOARG*/
    output		ICACHE_FSL_OUT_CONTROL;	// From mb_top of mb_top.v
    output [0:31]	ICACHE_FSL_OUT_DATA;	// From mb_top of mb_top.v
    output		ICACHE_FSL_OUT_WRITE;	// From mb_top of mb_top.v
+   output		PhyReady0;		// From dma0 of hs_if.v
+   output		PhyReady1;		// From dma1 of hs_if.v
+   output		PhyReady2;		// From dma2 of hs_if.v
+   output		PhyReady3;		// From dma3 of hs_if.v
    output [31:0]	RdFIFO_Data0;		// From dma0 of hs_if.v
    output [31:0]	RdFIFO_Data1;		// From dma1 of hs_if.v
    output [31:0]	RdFIFO_Data2;		// From dma2 of hs_if.v
@@ -269,8 +302,22 @@ module hs_top (/*AUTOARG*/
    output		RdFIFO_Full1;		// From dma1 of hs_if.v
    output		RdFIFO_Full2;		// From dma2 of hs_if.v
    output		RdFIFO_Full3;		// From dma3 of hs_if.v
-   output		Sl_dcrAck;		// From hs_host_if of hs_host_if.v
-   output [0:31]	Sl_dcrDBus;		// From hs_host_if of hs_host_if.v
+   output [31:0]	Rsp0;			// From dma0 of hs_if.v
+   output [31:0]	Rsp1;			// From dma1 of hs_if.v
+   output [31:0]	Rsp2;			// From dma2 of hs_if.v
+   output [31:0]	Rsp3;			// From dma3 of hs_if.v
+   output [4:0]		RspId0;			// From dma0 of hs_if.v
+   output [4:0]		RspId1;			// From dma1 of hs_if.v
+   output [4:0]		RspId2;			// From dma2 of hs_if.v
+   output [4:0]		RspId3;			// From dma3 of hs_if.v
+   output		RspReq0;		// From dma0 of hs_if.v
+   output		RspReq1;		// From dma1 of hs_if.v
+   output		RspReq2;		// From dma2 of hs_if.v
+   output		RspReq3;		// From dma3 of hs_if.v
+   output		RspSts0;		// From dma0 of hs_if.v
+   output		RspSts1;		// From dma1 of hs_if.v
+   output		RspSts2;		// From dma2 of hs_if.v
+   output		RspSts3;		// From dma3 of hs_if.v
    output		StartComm0;		// From dma0 of hs_if.v
    output		StartComm1;		// From dma1 of hs_if.v
    output		StartComm2;		// From dma2 of hs_if.v
@@ -295,17 +342,16 @@ module hs_top (/*AUTOARG*/
    output		WrFIFO_Full1;		// From dma1 of hs_if.v
    output		WrFIFO_Full2;		// From dma2 of hs_if.v
    output		WrFIFO_Full3;		// From dma3 of hs_if.v
-   output [4:0]		cmd_raddr0;		// From dma0 of hs_if.v
-   output [4:0]		cmd_raddr1;		// From dma1 of hs_if.v
-   output [4:0]		cmd_raddr2;		// From dma2 of hs_if.v
-   output [4:0]		cmd_raddr3;		// From dma3 of hs_if.v
+   output		cmd_req0;		// From dma0 of hs_if.v
+   output		cmd_req1;		// From dma1 of hs_if.v
+   output		cmd_req2;		// From dma2 of hs_if.v
+   output		cmd_req3;		// From dma3 of hs_if.v
    output [0:31]	dlmb_BRAM_Din;		// From mb_top of mb_top.v
    output [31:0]	gtx_tune0;		// From dma0 of hs_if.v
    output [31:0]	gtx_tune1;		// From dma1 of hs_if.v
    output [31:0]	gtx_tune2;		// From dma2 of hs_if.v
    output [31:0]	gtx_tune3;		// From dma3 of hs_if.v
    output [0:31]	ilmb_BRAM_Din;		// From mb_top of mb_top.v
-   output		interrupt;		// From hs_host_if of hs_host_if.v
    output		phyreset0;		// From dma0 of hs_if.v
    output		phyreset1;		// From dma1 of hs_if.v
    output		phyreset2;		// From dma2 of hs_if.v
@@ -398,19 +444,25 @@ module hs_top (/*AUTOARG*/
 		       .phyreset	(phyreset0),		 // Templated
 		       .sata_ledA	(sata_ledA0),		 // Templated
 		       .sata_ledB	(sata_ledB0),		 // Templated
+		       .CmdAck		(CmdAck0),		 // Templated
+		       .PhyReady	(PhyReady0),		 // Templated
 		       .RdFIFO_Data	(RdFIFO_Data0[31:0]),	 // Templated
 		       .RdFIFO_DataId	(RdFIFO_DataId0[4:0]),	 // Templated
 		       .RdFIFO_DataReq	(RdFIFO_DataReq0),	 // Templated
 		       .RdFIFO_DataSize	(RdFIFO_DataSize0[7:0]), // Templated
 		       .RdFIFO_Empty	(RdFIFO_Empty0),	 // Templated
 		       .RdFIFO_Full	(RdFIFO_Full0),		 // Templated
+		       .Rsp		(Rsp0[31:0]),		 // Templated
+		       .RspId		(RspId0[4:0]),		 // Templated
+		       .RspReq		(RspReq0),		 // Templated
+		       .RspSts		(RspSts0),		 // Templated
 		       .StartComm	(StartComm0),		 // Templated
 		       .WrFIFO_DataId	(WrFIFO_DataId0[4:0]),	 // Templated
 		       .WrFIFO_DataReq	(WrFIFO_DataReq0),	 // Templated
 		       .WrFIFO_DataSize	(WrFIFO_DataSize0[7:0]), // Templated
 		       .WrFIFO_Empty	(WrFIFO_Empty0),	 // Templated
 		       .WrFIFO_Full	(WrFIFO_Full0),		 // Templated
-		       .cmd_raddr	(cmd_raddr0[4:0]),	 // Templated
+		       .cmd_req		(cmd_req0),		 // Templated
 		       .err_ack		(err_ack0[7:0]),	 // Templated
 		       .irq		(irq0),			 // Templated
 		       .readdata	(io_readdata0[31:0]),	 // Templated
@@ -419,15 +471,22 @@ module hs_top (/*AUTOARG*/
 		       // Inputs
 		       .sys_clk		(sys_clk),		 // Templated
 		       .sys_rst		(sys_rst),		 // Templated
+		       .Cmd		(Cmd0[31:0]),		 // Templated
+		       .CmdAddr		(CmdAddr0[3:0]),	 // Templated
+		       .CmdId		(CmdId0[4:0]),		 // Templated
+		       .CmdReq		(CmdReq0),		 // Templated
+		       .CmdWr		(CmdWr0),		 // Templated
 		       .CommInit	(CommInit0),		 // Templated
+		       .PhyReset	(PhyReset0),		 // Templated
 		       .RdFIFO_DataAck	(RdFIFO_DataAck0),	 // Templated
 		       .RdFIFO_Pop	(RdFIFO_Pop0),		 // Templated
+		       .RspAck		(RspAck0),		 // Templated
+		       .RspAddr		(RspAddr0[3:0]),	 // Templated
 		       .Trace_FW	(Trace_FW0[127:0]),	 // Templated
 		       .WrFIFO_Data	(WrFIFO_Data0[31:0]),	 // Templated
 		       .WrFIFO_DataAck	(WrFIFO_DataAck0),	 // Templated
 		       .WrFIFO_Push	(WrFIFO_Push0),		 // Templated
 		       .address		(io_address0[5:0]),	 // Templated
-		       .cmd_rdata	(cmd_rdata0[31:0]),	 // Templated
 		       .err_req		(err_req0[7:0]),	 // Templated
 		       .gtx_rxdata	(gtx_rxdata0[31:0]),	 // Templated
 		       .gtx_rxdatak	(gtx_rxdatak0[3:0]),	 // Templated
@@ -455,19 +514,25 @@ module hs_top (/*AUTOARG*/
 		       .phyreset	(phyreset1),		 // Templated
 		       .sata_ledA	(sata_ledA1),		 // Templated
 		       .sata_ledB	(sata_ledB1),		 // Templated
+		       .CmdAck		(CmdAck1),		 // Templated
+		       .PhyReady	(PhyReady1),		 // Templated
 		       .RdFIFO_Data	(RdFIFO_Data1[31:0]),	 // Templated
 		       .RdFIFO_DataId	(RdFIFO_DataId1[4:0]),	 // Templated
 		       .RdFIFO_DataReq	(RdFIFO_DataReq1),	 // Templated
 		       .RdFIFO_DataSize	(RdFIFO_DataSize1[7:0]), // Templated
 		       .RdFIFO_Empty	(RdFIFO_Empty1),	 // Templated
 		       .RdFIFO_Full	(RdFIFO_Full1),		 // Templated
+		       .Rsp		(Rsp1[31:0]),		 // Templated
+		       .RspId		(RspId1[4:0]),		 // Templated
+		       .RspReq		(RspReq1),		 // Templated
+		       .RspSts		(RspSts1),		 // Templated
 		       .StartComm	(StartComm1),		 // Templated
 		       .WrFIFO_DataId	(WrFIFO_DataId1[4:0]),	 // Templated
 		       .WrFIFO_DataReq	(WrFIFO_DataReq1),	 // Templated
 		       .WrFIFO_DataSize	(WrFIFO_DataSize1[7:0]), // Templated
 		       .WrFIFO_Empty	(WrFIFO_Empty1),	 // Templated
 		       .WrFIFO_Full	(WrFIFO_Full1),		 // Templated
-		       .cmd_raddr	(cmd_raddr1[4:0]),	 // Templated
+		       .cmd_req		(cmd_req1),		 // Templated
 		       .err_ack		(err_ack1[7:0]),	 // Templated
 		       .irq		(irq1),			 // Templated
 		       .readdata	(io_readdata1[31:0]),	 // Templated
@@ -476,15 +541,22 @@ module hs_top (/*AUTOARG*/
 		       // Inputs
 		       .sys_clk		(sys_clk),		 // Templated
 		       .sys_rst		(sys_rst),		 // Templated
+		       .Cmd		(Cmd1[31:0]),		 // Templated
+		       .CmdAddr		(CmdAddr1[3:0]),	 // Templated
+		       .CmdId		(CmdId1[4:0]),		 // Templated
+		       .CmdReq		(CmdReq1),		 // Templated
+		       .CmdWr		(CmdWr1),		 // Templated
 		       .CommInit	(CommInit1),		 // Templated
+		       .PhyReset	(PhyReset1),		 // Templated
 		       .RdFIFO_DataAck	(RdFIFO_DataAck1),	 // Templated
 		       .RdFIFO_Pop	(RdFIFO_Pop1),		 // Templated
+		       .RspAck		(RspAck1),		 // Templated
+		       .RspAddr		(RspAddr1[3:0]),	 // Templated
 		       .Trace_FW	(Trace_FW1[127:0]),	 // Templated
 		       .WrFIFO_Data	(WrFIFO_Data1[31:0]),	 // Templated
 		       .WrFIFO_DataAck	(WrFIFO_DataAck1),	 // Templated
 		       .WrFIFO_Push	(WrFIFO_Push1),		 // Templated
 		       .address		(io_address1[5:0]),	 // Templated
-		       .cmd_rdata	(cmd_rdata1[31:0]),	 // Templated
 		       .err_req		(err_req1[7:0]),	 // Templated
 		       .gtx_rxdata	(gtx_rxdata1[31:0]),	 // Templated
 		       .gtx_rxdatak	(gtx_rxdatak1[3:0]),	 // Templated
@@ -519,19 +591,25 @@ module hs_top (/*AUTOARG*/
 		       .phyreset	(phyreset2),		 // Templated
 		       .sata_ledA	(sata_ledA2),		 // Templated
 		       .sata_ledB	(sata_ledB2),		 // Templated
+		       .CmdAck		(CmdAck2),		 // Templated
+		       .PhyReady	(PhyReady2),		 // Templated
 		       .RdFIFO_Data	(RdFIFO_Data2[31:0]),	 // Templated
 		       .RdFIFO_DataId	(RdFIFO_DataId2[4:0]),	 // Templated
 		       .RdFIFO_DataReq	(RdFIFO_DataReq2),	 // Templated
 		       .RdFIFO_DataSize	(RdFIFO_DataSize2[7:0]), // Templated
 		       .RdFIFO_Empty	(RdFIFO_Empty2),	 // Templated
 		       .RdFIFO_Full	(RdFIFO_Full2),		 // Templated
+		       .Rsp		(Rsp2[31:0]),		 // Templated
+		       .RspId		(RspId2[4:0]),		 // Templated
+		       .RspReq		(RspReq2),		 // Templated
+		       .RspSts		(RspSts2),		 // Templated
 		       .StartComm	(StartComm2),		 // Templated
 		       .WrFIFO_DataId	(WrFIFO_DataId2[4:0]),	 // Templated
 		       .WrFIFO_DataReq	(WrFIFO_DataReq2),	 // Templated
 		       .WrFIFO_DataSize	(WrFIFO_DataSize2[7:0]), // Templated
 		       .WrFIFO_Empty	(WrFIFO_Empty2),	 // Templated
 		       .WrFIFO_Full	(WrFIFO_Full2),		 // Templated
-		       .cmd_raddr	(cmd_raddr2[4:0]),	 // Templated
+		       .cmd_req		(cmd_req2),		 // Templated
 		       .err_ack		(err_ack2[7:0]),	 // Templated
 		       .irq		(irq2),			 // Templated
 		       .readdata	(io_readdata2[31:0]),	 // Templated
@@ -540,15 +618,22 @@ module hs_top (/*AUTOARG*/
 		       // Inputs
 		       .sys_clk		(sys_clk),		 // Templated
 		       .sys_rst		(sys_rst),		 // Templated
+		       .Cmd		(Cmd2[31:0]),		 // Templated
+		       .CmdAddr		(CmdAddr2[3:0]),	 // Templated
+		       .CmdId		(CmdId2[4:0]),		 // Templated
+		       .CmdReq		(CmdReq2),		 // Templated
+		       .CmdWr		(CmdWr2),		 // Templated
 		       .CommInit	(CommInit2),		 // Templated
+		       .PhyReset	(PhyReset2),		 // Templated
 		       .RdFIFO_DataAck	(RdFIFO_DataAck2),	 // Templated
 		       .RdFIFO_Pop	(RdFIFO_Pop2),		 // Templated
+		       .RspAck		(RspAck2),		 // Templated
+		       .RspAddr		(RspAddr2[3:0]),	 // Templated
 		       .Trace_FW	(Trace_FW2[127:0]),	 // Templated
 		       .WrFIFO_Data	(WrFIFO_Data2[31:0]),	 // Templated
 		       .WrFIFO_DataAck	(WrFIFO_DataAck2),	 // Templated
 		       .WrFIFO_Push	(WrFIFO_Push2),		 // Templated
 		       .address		(io_address2[5:0]),	 // Templated
-		       .cmd_rdata	(cmd_rdata2[31:0]),	 // Templated
 		       .err_req		(err_req2[7:0]),	 // Templated
 		       .gtx_rxdata	(gtx_rxdata2[31:0]),	 // Templated
 		       .gtx_rxdatak	(gtx_rxdatak2[3:0]),	 // Templated
@@ -583,19 +668,25 @@ module hs_top (/*AUTOARG*/
 		       .phyreset	(phyreset3),		 // Templated
 		       .sata_ledA	(sata_ledA3),		 // Templated
 		       .sata_ledB	(sata_ledB3),		 // Templated
+		       .CmdAck		(CmdAck3),		 // Templated
+		       .PhyReady	(PhyReady3),		 // Templated
 		       .RdFIFO_Data	(RdFIFO_Data3[31:0]),	 // Templated
 		       .RdFIFO_DataId	(RdFIFO_DataId3[4:0]),	 // Templated
 		       .RdFIFO_DataReq	(RdFIFO_DataReq3),	 // Templated
 		       .RdFIFO_DataSize	(RdFIFO_DataSize3[7:0]), // Templated
 		       .RdFIFO_Empty	(RdFIFO_Empty3),	 // Templated
 		       .RdFIFO_Full	(RdFIFO_Full3),		 // Templated
+		       .Rsp		(Rsp3[31:0]),		 // Templated
+		       .RspId		(RspId3[4:0]),		 // Templated
+		       .RspReq		(RspReq3),		 // Templated
+		       .RspSts		(RspSts3),		 // Templated
 		       .StartComm	(StartComm3),		 // Templated
 		       .WrFIFO_DataId	(WrFIFO_DataId3[4:0]),	 // Templated
 		       .WrFIFO_DataReq	(WrFIFO_DataReq3),	 // Templated
 		       .WrFIFO_DataSize	(WrFIFO_DataSize3[7:0]), // Templated
 		       .WrFIFO_Empty	(WrFIFO_Empty3),	 // Templated
 		       .WrFIFO_Full	(WrFIFO_Full3),		 // Templated
-		       .cmd_raddr	(cmd_raddr3[4:0]),	 // Templated
+		       .cmd_req		(cmd_req3),		 // Templated
 		       .err_ack		(err_ack3[7:0]),	 // Templated
 		       .irq		(irq3),			 // Templated
 		       .readdata	(io_readdata3[31:0]),	 // Templated
@@ -604,15 +695,22 @@ module hs_top (/*AUTOARG*/
 		       // Inputs
 		       .sys_clk		(sys_clk),		 // Templated
 		       .sys_rst		(sys_rst),		 // Templated
+		       .Cmd		(Cmd3[31:0]),		 // Templated
+		       .CmdAddr		(CmdAddr3[3:0]),	 // Templated
+		       .CmdId		(CmdId3[4:0]),		 // Templated
+		       .CmdReq		(CmdReq3),		 // Templated
+		       .CmdWr		(CmdWr3),		 // Templated
 		       .CommInit	(CommInit3),		 // Templated
+		       .PhyReset	(PhyReset3),		 // Templated
 		       .RdFIFO_DataAck	(RdFIFO_DataAck3),	 // Templated
 		       .RdFIFO_Pop	(RdFIFO_Pop3),		 // Templated
+		       .RspAck		(RspAck3),		 // Templated
+		       .RspAddr		(RspAddr3[3:0]),	 // Templated
 		       .Trace_FW	(Trace_FW3[127:0]),	 // Templated
 		       .WrFIFO_Data	(WrFIFO_Data3[31:0]),	 // Templated
 		       .WrFIFO_DataAck	(WrFIFO_DataAck3),	 // Templated
 		       .WrFIFO_Push	(WrFIFO_Push3),		 // Templated
 		       .address		(io_address3[5:0]),	 // Templated
-		       .cmd_rdata	(cmd_rdata3[31:0]),	 // Templated
 		       .err_req		(err_req3[7:0]),	 // Templated
 		       .gtx_rxdata	(gtx_rxdata3[31:0]),	 // Templated
 		       .gtx_rxdatak	(gtx_rxdatak3[3:0]),	 // Templated
@@ -642,9 +740,6 @@ module hs_top (/*AUTOARG*/
      hs_host_if (/*AUTOINST*/
 		 // Outputs
 		 .sys_rst		(sys_rst),
-		 .Sl_dcrDBus		(Sl_dcrDBus[0:31]),
-		 .Sl_dcrAck		(Sl_dcrAck),
-		 .interrupt		(interrupt),
 		 .inband_base		(inband_base[31:0]),
 		 .inband_cons_addr	(inband_cons_addr[31:0]),
 		 .inband_prod_index	(inband_prod_index[11:0]),
@@ -659,12 +754,6 @@ module hs_top (/*AUTOARG*/
 		 .err_req3		(err_req3[7:0]),
 		 // Inputs
 		 .sys_clk		(sys_clk),
-		 .DCR_Clk		(DCR_Clk),
-		 .DCR_Rst		(DCR_Rst),
-		 .DCR_Read		(DCR_Read),
-		 .DCR_Write		(DCR_Write),
-		 .DCR_ABus		(DCR_ABus[0:9]),
-		 .DCR_Sl_DBus		(DCR_Sl_DBus[0:31]),
 		 .inband_cons_index	(inband_cons_index[11:0]),
 		 .outband_prod_index	(outband_prod_index[11:0]),
 		 .err_ack0		(err_ack0[7:0]),
@@ -678,8 +767,7 @@ module hs_top (/*AUTOARG*/
 		 .dma_state0		(dma_state0[31:0]),
 		 .dma_state1		(dma_state1[31:0]),
 		 .dma_state2		(dma_state2[31:0]),
-		 .dma_state3		(dma_state3[31:0]),
-		 .npi_ict_state		(npi_ict_state[31:0]));
+		 .dma_state3		(dma_state3[31:0]));
 
    mb_top #(/*AUTOINSTPARAM*/
 	    // Parameters

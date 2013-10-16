@@ -49,7 +49,8 @@ module hs_dcr_if (/*AUTOARG*/
    readdata, irq, StartComm, phyreset, host_rst, gtx_tune, port_state,
    dcr2cs_clk, dcr2cs_pop, dma_address, dma_length, dma_pm, dma_data,
    dma_ok, dma_req, dma_wrt, dma_sync, dma_flush, dma_eof, dma_sof,
-   cxfifo_ack, cxfifo_ok, rxfis_raddr, cmd_raddr,
+   cxfifo_ack, cxfifo_ok, rxfis_raddr, cmd_raddr, cmd_done, rsp_wdata,
+   rsp_waddr, rsp_we, rsp_done,
    // Inputs
    sys_clk, sys_rst, phyclk, address, write, writedata, Trace_FW,
    CommInit, linkup, plllock, cs2dcr_prim, cs2dcr_cnt, link_fsm2dbg,
@@ -111,9 +112,15 @@ module hs_dcr_if (/*AUTOARG*/
    output [4:0]  rxfis_raddr;
    input [31:0]  cmd_rdata;
    output [4:0]  cmd_raddr;
+   output        cmd_done;
+   output [31:0] rsp_wdata;
+   output [4:0]  rsp_waddr;
+   output 	 rsp_we;
+   output 	 rsp_done;
    /**********************************************************************/
    /*AUTOREG*/
    // Beginning of automatic regs (for this module's undeclared outputs)
+   reg			cmd_done;
    reg			cxfifo_ack;
    reg			cxfifo_ok;
    reg			dcr2cs_clk;
@@ -131,6 +138,10 @@ module hs_dcr_if (/*AUTOARG*/
    reg			dma_wrt;
    reg [7:0]		port_state;
    reg [31:0]		readdata;
+   reg			rsp_done;
+   reg [4:0]		rsp_waddr;
+   reg [31:0]		rsp_wdata;
+   reg			rsp_we;
    // End of automatics
    
    /**********************************************************************/

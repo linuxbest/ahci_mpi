@@ -45,10 +45,10 @@
 // Code:
 module hs_cmd_if(/*AUTOARG*/
    // Outputs
-   inband_base, inband_cons_addr, inband_prod_index, PhyReady, CmdAck,
+   PhyReady, CmdAck, cmd_req, cmd_rdata,
    // Inputs
-   inband_cons_index, sys_clk, sys_rst, PhyReset, CmdReq, CmdId, Cmd,
-   CmdAddr, CmdWr
+   sys_clk, sys_rst, PhyReset, CmdReq, CmdId, Cmd, CmdAddr, CmdWr,
+   cmd_done, cmd_raddr
    );
    input sys_clk;
    input sys_rst;
@@ -56,21 +56,18 @@ module hs_cmd_if(/*AUTOARG*/
    input PhyReset;
    output PhyReady;
    
-   /*AUTOINOUTCOMP("mb_io", "^inband")*/
-   // Beginning of automatic in/out/inouts (from specific module)
-   output [31:0]	inband_base;
-   output [31:0]	inband_cons_addr;
-   output [11:0]	inband_prod_index;
-   input [11:0]		inband_cons_index;
-   // End of automatics
-
    input         CmdReq;
    output 	 CmdAck;
    input [4:0] 	 CmdId;
    input [31:0]  Cmd;
    input [3:0] 	 CmdAddr;
    input 	 CmdWr;
-   
+
+   input 	 cmd_done;
+   output 	 cmd_req;
+   input [4:0] 	 cmd_raddr;
+   output [31:0] cmd_rdata;
+	 
 endmodule // hs_cmd_if
 // Local Variables:
 // verilog-library-directories:("." "../../pcores/sata_v1_00_a/hdl/verilog" )
