@@ -46,17 +46,18 @@
 // Code:
 module hs_mb_io (/*AUTOARG*/
    // Outputs
-   DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL, DCACHE_FSL_IN_EXISTS,
-   DCACHE_FSL_OUT_FULL, ICACHE_FSL_IN_DATA, ICACHE_FSL_IN_CONTROL,
-   ICACHE_FSL_IN_EXISTS, ICACHE_FSL_OUT_FULL, IO_Read_Data, IO_Ready,
-   GPI1, GPI2, GPI3, GPI4, INTC_Interrupt, UART_Rx, PIT1_Enable,
-   PIT2_Enable, PIT3_Enable, PIT4_Enable, Clk, Reset, io_address0,
-   io_address1, io_address2, io_address3, io_write0, io_write1,
-   io_write2, io_write3, io_writedata0, io_writedata1, io_writedata2,
-   io_writedata3, inband_cons_index, outband_prod_index, Trace_FW0,
-   Trace_FW1, Trace_FW2, Trace_FW3,
+   DBG_CAPTURE, DBG_CLK, DBG_REG_EN, DBG_RST, DBG_SHIFT, DBG_TDI,
+   DBG_UPDATE, DBG_STOP, DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL,
+   DCACHE_FSL_IN_EXISTS, DCACHE_FSL_OUT_FULL, ICACHE_FSL_IN_DATA,
+   ICACHE_FSL_IN_CONTROL, ICACHE_FSL_IN_EXISTS, ICACHE_FSL_OUT_FULL,
+   IO_Read_Data, IO_Ready, GPI1, GPI2, GPI3, GPI4, INTC_Interrupt,
+   UART_Rx, PIT1_Enable, PIT2_Enable, PIT3_Enable, PIT4_Enable, Clk,
+   Reset, io_address0, io_address1, io_address2, io_address3,
+   io_write0, io_write1, io_write2, io_write3, io_writedata0,
+   io_writedata1, io_writedata2, io_writedata3, inband_cons_index,
+   outband_prod_index, Trace_FW0, Trace_FW1, Trace_FW2, Trace_FW3,
    // Inputs
-   DCACHE_FSL_IN_CLK, DCACHE_FSL_IN_READ, DCACHE_FSL_OUT_CLK,
+   DBG_TDO, DCACHE_FSL_IN_CLK, DCACHE_FSL_IN_READ, DCACHE_FSL_OUT_CLK,
    DCACHE_FSL_OUT_WRITE, DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL,
    ICACHE_FSL_IN_CLK, ICACHE_FSL_IN_READ, ICACHE_FSL_OUT_CLK,
    ICACHE_FSL_OUT_WRITE, ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL,
@@ -289,6 +290,18 @@ module hs_mb_io (/*AUTOARG*/
    input [0:31]		DCACHE_FSL_OUT_DATA;
    input		DCACHE_FSL_OUT_CONTROL;
    // End of automatics
+   /*AUTOINOUTCOMP("microblaze_mcs", "^DBG_")*/
+   // Beginning of automatic in/out/inouts (from specific module)
+   output		DBG_CAPTURE;
+   output		DBG_CLK;
+   output [0:7]		DBG_REG_EN;
+   output		DBG_RST;
+   output		DBG_SHIFT;
+   output		DBG_TDI;
+   output		DBG_UPDATE;
+   output		DBG_STOP;
+   input		DBG_TDO;
+   // End of automatics
    
    output [5:0]		io_address0;
    output [5:0]		io_address1;
@@ -478,7 +491,15 @@ module hs_mb_io (/*AUTOARG*/
    assign ICACHE_FSL_IN_CONTROL = 1'b0;
    assign ICACHE_FSL_IN_DATA    = 32'h0;
    assign ICACHE_FSL_IN_EXISTS  = 1'b0;
-   assign ICACHE_FSL_OUT_FULL   = 1'b0;   
+   assign ICACHE_FSL_OUT_FULL   = 1'b0;
+   assign DBG_CAPTURE = 1'b0;
+   assign DBG_CLK     = 1'b0;
+   assign DBG_REG_EN  = 1'b0;
+   assign DBG_RST     = 1'b0;
+   assign DBG_SHIFT   = 1'b0;
+   assign DBG_STOP    = 1'b0;
+   assign DBG_TDI     = 1'b0;
+   assign DBG_UPDATE  = 1'b0;
 endmodule // hs_mb_io
 // Local Variables:
 // verilog-library-directories:("." "../../pcores/sata_v1_00_a/hdl/verilog" )

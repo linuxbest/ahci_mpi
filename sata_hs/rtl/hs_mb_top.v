@@ -50,7 +50,7 @@ module hs_mb_top(/*AUTOARG*/
    io_writedata0, io_write3, io_write2, io_write1, io_write0,
    io_address3, io_address2, io_address1, io_address0,
    inband_cons_index, ilmb_BRAM_Din, dlmb_BRAM_Din, Trace_FW3,
-   Trace_FW2, Trace_FW1, Trace_FW0, DBG_TDO,
+   Trace_FW2, Trace_FW1, Trace_FW0,
    // Inputs
    ring_enable, outband_prod_addr, outband_cons_index, outband_base,
    irq3, irq2, irq1, irq0, io_readdata3, io_readdata2, io_readdata1,
@@ -58,8 +58,7 @@ module hs_mb_top(/*AUTOARG*/
    ilmb_BRAM_WEN, ilmb_BRAM_Rst, ilmb_BRAM_EN, ilmb_BRAM_Dout,
    ilmb_BRAM_Clk, ilmb_BRAM_Addr, dlmb_BRAM_WEN, dlmb_BRAM_Rst,
    dlmb_BRAM_EN, dlmb_BRAM_Dout, dlmb_BRAM_Clk, dlmb_BRAM_Addr,
-   DBG_UPDATE, DBG_TDI, DBG_STOP, DBG_SHIFT, DBG_RST, DBG_REG_EN,
-   DBG_CLK, DBG_CAPTURE, sys_clk, sys_rst
+   sys_clk, sys_rst
    );
    parameter C_FAMILY = "virtex5";
    parameter C_DEBUG_ENABLED = 1;
@@ -151,14 +150,6 @@ module hs_mb_top(/*AUTOARG*/
    
    /*AUTOINPUT*/
    // Beginning of automatic inputs (from unused autoinst inputs)
-   input		DBG_CAPTURE;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_CLK;		// To microblaze_mcs of microblaze_mcs.v
-   input [0:7]		DBG_REG_EN;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_RST;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_SHIFT;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_STOP;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_TDI;		// To microblaze_mcs of microblaze_mcs.v
-   input		DBG_UPDATE;		// To microblaze_mcs of microblaze_mcs.v
    input [0:31]		dlmb_BRAM_Addr;		// To microblaze_mcs of microblaze_mcs.v
    input		dlmb_BRAM_Clk;		// To microblaze_mcs of microblaze_mcs.v
    input [0:31]		dlmb_BRAM_Dout;		// To microblaze_mcs of microblaze_mcs.v
@@ -189,7 +180,6 @@ module hs_mb_top(/*AUTOARG*/
    // End of automatics
    /*AUTOOUTPUT*/
    // Beginning of automatic outputs (from unused autoinst outputs)
-   output		DBG_TDO;		// From microblaze_mcs of microblaze_mcs.v
    output [127:0]	Trace_FW0;		// From mb_io of hs_mb_io.v
    output [127:0]	Trace_FW1;		// From mb_io of hs_mb_io.v
    output [127:0]	Trace_FW2;		// From mb_io of hs_mb_io.v
@@ -215,6 +205,15 @@ module hs_mb_top(/*AUTOARG*/
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    wire			Clk;			// From mb_io of hs_mb_io.v
+   wire			DBG_CAPTURE;		// From mb_io of hs_mb_io.v
+   wire			DBG_CLK;		// From mb_io of hs_mb_io.v
+   wire [0:7]		DBG_REG_EN;		// From mb_io of hs_mb_io.v
+   wire			DBG_RST;		// From mb_io of hs_mb_io.v
+   wire			DBG_SHIFT;		// From mb_io of hs_mb_io.v
+   wire			DBG_STOP;		// From mb_io of hs_mb_io.v
+   wire			DBG_TDI;		// From mb_io of hs_mb_io.v
+   wire			DBG_TDO;		// From microblaze_mcs of microblaze_mcs.v
+   wire			DBG_UPDATE;		// From mb_io of hs_mb_io.v
    wire			DCACHE_FSL_IN_CLK;	// From microblaze_mcs of microblaze_mcs.v
    wire			DCACHE_FSL_IN_CONTROL;	// From mb_io of hs_mb_io.v
    wire [0:31]		DCACHE_FSL_IN_DATA;	// From mb_io of hs_mb_io.v
@@ -609,6 +608,14 @@ module hs_mb_top(/*AUTOARG*/
 	   .DCACHE_FSL_IN_CONTROL	(DCACHE_FSL_IN_CONTROL),
 	   .DCACHE_FSL_IN_EXISTS	(DCACHE_FSL_IN_EXISTS),
 	   .DCACHE_FSL_OUT_FULL		(DCACHE_FSL_OUT_FULL),
+	   .DBG_CAPTURE			(DBG_CAPTURE),
+	   .DBG_CLK			(DBG_CLK),
+	   .DBG_REG_EN			(DBG_REG_EN[0:7]),
+	   .DBG_RST			(DBG_RST),
+	   .DBG_SHIFT			(DBG_SHIFT),
+	   .DBG_TDI			(DBG_TDI),
+	   .DBG_UPDATE			(DBG_UPDATE),
+	   .DBG_STOP			(DBG_STOP),
 	   .io_address0			(io_address0[5:0]),
 	   .io_address1			(io_address1[5:0]),
 	   .io_address2			(io_address2[5:0]),
@@ -701,6 +708,7 @@ module hs_mb_top(/*AUTOARG*/
 	   .DCACHE_FSL_OUT_WRITE	(DCACHE_FSL_OUT_WRITE),
 	   .DCACHE_FSL_OUT_DATA		(DCACHE_FSL_OUT_DATA[0:31]),
 	   .DCACHE_FSL_OUT_CONTROL	(DCACHE_FSL_OUT_CONTROL),
+	   .DBG_TDO			(DBG_TDO),
 	   .io_readdata0		(io_readdata0[31:0]),
 	   .io_readdata1		(io_readdata1[31:0]),
 	   .io_readdata2		(io_readdata2[31:0]),

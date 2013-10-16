@@ -48,7 +48,7 @@ module hs_host_if (/*AUTOARG*/
    // Outputs
    outband_base, outband_prod_addr, outband_cons_index, inband_base,
    inband_cons_addr, inband_prod_index, sys_rst, ring_enable,
-   DBG_STOP, err_req0, err_req1, err_req2, err_req3,
+   err_req0, err_req1, err_req2, err_req3,
    // Inputs
    outband_prod_index, inband_cons_index, sys_clk, err_ack0, err_ack1,
    err_ack2, err_ack3, phyclk0, phyclk1, phyclk2, phyclk3, dma_state0,
@@ -73,7 +73,6 @@ module hs_host_if (/*AUTOARG*/
    // End of automatics
 
    output 		ring_enable;
-   output 		DBG_STOP;
 
    output [7:0] 	err_req0;
    output [7:0] 	err_req1;
@@ -96,7 +95,6 @@ module hs_host_if (/*AUTOARG*/
    /**********************************************************************/
    /*AUTOREG*/
    // Beginning of automatic regs (for this module's undeclared outputs)
-   reg			DBG_STOP;
    reg [7:0]		err_req0;
    reg [7:0]		err_req1;
    reg [7:0]		err_req2;

@@ -66,7 +66,7 @@ module hs_top (/*AUTOARG*/
    RdFIFO_DataReq2, RdFIFO_DataReq1, RdFIFO_DataReq0, RdFIFO_DataId3,
    RdFIFO_DataId2, RdFIFO_DataId1, RdFIFO_DataId0, RdFIFO_Data3,
    RdFIFO_Data2, RdFIFO_Data1, RdFIFO_Data0, PhyReady3, PhyReady2,
-   PhyReady1, PhyReady0, DBG_TDO, CmdAck3, CmdAck2, CmdAck1, CmdAck0,
+   PhyReady1, PhyReady0, CmdAck3, CmdAck2, CmdAck1, CmdAck0,
    // Inputs
    txdatak_pop3, txdatak_pop2, txdatak_pop1, txdatak_pop0,
    rxfifo_irq3, rxfifo_irq2, rxfifo_irq1, rxfifo_irq0, rxdatak3,
@@ -87,11 +87,10 @@ module hs_top (/*AUTOARG*/
    RspAck2, RspAck1, RspAck0, RdFIFO_Pop3, RdFIFO_Pop2, RdFIFO_Pop1,
    RdFIFO_Pop0, RdFIFO_DataAck3, RdFIFO_DataAck2, RdFIFO_DataAck1,
    RdFIFO_DataAck0, PhyReset3, PhyReset2, PhyReset1, PhyReset0,
-   DBG_UPDATE, DBG_TDI, DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK,
-   DBG_CAPTURE, CommInit3, CommInit2, CommInit1, CommInit0, CmdWr3,
-   CmdWr2, CmdWr1, CmdWr0, CmdReq3, CmdReq2, CmdReq1, CmdReq0, CmdId3,
-   CmdId2, CmdId1, CmdId0, CmdAddr3, CmdAddr2, CmdAddr1, CmdAddr0,
-   Cmd3, Cmd2, Cmd1, Cmd0, sys_clk, sys_rst
+   CommInit3, CommInit2, CommInit1, CommInit0, CmdWr3, CmdWr2, CmdWr1,
+   CmdWr0, CmdReq3, CmdReq2, CmdReq1, CmdReq0, CmdId3, CmdId2, CmdId1,
+   CmdId0, CmdAddr3, CmdAddr2, CmdAddr1, CmdAddr0, Cmd3, Cmd2, Cmd1,
+   Cmd0, sys_clk, sys_rst
    );
    parameter C_PORT = 4;
    parameter C_FAMILY = "virtex5";
@@ -136,13 +135,6 @@ module hs_top (/*AUTOARG*/
    input		CommInit1;		// To dma1 of hs_if.v
    input		CommInit2;		// To dma2 of hs_if.v
    input		CommInit3;		// To dma3 of hs_if.v
-   input		DBG_CAPTURE;		// To mb_top of hs_mb_top.v
-   input		DBG_CLK;		// To mb_top of hs_mb_top.v
-   input [0:7]		DBG_REG_EN;		// To mb_top of hs_mb_top.v
-   input		DBG_RST;		// To mb_top of hs_mb_top.v
-   input		DBG_SHIFT;		// To mb_top of hs_mb_top.v
-   input		DBG_TDI;		// To mb_top of hs_mb_top.v
-   input		DBG_UPDATE;		// To mb_top of hs_mb_top.v
    input		PhyReset0;		// To dma0 of hs_if.v
    input		PhyReset1;		// To dma1 of hs_if.v
    input		PhyReset2;		// To dma2 of hs_if.v
@@ -246,7 +238,6 @@ module hs_top (/*AUTOARG*/
    output		CmdAck1;		// From dma1 of hs_if.v
    output		CmdAck2;		// From dma2 of hs_if.v
    output		CmdAck3;		// From dma3 of hs_if.v
-   output		DBG_TDO;		// From mb_top of hs_mb_top.v
    output		PhyReady0;		// From dma0 of hs_if.v
    output		PhyReady1;		// From dma1 of hs_if.v
    output		PhyReady2;		// From dma2 of hs_if.v
@@ -358,7 +349,6 @@ module hs_top (/*AUTOARG*/
 
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
-   wire			DBG_STOP;		// From hs_host_if of hs_host_if.v
    wire [127:0]		Trace_FW0;		// From mb_top of hs_mb_top.v
    wire [127:0]		Trace_FW1;		// From mb_top of hs_mb_top.v
    wire [127:0]		Trace_FW2;		// From mb_top of hs_mb_top.v
@@ -714,7 +704,6 @@ module hs_top (/*AUTOARG*/
 		 .outband_prod_addr	(outband_prod_addr[31:0]),
 		 .outband_cons_index	(outband_cons_index[11:0]),
 		 .ring_enable		(ring_enable),
-		 .DBG_STOP		(DBG_STOP),
 		 .err_req0		(err_req0[7:0]),
 		 .err_req1		(err_req1[7:0]),
 		 .err_req2		(err_req2[7:0]),
@@ -742,7 +731,6 @@ module hs_top (/*AUTOARG*/
 	       .C_DEBUG_ENABLED		(C_DEBUG_ENABLED))
    mb_top  (/*AUTOINST*/
 	    // Outputs
-	    .DBG_TDO			(DBG_TDO),
 	    .Trace_FW0			(Trace_FW0[127:0]),
 	    .Trace_FW1			(Trace_FW1[127:0]),
 	    .Trace_FW2			(Trace_FW2[127:0]),
@@ -766,14 +754,6 @@ module hs_top (/*AUTOARG*/
 	    // Inputs
 	    .sys_clk			(sys_clk),
 	    .sys_rst			(sys_rst),
-	    .DBG_CAPTURE		(DBG_CAPTURE),
-	    .DBG_CLK			(DBG_CLK),
-	    .DBG_REG_EN			(DBG_REG_EN[0:7]),
-	    .DBG_RST			(DBG_RST),
-	    .DBG_SHIFT			(DBG_SHIFT),
-	    .DBG_STOP			(DBG_STOP),
-	    .DBG_TDI			(DBG_TDI),
-	    .DBG_UPDATE			(DBG_UPDATE),
 	    .dlmb_BRAM_Addr		(dlmb_BRAM_Addr[0:31]),
 	    .dlmb_BRAM_Clk		(dlmb_BRAM_Clk),
 	    .dlmb_BRAM_Dout		(dlmb_BRAM_Dout[0:31]),
