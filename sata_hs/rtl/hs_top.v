@@ -57,21 +57,18 @@ module hs_top (/*AUTOARG*/
    WrFIFO_DataSize2, WrFIFO_DataSize1, WrFIFO_DataSize0,
    WrFIFO_DataReq3, WrFIFO_DataReq2, WrFIFO_DataReq1, WrFIFO_DataReq0,
    WrFIFO_DataId3, WrFIFO_DataId2, WrFIFO_DataId1, WrFIFO_DataId0,
-   StartComm3, StartComm2, StartComm1, StartComm0, RdFIFO_Full3,
-   RdFIFO_Full2, RdFIFO_Full1, RdFIFO_Full0, RdFIFO_Empty3,
-   RdFIFO_Empty2, RdFIFO_Empty1, RdFIFO_Empty0, RdFIFO_DataSize3,
-   RdFIFO_DataSize2, RdFIFO_DataSize1, RdFIFO_DataSize0,
-   RdFIFO_DataReq3, RdFIFO_DataReq2, RdFIFO_DataReq1, RdFIFO_DataReq0,
-   RdFIFO_DataId3, RdFIFO_DataId2, RdFIFO_DataId1, RdFIFO_DataId0,
-   RdFIFO_Data3, RdFIFO_Data2, RdFIFO_Data1, RdFIFO_Data0,
-   ICACHE_FSL_OUT_WRITE, ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL,
-   ICACHE_FSL_OUT_CLK, ICACHE_FSL_IN_READ, ICACHE_FSL_IN_CLK,
-   DCACHE_FSL_OUT_WRITE, DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL,
-   DCACHE_FSL_OUT_CLK, DCACHE_FSL_IN_READ, DCACHE_FSL_IN_CLK, DBG_TDO,
-   M_Lock, Sl_dcrDBus, Sl_dcrAck, PIM_Addr, PIM_AddrReq, PIM_RNW,
-   PIM_Size, PIM_RdModWr, PIM_WrFIFO_Data, PIM_WrFIFO_BE,
-   PIM_WrFIFO_Push, PIM_RdFIFO_Pop, PIM_WrFIFO_Flush,
-   PIM_RdFIFO_Flush,
+   StartComm3, StartComm2, StartComm1, StartComm0, Sl_dcrDBus,
+   Sl_dcrAck, RdFIFO_Full3, RdFIFO_Full2, RdFIFO_Full1, RdFIFO_Full0,
+   RdFIFO_Empty3, RdFIFO_Empty2, RdFIFO_Empty1, RdFIFO_Empty0,
+   RdFIFO_DataSize3, RdFIFO_DataSize2, RdFIFO_DataSize1,
+   RdFIFO_DataSize0, RdFIFO_DataReq3, RdFIFO_DataReq2,
+   RdFIFO_DataReq1, RdFIFO_DataReq0, RdFIFO_DataId3, RdFIFO_DataId2,
+   RdFIFO_DataId1, RdFIFO_DataId0, RdFIFO_Data3, RdFIFO_Data2,
+   RdFIFO_Data1, RdFIFO_Data0, ICACHE_FSL_OUT_WRITE,
+   ICACHE_FSL_OUT_DATA, ICACHE_FSL_OUT_CONTROL, ICACHE_FSL_OUT_CLK,
+   ICACHE_FSL_IN_READ, ICACHE_FSL_IN_CLK, DCACHE_FSL_OUT_WRITE,
+   DCACHE_FSL_OUT_DATA, DCACHE_FSL_OUT_CONTROL, DCACHE_FSL_OUT_CLK,
+   DCACHE_FSL_IN_READ, DCACHE_FSL_IN_CLK, DBG_TDO,
    // Inputs
    txdatak_pop3, txdatak_pop2, txdatak_pop1, txdatak_pop0,
    rxfifo_irq3, rxfifo_irq2, rxfifo_irq1, rxfifo_irq0, rxdatak3,
@@ -92,14 +89,12 @@ module hs_top (/*AUTOARG*/
    WrFIFO_Data1, WrFIFO_Data0, RdFIFO_Pop3, RdFIFO_Pop2, RdFIFO_Pop1,
    RdFIFO_Pop0, RdFIFO_DataAck3, RdFIFO_DataAck2, RdFIFO_DataAck1,
    RdFIFO_DataAck0, ICACHE_FSL_OUT_FULL, ICACHE_FSL_IN_EXISTS,
-   ICACHE_FSL_IN_DATA, ICACHE_FSL_IN_CONTROL, DCACHE_FSL_OUT_FULL,
+   ICACHE_FSL_IN_DATA, ICACHE_FSL_IN_CONTROL, DCR_Write, DCR_Sl_DBus,
+   DCR_Rst, DCR_Read, DCR_Clk, DCR_ABus, DCACHE_FSL_OUT_FULL,
    DCACHE_FSL_IN_EXISTS, DCACHE_FSL_IN_DATA, DCACHE_FSL_IN_CONTROL,
    DBG_UPDATE, DBG_TDI, DBG_SHIFT, DBG_RST, DBG_REG_EN, DBG_CLK,
-   DBG_CAPTURE, CommInit3, CommInit2, CommInit1, CommInit0, M_Clk,
-   M_Reset, M_Error, DCR_Clk, DCR_Rst, DCR_Read, DCR_Write, DCR_ABus,
-   DCR_Sl_DBus, MPMC_Clk, PIM_AddrAck, PIM_RdFIFO_Data,
-   PIM_RdFIFO_RdWdAddr, PIM_WrFIFO_Empty, PIM_WrFIFO_AlmostFull,
-   PIM_RdFIFO_Empty, PIM_RdFIFO_Latency, PIM_InitDone
+   DBG_CAPTURE, CommInit3, CommInit2, CommInit1, CommInit0, sys_clk,
+   sys_rst
    );
    parameter C_PORT = 4;
    parameter C_FAMILY = "virtex5";
@@ -115,93 +110,8 @@ module hs_top (/*AUTOARG*/
    parameter C_XCL_CHIPSCOPE = 0;
    parameter C_NPI_CHIPSCOPE = 0;
    
-   // PIM parameter start
-   parameter C_NUM_PORTS = 5;
-
-   parameter C_PIM0_DATA_WIDTH = 32;
-   parameter C_PIM0_RD_FIFO_TYPE = "BRAM";
-   parameter C_PIM0_WR_FIFO_TYPE = "BRAM";
-   parameter C_PIM0_RD_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM0_RD_FIFO_MEM_PIPELINE = 1;
-   parameter C_PIM0_WR_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM0_WR_FIFO_MEM_PIPELINE = 1;
-
-   parameter C_PIM1_DATA_WIDTH = 32;
-   parameter C_PIM1_RD_FIFO_TYPE = "BRAM";
-   parameter C_PIM1_WR_FIFO_TYPE = "BRAM";
-   parameter C_PIM1_RD_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM1_RD_FIFO_MEM_PIPELINE = 1;
-   parameter C_PIM1_WR_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM1_WR_FIFO_MEM_PIPELINE = 1;
-
-   parameter C_PIM2_DATA_WIDTH = 32;
-   parameter C_PIM2_RD_FIFO_TYPE = "BRAM";
-   parameter C_PIM2_WR_FIFO_TYPE = "BRAM";
-   parameter C_PIM2_RD_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM2_RD_FIFO_MEM_PIPELINE = 1;
-   parameter C_PIM2_WR_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM2_WR_FIFO_MEM_PIPELINE = 1;
-
-   parameter C_PIM3_DATA_WIDTH = 32;
-   parameter C_PIM3_RD_FIFO_TYPE = "BRAM";
-   parameter C_PIM3_WR_FIFO_TYPE = "BRAM";
-   parameter C_PIM3_RD_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM3_RD_FIFO_MEM_PIPELINE = 1;
-   parameter C_PIM3_WR_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM3_WR_FIFO_MEM_PIPELINE = 1;
-
-   parameter C_PIM4_DATA_WIDTH = 32;
-   parameter C_PIM4_RD_FIFO_TYPE = "BRAM";
-   parameter C_PIM4_WR_FIFO_TYPE = "BRAM";
-   parameter C_PIM4_RD_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM4_RD_FIFO_MEM_PIPELINE = 1;
-   parameter C_PIM4_WR_FIFO_APP_PIPELINE = 1;
-   parameter C_PIM4_WR_FIFO_MEM_PIPELINE = 1;
-
-   parameter C_PIM_DATA_WIDTH = 64;   
-   // PIM parameter end
-   
-   input M_Clk;
-   input M_Reset;
-   input M_Error;
-   output M_Lock;
-
-   input  DCR_Clk;
-   input  DCR_Rst;
-   input  DCR_Read;
-   input  DCR_Write;
-   input [0:9] DCR_ABus;
-   input [0:31] DCR_Sl_DBus;
-   output [0:31] Sl_dcrDBus;
-   output 	 Sl_dcrAck;
-
-   wire 	 sys_clk;
-   wire 	 sys_rst;
-   assign sys_clk = DCR_Clk;
-   
-   wire          MPMC_Rst;
-   assign MPMC_Rst= sys_rst;
-
-   input 	 MPMC_Clk;
-   output [31:0] PIM_Addr;
-   output 	 PIM_AddrReq;
-   input 	 PIM_AddrAck;
-   output 	 PIM_RNW;
-   output [3:0]  PIM_Size;
-   output 	 PIM_RdModWr;
-   output [63:0] PIM_WrFIFO_Data;
-   output [7:0]  PIM_WrFIFO_BE;
-   output 	 PIM_WrFIFO_Push;
-   input [63:0]  PIM_RdFIFO_Data;
-   output 	 PIM_RdFIFO_Pop;
-   input [3:0] 	 PIM_RdFIFO_RdWdAddr;
-   input 	 PIM_WrFIFO_Empty;
-   input 	 PIM_WrFIFO_AlmostFull;
-   output 	 PIM_WrFIFO_Flush;
-   input 	 PIM_RdFIFO_Empty;
-   output 	 PIM_RdFIFO_Flush;
-   input [1:0] 	 PIM_RdFIFO_Latency;
-   input 	 PIM_InitDone;
+   input sys_clk;
+   input sys_rst;
    
    /*AUTOINPUT*/
    // Beginning of automatic inputs (from unused autoinst inputs)
@@ -220,6 +130,12 @@ module hs_top (/*AUTOARG*/
    input [0:31]		DCACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
    input		DCACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
    input		DCACHE_FSL_OUT_FULL;	// To mb_top of mb_top.v
+   input [0:9]		DCR_ABus;		// To hs_host_if of hs_host_if.v
+   input		DCR_Clk;		// To hs_host_if of hs_host_if.v
+   input		DCR_Read;		// To hs_host_if of hs_host_if.v
+   input		DCR_Rst;		// To hs_host_if of hs_host_if.v
+   input [0:31]		DCR_Sl_DBus;		// To hs_host_if of hs_host_if.v
+   input		DCR_Write;		// To hs_host_if of hs_host_if.v
    input		ICACHE_FSL_IN_CONTROL;	// To mb_top of mb_top.v
    input [0:31]		ICACHE_FSL_IN_DATA;	// To mb_top of mb_top.v
    input		ICACHE_FSL_IN_EXISTS;	// To mb_top of mb_top.v
@@ -254,10 +170,10 @@ module hs_top (/*AUTOARG*/
    input		dlmb_BRAM_EN;		// To mb_top of mb_top.v
    input		dlmb_BRAM_Rst;		// To mb_top of mb_top.v
    input [0:3]		dlmb_BRAM_WEN;		// To mb_top of mb_top.v
-   input [31:0]		dma_state0;		// To host_if of host_if.v
-   input [31:0]		dma_state1;		// To host_if of host_if.v
-   input [31:0]		dma_state2;		// To host_if of host_if.v
-   input [31:0]		dma_state3;		// To host_if of host_if.v
+   input [31:0]		dma_state0;		// To hs_host_if of hs_host_if.v
+   input [31:0]		dma_state1;		// To hs_host_if of hs_host_if.v
+   input [31:0]		dma_state2;		// To hs_host_if of hs_host_if.v
+   input [31:0]		dma_state3;		// To hs_host_if of hs_host_if.v
    input [31:0]		gtx_rxdata0;		// To dma0 of hs_if.v
    input [31:0]		gtx_rxdata1;		// To dma1 of hs_if.v
    input [31:0]		gtx_rxdata2;		// To dma2 of hs_if.v
@@ -284,7 +200,7 @@ module hs_top (/*AUTOARG*/
    input		linkup1;		// To dma1 of hs_if.v
    input		linkup2;		// To dma2 of hs_if.v
    input		linkup3;		// To dma3 of hs_if.v
-   input [31:0]		npi_ict_state;		// To host_if of host_if.v
+   input [31:0]		npi_ict_state;		// To hs_host_if of hs_host_if.v
    input [127:0]	oob2dbg0;		// To dma0 of hs_if.v
    input [127:0]	oob2dbg1;		// To dma1 of hs_if.v
    input [127:0]	oob2dbg2;		// To dma2 of hs_if.v
@@ -353,6 +269,8 @@ module hs_top (/*AUTOARG*/
    output		RdFIFO_Full1;		// From dma1 of hs_if.v
    output		RdFIFO_Full2;		// From dma2 of hs_if.v
    output		RdFIFO_Full3;		// From dma3 of hs_if.v
+   output		Sl_dcrAck;		// From hs_host_if of hs_host_if.v
+   output [0:31]	Sl_dcrDBus;		// From hs_host_if of hs_host_if.v
    output		StartComm0;		// From dma0 of hs_if.v
    output		StartComm1;		// From dma1 of hs_if.v
    output		StartComm2;		// From dma2 of hs_if.v
@@ -387,7 +305,7 @@ module hs_top (/*AUTOARG*/
    output [31:0]	gtx_tune2;		// From dma2 of hs_if.v
    output [31:0]	gtx_tune3;		// From dma3 of hs_if.v
    output [0:31]	ilmb_BRAM_Din;		// From mb_top of mb_top.v
-   output		interrupt;		// From host_if of host_if.v
+   output		interrupt;		// From hs_host_if of hs_host_if.v
    output		phyreset0;		// From dma0 of hs_if.v
    output		phyreset1;		// From dma1 of hs_if.v
    output		phyreset2;		// From dma2 of hs_if.v
@@ -418,40 +336,10 @@ module hs_top (/*AUTOARG*/
    wire [31:0] 		io_readdata1;
    wire [31:0] 		io_readdata2;
    wire [31:0] 		io_readdata3;
-   wire                 PIM0_AddrReq;
-   wire                 PIM1_AddrReq;
-   wire                 PIM2_AddrReq;
-   wire                 PIM3_AddrReq;
-   wire                 PIM4_AddrReq;
-   wire                 PIM0_WrFIFO_Push;
-   wire                 PIM1_WrFIFO_Push;
-   wire                 PIM2_WrFIFO_Push;
-   wire                 PIM3_WrFIFO_Push;
-   wire                 PIM4_WrFIFO_Push;
-   wire                 MPMC_Clk0;
-   wire                 MPMC_Clk1;
-   wire                 MPMC_Clk2;
-   wire                 MPMC_Clk3;
-   wire                 MPMC_Clk4;
-   wire                 MPMC_Rst0;
-   wire                 MPMC_Rst1;
-   wire                 MPMC_Rst2;
-   wire                 MPMC_Rst3;
-   wire                 MPMC_Rst4;
-   assign MPMC_Clk0 = MPMC_Clk;
-   assign MPMC_Clk1 = MPMC_Clk;
-   assign MPMC_Clk2 = MPMC_Clk;
-   assign MPMC_Clk3 = MPMC_Clk;
-   assign MPMC_Clk4 = MPMC_Clk;
-   assign MPMC_Rst0 = sys_rst;
-   assign MPMC_Rst1 = sys_rst;
-   assign MPMC_Rst2 = sys_rst;
-   assign MPMC_Rst3 = sys_rst;
-   assign MPMC_Rst4 = sys_rst;
 
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
-   wire			DBG_STOP;		// From host_if of host_if.v
+   wire			DBG_STOP;		// From hs_host_if of hs_host_if.v
    wire [127:0]		Trace_FW0;		// From mb_top of mb_top.v
    wire [127:0]		Trace_FW1;		// From mb_top of mb_top.v
    wire [127:0]		Trace_FW2;		// From mb_top of mb_top.v
@@ -460,14 +348,14 @@ module hs_top (/*AUTOARG*/
    wire [7:0]		err_ack1;		// From dma1 of hs_if.v
    wire [7:0]		err_ack2;		// From dma2 of hs_if.v
    wire [7:0]		err_ack3;		// From dma3 of hs_if.v
-   wire [7:0]		err_req0;		// From host_if of host_if.v
-   wire [7:0]		err_req1;		// From host_if of host_if.v
-   wire [7:0]		err_req2;		// From host_if of host_if.v
-   wire [7:0]		err_req3;		// From host_if of host_if.v
-   wire [31:0]		inband_base;		// From host_if of host_if.v
-   wire [31:0]		inband_cons_addr;	// From host_if of host_if.v
+   wire [7:0]		err_req0;		// From hs_host_if of hs_host_if.v
+   wire [7:0]		err_req1;		// From hs_host_if of hs_host_if.v
+   wire [7:0]		err_req2;		// From hs_host_if of hs_host_if.v
+   wire [7:0]		err_req3;		// From hs_host_if of hs_host_if.v
+   wire [31:0]		inband_base;		// From hs_host_if of hs_host_if.v
+   wire [31:0]		inband_cons_addr;	// From hs_host_if of hs_host_if.v
    wire [11:0]		inband_cons_index;	// From mb_top of mb_top.v
-   wire [11:0]		inband_prod_index;	// From host_if of host_if.v
+   wire [11:0]		inband_prod_index;	// From hs_host_if of hs_host_if.v
    wire [5:0]		io_address0;		// From mb_top of mb_top.v
    wire [5:0]		io_address1;		// From mb_top of mb_top.v
    wire [5:0]		io_address2;		// From mb_top of mb_top.v
@@ -480,11 +368,11 @@ module hs_top (/*AUTOARG*/
    wire [31:0]		io_writedata1;		// From mb_top of mb_top.v
    wire [31:0]		io_writedata2;		// From mb_top of mb_top.v
    wire [31:0]		io_writedata3;		// From mb_top of mb_top.v
-   wire [31:0]		outband_base;		// From host_if of host_if.v
-   wire [11:0]		outband_cons_index;	// From host_if of host_if.v
-   wire [31:0]		outband_prod_addr;	// From host_if of host_if.v
+   wire [31:0]		outband_base;		// From hs_host_if of hs_host_if.v
+   wire [11:0]		outband_cons_index;	// From hs_host_if of hs_host_if.v
+   wire [31:0]		outband_prod_addr;	// From hs_host_if of hs_host_if.v
    wire [11:0]		outband_prod_index;	// From mb_top of mb_top.v
-   wire			ring_enable;		// From host_if of host_if.v
+   wire			ring_enable;		// From hs_host_if of hs_host_if.v
    // End of automatics
    
    /*hs_if AUTO_TEMPLATE "\([0-9]\)"
@@ -750,48 +638,48 @@ module hs_top (/*AUTOARG*/
      end
    endgenerate
 
-   host_if
-     host_if (/*AUTOINST*/
-	      // Outputs
-	      .sys_rst			(sys_rst),
-	      .Sl_dcrDBus		(Sl_dcrDBus[0:31]),
-	      .Sl_dcrAck		(Sl_dcrAck),
-	      .interrupt		(interrupt),
-	      .inband_base		(inband_base[31:0]),
-	      .inband_cons_addr		(inband_cons_addr[31:0]),
-	      .inband_prod_index	(inband_prod_index[11:0]),
-	      .outband_base		(outband_base[31:0]),
-	      .outband_prod_addr	(outband_prod_addr[31:0]),
-	      .outband_cons_index	(outband_cons_index[11:0]),
-	      .ring_enable		(ring_enable),
-	      .DBG_STOP			(DBG_STOP),
-	      .err_req0			(err_req0[7:0]),
-	      .err_req1			(err_req1[7:0]),
-	      .err_req2			(err_req2[7:0]),
-	      .err_req3			(err_req3[7:0]),
-	      // Inputs
-	      .sys_clk			(sys_clk),
-	      .DCR_Clk			(DCR_Clk),
-	      .DCR_Rst			(DCR_Rst),
-	      .DCR_Read			(DCR_Read),
-	      .DCR_Write		(DCR_Write),
-	      .DCR_ABus			(DCR_ABus[0:9]),
-	      .DCR_Sl_DBus		(DCR_Sl_DBus[0:31]),
-	      .inband_cons_index	(inband_cons_index[11:0]),
-	      .outband_prod_index	(outband_prod_index[11:0]),
-	      .err_ack0			(err_ack0[7:0]),
-	      .err_ack1			(err_ack1[7:0]),
-	      .err_ack2			(err_ack2[7:0]),
-	      .err_ack3			(err_ack3[7:0]),
-	      .phyclk0			(phyclk0),
-	      .phyclk1			(phyclk1),
-	      .phyclk2			(phyclk2),
-	      .phyclk3			(phyclk3),
-	      .dma_state0		(dma_state0[31:0]),
-	      .dma_state1		(dma_state1[31:0]),
-	      .dma_state2		(dma_state2[31:0]),
-	      .dma_state3		(dma_state3[31:0]),
-	      .npi_ict_state		(npi_ict_state[31:0]));
+   hs_host_if
+     hs_host_if (/*AUTOINST*/
+		 // Outputs
+		 .sys_rst		(sys_rst),
+		 .Sl_dcrDBus		(Sl_dcrDBus[0:31]),
+		 .Sl_dcrAck		(Sl_dcrAck),
+		 .interrupt		(interrupt),
+		 .inband_base		(inband_base[31:0]),
+		 .inband_cons_addr	(inband_cons_addr[31:0]),
+		 .inband_prod_index	(inband_prod_index[11:0]),
+		 .outband_base		(outband_base[31:0]),
+		 .outband_prod_addr	(outband_prod_addr[31:0]),
+		 .outband_cons_index	(outband_cons_index[11:0]),
+		 .ring_enable		(ring_enable),
+		 .DBG_STOP		(DBG_STOP),
+		 .err_req0		(err_req0[7:0]),
+		 .err_req1		(err_req1[7:0]),
+		 .err_req2		(err_req2[7:0]),
+		 .err_req3		(err_req3[7:0]),
+		 // Inputs
+		 .sys_clk		(sys_clk),
+		 .DCR_Clk		(DCR_Clk),
+		 .DCR_Rst		(DCR_Rst),
+		 .DCR_Read		(DCR_Read),
+		 .DCR_Write		(DCR_Write),
+		 .DCR_ABus		(DCR_ABus[0:9]),
+		 .DCR_Sl_DBus		(DCR_Sl_DBus[0:31]),
+		 .inband_cons_index	(inband_cons_index[11:0]),
+		 .outband_prod_index	(outband_prod_index[11:0]),
+		 .err_ack0		(err_ack0[7:0]),
+		 .err_ack1		(err_ack1[7:0]),
+		 .err_ack2		(err_ack2[7:0]),
+		 .err_ack3		(err_ack3[7:0]),
+		 .phyclk0		(phyclk0),
+		 .phyclk1		(phyclk1),
+		 .phyclk2		(phyclk2),
+		 .phyclk3		(phyclk3),
+		 .dma_state0		(dma_state0[31:0]),
+		 .dma_state1		(dma_state1[31:0]),
+		 .dma_state2		(dma_state2[31:0]),
+		 .dma_state3		(dma_state3[31:0]),
+		 .npi_ict_state		(npi_ict_state[31:0]));
 
    mb_top #(/*AUTOINSTPARAM*/
 	    // Parameters
