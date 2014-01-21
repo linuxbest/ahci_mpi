@@ -1,0 +1,267 @@
+
+# ##############################################################################
+# Created by Base System Builder Wizard for Xilinx EDK 14.6 Build EDK_P.68d
+# Fri Aug 16 16:02:23 2013
+# Target Board:  Xilinx Spartan-6 SP605 Evaluation Platform Rev C
+# Family:    spartan6
+# Device:    xc6slx45t
+# Package:   fgg484
+# Speed Grade:  -3
+# Processor number: 1
+# Processor 1: microblaze_0
+# System clock frequency: 66.7
+# Debug Interface: On-Chip HW Debug Module
+# ##############################################################################
+ PARAMETER VERSION = 2.1.0
+
+
+ PORT fpga_0_RS232_Uart_1_RX_pin = fpga_0_RS232_Uart_1_RX_pin, DIR = I
+ PORT fpga_0_RS232_Uart_1_TX_pin = fpga_0_RS232_Uart_1_TX_pin, DIR = O
+
+ PORT RXN0_IN = RXN0_IN, DIR = I
+ PORT RXP0_IN = RXP0_IN, DIR = I
+ PORT TXN0_OUT = TXN0_OUT, DIR = O
+ PORT TXP0_OUT = TXP0_OUT, DIR = O
+ PORT RXN1_IN = RXN1_IN, DIR = I
+ PORT RXP1_IN = RXP1_IN, DIR = I
+ PORT TXN1_OUT = TXN1_OUT, DIR = O
+ PORT TXP1_OUT = TXP1_OUT, DIR = O
+# PORT RXN2_IN = RXN2_IN, DIR = I
+# PORT RXP2_IN = RXP2_IN, DIR = I
+# PORT TXN2_OUT = TXN2_OUT, DIR = O
+# PORT TXP2_OUT = TXP2_OUT, DIR = O
+# PORT RXN3_IN = RXN3_IN, DIR = I
+# PORT RXP3_IN = RXP3_IN, DIR = I
+# PORT TXN3_OUT = TXN3_OUT, DIR = O
+# PORT TXP3_OUT = TXP3_OUT, DIR = O
+
+ PORT sata_0_GREFCLK_P_pin = sata_0_GREFCLK_P, DIR = I
+ PORT sata_0_GREFCLK_N_pin = sata_0_GREFCLK_N, DIR = I
+
+BEGIN microblaze
+ PARAMETER INSTANCE = microblaze_0
+ PARAMETER C_USE_BARREL = 1
+ PARAMETER C_DEBUG_ENABLED = 1
+ PARAMETER HW_VER = 8.50.b
+ BUS_INTERFACE DLMB = dlmb
+ BUS_INTERFACE ILMB = ilmb
+ BUS_INTERFACE DPLB = mb_plb
+ BUS_INTERFACE IPLB = mb_plb
+ BUS_INTERFACE DEBUG = microblaze_0_mdm_bus
+ PORT MB_RESET = mb_reset
+END
+
+BEGIN plb_v46
+ PARAMETER INSTANCE = mb_plb
+ PARAMETER HW_VER = 1.05.a
+ PORT PLB_Clk = clk_66_6667MHzPLL0
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = ilmb
+ PARAMETER HW_VER = 2.00.b
+ PORT LMB_Clk = clk_66_6667MHzPLL0
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = dlmb
+ PARAMETER HW_VER = 2.00.b
+ PORT LMB_Clk = clk_66_6667MHzPLL0
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = dlmb_cntlr
+ PARAMETER HW_VER = 3.10.c
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00003fff
+ BUS_INTERFACE SLMB = dlmb
+ BUS_INTERFACE BRAM_PORT = dlmb_port
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = ilmb_cntlr
+ PARAMETER HW_VER = 3.10.c
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00003fff
+ BUS_INTERFACE SLMB = ilmb
+ BUS_INTERFACE BRAM_PORT = ilmb_port
+END
+
+BEGIN bram_block
+ PARAMETER INSTANCE = lmb_bram
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE PORTA = ilmb_port
+ BUS_INTERFACE PORTB = dlmb_port
+END
+
+BEGIN xps_uartlite
+ PARAMETER INSTANCE = RS232_Uart_1
+ PARAMETER C_BAUDRATE = 115200
+ PARAMETER C_DATA_BITS = 8
+ PARAMETER C_USE_PARITY = 0
+ PARAMETER C_ODD_PARITY = 0
+ PARAMETER HW_VER = 1.02.a
+ PARAMETER C_BASEADDR = 0x84000000
+ PARAMETER C_HIGHADDR = 0x8400ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT RX = fpga_0_RS232_Uart_1_RX_pin
+ PORT TX = fpga_0_RS232_Uart_1_TX_pin
+END
+
+BEGIN clock_generator
+ PARAMETER INSTANCE = clock_generator_0
+ PARAMETER C_CLKIN_FREQ = 32000000
+ PARAMETER C_CLKOUT0_FREQ = 640000000
+ PARAMETER C_CLKOUT0_PHASE = 0
+ PARAMETER C_CLKOUT0_GROUP = PLL0
+ PARAMETER C_CLKOUT0_BUF = FALSE
+ PARAMETER C_CLKOUT1_FREQ = 640000000
+ PARAMETER C_CLKOUT1_PHASE = 180
+ PARAMETER C_CLKOUT1_GROUP = PLL0
+ PARAMETER C_CLKOUT1_BUF = FALSE
+ PARAMETER C_CLKOUT2_FREQ = 64000000
+ PARAMETER C_CLKOUT2_PHASE = 0
+ PARAMETER C_CLKOUT2_GROUP = PLL0
+ PARAMETER C_CLKOUT2_BUF = TRUE
+ PARAMETER C_EXT_RESET_HIGH = 1
+ PARAMETER HW_VER = 4.03.a
+ PORT CLKIN = CLK_S
+ PORT CLKOUT0 = clk_666_6667MHzPLL0_nobuf
+ PORT CLKOUT1 = clk_666_6667MHz180PLL0_nobuf
+ PORT CLKOUT2 = clk_66_6667MHzPLL0
+ PORT RST = sys_rst_s
+ PORT LOCKED = Dcm_all_locked
+END
+
+BEGIN mdm
+ PARAMETER INSTANCE = mdm_0
+ PARAMETER C_MB_DBG_PORTS = 2
+ PARAMETER C_USE_UART = 1
+ PARAMETER HW_VER = 2.10.a
+ PARAMETER C_BASEADDR = 0x84400000
+ PARAMETER C_HIGHADDR = 0x8440ffff
+ BUS_INTERFACE SPLB = mb_plb
+ BUS_INTERFACE MBDEBUG_0 = microblaze_0_mdm_bus
+ BUS_INTERFACE MBDEBUG_1 = microblaze_1_mdm_bus
+ PORT Debug_SYS_Rst = Debug_SYS_Rst
+END
+
+BEGIN proc_sys_reset
+ PARAMETER INSTANCE = proc_sys_reset_0
+ PARAMETER C_EXT_RESET_HIGH = 1
+ PARAMETER HW_VER = 3.00.a
+ PORT Slowest_sync_clk = clk_66_6667MHzPLL0
+ PORT Ext_Reset_In = sys_rst_s
+ PORT MB_Debug_Sys_Rst = Debug_SYS_Rst
+ PORT Dcm_locked = Dcm_all_locked
+ PORT MB_Reset = mb_reset
+ PORT Bus_Struct_Reset = sys_bus_reset
+ PORT Peripheral_Reset = sys_periph_reset
+END
+
+BEGIN sata
+ PARAMETER INSTANCE = ahci_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_PORT = 2
+ PARAMETER C_SATA_CHIPSCOPE = 0
+ PARAMETER C_XCL_CHIPSCOPE = 0
+ PARAMETER C_NPI_CHIPSCOPE = 0
+ PARAMETER C_DEBUG_ENABLED = 1
+ BUS_INTERFACE SDCR = DCR_bus_sata0
+ BUS_INTERFACE MPMC_PIM = PIM1
+ BUS_INTERFACE GTXBUS0 = gtxbus_0
+ BUS_INTERFACE GTXBUS1 = gtxbus_1
+# BUS_INTERFACE GTXBUS2 = gtxbus_2
+# BUS_INTERFACE GTXBUS3 = gtxbus_3
+ BUS_INTERFACE PORTA = sata_0_data_porta
+ BUS_INTERFACE PORTB = sata_0_data_portb
+ BUS_INTERFACE DEBUG = microblaze_1_mdm_bus
+ PORT MPMC_Clk = clk_66_6667MHzPLL0
+ PORT DCR_Clk = DCR_Clk0
+ PORT DCR_Rst = DCR_Rst0
+END
+
+BEGIN satagtx
+ PARAMETER INSTANCE = gtx_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_CHIPSCOPE = 0
+ PARAMETER C_SATA_SPEED = 1
+ BUS_INTERFACE GTXBUS0 = gtxbus_0
+ BUS_INTERFACE GTXBUS1 = gtxbus_1
+ PORT sys_clk = clk_66_6667MHzPLL0
+ PORT refclkout = tile0_refclkout
+ PORT plllkdet = tile0_plllkdet
+ PORT gtpclkfb = tile0_gtpclkfb
+ PORT refclk = tile0_refclk
+ PORT dcm_locked = refclkout_dcm0_locked
+ PORT txusrclk0 = tile0_txusrclk0
+ PORT txusrclk20 = tile0_txusrclk20
+ PORT GTXRESET_IN = sys_periph_reset
+ PORT RXN0_IN = RXN0_IN
+ PORT RXP0_IN = RXP0_IN
+ PORT TXN0_OUT = TXN0_OUT
+ PORT TXP0_OUT = TXP0_OUT
+ PORT RXN1_IN = RXN1_IN
+ PORT RXP1_IN = RXP1_IN
+ PORT TXN1_OUT = TXN1_OUT
+ PORT TXP1_OUT = TXP1_OUT
+END
+
+BEGIN plbv46_dcr_bridge
+ PARAMETER INSTANCE = plbv46_dcr_bridge_0
+ PARAMETER HW_VER = 1.01.a
+ PARAMETER C_BASEADDR = 0x85f00000
+ PARAMETER C_HIGHADDR = 0x85f03fff
+ BUS_INTERFACE SPLB = mb_plb
+ BUS_INTERFACE MDCR = DCR_bus_sata0
+ PORT PLB_dcrClk = DCR_Clk0
+ PORT PLB_dcrRst = DCR_Rst0
+END
+
+BEGIN dcr_v29
+ PARAMETER INSTANCE = DCR_bus_sata0
+ PARAMETER HW_VER = 1.00.b
+END
+
+BEGIN xps_bram_if_cntlr
+ PARAMETER INSTANCE = sata_0_data_pa
+ PARAMETER C_SPLB_NATIVE_DWIDTH = 32
+ PARAMETER C_SPLB_SUPPORT_BURSTS = 1
+ PARAMETER C_SPLB_P2P = 0
+ PARAMETER HW_VER = 1.00.b
+ PARAMETER C_BASEADDR = 0x85f04000
+ PARAMETER C_HIGHADDR = 0x85f07fff
+ BUS_INTERFACE SPLB = mb_plb
+ BUS_INTERFACE PORTA = sata_0_data_porta
+END
+
+BEGIN xps_bram_if_cntlr
+ PARAMETER INSTANCE = sata_0_data_pb
+ PARAMETER C_SPLB_NATIVE_DWIDTH = 32
+ PARAMETER C_SPLB_SUPPORT_BURSTS = 1
+ PARAMETER C_SPLB_P2P = 0
+ PARAMETER HW_VER = 1.00.b
+ PARAMETER C_BASEADDR = 0x85f08000
+ PARAMETER C_HIGHADDR = 0x85f0bfff
+ BUS_INTERFACE SPLB = mb_plb
+ BUS_INTERFACE PORTA = sata_0_data_portb
+END
+
+BEGIN satagtx_clk
+ PARAMETER INSTANCE = gtx_clk_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_SATA_SPEED = 1
+ PORT TILE0_REFCLK_PAD_P_IN = sata_0_GREFCLK_P
+ PORT TILE0_REFCLK_PAD_N_IN = sata_0_GREFCLK_N
+ PORT tile0_refclk = tile0_refclk
+ PORT tile0_refclkout = tile0_refclkout
+ PORT tile0_gtpclkfb = tile0_gtpclkfb
+ PORT tile0_plllkdet = tile0_plllkdet
+ PORT refclkout_dcm0_locked = refclkout_dcm0_locked
+ PORT tile0_txusrclk0 = tile0_txusrclk0
+ PORT tile0_txusrclk20 = tile0_txusrclk20
+END
+
